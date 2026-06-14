@@ -4,6 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salario Docente vs Pobreza · CONADU HISTÓRICA · GDU Catamarca</title>
+
+<!-- ══ SEO básico ══ -->
+<meta name="description" content="El salario docente universitario cubre apenas el 36,4% de la Canasta Básica Total. Datos oficiales INDEC mayo 2026. CONADU HISTÓRICA · GDU Catamarca.">
+<meta name="author" content="GDU Catamarca · CONADU HISTÓRICA">
+<meta name="keywords" content="salario docente, pobreza, INDEC, CONADU HISTÓRICA, GDU Catamarca, canasta básica, universitarios">
+
+<!-- ══ Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) ══
+     👉 REEMPLAZÁ preview.jpg por el nombre real de tu imagen una vez que la tengas
+     👉 La imagen debe estar en la misma carpeta que este HTML y medir 1200×630px -->
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="CONADU HISTÓRICA · GDU Catamarca">
+<meta property="og:title"       content="Salario docente: debajo de la línea de pobreza">
+<meta property="og:description" content="El cargo testigo docente universitario alcanza solo el 36,4% de la Canasta Básica Total (mayo 2026). Datos INDEC oficiales.">
+<meta property="og:image"       content="preview.jpg">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"   content="Infografía: salario docente vs línea de pobreza mayo 2026">
+<meta property="og:url"         content="https://gdu-catamarca.github.io/salario-pobreza/">
+<meta property="og:locale"      content="es_AR">
+
+<!-- ══ Twitter / X Card ══ -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Salario docente: debajo de la línea de pobreza">
+<meta name="twitter:description" content="El cargo testigo docente universitario alcanza solo el 36,4% de la Canasta Básica Total. Datos INDEC mayo 2026.">
+<meta name="twitter:image"       content="preview.jpg">
+<meta name="twitter:image:alt"   content="Infografía: salario docente vs línea de pobreza mayo 2026">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;900&display=swap');
 
@@ -513,9 +539,96 @@ footer strong { color: var(--oro); }
   transform: none;
 }
 
+/* Entrada escalonada para grillas */
+.impacto-grid.visible .impacto-card:nth-child(1) { transition-delay: 0.05s; }
+.impacto-grid.visible .impacto-card:nth-child(2) { transition-delay: 0.18s; }
+.impacto-grid.visible .impacto-card:nth-child(3) { transition-delay: 0.31s; }
+.impacto-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
+}
+.impacto-grid.visible .impacto-card { opacity: 1; transform: none; }
+
+/* Shimmer sobre la barra al animarse */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.barra-fill.animada::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.25) 50%,
+    transparent 100%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.2s ease-out 0.3s 1;
+}
+.barra-fill { position: relative; overflow: hidden; }
+
+/* Pulso suave en c-amount al entrar en vista */
+@keyframes pulseSoft {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+.confronta.visible .c-amount {
+  animation: pulseSoft 0.7s ease-out 0.5s 1;
+}
+
+/* Glow parpadeante en el déficit (tarjeta roja) */
+@keyframes glowRed {
+  0%, 100% { box-shadow: inset 0 0 0 0 rgba(224,32,32,0); }
+  50%       { box-shadow: inset 0 0 18px 2px rgba(224,32,32,0.12); }
+}
+.impacto-card.rojo {
+  animation: glowRed 3s ease-in-out infinite;
+}
+
+/* Línea dorada de progreso en hero al cargar */
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.hero-line {
+  width: 60px;
+  height: 3px;
+  background: var(--oro);
+  border-radius: 2px;
+  margin: 20px auto 0;
+  transform-origin: left;
+  animation: lineGrow 0.8s cubic-bezier(0.22,1,0.36,1) 0.4s both;
+}
+
+/* Fade-in rápido del hero badge */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: none; }
+}
+.eyebrow { animation: fadeDown 0.6s ease-out 0.1s both; }
+.hero-kicker { animation: fadeDown 0.6s ease-out 0.2s both; }
+.hero-title  { animation: fadeDown 0.7s ease-out 0.3s both; }
+.hero-sub    { animation: fadeDown 0.6s ease-out 0.5s both; }
+.hero-cta    { animation: fadeDown 0.6s ease-out 0.65s both; }
+.scroll-hint { animation: fadeDown 0.6s ease-out 0.8s both; }
+
+/* Bounce suave en scroll-hint */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+.scroll-hint { animation: fadeDown 0.6s ease-out 0.8s both, bounce 2s ease-in-out 1.5s infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .impacto-card { opacity: 1; transform: none; }
   .barra-fill { transition: none; }
+  .eyebrow, .hero-kicker, .hero-title, .hero-sub, .hero-cta, .scroll-hint { animation: none; }
+  .impacto-card.rojo { animation: none; }
 }
 </style>
 </head>
@@ -534,6 +647,7 @@ footer strong { color: var(--oro); }
       El salario docente universitario cubre apenas el <strong style="color:#FF6B6B">36,4%</strong> de la Canasta Básica Total.
       Un cargo testigo, números reales, una realidad inocultable.
     </p>
+    <div class="hero-line"></div>
     <a href="#datos" class="hero-cta">Ver los datos →</a>
     <div class="scroll-hint">
       <span></span>
@@ -608,17 +722,17 @@ footer strong { color: var(--oro); }
   <div class="impacto-grid reveal">
     <div class="impacto-card rojo">
       <div class="ic-label">Déficit mensual</div>
-      <div class="ic-val">-$953.441</div>
+      <div class="ic-val" id="counter-deficit">-$953.441</div>
       <div class="ic-desc">Lo que le falta al sueldo para cubrir la línea de pobreza de una familia tipo</div>
     </div>
     <div class="impacto-card azul">
       <div class="ic-label">El sueldo cubre</div>
-      <div class="ic-val">36,4%</div>
+      <div class="ic-val" id="counter-pct">36,4%</div>
       <div class="ic-desc">De la Canasta Básica Total. Menos de la mitad de lo necesario para no ser pobre</div>
     </div>
     <div class="impacto-card oro">
       <div class="ic-label">Variación CBT mayo</div>
-      <div class="ic-val">+2,0%</div>
+      <div class="ic-val" id="counter-variacion">+2,0%</div>
       <div class="ic-desc">La canasta siguió subiendo. El salario docente acumula -6,38% de pérdida en 2026</div>
     </div>
   </div>
@@ -633,13 +747,29 @@ footer strong { color: var(--oro); }
     </p>
   </div>
 
-  <!-- PREVIEW IMAGEN -->
+  <!-- PREVIEW IMAGEN DE DIFUSIÓN
+       ══════════════════════════════════════════════════════
+       👉 CÓMO AGREGAR TU IMAGEN:
+          1. Guardá tu imagen como "preview.jpg" (o .png / .webp)
+          2. Subila a la misma carpeta que este archivo HTML en GitHub
+          3. Reemplazá el bloque .preview-slot de abajo por:
+             <img src="preview.jpg" alt="Imagen de difusión" style="width:100%;border-radius:16px;">
+          4. La misma imagen se usará automáticamente en el social preview
+             de WhatsApp, Facebook, Twitter/X, Telegram y LinkedIn
+             gracias a las meta tags og:image que ya están en el <head>.
+       Tamaño recomendado: 1200×630px para redes · 1080×1080px para Instagram
+       ══════════════════════════════════════════════════════ -->
   <div class="preview-section reveal">
     <div class="preview-label">📸 Imagen de difusión · Próximamente</div>
+    <!-- 👇 Reemplazá este bloque por <img src="preview.jpg" ...> cuando tengas la imagen -->
     <div class="preview-slot">
       <span class="icon">🖼️</span>
-      <span>Aquí irá la imagen publicitaria que diseñes</span>
-      <span style="font-size:11px; opacity:0.5">Resolución sugerida: 1080×1080px · formato .jpg o .webp</span>
+      <span>Aquí irá tu imagen publicitaria</span>
+      <span style="font-size:11px; opacity:0.5; line-height:1.7; max-width:320px; text-align:center;">
+        Guardala como <strong style="color:#D4A017">preview.jpg</strong> en la misma carpeta<br>
+        y reemplazá este bloque por<br>
+        <code style="font-size:10px; color:#7EC8F0">&lt;img src="preview.jpg"&gt;</code>
+      </span>
     </div>
   </div>
 
@@ -661,25 +791,71 @@ footer strong { color: var(--oro); }
 </footer>
 
 <script>
-// ── Revelar elementos al hacer scroll ──
+// ── Contador numérico animado ──
+function animateCounter(el, from, to, duration, prefix = '', suffix = '') {
+  const start = performance.now();
+  const isFloat = String(to).includes('.');
+  const decimals = isFloat ? String(to).split('.')[1].length : 0;
+
+  function tick(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // easeOutExpo
+    const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    const val = from + (to - from) * ease;
+    el.textContent = prefix + val.toLocaleString('es-AR', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    }) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ── Activar barras con shimmer ──
+function activateBars(container) {
+  container.querySelectorAll('.barra-fill').forEach((bar, i) => {
+    const target = parseFloat(bar.dataset.w);
+    setTimeout(() => {
+      bar.style.width = target + '%';
+      bar.classList.add('animada');
+    }, i * 250);
+  });
+}
+
+// ── Contadores en tarjetas de impacto ──
+const counterMap = {
+  'counter-deficit':   { from: 0,       to: 953441,   prefix: '-$', suffix: '',  duration: 1600 },
+  'counter-pct':       { from: 0,       to: 36.4,     prefix: '',   suffix: '%', duration: 1200 },
+  'counter-variacion': { from: 0,       to: 2.0,      prefix: '+',  suffix: '%', duration: 900  },
+};
+
+let countersTriggered = false;
+
+// ── Intersection Observer principal ──
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      // si tiene barras, animarlas
-      e.target.querySelectorAll('.barra-fill').forEach(bar => {
-        bar.style.width = bar.dataset.w + '%';
+    if (!e.isIntersecting) return;
+
+    e.target.classList.add('visible');
+
+    // Barras
+    activateBars(e.target);
+
+    // Contadores (solo la primera vez que el grid es visible)
+    if (e.target.classList.contains('impacto-grid') && !countersTriggered) {
+      countersTriggered = true;
+      Object.entries(counterMap).forEach(([id, cfg]) => {
+        const el = document.getElementById(id);
+        if (el) animateCounter(el, cfg.from, cfg.to, cfg.duration, cfg.prefix, cfg.suffix);
       });
     }
+
+    observer.unobserve(e.target);
   });
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// barras que están fuera de .reveal (por si acaso)
-document.querySelectorAll('.barra-fill:not(.revealed)').forEach(bar => {
-  bar.style.width = '0%';
-});
 </script>
 </body>
 </html>
