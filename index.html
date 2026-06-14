@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salario Docente vs Pobreza · CONADU HISTÓRICA · GDU Catamarca</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;900&display=swap');
+
+:root {
+  --rojo:    #E02020;
+  --rojo-d:  #900C0C;
+  --azul:    #1B3F72;
+  --azul-c:  #2D6FBF;
+  --oro:     #D4A017;
+  --bg:      #08111C;
+  --bg2:     #0E1C2D;
+  --gris:    #A0AEC0;
+  --blanco:  #F7F9FC;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* fondo dramatico: diagonal split */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #0E1C2D 0%, #08111C 55%, #1a0404 100%);
+  z-index: 0;
+}
+
+/* línea diagonal roja */
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 3px;
+  background: var(--rojo);
+  top: 50%;
+  left: -50%;
+  transform: rotate(-8deg);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 700px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212,160,23,0.12);
+  border: 1px solid rgba(212,160,23,0.35);
+  color: var(--oro);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 40px;
+  margin-bottom: 32px;
+}
+
+.hero-kicker {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(13px, 3.5vw, 18px);
+  letter-spacing: 5px;
+  color: var(--gris);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 13vw, 110px);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  color: var(--blanco);
+  margin-bottom: 8px;
+}
+.hero-title .accent {
+  color: var(--rojo);
+  display: block;
+}
+
+.hero-sub {
+  font-size: clamp(13px, 2.5vw, 16px);
+  color: var(--gris);
+  margin-top: 20px;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  margin-top: 40px;
+  display: inline-block;
+  background: var(--rojo);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  border-radius: 40px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.hero-cta:hover { background: var(--rojo-d); transform: translateY(-2px); }
+
+/* scroll indicator */
+.scroll-hint {
+  margin-top: 48px;
+  font-size: 11px;
+  color: #4A5568;
+  letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.scroll-hint span {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--oro));
+  margin: 0 auto;
+}
+
+/* ── SECCIÓN DATOS PRINCIPALES ── */
+.section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(212,160,23,0.25);
+}
+
+/* CONFRONTACIÓN PRINCIPAL */
+.confronta {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: stretch;
+  margin-bottom: 60px;
+}
+
+.confronta-card {
+  padding: 40px 28px;
+  border-radius: 20px;
+  text-align: center;
+}
+.confronta-card.salario {
+  background: linear-gradient(145deg, #0D2645, #122f55);
+  border: 1px solid rgba(45,111,191,0.4);
+}
+.confronta-card.pobreza {
+  background: linear-gradient(145deg, #1c0505, #2d0808);
+  border: 1px solid rgba(224,32,32,0.35);
+}
+
+.confronta-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  position: relative;
+}
+.vs-badge {
+  background: var(--bg);
+  border: 2px solid var(--oro);
+  color: var(--oro);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.confronta-sep::before {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: rgba(212,160,23,0.2);
+}
+
+.c-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.salario .c-label { color: #5B9BD5; }
+.pobreza .c-label { color: #FC7070; }
+
+.c-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(30px, 6vw, 50px);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.salario .c-amount { color: #7EC8F0; }
+.pobreza .c-amount { color: #FF6B6B; }
+
+.c-desc {
+  font-size: 11px;
+  color: var(--gris);
+  line-height: 1.5;
+  margin-top: 12px;
+}
+
+/* BARRA IMPACTO */
+.barra-section {
+  background: var(--bg2);
+  border-radius: 24px;
+  padding: 40px 36px;
+  margin-bottom: 60px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.barra-titulo {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gris);
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+.barra-row {
+  margin-bottom: 28px;
+}
+.barra-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.barra-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blanco);
+  letter-spacing: 0.5px;
+}
+.barra-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+}
+.barra-track {
+  height: 36px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 40px;
+  overflow: hidden;
+}
+.barra-fill {
+  height: 100%;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  width: 0;
+  transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fill-cbt   { background: linear-gradient(90deg, var(--rojo-d), var(--rojo)); }
+.fill-sal   { background: linear-gradient(90deg, var(--azul), var(--azul-c)); }
+
+/* CIFRA IMPACTO */
+.impacto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 60px;
+}
+.impacto-card {
+  background: var(--bg2);
+  border-radius: 20px;
+  padding: 28px 22px;
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.impacto-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+.impacto-card.rojo::before  { background: var(--rojo); }
+.impacto-card.azul::before  { background: var(--azul-c); }
+.impacto-card.oro::before   { background: var(--oro); }
+
+.ic-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 12px;
+}
+.ic-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(26px, 5vw, 40px);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.impacto-card.rojo .ic-val  { color: #FF6B6B; }
+.impacto-card.azul .ic-val  { color: #7EC8F0; }
+.impacto-card.oro  .ic-val  { color: var(--oro); }
+
+.ic-desc {
+  font-size: 11px;
+  color: var(--gris);
+  line-height: 1.5;
+}
+
+/* ALERTA DENUNCIA */
+.alerta {
+  background: linear-gradient(135deg, #1c0505, #200808);
+  border: 1px solid rgba(224,32,32,0.4);
+  border-radius: 20px;
+  padding: 32px 36px;
+  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.alerta::before {
+  content: '"';
+  position: absolute;
+  right: 20px; top: -10px;
+  font-size: 160px;
+  opacity: 0.06;
+  line-height: 1;
+  font-family: Georgia, serif;
+  color: var(--oro);
+}
+.alerta-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--oro);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.alerta-texto {
+  font-size: clamp(15px, 2.5vw, 19px);
+  font-weight: 700;
+  color: var(--blanco);
+  line-height: 1.5;
+  max-width: 580px;
+}
+.alerta-texto strong { color: #FF6B6B; }
+
+/* PREVIEW IMAGEN PLACEHOLDER */
+.preview-section {
+  background: var(--bg2);
+  border-radius: 24px;
+  padding: 40px;
+  margin-bottom: 60px;
+  border: 1px dashed rgba(212,160,23,0.3);
+  text-align: center;
+}
+.preview-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--oro);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.preview-slot {
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.1);
+  border-radius: 16px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #4A5568;
+  font-size: 13px;
+}
+.preview-slot .icon {
+  font-size: 36px;
+  opacity: 0.4;
+}
+
+/* FUENTE */
+.fuente-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 28px 32px;
+  font-size: 11px;
+  color: var(--gris);
+  line-height: 1.8;
+}
+.fuente-box strong { color: var(--blanco); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid rgba(212,160,23,0.15);
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 11px;
+  color: #4A5568;
+  letter-spacing: 1px;
+}
+footer strong { color: var(--oro); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  /* Confronta: apilado vertical */
+  .confronta {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .confronta-sep {
+    flex-direction: row;
+    padding: 4px 0;
+  }
+  .confronta-sep::before {
+    width: 100%; height: 1px;
+    top: 50%; left: 0;
+  }
+  .confronta-card { padding: 28px 20px; }
+
+  /* Barras: nombres en línea propia si no caben */
+  .barra-meta {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .barra-name { font-size: 11px; flex: 1 1 100%; }
+  .barra-val  { font-size: 16px; }
+  .barra-section { padding: 24px 16px; }
+
+  /* Impacto: 1 columna */
+  .impacto-grid { grid-template-columns: 1fr; }
+
+  /* Alerta */
+  .alerta { padding: 22px 18px; }
+  .alerta-texto { font-size: 14px; }
+
+  /* Sección general */
+  .section { padding: 48px 16px; }
+
+  /* Preview */
+  .preview-section { padding: 28px 16px; }
+  .preview-slot { height: 160px; font-size: 12px; }
+
+  /* Fuente */
+  .fuente-box { padding: 22px 18px; }
+
+  /* Hero */
+  .hero { padding: 48px 18px 32px; }
+  .hero-cta { padding: 12px 28px; font-size: 11px; }
+  .eyebrow { font-size: 9px; letter-spacing: 2px; padding: 5px 14px; }
+}
+
+/* ── ANIMACIONES SCROLL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+  .barra-fill { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">⚡ CONADU HISTÓRICA · GDU CATAMARCA</div>
+    <p class="hero-kicker">Mayo 2026 · Datos oficiales INDEC</p>
+    <h1 class="hero-title">
+      DEBAJO
+      <span class="accent">DE LA LÍNEA</span>
+    </h1>
+    <p class="hero-sub">
+      El salario docente universitario cubre apenas el <strong style="color:#FF6B6B">36,4%</strong> de la Canasta Básica Total.
+      Un cargo testigo, números reales, una realidad inocultable.
+    </p>
+    <a href="#datos" class="hero-cta">Ver los datos →</a>
+    <div class="scroll-hint">
+      <span></span>
+      BAJÁ
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DATOS ══════════ -->
+<section class="section" id="datos">
+
+  <div class="section-label reveal">COMPARATIVA SALARIAL</div>
+
+  <!-- CONFRONTACIÓN -->
+  <div class="confronta reveal">
+
+    <div class="confronta-card salario">
+      <div class="c-label">💼 Salario Docente</div>
+      <div class="c-amount">$545.300</div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
+      <p class="c-desc">
+        Auxiliar Diplomado de Primera<br>
+        Dedicación Semiexclusiva<br>
+        <strong style="color:#7EC8F0">Escala CONADU HISTÓRICA · Mayo 2026</strong>
+      </p>
+    </div>
+
+    <div class="confronta-sep">
+      <div class="vs-badge">VS</div>
+    </div>
+
+    <div class="confronta-card pobreza">
+      <div class="c-label">🚫 Línea de Pobreza</div>
+      <div class="c-amount">$1.498.741</div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
+      <p class="c-desc">
+        Canasta Básica Total (CBT)<br>
+        Hogar de 4 integrantes<br>
+        <strong style="color:#FF6B6B">INDEC · Publicado 11/06/2026</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- BARRAS -->
+  <div class="barra-section reveal">
+    <p class="barra-titulo">Proporción visual respecto a la Canasta Básica Total</p>
+
+    <div class="barra-row">
+      <div class="barra-meta">
+        <span class="barra-name">🚫 Línea de pobreza (CBT)</span>
+        <span class="barra-val" style="color:#FF6B6B">$1.498.741</span>
+      </div>
+      <div class="barra-track">
+        <div class="barra-fill fill-cbt" data-w="100">100%</div>
+      </div>
+    </div>
+
+    <div class="barra-row">
+      <div class="barra-meta">
+        <span class="barra-name">📚 Salario Auxiliar Semiexclusiva</span>
+        <span class="barra-val" style="color:#7EC8F0">$545.300</span>
+      </div>
+      <div class="barra-track">
+        <div class="barra-fill fill-sal" data-w="36.4">36%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CIFRAS IMPACTO -->
+  <div class="section-label reveal" style="margin-bottom:28px">IMPACTO EN NÚMEROS</div>
+
+  <div class="impacto-grid reveal">
+    <div class="impacto-card rojo">
+      <div class="ic-label">Déficit mensual</div>
+      <div class="ic-val">-$953.441</div>
+      <div class="ic-desc">Lo que le falta al sueldo para cubrir la línea de pobreza de una familia tipo</div>
+    </div>
+    <div class="impacto-card azul">
+      <div class="ic-label">El sueldo cubre</div>
+      <div class="ic-val">36,4%</div>
+      <div class="ic-desc">De la Canasta Básica Total. Menos de la mitad de lo necesario para no ser pobre</div>
+    </div>
+    <div class="impacto-card oro">
+      <div class="ic-label">Variación CBT mayo</div>
+      <div class="ic-val">+2,0%</div>
+      <div class="ic-desc">La canasta siguió subiendo. El salario docente acumula -6,38% de pérdida en 2026</div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN FINAL -->
+  <div class="alerta reveal">
+    <div class="alerta-tag">💬 Reflexión final</div>
+    <p class="alerta-texto">
+      Un docente universitario con dedicación semiexclusiva <strong>cobra menos de la mitad</strong>
+      de lo que una familia necesita para no caer en la pobreza.
+      Detrás de estos números hay <strong>trayectorias, vocaciones y familias</strong> que merecen una respuesta real.
+    </p>
+  </div>
+
+  <!-- PREVIEW IMAGEN -->
+  <div class="preview-section reveal">
+    <div class="preview-label">📸 Imagen de difusión · Próximamente</div>
+    <div class="preview-slot">
+      <span class="icon">🖼️</span>
+      <span>Aquí irá la imagen publicitaria que diseñes</span>
+      <span style="font-size:11px; opacity:0.5">Resolución sugerida: 1080×1080px · formato .jpg o .webp</span>
+    </div>
+  </div>
+
+  <!-- FUENTE -->
+  <div class="fuente-box reveal">
+    <strong>🔍 Fuente oficial INDEC (mayo 2026):</strong><br>
+    Canasta Básica Total (CBT) – Línea de pobreza: $1.498.741 para un hogar de 4 integrantes.
+    Variación mensual: +2,0%. Publicado el 11 de junio de 2026.<br><br>
+    <strong>📌 Salario docente:</strong>
+    Auxiliar Diplomado de Primera con Dedicación Semiexclusiva – escala salarial CONADU HISTÓRICA, liquidación mayo 2026.<br><br>
+    <em style="opacity:0.7">📊 Elaboración: GDU Catamarca · CONADU HISTÓRICA.
+    El salario docente no cubre la canasta básica total, evidenciando un déficit crítico frente a la línea de pobreza.</em>
+  </div>
+
+</section>
+
+<footer>
+  <strong>CONADU HISTÓRICA</strong> · GDU Catamarca · Fuente: INDEC · 2026
+</footer>
+
+<script>
+// ── Revelar elementos al hacer scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // si tiene barras, animarlas
+      e.target.querySelectorAll('.barra-fill').forEach(bar => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// barras que están fuera de .reveal (por si acaso)
+document.querySelectorAll('.barra-fill:not(.revealed)').forEach(bar => {
+  bar.style.width = '0%';
+});
+</script>
+</body>
+</html>
