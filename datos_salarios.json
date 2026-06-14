@@ -1,0 +1,27 @@
+{
+  "ultima_actualizacion": "Mayo 2026",
+  "dedicaciones": {
+    "Exclusiva": {
+      "Titular": 1606017.59,
+      "Asociado": 1429123.13,
+      "Adjunto": 1252853.64,
+      "JTP": 1075954.35,
+      "Ayudante 1ra": 898873.89
+    },
+    "Semiexclusiva": {
+      "Titular": 803010.13,
+      "Asociado": 714560.47,
+      "Adjunto": 626421.29,
+      "JTP": 537976.41,
+      "Ayudante 1ra": 449435.60
+    },
+    "Simple": {
+      "Titular": 401503.97,
+      "Asociado": 357275.34,
+      "Adjunto": 313207.47,
+      "JTP": 268985.05,
+      "Ayudante 1ra": 224713.81,
+      "Ayudante 2da": 179773.93
+    }
+  }
+}
