@@ -510,11 +510,87 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   .calc-section { padding: 0 16px 110px; }
 }
 
-/* FOOTER */
+/* ════════════════════════════════
+   FOOTER
+   ════════════════════════════════ */
 footer {
   border-top: 1px solid rgba(212,160,23,0.15);
-  padding: 24px; text-align: center;
-  font-size: 11px; color: #4A5568; letter-spacing: 1px;
+  padding: 36px 24px;
+  text-align: center;
+  background: var(--bg);
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.footer-logo img {
+  height: 36px;
+  width: auto;
+  filter: brightness(0) invert(1) opacity(0.5);
+}
+
+.footer-nombre {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--blanco);
+  margin-bottom: 4px;
+}
+
+.footer-sub {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #4A5568;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: opacity 0.2s;
+}
+.footer-links a:hover { opacity: 0.75; }
+
+.footer-links a.ig { color: #E1306C; }
+.footer-links a.fb { color: #1877F2; }
+
+.footer-links svg {
+  width: 14px; height: 14px; fill: currentColor;
+}
+
+.footer-copy {
+  font-size: 10px;
+  color: #2D3748;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.8;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding-top: 20px;
+  margin-top: 4px;
+}
+
+.footer-copy span {
+  color: #3D4F63;
+}
+
+@media (max-width: 640px) {
+  footer { padding-bottom: 90px; }
+  .footer-links { flex-direction: column; align-items: center; gap: 12px; }
 }
 
 /* ════════════════════════════════
@@ -537,7 +613,6 @@ footer {
   .fuente-box { padding: 22px 18px; }
   .hero { padding: 48px 18px 32px; }
   .hero-cta, .hero-cta-calc { padding: 12px 22px; font-size: 11px; }
-  footer { padding-bottom: 90px; }
 }
 
 /* ════════════════════════════════
@@ -882,11 +957,38 @@ footer {
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <a href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener"
-     style="color:#E1306C;text-decoration:none;margin:0 8px;">Instagram</a>
-  ·
-  <a href="https://www.facebook.com/gremiodocente.universitario" target="_blank" rel="noopener"
-     style="color:#1877F2;text-decoration:none;margin:0 8px;">Facebook</a>
+
+  <div class="footer-logo">
+    <img src="logo-gdu.png" alt="GDU Catamarca">
+  </div>
+
+  <div class="footer-nombre">Gremio Docente Universitario</div>
+  <div class="footer-sub">CONADU HISTÓRICA · Catamarca</div>
+
+  <div class="footer-links">
+    <a href="https://www.instagram.com/gducatamarca/"
+       target="_blank" rel="noopener" class="ig">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/gremiodocente.universitario"
+       target="_blank" rel="noopener" class="fb">
+      <svg viewBox="0 0 24 24">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+      Facebook
+    </a>
+  </div>
+
+  <div class="footer-copy">
+    <span>© 2026 Gremio Docente Universitario · CONADU HISTÓRICA</span><br>
+    Todos los derechos reservados. El contenido de este sitio es de carácter
+    informativo y sindical. Su reproducción parcial o total está permitida
+    citando la fuente: <em>GDU Catamarca · CONADU HISTÓRICA</em>.
+  </div>
+
 </footer>
 
 <!-- ══ SCRIPTS ══ -->
@@ -998,43 +1100,34 @@ function descargarPDF() {
   img.onload = function () {
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, "F");
-
     doc.setFillColor(27, 63, 114);
     doc.rect(0, 0, 210, 38, "F");
-
     doc.addImage(img, "PNG", 10, 6, 100, 26);
-
     doc.setTextColor(212, 160, 23);
     doc.setFontSize(8);
     doc.setFont("helvetica", "normal");
     doc.text(`Emisión: ${fecha}`, 200, 12, { align: "right" });
     doc.text("Mayo 2026", 200, 20, { align: "right" });
-
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
-
     doc.setTextColor(247, 249, 252);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(20);
     doc.text("Constancia de Cálculo Salarial", 105, 58, { align: "center" });
-
     doc.setFontSize(10);
     doc.setTextColor(160, 174, 192);
     doc.setFont("helvetica", "normal");
     doc.text("Escala universitaria · CONADU HISTÓRICA · GDU Catamarca", 105, 66, { align: "center" });
-
     doc.setFillColor(14, 28, 45);
     doc.roundedRect(14, 76, 182, 62, 4, 4, "F");
     doc.setDrawColor(45, 111, 191);
     doc.setLineWidth(0.4);
     doc.roundedRect(14, 76, 182, 62, 4, 4, "S");
-
     doc.setTextColor(212, 160, 23);
     doc.setFontSize(8);
     doc.setFont("helvetica", "bold");
     doc.text("DETALLE DE LA SIMULACIÓN", 22, 86);
-
     const items = [
       ["Dedicación:", dedicacion],
       ["Cargo:",      cargo],
@@ -1052,37 +1145,30 @@ function descargarPDF() {
       doc.text(val, 68, y);
       y += 11;
     });
-
     doc.setFillColor(27, 63, 114);
     doc.roundedRect(14, 148, 182, 52, 4, 4, "F");
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.6);
     doc.roundedRect(14, 148, 182, 52, 4, 4, "S");
-
     doc.setTextColor(160, 174, 192);
     doc.setFontSize(9);
     doc.setFont("helvetica", "bold");
     doc.text("SALARIO BRUTO ESTIMADO", 105, 161, { align: "center" });
-
     doc.setTextColor(126, 200, 240);
     doc.setFontSize(28);
     doc.setFont("helvetica", "bold");
     doc.text(total, 105, 185, { align: "center" });
-
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.4);
     doc.line(14, 210, 196, 210);
-
     doc.setTextColor(90, 112, 144);
     doc.setFontSize(8);
     doc.setFont("helvetica", "normal");
     const nota = "Este cálculo es estimativo. No incluye adicionales locales, suma fija remunerativa ni descuentos de ley (jubilación, obra social, sindicato, ganancias). Para liquidación oficial consultá con tu área de RRHH.";
     doc.text(doc.splitTextToSize(nota, 176), 105, 218, { align: "center" });
-
     doc.setTextColor(70, 90, 110);
     doc.setFontSize(7);
     doc.text("Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA", 105, 240, { align: "center" });
-
     doc.setFillColor(14, 28, 45);
     doc.rect(0, 272, 210, 25, "F");
     doc.setDrawColor(212, 160, 23);
@@ -1096,7 +1182,6 @@ function descargarPDF() {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(7);
     doc.text("instagram.com/gducatamarca · facebook.com/gremiodocente.universitario", 105, 289, { align: "center" });
-
     doc.save(`Calculo_Salarial_GDU_${fecha.replace(/\//g,"-")}.pdf`);
   };
 }
