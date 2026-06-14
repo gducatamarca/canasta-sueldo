@@ -48,6 +48,133 @@ html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
 /* ════════════════════════════════
+   PANTALLA DE CARGA
+   ════════════════════════════════ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+#loader img {
+  width: min(320px, 80vw);
+  filter: drop-shadow(0 0 24px rgba(212,160,23,0.4));
+  animation: loaderPulse 1.8s ease-in-out infinite;
+}
+@keyframes loaderPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.75; transform: scale(0.97); }
+}
+.loader-bar-wrap {
+  width: min(280px, 70vw);
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
+  border-radius: 99px;
+  animation: loaderFill 1.4s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+}
+@keyframes loaderFill {
+  to { width: 100%; }
+}
+.loader-txt {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gris);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ════════════════════════════════
+   HEADER / NAVBAR CON LOGO
+   ════════════════════════════════ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8,17,28,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,160,23,0.15);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.header-logo { display: flex; align-items: center; }
+.header-logo img {
+  height: 48px;
+  width: auto;
+  background: rgba(255,255,255,0.92);
+  border-radius: 8px;
+  padding: 4px 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 9px 18px;
+  border-radius: 40px;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.header-btn.datos {
+  background: var(--rojo);
+  color: white;
+  box-shadow: 0 4px 16px rgba(224,32,32,0.3);
+}
+.header-btn.datos:hover {
+  background: var(--rojo-d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(224,32,32,0.45);
+}
+.header-btn.calc {
+  background: linear-gradient(135deg, var(--azul), var(--azul-c));
+  color: white;
+  box-shadow: 0 4px 16px rgba(27,63,114,0.4);
+}
+.header-btn.calc:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(45,111,191,0.5);
+}
+.header-btn svg { width: 14px; height: 14px; fill: white; flex-shrink: 0; }
+
+@media (max-width: 480px) {
+  .site-header { padding: 8px 14px; }
+  .header-logo img { height: 38px; }
+  .header-btn { font-size: 10px; padding: 8px 12px; letter-spacing: 1px; }
+}
+
+/* ════════════════════════════════
    BOTONES FLOTANTES DE REDES
    ════════════════════════════════ */
 .social-float {
@@ -60,72 +187,44 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   flex-direction: column;
   gap: 12px;
 }
-
 .social-btn {
-  width: 48px;
-  height: 48px;
+  width: 48px; height: 48px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   text-decoration: none;
   transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
   position: relative;
 }
-.social-btn svg {
-  width: 22px;
-  height: 22px;
-  fill: white;
-  display: block;
-}
+.social-btn svg { width: 22px; height: 22px; fill: white; display: block; }
 .social-btn:hover { transform: scale(1.18); }
-
-/* Instagram */
 .social-btn.ig {
   background: radial-gradient(circle at 30% 107%,
-    #fdf497 0%, #fdf497 5%,
-    #fd5949 45%, #d6249f 60%,
-    #285AEB 90%);
+    #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   box-shadow: 0 4px 20px rgba(214,36,159,0.45);
 }
 .social-btn.ig:hover { box-shadow: 0 6px 28px rgba(214,36,159,0.65); }
-
-/* Facebook */
 .social-btn.fb {
   background: #1877F2;
   box-shadow: 0 4px 20px rgba(24,119,242,0.45);
 }
 .social-btn.fb:hover { box-shadow: 0 6px 28px rgba(24,119,242,0.65); }
-
-/* Tooltip al hover */
 .social-btn::before {
   content: attr(data-tip);
-  position: absolute;
-  right: 58px;
-  background: rgba(0,0,0,0.75);
-  color: #fff;
+  position: absolute; right: 58px;
+  background: rgba(0,0,0,0.75); color: #fff;
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  padding: 5px 10px;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-  backdrop-filter: blur(4px);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.5px; white-space: nowrap;
+  padding: 5px 10px; border-radius: 6px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s; backdrop-filter: blur(4px);
 }
 .social-btn:hover::before { opacity: 1; }
 
-/* En móvil: abajo horizontal */
 @media (max-width: 640px) {
   .social-float {
-    right: unset;
-    top: unset;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: unset; top: unset; bottom: 20px;
+    left: 50%; transform: translateX(-50%);
     flex-direction: row;
   }
   .social-btn::before { display: none; }
@@ -136,43 +235,31 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
    ════════════════════════════════ */
 .hero {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 60px 24px 40px;
-  position: relative;
-  overflow: hidden;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 60px 24px 40px;
+  position: relative; overflow: hidden;
 }
 .hero::before {
-  content: '';
-  position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0;
   background: linear-gradient(160deg, #0E1C2D 0%, #08111C 55%, #1a0404 100%);
   z-index: 0;
 }
 .hero::after {
-  content: '';
-  position: absolute;
-  width: 200%; height: 3px;
-  background: var(--rojo);
-  top: 50%; left: -50%;
-  transform: rotate(-8deg);
+  content: ''; position: absolute;
+  width: 200%; height: 3px; background: var(--rojo);
+  top: 50%; left: -50%; transform: rotate(-8deg);
   opacity: 0.15; z-index: 0;
 }
 .hero-inner { position: relative; z-index: 1; max-width: 700px; }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: inline-flex; align-items: center; gap: 8px;
   background: rgba(212,160,23,0.12);
   border: 1px solid rgba(212,160,23,0.35);
-  color: var(--oro);
-  font-size: 10px; font-weight: 700;
+  color: var(--oro); font-size: 10px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
-  padding: 6px 18px; border-radius: 40px;
-  margin-bottom: 32px;
+  padding: 6px 18px; border-radius: 40px; margin-bottom: 32px;
 }
 .hero-kicker {
   font-family: 'Bebas Neue', sans-serif;
@@ -187,7 +274,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   color: var(--blanco); margin-bottom: 8px;
 }
 .hero-title .accent { color: var(--rojo); display: block; }
-
 .hero-sub {
   font-size: clamp(13px, 2.5vw, 16px);
   color: var(--gris); margin-top: 20px;
@@ -195,13 +281,17 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   margin-left: auto; margin-right: auto;
 }
 .hero-line {
-  width: 60px; height: 3px;
-  background: var(--oro); border-radius: 2px;
-  margin: 20px auto 0; transform-origin: left;
+  width: 60px; height: 3px; background: var(--oro);
+  border-radius: 2px; margin: 20px auto 0;
+  transform-origin: left;
   animation: lineGrow 0.8s cubic-bezier(0.22,1,0.36,1) 0.4s both;
 }
-.hero-cta {
+.hero-btns {
   margin-top: 40px;
+  display: flex; gap: 12px;
+  justify-content: center; flex-wrap: wrap;
+}
+.hero-cta {
   display: inline-block;
   background: var(--rojo); color: white;
   font-size: 12px; font-weight: 700;
@@ -211,6 +301,17 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   transition: background 0.2s, transform 0.2s;
 }
 .hero-cta:hover { background: var(--rojo-d); transform: translateY(-2px); }
+.hero-cta-calc {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--azul), var(--azul-c));
+  color: white; font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 36px; border-radius: 40px;
+  text-decoration: none;
+  transition: filter 0.2s, transform 0.2s;
+  box-shadow: 0 4px 20px rgba(27,63,114,0.4);
+}
+.hero-cta-calc:hover { filter: brightness(1.15); transform: translateY(-2px); }
 
 .scroll-hint {
   margin-top: 48px; font-size: 11px;
@@ -384,206 +485,203 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
    BLOQUE DATOS COMPARATIVOS
    ════════════════════════════════ */
 .datos-cta-wrapper {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 24px 80px;
+  max-width: 860px; margin: 0 auto; padding: 0 24px 80px;
 }
-
 .datos-cta-block {
-  position: relative;
-  border-radius: 28px;
-  overflow: hidden;
+  position: relative; border-radius: 28px; overflow: hidden;
   border: 1px solid rgba(212,160,23,0.3);
   background: linear-gradient(135deg, #0b1e35 0%, #0f1f10 50%, #1a1500 100%);
 }
-
-/* línea decorativa superior */
 .datos-cta-block::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--azul-c), var(--oro), var(--rojo));
 }
-
-/* patrón de fondo sutil */
 .datos-cta-block::after {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0;
   background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 40px,
-    rgba(212,160,23,0.015) 40px,
-    rgba(212,160,23,0.015) 41px
+    -45deg, transparent, transparent 40px,
+    rgba(212,160,23,0.015) 40px, rgba(212,160,23,0.015) 41px
   );
   pointer-events: none;
 }
-
 .datos-cta-inner {
-  position: relative;
-  z-index: 1;
+  position: relative; z-index: 1;
   padding: 44px 44px 40px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 32px;
-  align-items: center;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 32px; align-items: center;
 }
-
 .datos-cta-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+  display: inline-flex; align-items: center; gap: 7px;
   background: rgba(212,160,23,0.12);
   border: 1px solid rgba(212,160,23,0.3);
-  color: var(--oro);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 40px;
-  margin-bottom: 18px;
-  width: fit-content;
+  color: var(--oro); font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 40px;
+  margin-bottom: 18px; width: fit-content;
 }
-
 .datos-cta-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(28px, 5vw, 44px);
-  line-height: 0.95;
-  letter-spacing: 1px;
-  color: var(--blanco);
-  margin-bottom: 16px;
+  line-height: 0.95; letter-spacing: 1px;
+  color: var(--blanco); margin-bottom: 16px;
 }
-
 .datos-cta-title .hl-azul { color: #7EC8F0; }
 .datos-cta-title .hl-oro  { color: var(--oro); }
-
 .datos-cta-desc {
   font-size: clamp(12px, 1.8vw, 14px);
-  color: var(--gris);
-  line-height: 1.7;
-  max-width: 480px;
-  margin-bottom: 0;
+  color: var(--gris); line-height: 1.7;
+  max-width: 480px; margin-bottom: 0;
 }
-
 .datos-cta-desc strong { color: var(--blanco); }
-
-/* miniestadísticas */
-.datos-mini-stats {
-  display: flex;
-  gap: 24px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.mini-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.mini-stat-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  line-height: 1;
-}
-
-.mini-stat-val.verde  { color: #4ADE80; }
-.mini-stat-val.rojo   { color: #FF6B6B; }
-
-.mini-stat-lbl {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #5A7090;
-}
-
-/* botón principal */
-.datos-cta-btn-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
+.datos-mini-stats { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+.mini-stat { display: flex; flex-direction: column; gap: 3px; }
+.mini-stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 22px; line-height: 1; }
+.mini-stat-val.verde { color: #4ADE80; }
+.mini-stat-val.rojo  { color: #FF6B6B; }
+.mini-stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #5A7090; }
+.datos-cta-btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
 .datos-cta-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
   background: linear-gradient(135deg, #1B3F72, #D4A017);
-  color: white;
-  text-decoration: none;
-  border-radius: 20px;
-  padding: 22px 28px;
-  min-width: 140px;
-  text-align: center;
+  color: white; text-decoration: none;
+  border-radius: 20px; padding: 22px 28px;
+  min-width: 140px; text-align: center;
   transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, filter 0.25s;
   box-shadow: 0 6px 28px rgba(212,160,23,0.25), 0 2px 8px rgba(0,0,0,0.4);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
-
 .datos-cta-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
   border-radius: inherit;
 }
-
 .datos-cta-btn:hover {
   transform: translateY(-4px) scale(1.04);
   box-shadow: 0 12px 40px rgba(212,160,23,0.45), 0 4px 16px rgba(0,0,0,0.5);
   filter: brightness(1.1);
 }
+.datos-cta-btn svg { width: 32px; height: 32px; fill: white; display: block; }
+.datos-cta-btn-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; line-height: 1.4; }
+.datos-cta-btn-sub { font-size: 9px; opacity: 0.75; letter-spacing: 1px; font-weight: 500; }
 
-.datos-cta-btn svg {
-  width: 32px;
-  height: 32px;
-  fill: white;
-  display: block;
-}
-
-.datos-cta-btn-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  line-height: 1.4;
-}
-
-.datos-cta-btn-sub {
-  font-size: 9px;
-  opacity: 0.75;
-  letter-spacing: 1px;
-  font-weight: 500;
-}
-
-/* responsive bloque */
 @media (max-width: 640px) {
-  .datos-cta-inner {
-    grid-template-columns: 1fr;
-    padding: 28px 22px 26px;
-    gap: 24px;
-  }
-  .datos-cta-btn-wrap {
-    width: 100%;
-  }
-  .datos-cta-btn {
-    flex-direction: row;
-    width: 100%;
-    padding: 18px 24px;
-    justify-content: center;
-    min-width: unset;
-  }
+  .datos-cta-inner { grid-template-columns: 1fr; padding: 28px 22px 26px; gap: 24px; }
+  .datos-cta-btn-wrap { width: 100%; }
+  .datos-cta-btn { flex-direction: row; width: 100%; padding: 18px 24px; justify-content: center; min-width: unset; }
   .datos-mini-stats { gap: 16px; }
   .datos-cta-wrapper { padding-bottom: 110px; }
+}
+
+/* ════════════════════════════════
+   CALCULADORA SALARIAL
+   ════════════════════════════════ */
+.calc-section { max-width: 860px; margin: 0 auto; padding: 0 24px 100px; }
+.calc-section-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--oro); margin-bottom: 32px;
+  display: flex; align-items: center; gap: 12px;
+}
+.calc-section-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(212,160,23,0.25);
+}
+.calculadora-gdu {
+  background: var(--bg2);
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 28px; padding: 40px 40px 36px;
+  position: relative; overflow: hidden;
+}
+.calculadora-gdu::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
+}
+.calc-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: 2px; color: var(--blanco);
+  margin-bottom: 6px; text-align: center;
+}
+.calc-subtitle {
+  font-size: 12px; color: var(--gris);
+  text-align: center; margin-bottom: 32px; letter-spacing: 0.5px;
+}
+.calc-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-bottom: 14px;
+}
+.calc-field { display: flex; flex-direction: column; gap: 6px; }
+.calc-label {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--gris);
+}
+.calc-field select {
+  width: 100%; padding: 12px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; color: var(--blanco);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 500;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23A0AEC0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  cursor: pointer; transition: border-color 0.2s, background-color 0.2s;
+}
+.calc-field select:focus {
+  outline: none; border-color: var(--oro);
+  background-color: rgba(212,160,23,0.08);
+}
+.calc-field select option { background: #0E1C2D; color: var(--blanco); }
+.calc-btn {
+  width: 100%; padding: 14px; margin-top: 20px;
+  background: linear-gradient(135deg, var(--azul), var(--azul-c));
+  color: white; font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  border: none; border-radius: 12px; cursor: pointer;
+  transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(27,63,114,0.4);
+}
+.calc-btn:hover { filter: brightness(1.15); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,111,191,0.5); }
+.calc-btn:active { transform: translateY(0); }
+.calc-resultado {
+  margin-top: 28px;
+  background: linear-gradient(135deg, rgba(27,63,114,0.3), rgba(212,160,23,0.1));
+  border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 16px; padding: 28px 24px;
+  text-align: center; display: none;
+}
+.calc-resultado.visible { display: block; animation: fadeDown 0.4s ease; }
+.calc-resultado-tag {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--oro); margin-bottom: 8px;
+}
+.calc-resultado-detalle { font-size: 11px; color: var(--gris); margin-bottom: 16px; line-height: 1.6; }
+.calc-total-label { font-size: 11px; font-weight: 700; color: var(--gris); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.calc-total-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 8vw, 56px);
+  color: #7EC8F0; line-height: 1; margin-bottom: 8px;
+}
+.calc-nota { font-size: 10px; color: #5A7090; margin-top: 16px; line-height: 1.6; }
+.calc-btn-pdf {
+  width: 100%; padding: 12px; margin-top: 14px;
+  background: linear-gradient(135deg, #1e4d2b, #2f7d4f);
+  color: white; font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  border: none; border-radius: 12px; cursor: pointer;
+  transition: filter 0.2s, transform 0.2s; display: none;
+}
+.calc-btn-pdf.visible { display: block; }
+.calc-btn-pdf:hover { filter: brightness(1.15); transform: translateY(-2px); }
+
+@media (max-width: 640px) {
+  .calculadora-gdu { padding: 28px 18px 24px; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .calc-section { padding: 0 16px 110px; }
 }
 
 /* FOOTER */
@@ -595,7 +693,7 @@ footer {
 footer strong { color: var(--oro); }
 
 /* ════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE GENERAL
    ════════════════════════════════ */
 @media (max-width: 640px) {
   .confronta { grid-template-columns: 1fr; gap: 12px; }
@@ -613,9 +711,8 @@ footer strong { color: var(--oro); }
   .preview-section { padding: 20px 14px; }
   .fuente-box { padding: 22px 18px; }
   .hero { padding: 48px 18px 32px; }
-  .hero-cta { padding: 12px 28px; font-size: 11px; }
+  .hero-cta, .hero-cta-calc { padding: 12px 22px; font-size: 11px; }
   .eyebrow { font-size: 9px; letter-spacing: 2px; padding: 5px 14px; }
-  /* Espacio abajo para los botones flotantes */
   footer { padding-bottom: 90px; }
 }
 
@@ -658,14 +755,12 @@ footer strong { color: var(--oro); }
 .hero-kicker { animation: fadeDown 0.6s ease-out 0.2s both; }
 .hero-title  { animation: fadeDown 0.7s ease-out 0.3s both; }
 .hero-sub    { animation: fadeDown 0.6s ease-out 0.5s both; }
-.hero-cta    { animation: fadeDown 0.6s ease-out 0.65s both; }
+.hero-btns   { animation: fadeDown 0.6s ease-out 0.65s both; }
 .scroll-hint { animation: fadeDown 0.6s ease-out 0.8s both, bounce 2s ease-in-out 1.5s infinite; }
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(6px); }
 }
-
-/* Pulso suave del botón datos comparativos */
 @keyframes glowOro {
   0%, 100% { box-shadow: 0 6px 28px rgba(212,160,23,0.25), 0 2px 8px rgba(0,0,0,0.4); }
   50%       { box-shadow: 0 8px 36px rgba(212,160,23,0.5), 0 2px 12px rgba(0,0,0,0.5); }
@@ -676,37 +771,61 @@ footer strong { color: var(--oro); }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .impacto-card { opacity: 1; transform: none; }
   .barra-fill { transition: none; }
-  .eyebrow, .hero-kicker, .hero-title, .hero-sub, .hero-cta, .scroll-hint { animation: none; }
+  .eyebrow, .hero-kicker, .hero-title, .hero-sub, .hero-btns, .scroll-hint { animation: none; }
   .impacto-card.rojo { animation: none; }
   .datos-cta-btn { animation: none; }
+  #loader { display: none; }
 }
 </style>
 </head>
 <body>
 
+<!-- ══ PANTALLA DE CARGA ══ -->
+<div id="loader">
+  <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
+  <div class="loader-bar-wrap">
+    <div class="loader-bar"></div>
+  </div>
+  <div class="loader-txt">Cargando información sindical</div>
+</div>
+
+<!-- ══ HEADER CON LOGO ══ -->
+<header class="site-header">
+  <div class="header-logo">
+    <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
+  </div>
+  <nav class="header-nav">
+    <a href="#datos" class="header-btn datos">
+      <svg viewBox="0 0 24 24"><path d="M3.5 18.5l6-6 4 4L22 6.92 20.59 5.5l-7.09 8.54-4-4L2 17l1.5 1.5z"/></svg>
+      Ver los datos
+    </a>
+    <a href="#calculadora" class="header-btn calc">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+      Calculadora de salarios
+    </a>
+  </nav>
+</header>
+
 <!-- ══ BOTONES FLOTANTES DE REDES SOCIALES ══ -->
 <div class="social-float" aria-label="Redes sociales">
-
   <a class="social-btn ig"
      href="https://www.instagram.com/gducatamarca/"
      target="_blank" rel="noopener noreferrer"
      data-tip="Instagram"
      aria-label="Instagram GDU Catamarca">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24">
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
     </svg>
   </a>
-
   <a class="social-btn fb"
      href="https://www.facebook.com/gremiodocente.universitario"
      target="_blank" rel="noopener noreferrer"
      data-tip="Facebook"
      aria-label="Facebook GDU Catamarca">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24">
       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
     </svg>
   </a>
-
 </div>
 
 <!-- ══ HERO ══ -->
@@ -723,7 +842,10 @@ footer strong { color: var(--oro); }
       Un cargo testigo, números reales, una realidad inocultable.
     </p>
     <div class="hero-line"></div>
-    <a href="#datos" class="hero-cta">Ver los datos →</a>
+    <div class="hero-btns">
+      <a href="#datos" class="hero-cta">Ver los datos →</a>
+      <a href="#calculadora" class="hero-cta-calc">🧮 Calculadora de salarios</a>
+    </div>
     <div class="scroll-hint">
       <span></span>
       BAJÁ
@@ -834,8 +956,6 @@ footer strong { color: var(--oro); }
 <div class="datos-cta-wrapper">
   <div class="datos-cta-block reveal">
     <div class="datos-cta-inner">
-
-      <!-- Texto izquierda -->
       <div>
         <div class="datos-cta-tag">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
@@ -843,18 +963,15 @@ footer strong { color: var(--oro); }
           </svg>
           MÁS DATOS · ANÁLISIS COMPARATIVO
         </div>
-
         <h2 class="datos-cta-title">
           INDEC vs<br>
           <span class="hl-azul">AUMENTOS</span> <span class="hl-oro">DOCENTES</span>
         </h2>
-
         <p class="datos-cta-desc">
           ¿Cuánto subió la inflación oficial según el INDEC y cuánto aumentaron realmente
           los salarios docentes sin paritarias? Visualizá el <strong>desfase acumulado</strong>
           mes a mes: la brecha que el Estado no cierra y que los docentes pagan con su bolsillo.
         </p>
-
         <div class="datos-mini-stats">
           <div class="mini-stat">
             <span class="mini-stat-val rojo">↑ INDEC</span>
@@ -872,31 +989,93 @@ footer strong { color: var(--oro); }
           </div>
         </div>
       </div>
-
-      <!-- Botón derecha -->
       <div class="datos-cta-btn-wrap">
         <a class="datos-cta-btn"
            href="https://gducatamarca.github.io/datoscomparativos/"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Ver datos comparativos: inflación INDEC vs aumentos docentes">
-
-          <!-- ícono gráfico de líneas -->
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Ver datos comparativos">
+          <svg viewBox="0 0 24 24">
             <path d="M3.5 18.49l6-6.01 4 4L22 6.92 20.59 5.5l-7.09 8.54-4-4L2 17l1.5 1.49z" fill="white"/>
           </svg>
-
           <div>
             <div class="datos-cta-btn-label">Ver datos<br>comparativos</div>
             <div class="datos-cta-btn-sub">gráficos interactivos</div>
           </div>
         </a>
       </div>
-
     </div>
   </div>
 </div>
 
+<!-- ══ CALCULADORA SALARIAL ══ -->
+<section class="calc-section" id="calculadora">
+  <div class="calc-section-label reveal">🧮 CALCULADORA SALARIAL · MAYO 2026</div>
+
+  <div class="calculadora-gdu reveal">
+    <h2 class="calc-title">Calculadora Salarial Docente</h2>
+    <p class="calc-subtitle">Cargando escala salarial...</p>
+
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label class="calc-label">Dedicación</label>
+        <select id="dedicacion"></select>
+      </div>
+      <div class="calc-field">
+        <label class="calc-label">Cargo</label>
+        <select id="cargo"></select>
+      </div>
+    </div>
+
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label class="calc-label">Antigüedad</label>
+        <select id="antiguedad">
+          <option value="0.20">0 a 4 años (20%)</option>
+          <option value="0.30">5 a 6 años (30%)</option>
+          <option value="0.40">7 a 9 años (40%)</option>
+          <option value="0.50">10 a 11 años (50%)</option>
+          <option value="0.60">12 a 14 años (60%)</option>
+          <option value="0.70">15 a 16 años (70%)</option>
+          <option value="0.80">17 a 19 años (80%)</option>
+          <option value="1.00">20 a 21 años (100%)</option>
+          <option value="1.10">22 a 23 años (110%)</option>
+          <option value="1.20">24 o más años (120%)</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label class="calc-label">Posgrado</label>
+        <select id="posgrado">
+          <option value="0">No posee Posgrado</option>
+          <option value="0.18">Doctorado (18%)</option>
+          <option value="0.08">Maestría (8%)</option>
+          <option value="0.05">Especialización (5%)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcular()">
+      Calcular salario estimado →
+    </button>
+
+    <div class="calc-resultado" id="calc-resultado">
+      <div class="calc-resultado-tag">📊 Resultado estimado · Mayo 2026</div>
+      <div class="calc-resultado-detalle" id="calc-detalle"></div>
+      <div class="calc-total-label">Salario bruto estimado</div>
+      <div class="calc-total-val" id="calc-total">$ 0</div>
+      <div class="calc-nota">
+        ⚠ Cálculo estimativo. No incluye adicionales locales, suma fija ni descuentos de ley.<br>
+        Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA.
+      </div>
+    </div>
+
+    <button class="calc-btn-pdf" id="btn-pdf" onclick="descargarPDF()">
+      📄 Descargar constancia PDF
+    </button>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
 <footer>
   <strong>CONADU HISTÓRICA</strong> · GDU Catamarca · Fuente: INDEC · 2026
   <br><br>
@@ -907,15 +1086,246 @@ footer strong { color: var(--oro); }
      style="color:#1877F2;text-decoration:none;margin:0 8px;">Facebook</a>
 </footer>
 
+<!-- ══ SCRIPTS ══ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <script>
-// ── Contador numérico animado ──
-function animateCounter(el, from, to, duration, prefix = '', suffix = '') {
-  const start = performance.now();
+/* ════════════════════════════════
+   PANTALLA DE CARGA
+   ════════════════════════════════ */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 1600);
+});
+
+/* ════════════════════════════════
+   CALCULADORA — DATOS DESDE JSON
+   ════════════════════════════════ */
+let SALARIOS = {};
+
+fetch('datos_salarios.json')
+  .then(response => {
+    if (!response.ok) throw new Error('No se pudo cargar datos_salarios.json');
+    return response.json();
+  })
+  .then(data => {
+    SALARIOS = data.dedicaciones;
+
+    // Actualizar subtítulo con el período del JSON
+    const subtitulo = document.querySelector('.calc-subtitle');
+    if (subtitulo && data.ultima_actualizacion) {
+      subtitulo.textContent = `Escala universitaria ${data.ultima_actualizacion} · GDU Catamarca`;
+    }
+
+    cargarDedicaciones();
+  })
+  .catch(err => {
+    console.error('Error cargando salarios:', err);
+    const subtitulo = document.querySelector('.calc-subtitle');
+    if (subtitulo) {
+      subtitulo.textContent = '⚠ Error al cargar la escala salarial. Recargá la página.';
+      subtitulo.style.color = '#FF6B6B';
+    }
+  });
+
+/* ════════════════════════════════
+   CALCULADORA — LÓGICA
+   ════════════════════════════════ */
+function cargarDedicaciones() {
+  const sel = document.getElementById("dedicacion");
+  sel.innerHTML = "";
+  for (let d in SALARIOS) {
+    sel.innerHTML += `<option value="${d}">${d}</option>`;
+  }
+  cargarCargos();
+}
+
+function cargarCargos() {
+  const dedicacion = document.getElementById("dedicacion").value;
+  const sel = document.getElementById("cargo");
+  sel.innerHTML = "";
+  for (let c in SALARIOS[dedicacion]) {
+    sel.innerHTML += `<option value="${c}">${c}</option>`;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("dedicacion").addEventListener("change", cargarCargos);
+});
+
+function calcular() {
+  if (!SALARIOS || Object.keys(SALARIOS).length === 0) {
+    alert('Los datos de la escala todavía están cargando. Intentá en un momento.');
+    return;
+  }
+
+  const dedicacion = document.getElementById("dedicacion").value;
+  const cargo      = document.getElementById("cargo").value;
+  const antiguedad = parseFloat(document.getElementById("antiguedad").value);
+  const posgrado   = parseFloat(document.getElementById("posgrado").value);
+  const antTexto   = document.getElementById("antiguedad").selectedOptions[0].text;
+  const posTexto   = document.getElementById("posgrado").selectedOptions[0].text;
+
+  const basico = SALARIOS[dedicacion][cargo];
+  const total  = basico * (1 + antiguedad) * (1 + posgrado);
+
+  const totalFmt = "$ " + total.toLocaleString("es-AR", { minimumFractionDigits: 2 });
+  document.getElementById("calc-total").textContent = totalFmt;
+
+  document.getElementById("calc-detalle").innerHTML =
+    `<strong style="color:var(--blanco)">${dedicacion} · ${cargo}</strong><br>
+     Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
+
+  document.getElementById("calc-resultado").classList.add("visible");
+  document.getElementById("btn-pdf").classList.add("visible");
+}
+
+/* ════════════════════════════════
+   PDF
+   ════════════════════════════════ */
+function descargarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const dedicacion = document.getElementById("dedicacion").value;
+  const cargo      = document.getElementById("cargo").value;
+  const antTexto   = document.getElementById("antiguedad").selectedOptions[0].text;
+  const posTexto   = document.getElementById("posgrado").selectedOptions[0].text;
+  const total      = document.getElementById("calc-total").textContent;
+  const fecha      = new Date().toLocaleDateString("es-AR", {day:"2-digit", month:"2-digit", year:"numeric"});
+
+  const img = new Image();
+  img.src = "logo-gdu.png";
+  img.onload = function () {
+
+    /* Fondo oscuro */
+    doc.setFillColor(8, 17, 28);
+    doc.rect(0, 0, 210, 297, "F");
+
+    /* Franja superior */
+    doc.setFillColor(27, 63, 114);
+    doc.rect(0, 0, 210, 38, "F");
+
+    /* Logo */
+    doc.addImage(img, "PNG", 10, 6, 100, 26);
+
+    /* Fecha */
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Emisión: ${fecha}`, 200, 12, { align: "right" });
+    doc.text("Mayo 2026", 200, 20, { align: "right" });
+
+    /* Línea dorada */
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.8);
+    doc.line(10, 44, 200, 44);
+
+    /* Título */
+    doc.setTextColor(247, 249, 252);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.text("Constancia de Cálculo Salarial", 105, 58, { align: "center" });
+
+    doc.setFontSize(10);
+    doc.setTextColor(160, 174, 192);
+    doc.setFont("helvetica", "normal");
+    doc.text("Escala universitaria · CONADU HISTÓRICA · GDU Catamarca", 105, 66, { align: "center" });
+
+    /* Caja detalle */
+    doc.setFillColor(14, 28, 45);
+    doc.roundedRect(14, 76, 182, 62, 4, 4, "F");
+    doc.setDrawColor(45, 111, 191);
+    doc.setLineWidth(0.4);
+    doc.roundedRect(14, 76, 182, 62, 4, 4, "S");
+
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "bold");
+    doc.text("DETALLE DE LA SIMULACIÓN", 22, 86);
+
+    const items = [
+      ["Dedicación:", dedicacion],
+      ["Cargo:",      cargo],
+      ["Antigüedad:", antTexto],
+      ["Posgrado:",   posTexto],
+    ];
+    let y = 96;
+    items.forEach(([lbl, val]) => {
+      doc.setTextColor(160, 174, 192);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.text(lbl, 22, y);
+      doc.setTextColor(247, 249, 252);
+      doc.setFont("helvetica", "bold");
+      doc.text(val, 68, y);
+      y += 11;
+    });
+
+    /* Caja total */
+    doc.setFillColor(27, 63, 114);
+    doc.roundedRect(14, 148, 182, 52, 4, 4, "F");
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.6);
+    doc.roundedRect(14, 148, 182, 52, 4, 4, "S");
+
+    doc.setTextColor(160, 174, 192);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("SALARIO BRUTO ESTIMADO", 105, 161, { align: "center" });
+
+    doc.setTextColor(126, 200, 240);
+    doc.setFontSize(28);
+    doc.setFont("helvetica", "bold");
+    doc.text(total, 105, 185, { align: "center" });
+
+    /* Línea separadora */
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.4);
+    doc.line(14, 210, 196, 210);
+
+    /* Nota */
+    doc.setTextColor(90, 112, 144);
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "normal");
+    const nota = "Este cálculo es estimativo. No incluye adicionales locales, suma fija remunerativa ni descuentos de ley (jubilación, obra social, sindicato, ganancias). Para liquidación oficial consultá con tu área de RRHH.";
+    doc.text(doc.splitTextToSize(nota, 176), 105, 218, { align: "center" });
+
+    /* Fuente */
+    doc.setTextColor(70, 90, 110);
+    doc.setFontSize(7);
+    doc.text("Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA", 105, 240, { align: "center" });
+
+    /* Footer PDF */
+    doc.setFillColor(14, 28, 45);
+    doc.rect(0, 272, 210, 25, "F");
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.3);
+    doc.line(0, 272, 210, 272);
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "bold");
+    doc.text("GDU CATAMARCA · CONADU HISTÓRICA", 105, 281, { align: "center" });
+    doc.setTextColor(90, 112, 144);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7);
+    doc.text("instagram.com/gducatamarca · facebook.com/gremiodocente.universitario", 105, 289, { align: "center" });
+
+    doc.save(`Calculo_Salarial_GDU_${fecha.replace(/\//g,"-")}.pdf`);
+  };
+}
+
+/* ════════════════════════════════
+   OBSERVER — ANIMACIONES
+   ════════════════════════════════ */
+function animateCounter(el, from, to, duration, prefix='', suffix='') {
+  const start    = performance.now();
   const decimals = String(to).includes('.') ? String(to).split('.')[1].length : 0;
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
-    const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-    const val = from + (to - from) * ease;
+    const ease     = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    const val      = from + (to - from) * ease;
     el.textContent = prefix + val.toLocaleString('es-AR', {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals
@@ -925,7 +1335,6 @@ function animateCounter(el, from, to, duration, prefix = '', suffix = '') {
   requestAnimationFrame(tick);
 }
 
-// ── Activar barras con shimmer ──
 function activateBars(container) {
   container.querySelectorAll('.barra-fill').forEach((bar, i) => {
     setTimeout(() => {
