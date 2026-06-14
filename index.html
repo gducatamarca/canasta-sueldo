@@ -5,58 +5,135 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salario Docente vs Pobreza · CONADU HISTÓRICA · GDU Catamarca</title>
 
-<!-- ══ SEO básico ══ -->
 <meta name="description" content="El salario docente universitario cubre apenas el 36,4% de la Canasta Básica Total. Datos oficiales INDEC mayo 2026. CONADU HISTÓRICA · GDU Catamarca.">
 <meta name="author" content="GDU Catamarca · CONADU HISTÓRICA">
 <meta name="keywords" content="salario docente, pobreza, INDEC, CONADU HISTÓRICA, GDU Catamarca, canasta básica, universitarios">
 
-<!-- ══ Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) ══
-     👉 REEMPLAZÁ preview.jpg por el nombre real de tu imagen una vez que la tengas
-     👉 La imagen debe estar en la misma carpeta que este HTML y medir 1200×630px -->
-<meta property="og:type"        content="website">
-<meta property="og:site_name"   content="CONADU HISTÓRICA · GDU Catamarca">
-<meta property="og:title"       content="Salario docente: debajo de la línea de pobreza">
-<meta property="og:description" content="El cargo testigo docente universitario alcanza solo el 36,4% de la Canasta Básica Total (mayo 2026). Datos INDEC oficiales.">
-<meta property="og:image"       content="preview.jpg">
+<meta property="og:type"         content="website">
+<meta property="og:site_name"    content="CONADU HISTÓRICA · GDU Catamarca">
+<meta property="og:title"        content="Salario docente: debajo de la línea de pobreza">
+<meta property="og:description"  content="El cargo testigo docente universitario alcanza solo el 36,4% de la Canasta Básica Total (mayo 2026). Datos INDEC oficiales.">
+<meta property="og:image"        content="preview.jpg">
 <meta property="og:image:width"  content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt"   content="Infografía: salario docente vs línea de pobreza mayo 2026">
-<meta property="og:url"         content="https://gdu-catamarca.github.io/salario-pobreza/">
-<meta property="og:locale"      content="es_AR">
+<meta property="og:image:alt"    content="Infografía: salario docente vs línea de pobreza mayo 2026">
+<meta property="og:url"          content="https://gdu-catamarca.github.io/salario-pobreza/">
+<meta property="og:locale"       content="es_AR">
 
-<!-- ══ Twitter / X Card ══ -->
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="Salario docente: debajo de la línea de pobreza">
 <meta name="twitter:description" content="El cargo testigo docente universitario alcanza solo el 36,4% de la Canasta Básica Total. Datos INDEC mayo 2026.">
 <meta name="twitter:image"       content="preview.jpg">
 <meta name="twitter:image:alt"   content="Infografía: salario docente vs línea de pobreza mayo 2026">
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;900&display=swap');
 
 :root {
-  --rojo:    #E02020;
-  --rojo-d:  #900C0C;
-  --azul:    #1B3F72;
-  --azul-c:  #2D6FBF;
-  --oro:     #D4A017;
-  --bg:      #08111C;
-  --bg2:     #0E1C2D;
-  --gris:    #A0AEC0;
-  --blanco:  #F7F9FC;
+  --rojo:   #E02020;
+  --rojo-d: #900C0C;
+  --azul:   #1B3F72;
+  --azul-c: #2D6FBF;
+  --oro:    #D4A017;
+  --bg:     #08111C;
+  --bg2:    #0E1C2D;
+  --gris:   #A0AEC0;
+  --blanco: #F7F9FC;
+  --ig:     #E1306C;
+  --fb:     #1877F2;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-body {
-  background: var(--bg);
-  color: var(--blanco);
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
+/* ════════════════════════════════
+   BOTONES FLOTANTES DE REDES
+   ════════════════════════════════ */
+.social-float {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ── HERO ── */
+.social-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
+  position: relative;
+}
+.social-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: white;
+  display: block;
+}
+.social-btn:hover { transform: scale(1.18); }
+
+/* Instagram */
+.social-btn.ig {
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fdf497 5%,
+    #fd5949 45%, #d6249f 60%,
+    #285AEB 90%);
+  box-shadow: 0 4px 20px rgba(214,36,159,0.45);
+}
+.social-btn.ig:hover { box-shadow: 0 6px 28px rgba(214,36,159,0.65); }
+
+/* Facebook */
+.social-btn.fb {
+  background: #1877F2;
+  box-shadow: 0 4px 20px rgba(24,119,242,0.45);
+}
+.social-btn.fb:hover { box-shadow: 0 6px 28px rgba(24,119,242,0.65); }
+
+/* Tooltip al hover */
+.social-btn::before {
+  content: attr(data-tip);
+  position: absolute;
+  right: 58px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  backdrop-filter: blur(4px);
+}
+.social-btn:hover::before { opacity: 1; }
+
+/* En móvil: abajo horizontal */
+@media (max-width: 640px) {
+  .social-float {
+    right: unset;
+    top: unset;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+  }
+  .social-btn::before { display: none; }
+}
+
+/* ════════════════════════════════
+   HERO
+   ════════════════════════════════ */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -68,29 +145,21 @@ body {
   position: relative;
   overflow: hidden;
 }
-
-/* fondo dramatico: diagonal split */
 .hero::before {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(160deg, #0E1C2D 0%, #08111C 55%, #1a0404 100%);
   z-index: 0;
 }
-
-/* línea diagonal roja */
 .hero::after {
   content: '';
   position: absolute;
-  width: 200%;
-  height: 3px;
+  width: 200%; height: 3px;
   background: var(--rojo);
-  top: 50%;
-  left: -50%;
+  top: 50%; left: -50%;
   transform: rotate(-8deg);
-  opacity: 0.15;
-  z-index: 0;
+  opacity: 0.15; z-index: 0;
 }
-
 .hero-inner { position: relative; z-index: 1; max-width: 700px; }
 
 .eyebrow {
@@ -100,121 +169,84 @@ body {
   background: rgba(212,160,23,0.12);
   border: 1px solid rgba(212,160,23,0.35);
   color: var(--oro);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  padding: 6px 18px;
-  border-radius: 40px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 40px;
   margin-bottom: 32px;
 }
-
 .hero-kicker {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(13px, 3.5vw, 18px);
-  letter-spacing: 5px;
-  color: var(--gris);
-  margin-bottom: 12px;
-  text-transform: uppercase;
+  letter-spacing: 5px; color: var(--gris);
+  margin-bottom: 12px; text-transform: uppercase;
 }
-
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(52px, 13vw, 110px);
-  line-height: 0.9;
-  letter-spacing: 2px;
-  color: var(--blanco);
-  margin-bottom: 8px;
+  line-height: 0.9; letter-spacing: 2px;
+  color: var(--blanco); margin-bottom: 8px;
 }
-.hero-title .accent {
-  color: var(--rojo);
-  display: block;
-}
+.hero-title .accent { color: var(--rojo); display: block; }
 
 .hero-sub {
   font-size: clamp(13px, 2.5vw, 16px);
-  color: var(--gris);
-  margin-top: 20px;
-  line-height: 1.6;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  color: var(--gris); margin-top: 20px;
+  line-height: 1.6; max-width: 500px;
+  margin-left: auto; margin-right: auto;
 }
-
+.hero-line {
+  width: 60px; height: 3px;
+  background: var(--oro); border-radius: 2px;
+  margin: 20px auto 0; transform-origin: left;
+  animation: lineGrow 0.8s cubic-bezier(0.22,1,0.36,1) 0.4s both;
+}
 .hero-cta {
   margin-top: 40px;
   display: inline-block;
-  background: var(--rojo);
-  color: white;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 14px 36px;
-  border-radius: 40px;
+  background: var(--rojo); color: white;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 36px; border-radius: 40px;
   text-decoration: none;
   transition: background 0.2s, transform 0.2s;
 }
 .hero-cta:hover { background: var(--rojo-d); transform: translateY(-2px); }
 
-/* scroll indicator */
 .scroll-hint {
-  margin-top: 48px;
-  font-size: 11px;
-  color: #4A5568;
-  letter-spacing: 2px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+  margin-top: 48px; font-size: 11px;
+  color: #4A5568; letter-spacing: 2px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
 }
 .scroll-hint span {
-  display: block;
-  width: 1px;
-  height: 40px;
+  display: block; width: 1px; height: 40px;
   background: linear-gradient(to bottom, transparent, var(--oro));
   margin: 0 auto;
 }
 
-/* ── SECCIÓN DATOS PRINCIPALES ── */
-.section {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 80px 24px;
-}
+/* ════════════════════════════════
+   SECCIÓN DATOS
+   ════════════════════════════════ */
+.section { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
 
 .section-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--oro);
-  margin-bottom: 48px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--oro); margin-bottom: 48px;
+  display: flex; align-items: center; gap: 12px;
 }
 .section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
+  content: ''; flex: 1; height: 1px;
   background: rgba(212,160,23,0.25);
 }
 
-/* CONFRONTACIÓN PRINCIPAL */
+/* CONFRONTACIÓN */
 .confronta {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 0;
-  align-items: stretch;
-  margin-bottom: 60px;
+  align-items: stretch; margin-bottom: 60px;
 }
-
-.confronta-card {
-  padding: 40px 28px;
-  border-radius: 20px;
-  text-align: center;
-}
+.confronta-card { padding: 40px 28px; border-radius: 20px; text-align: center; }
 .confronta-card.salario {
   background: linear-gradient(145deg, #0D2645, #122f55);
   border: 1px solid rgba(45,111,191,0.4);
@@ -223,407 +255,209 @@ body {
   background: linear-gradient(145deg, #1c0505, #2d0808);
   border: 1px solid rgba(224,32,32,0.35);
 }
-
 .confronta-sep {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 16px;
-  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 16px; position: relative;
 }
 .vs-badge {
-  background: var(--bg);
-  border: 2px solid var(--oro);
-  color: var(--oro);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  background: var(--bg); border: 2px solid var(--oro);
+  color: var(--oro); font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; width: 56px; height: 56px;
+  border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
   position: relative; z-index: 1;
 }
 .confronta-sep::before {
-  content: '';
-  position: absolute;
-  width: 1px;
-  height: 100%;
+  content: ''; position: absolute;
+  width: 1px; height: 100%;
   background: rgba(212,160,23,0.2);
 }
-
 .c-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px;
 }
 .salario .c-label { color: #5B9BD5; }
 .pobreza .c-label { color: #FC7070; }
-
 .c-amount {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(30px, 6vw, 50px);
-  line-height: 1;
-  margin-bottom: 8px;
+  font-size: clamp(30px, 6vw, 50px); line-height: 1; margin-bottom: 8px;
 }
 .salario .c-amount { color: #7EC8F0; }
 .pobreza .c-amount { color: #FF6B6B; }
+.c-desc { font-size: 11px; color: var(--gris); line-height: 1.5; margin-top: 12px; }
 
-.c-desc {
-  font-size: 11px;
-  color: var(--gris);
-  line-height: 1.5;
-  margin-top: 12px;
-}
-
-/* BARRA IMPACTO */
+/* BARRAS */
 .barra-section {
-  background: var(--bg2);
-  border-radius: 24px;
-  padding: 40px 36px;
-  margin-bottom: 60px;
+  background: var(--bg2); border-radius: 24px;
+  padding: 40px 36px; margin-bottom: 60px;
   border: 1px solid rgba(255,255,255,0.05);
 }
-
-.barra-titulo {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--gris);
-  margin-bottom: 28px;
-  letter-spacing: 1px;
-}
-
-.barra-row {
-  margin-bottom: 28px;
-}
-.barra-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 10px;
-}
-.barra-name {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--blanco);
-  letter-spacing: 0.5px;
-}
-.barra-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-}
-.barra-track {
-  height: 36px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 40px;
-  overflow: hidden;
-}
+.barra-titulo { font-size: 13px; font-weight: 700; color: var(--gris); margin-bottom: 28px; letter-spacing: 1px; }
+.barra-row { margin-bottom: 28px; }
+.barra-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.barra-name { font-size: 12px; font-weight: 600; color: var(--blanco); letter-spacing: 0.5px; }
+.barra-val  { font-family: 'Bebas Neue', sans-serif; font-size: 20px; }
+.barra-track { height: 36px; background: rgba(255,255,255,0.06); border-radius: 40px; overflow: hidden; }
 .barra-fill {
-  height: 100%;
-  border-radius: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 14px;
-  font-size: 11px;
-  font-weight: 700;
-  color: white;
-  width: 0;
+  height: 100%; border-radius: 40px;
+  display: flex; align-items: center;
+  justify-content: flex-end; padding-right: 14px;
+  font-size: 11px; font-weight: 700; color: white;
+  width: 0; position: relative; overflow: hidden;
   transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.fill-cbt   { background: linear-gradient(90deg, var(--rojo-d), var(--rojo)); }
-.fill-sal   { background: linear-gradient(90deg, var(--azul), var(--azul-c)); }
+.fill-cbt { background: linear-gradient(90deg, var(--rojo-d), var(--rojo)); }
+.fill-sal { background: linear-gradient(90deg, var(--azul), var(--azul-c)); }
 
-/* CIFRA IMPACTO */
+/* IMPACTO */
 .impacto-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 60px;
+  gap: 16px; margin-bottom: 60px;
 }
 .impacto-card {
-  background: var(--bg2);
-  border-radius: 20px;
-  padding: 28px 22px;
-  border: 1px solid rgba(255,255,255,0.05);
-  position: relative;
-  overflow: hidden;
+  background: var(--bg2); border-radius: 20px;
+  padding: 28px 22px; border: 1px solid rgba(255,255,255,0.05);
+  position: relative; overflow: hidden;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
 }
 .impacto-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 4px; height: 100%;
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
   border-radius: 4px 0 0 4px;
 }
-.impacto-card.rojo::before  { background: var(--rojo); }
-.impacto-card.azul::before  { background: var(--azul-c); }
-.impacto-card.oro::before   { background: var(--oro); }
+.impacto-card.rojo::before { background: var(--rojo); }
+.impacto-card.azul::before { background: var(--azul-c); }
+.impacto-card.oro::before  { background: var(--oro); }
+.impacto-grid.visible .impacto-card { opacity: 1; transform: none; }
+.impacto-grid.visible .impacto-card:nth-child(1) { transition-delay: 0.05s; }
+.impacto-grid.visible .impacto-card:nth-child(2) { transition-delay: 0.18s; }
+.impacto-grid.visible .impacto-card:nth-child(3) { transition-delay: 0.31s; }
+.ic-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gris); margin-bottom: 12px; }
+.ic-val   { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px, 5vw, 40px); line-height: 1; margin-bottom: 6px; }
+.impacto-card.rojo .ic-val { color: #FF6B6B; }
+.impacto-card.azul .ic-val { color: #7EC8F0; }
+.impacto-card.oro  .ic-val { color: var(--oro); }
+.ic-desc { font-size: 11px; color: var(--gris); line-height: 1.5; }
 
-.ic-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gris);
-  margin-bottom: 12px;
-}
-.ic-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(26px, 5vw, 40px);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-.impacto-card.rojo .ic-val  { color: #FF6B6B; }
-.impacto-card.azul .ic-val  { color: #7EC8F0; }
-.impacto-card.oro  .ic-val  { color: var(--oro); }
-
-.ic-desc {
-  font-size: 11px;
-  color: var(--gris);
-  line-height: 1.5;
-}
-
-/* ALERTA DENUNCIA */
+/* REFLEXIÓN */
 .alerta {
   background: linear-gradient(135deg, #1c0505, #200808);
   border: 1px solid rgba(224,32,32,0.4);
-  border-radius: 20px;
-  padding: 32px 36px;
-  margin-bottom: 60px;
-  position: relative;
-  overflow: hidden;
+  border-radius: 20px; padding: 32px 36px;
+  margin-bottom: 60px; position: relative; overflow: hidden;
 }
 .alerta::before {
-  content: '"';
-  position: absolute;
+  content: '"'; position: absolute;
   right: 20px; top: -10px;
-  font-size: 160px;
-  opacity: 0.06;
-  line-height: 1;
-  font-family: Georgia, serif;
-  color: var(--oro);
+  font-size: 160px; opacity: 0.06; line-height: 1;
+  font-family: Georgia, serif; color: var(--oro);
 }
-.alerta-tag {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--oro);
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.alerta-texto {
-  font-size: clamp(15px, 2.5vw, 19px);
-  font-weight: 700;
-  color: var(--blanco);
-  line-height: 1.5;
-  max-width: 580px;
-}
+.alerta-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--oro); text-transform: uppercase; margin-bottom: 14px; }
+.alerta-texto { font-size: clamp(15px, 2.5vw, 19px); font-weight: 700; color: var(--blanco); line-height: 1.5; max-width: 580px; }
 .alerta-texto strong { color: #FF6B6B; }
 
-/* PREVIEW IMAGEN PLACEHOLDER */
+/* PREVIEW */
 .preview-section {
-  background: var(--bg2);
-  border-radius: 24px;
-  padding: 40px;
-  margin-bottom: 60px;
-  border: 1px dashed rgba(212,160,23,0.3);
-  text-align: center;
+  background: var(--bg2); border-radius: 24px;
+  padding: 28px; margin-bottom: 60px;
+  border: 1px solid rgba(212,160,23,0.2);
 }
 .preview-label {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--oro);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+  font-size: 10px; letter-spacing: 3px;
+  color: var(--oro); font-weight: 700;
+  text-transform: uppercase; margin-bottom: 16px;
 }
-.preview-slot {
-  background: rgba(255,255,255,0.03);
-  border: 1px dashed rgba(255,255,255,0.1);
-  border-radius: 16px;
-  height: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: #4A5568;
-  font-size: 13px;
-}
-.preview-slot .icon {
-  font-size: 36px;
-  opacity: 0.4;
-}
+.preview-section img { width: 100%; border-radius: 16px; display: block; }
 
 /* FUENTE */
 .fuente-box {
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 20px;
-  padding: 28px 32px;
-  font-size: 11px;
-  color: var(--gris);
-  line-height: 1.8;
+  border-radius: 20px; padding: 28px 32px;
+  font-size: 11px; color: var(--gris); line-height: 1.8;
 }
 .fuente-box strong { color: var(--blanco); }
 
 /* FOOTER */
 footer {
   border-top: 1px solid rgba(212,160,23,0.15);
-  padding: 32px 24px;
-  text-align: center;
-  font-size: 11px;
-  color: #4A5568;
-  letter-spacing: 1px;
+  padding: 32px 24px; text-align: center;
+  font-size: 11px; color: #4A5568; letter-spacing: 1px;
 }
 footer strong { color: var(--oro); }
 
-/* ── RESPONSIVE ── */
+/* ════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════ */
 @media (max-width: 640px) {
-  /* Confronta: apilado vertical */
-  .confronta {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .confronta-sep {
-    flex-direction: row;
-    padding: 4px 0;
-  }
-  .confronta-sep::before {
-    width: 100%; height: 1px;
-    top: 50%; left: 0;
-  }
+  .confronta { grid-template-columns: 1fr; gap: 12px; }
+  .confronta-sep { flex-direction: row; padding: 4px 0; }
+  .confronta-sep::before { width: 100%; height: 1px; top: 50%; left: 0; }
   .confronta-card { padding: 28px 20px; }
-
-  /* Barras: nombres en línea propia si no caben */
-  .barra-meta {
-    flex-wrap: wrap;
-    gap: 4px;
-  }
+  .barra-meta { flex-wrap: wrap; gap: 4px; }
   .barra-name { font-size: 11px; flex: 1 1 100%; }
   .barra-val  { font-size: 16px; }
   .barra-section { padding: 24px 16px; }
-
-  /* Impacto: 1 columna */
   .impacto-grid { grid-template-columns: 1fr; }
-
-  /* Alerta */
   .alerta { padding: 22px 18px; }
   .alerta-texto { font-size: 14px; }
-
-  /* Sección general */
   .section { padding: 48px 16px; }
-
-  /* Preview */
-  .preview-section { padding: 28px 16px; }
-  .preview-slot { height: 160px; font-size: 12px; }
-
-  /* Fuente */
+  .preview-section { padding: 20px 14px; }
   .fuente-box { padding: 22px 18px; }
-
-  /* Hero */
   .hero { padding: 48px 18px 32px; }
   .hero-cta { padding: 12px 28px; font-size: 11px; }
   .eyebrow { font-size: 9px; letter-spacing: 2px; padding: 5px 14px; }
+  /* Espacio abajo para los botones flotantes */
+  footer { padding-bottom: 90px; }
 }
 
-/* ── ANIMACIONES SCROLL ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
+/* ════════════════════════════════
+   ANIMACIONES
+   ════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 
-/* Entrada escalonada para grillas */
-.impacto-grid.visible .impacto-card:nth-child(1) { transition-delay: 0.05s; }
-.impacto-grid.visible .impacto-card:nth-child(2) { transition-delay: 0.18s; }
-.impacto-grid.visible .impacto-card:nth-child(3) { transition-delay: 0.31s; }
-.impacto-card {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
-}
-.impacto-grid.visible .impacto-card { opacity: 1; transform: none; }
-
-/* Shimmer sobre la barra al animarse */
 @keyframes shimmer {
   0%   { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
+  100% { background-position:  400px 0; }
 }
 .barra-fill.animada::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255,255,255,0.25) 50%,
-    transparent 100%
-  );
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
   background-size: 400px 100%;
   animation: shimmer 1.2s ease-out 0.3s 1;
 }
-.barra-fill { position: relative; overflow: hidden; }
-
-/* Pulso suave en c-amount al entrar en vista */
 @keyframes pulseSoft {
   0%   { transform: scale(1); }
   40%  { transform: scale(1.06); }
   100% { transform: scale(1); }
 }
-.confronta.visible .c-amount {
-  animation: pulseSoft 0.7s ease-out 0.5s 1;
-}
-
-/* Glow parpadeante en el déficit (tarjeta roja) */
+.confronta.visible .c-amount { animation: pulseSoft 0.7s ease-out 0.5s 1; }
 @keyframes glowRed {
   0%, 100% { box-shadow: inset 0 0 0 0 rgba(224,32,32,0); }
   50%       { box-shadow: inset 0 0 18px 2px rgba(224,32,32,0.12); }
 }
-.impacto-card.rojo {
-  animation: glowRed 3s ease-in-out infinite;
-}
-
-/* Línea dorada de progreso en hero al cargar */
+.impacto-card.rojo { animation: glowRed 3s ease-in-out infinite; }
 @keyframes lineGrow {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
 }
-.hero-line {
-  width: 60px;
-  height: 3px;
-  background: var(--oro);
-  border-radius: 2px;
-  margin: 20px auto 0;
-  transform-origin: left;
-  animation: lineGrow 0.8s cubic-bezier(0.22,1,0.36,1) 0.4s both;
-}
-
-/* Fade-in rápido del hero badge */
 @keyframes fadeDown {
   from { opacity: 0; transform: translateY(-12px); }
   to   { opacity: 1; transform: none; }
 }
-.eyebrow { animation: fadeDown 0.6s ease-out 0.1s both; }
+.eyebrow     { animation: fadeDown 0.6s ease-out 0.1s both; }
 .hero-kicker { animation: fadeDown 0.6s ease-out 0.2s both; }
 .hero-title  { animation: fadeDown 0.7s ease-out 0.3s both; }
 .hero-sub    { animation: fadeDown 0.6s ease-out 0.5s both; }
 .hero-cta    { animation: fadeDown 0.6s ease-out 0.65s both; }
-.scroll-hint { animation: fadeDown 0.6s ease-out 0.8s both; }
-
-/* Bounce suave en scroll-hint */
+.scroll-hint { animation: fadeDown 0.6s ease-out 0.8s both, bounce 2s ease-in-out 1.5s infinite; }
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(6px); }
 }
-.scroll-hint { animation: fadeDown 0.6s ease-out 0.8s both, bounce 2s ease-in-out 1.5s infinite; }
-
 @media (prefers-reduced-motion: reduce) {
   .reveal, .impacto-card { opacity: 1; transform: none; }
   .barra-fill { transition: none; }
@@ -634,7 +468,34 @@ footer strong { color: var(--oro); }
 </head>
 <body>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- ══ BOTONES FLOTANTES DE REDES SOCIALES ══ -->
+<div class="social-float" aria-label="Redes sociales">
+
+  <a class="social-btn ig"
+     href="https://www.instagram.com/gducatamarca/"
+     target="_blank" rel="noopener noreferrer"
+     data-tip="Instagram"
+     aria-label="Instagram GDU Catamarca">
+    <!-- Ícono Instagram SVG -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+  </a>
+
+  <a class="social-btn fb"
+     href="https://www.facebook.com/gremiodocente.universitario"
+     target="_blank" rel="noopener noreferrer"
+     data-tip="Facebook"
+     aria-label="Facebook GDU Catamarca">
+    <!-- Ícono Facebook SVG -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  </a>
+
+</div>
+
+<!-- ══ HERO ══ -->
 <section class="hero">
   <div class="hero-inner">
     <div class="eyebrow">⚡ CONADU HISTÓRICA · GDU CATAMARCA</div>
@@ -656,14 +517,12 @@ footer strong { color: var(--oro); }
   </div>
 </section>
 
-<!-- ══════════ DATOS ══════════ -->
+<!-- ══ DATOS ══ -->
 <section class="section" id="datos">
 
   <div class="section-label reveal">COMPARATIVA SALARIAL</div>
 
-  <!-- CONFRONTACIÓN -->
   <div class="confronta reveal">
-
     <div class="confronta-card salario">
       <div class="c-label">💼 Salario Docente</div>
       <div class="c-amount">$545.300</div>
@@ -674,11 +533,9 @@ footer strong { color: var(--oro); }
         <strong style="color:#7EC8F0">Escala CONADU HISTÓRICA · Mayo 2026</strong>
       </p>
     </div>
-
     <div class="confronta-sep">
       <div class="vs-badge">VS</div>
     </div>
-
     <div class="confronta-card pobreza">
       <div class="c-label">🚫 Línea de Pobreza</div>
       <div class="c-amount">$1.498.741</div>
@@ -691,10 +548,8 @@ footer strong { color: var(--oro); }
     </div>
   </div>
 
-  <!-- BARRAS -->
   <div class="barra-section reveal">
     <p class="barra-titulo">Proporción visual respecto a la Canasta Básica Total</p>
-
     <div class="barra-row">
       <div class="barra-meta">
         <span class="barra-name">🚫 Línea de pobreza (CBT)</span>
@@ -704,7 +559,6 @@ footer strong { color: var(--oro); }
         <div class="barra-fill fill-cbt" data-w="100">100%</div>
       </div>
     </div>
-
     <div class="barra-row">
       <div class="barra-meta">
         <span class="barra-name">📚 Salario Auxiliar Semiexclusiva</span>
@@ -716,7 +570,6 @@ footer strong { color: var(--oro); }
     </div>
   </div>
 
-  <!-- CIFRAS IMPACTO -->
   <div class="section-label reveal" style="margin-bottom:28px">IMPACTO EN NÚMEROS</div>
 
   <div class="impacto-grid reveal">
@@ -737,7 +590,6 @@ footer strong { color: var(--oro); }
     </div>
   </div>
 
-  <!-- REFLEXIÓN FINAL -->
   <div class="alerta reveal">
     <div class="alerta-tag">💬 Reflexión final</div>
     <p class="alerta-texto">
@@ -747,25 +599,11 @@ footer strong { color: var(--oro); }
     </p>
   </div>
 
-  <!-- PREVIEW IMAGEN DE DIFUSIÓN
-       ══════════════════════════════════════════════════════
-       👉 CÓMO AGREGAR TU IMAGEN:
-          1. Guardá tu imagen como "preview.jpg" (o .png / .webp)
-          2. Subila a la misma carpeta que este archivo HTML en GitHub
-          3. Reemplazá el bloque .preview-slot de abajo por:
-             <img src="preview.jpg" alt="Imagen de difusión" style="width:100%;border-radius:16px;">
-          4. La misma imagen se usará automáticamente en el social preview
-             de WhatsApp, Facebook, Twitter/X, Telegram y LinkedIn
-             gracias a las meta tags og:image que ya están en el <head>.
-       Tamaño recomendado: 1200×630px para redes · 1080×1080px para Instagram
-       ══════════════════════════════════════════════════════ -->
   <div class="preview-section reveal">
     <div class="preview-label">📸 Imagen de difusión</div>
-<img src="preview.jpg" alt="Imagen de difusión" style="width:100%;border-radius:16px;">
-    </div>
+    <img src="preview.jpg" alt="Salario docente vs línea de pobreza · CONADU HISTÓRICA · GDU Catamarca">
   </div>
 
-  <!-- FUENTE -->
   <div class="fuente-box reveal">
     <strong>🔍 Fuente oficial INDEC (mayo 2026):</strong><br>
     Canasta Básica Total (CBT) – Línea de pobreza: $1.498.741 para un hogar de 4 integrantes.
@@ -780,19 +618,21 @@ footer strong { color: var(--oro); }
 
 <footer>
   <strong>CONADU HISTÓRICA</strong> · GDU Catamarca · Fuente: INDEC · 2026
+  <br><br>
+  <a href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener"
+     style="color:#E1306C;text-decoration:none;margin:0 8px;">Instagram</a>
+  ·
+  <a href="https://www.facebook.com/gremiodocente.universitario" target="_blank" rel="noopener"
+     style="color:#1877F2;text-decoration:none;margin:0 8px;">Facebook</a>
 </footer>
 
 <script>
 // ── Contador numérico animado ──
 function animateCounter(el, from, to, duration, prefix = '', suffix = '') {
   const start = performance.now();
-  const isFloat = String(to).includes('.');
-  const decimals = isFloat ? String(to).split('.')[1].length : 0;
-
+  const decimals = String(to).includes('.') ? String(to).split('.')[1].length : 0;
   function tick(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // easeOutExpo
+    const progress = Math.min((now - start) / duration, 1);
     const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
     const val = from + (to - from) * ease;
     el.textContent = prefix + val.toLocaleString('es-AR', {
@@ -807,34 +647,25 @@ function animateCounter(el, from, to, duration, prefix = '', suffix = '') {
 // ── Activar barras con shimmer ──
 function activateBars(container) {
   container.querySelectorAll('.barra-fill').forEach((bar, i) => {
-    const target = parseFloat(bar.dataset.w);
     setTimeout(() => {
-      bar.style.width = target + '%';
+      bar.style.width = bar.dataset.w + '%';
       bar.classList.add('animada');
     }, i * 250);
   });
 }
 
-// ── Contadores en tarjetas de impacto ──
 const counterMap = {
-  'counter-deficit':   { from: 0,       to: 953441,   prefix: '-$', suffix: '',  duration: 1600 },
-  'counter-pct':       { from: 0,       to: 36.4,     prefix: '',   suffix: '%', duration: 1200 },
-  'counter-variacion': { from: 0,       to: 2.0,      prefix: '+',  suffix: '%', duration: 900  },
+  'counter-deficit':   { from: 0, to: 953441, prefix: '-$', suffix: '',  duration: 1600 },
+  'counter-pct':       { from: 0, to: 36.4,   prefix: '',   suffix: '%', duration: 1200 },
+  'counter-variacion': { from: 0, to: 2.0,    prefix: '+',  suffix: '%', duration: 900  },
 };
-
 let countersTriggered = false;
 
-// ── Intersection Observer principal ──
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
-
     e.target.classList.add('visible');
-
-    // Barras
     activateBars(e.target);
-
-    // Contadores (solo la primera vez que el grid es visible)
     if (e.target.classList.contains('impacto-grid') && !countersTriggered) {
       countersTriggered = true;
       Object.entries(counterMap).forEach(([id, cfg]) => {
@@ -842,7 +673,6 @@ const observer = new IntersectionObserver(entries => {
         if (el) animateCounter(el, cfg.from, cfg.to, cfg.duration, cfg.prefix, cfg.suffix);
       });
     }
-
     observer.unobserve(e.target);
   });
 }, { threshold: 0.15 });
