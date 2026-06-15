@@ -45,9 +45,6 @@
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-/* ════════════════════════════════
-   PANTALLA DE CARGA
-   ════════════════════════════════ */
 #loader {
   position: fixed; inset: 0;
   background: var(--bg); z-index: 9999;
@@ -84,9 +81,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   color: var(--gris); text-transform: uppercase; font-weight: 600;
 }
 
-/* ════════════════════════════════
-   LOGO EN HERO
-   ════════════════════════════════ */
 .hero-logo {
   margin-bottom: 32px;
   display: flex; justify-content: center;
@@ -98,9 +92,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   filter: drop-shadow(0 2px 14px rgba(212,160,23,0.3));
 }
 
-/* ════════════════════════════════
-   BOTONES FLOTANTES DE REDES
-   ════════════════════════════════ */
 .social-float {
   position: fixed; right: 20px; top: 50%;
   transform: translateY(-50%); z-index: 999;
@@ -142,9 +133,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   .social-btn::before { display: none; }
 }
 
-/* ════════════════════════════════
-   HERO
-   ════════════════════════════════ */
 .hero {
   min-height: 100vh;
   display: flex; flex-direction: column;
@@ -220,9 +208,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   background: linear-gradient(to bottom, transparent, var(--oro)); margin: 0 auto;
 }
 
-/* ════════════════════════════════
-   SECCIÓN DATOS
-   ════════════════════════════════ */
 .section { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
 
 .section-label {
@@ -232,7 +217,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 }
 .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(212,160,23,0.25); }
 
-/* CONFRONTACIÓN */
 .confronta {
   display: grid; grid-template-columns: 1fr auto 1fr;
   align-items: stretch; margin-bottom: 60px;
@@ -275,7 +259,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .pobreza .c-amount { color: #FF6B6B; }
 .c-desc { font-size: 11px; color: var(--gris); line-height: 1.5; margin-top: 12px; }
 
-/* BARRAS */
 .barra-section {
   background: var(--bg2); border-radius: 24px;
   padding: 40px 36px; margin-bottom: 60px;
@@ -297,7 +280,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .fill-cbt { background: linear-gradient(90deg, var(--rojo-d), var(--rojo)); }
 .fill-sal { background: linear-gradient(90deg, var(--azul), var(--azul-c)); }
 
-/* IMPACTO */
 .impacto-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px; margin-bottom: 60px;
@@ -327,7 +309,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .impacto-card.oro  .ic-val { color: var(--oro); }
 .ic-desc { font-size: 11px; color: var(--gris); line-height: 1.5; }
 
-/* REFLEXIÓN */
 .alerta {
   background: linear-gradient(135deg, #1c0505, #200808);
   border: 1px solid rgba(224,32,32,0.4); border-radius: 20px;
@@ -342,7 +323,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .alerta-texto { font-size: clamp(15px, 2.5vw, 19px); font-weight: 700; color: var(--blanco); line-height: 1.5; max-width: 580px; }
 .alerta-texto strong { color: #FF6B6B; }
 
-/* FUENTE */
 .fuente-box {
   background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
   border-radius: 20px; padding: 28px 32px;
@@ -350,9 +330,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 }
 .fuente-box strong { color: var(--blanco); }
 
-/* ════════════════════════════════
-   BLOQUE DATOS COMPARATIVOS
-   ════════════════════════════════ */
 .datos-cta-wrapper { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 .datos-cta-block {
   position: relative; border-radius: 28px; overflow: hidden;
@@ -430,9 +407,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   .datos-cta-wrapper { padding-bottom: 110px; }
 }
 
-/* ════════════════════════════════
-   CALCULADORA SALARIAL
-   ════════════════════════════════ */
 .calc-section { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 .calc-section-label {
   font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
@@ -550,9 +524,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   .calc-tipo-btn { font-size: 10px; padding: 9px 10px; }
 }
 
-/* ════════════════════════════════
-   MÓDULO CONVENIO COLECTIVO
-   ════════════════════════════════ */
 .convenio-section { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 .convenio-section-label {
   font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
@@ -565,7 +536,10 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   display: block;
   transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }
-.convenio-link:hover { transform: translateY(-4px); }
+
+.convenio-link:hover {
+  transform: translateY(-4px);
+}
 
 .convenio-container {
   display: grid; grid-template-columns: 280px 1fr; gap: 36px; align-items: center;
@@ -603,6 +577,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   line-height: 1.2;
   margin: 0;
 }
+
 .convenio-titulo .accent {
   color: var(--oro);
   display: block;
@@ -617,6 +592,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   color: var(--gris);
   max-width: 480px;
 }
+
 .convenio-descripcion strong {
   color: var(--blanco);
   font-weight: 600;
@@ -637,11 +613,13 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   margin-top: 8px;
   width: fit-content;
 }
+
 .convenio-cta:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 32px rgba(212,160,23,0.5);
   filter: brightness(1.08);
 }
+
 .convenio-cta svg {
   width: 16px; height: 16px;
   fill: currentColor;
@@ -659,9 +637,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   .convenio-section { padding: 0 16px 80px; }
 }
 
-/* ════════════════════════════════
-   FOOTER
-   ════════════════════════════════ */
 footer {
   border-top: 1px solid rgba(212,160,23,0.15);
   padding: 36px 24px;
@@ -728,9 +703,6 @@ footer {
   .hero-cta, .hero-cta-calc { padding: 12px 22px; font-size: 11px; }
 }
 
-/* ════════════════════════════════
-   ANIMACIONES
-   ════════════════════════════════ */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
@@ -800,21 +772,11 @@ footer {
 
 <!-- ══ BOTONES FLOTANTES DE REDES SOCIALES ══ -->
 <div class="social-float" aria-label="Redes sociales">
-  <a class="social-btn ig"
-     href="https://www.instagram.com/gducatamarca/"
-     target="_blank" rel="noopener noreferrer"
-     data-tip="Instagram" aria-label="Instagram GDU Catamarca">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
+  <a class="social-btn ig" href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener noreferrer" data-tip="Instagram" aria-label="Instagram GDU Catamarca">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
   </a>
-  <a class="social-btn fb"
-     href="https://www.facebook.com/gremiodocente.universitario"
-     target="_blank" rel="noopener noreferrer"
-     data-tip="Facebook" aria-label="Facebook GDU Catamarca">
-    <svg viewBox="0 0 24 24">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-    </svg>
+  <a class="social-btn fb" href="https://www.facebook.com/gremiodocente.universitario" target="_blank" rel="noopener noreferrer" data-tip="Facebook" aria-label="Facebook GDU Catamarca">
+    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
   </a>
 </div>
 
@@ -978,8 +940,475 @@ footer {
         </div>
       </div>
       <div class="datos-cta-btn-wrap">
-        <a class="datos-cta-btn"
-           href="https://gducatamarca.github.io/datoscomparativos/"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Ver datos comparativos">
-          <svg viewBox="
+        <a class="datos-cta-btn" href="https://gducatamarca.github.io/datoscomparativos/" target="_blank" rel="noopener noreferrer" aria-label="Ver datos comparativos">
+          <svg viewBox="0 0 24 24">
+            <path d="M3.5 18.49l6-6.01 4 4L22 6.92 20.59 5.5l-7.09 8.54-4-4L2 17l1.5 1.49z" fill="white"/>
+          </svg>
+          <div>
+            <div class="datos-cta-btn-label">Ver datos<br>comparativos</div>
+            <div class="datos-cta-btn-sub">gráficos interactivos</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CALCULADORA SALARIAL ══ -->
+<section class="calc-section" id="calculadora">
+  <div class="calc-section-label reveal">🧮 CALCULADORA SALARIAL · MAYO 2026</div>
+
+  <div class="calculadora-gdu reveal">
+    <h2 class="calc-title">Calculadora Salarial Docente</h2>
+    <p class="calc-subtitle" id="calc-subtitle">Cargando escala salarial...</p>
+
+    <!-- Switch tipo de docente -->
+    <div class="calc-tipo-switch">
+      <button class="calc-tipo-btn activo" id="btn-universitario" onclick="switchTipo('universitario')">
+        🎓 Universitario
+      </button>
+      <button class="calc-tipo-btn" id="btn-preuniversitario" onclick="switchTipo('preuniversitario')">
+        🏫 Preuniversitario
+      </button>
+    </div>
+
+    <!-- ── PANEL UNIVERSITARIO ── -->
+    <div id="panel-universitario">
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label class="calc-label">Dedicación</label>
+          <select id="dedicacion" onchange="cargarCargos()"></select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Cargo</label>
+          <select id="cargo"></select>
+        </div>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label class="calc-label">Antigüedad</label>
+          <select id="antiguedad">
+            <option value="0.20">0 a 4 años (20%)</option>
+            <option value="0.30">5 a 6 años (30%)</option>
+            <option value="0.40">7 a 9 años (40%)</option>
+            <option value="0.50">10 a 11 años (50%)</option>
+            <option value="0.60">12 a 14 años (60%)</option>
+            <option value="0.70">15 a 16 años (70%)</option>
+            <option value="0.80">17 a 19 años (80%)</option>
+            <option value="1.00">20 a 21 años (100%)</option>
+            <option value="1.10">22 a 23 años (110%)</option>
+            <option value="1.20">24 o más años (120%)</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Posgrado</label>
+          <select id="posgrado">
+            <option value="0">No posee Posgrado</option>
+            <option value="0.18">Doctorado (18%)</option>
+            <option value="0.08">Maestría (8%)</option>
+            <option value="0.05">Especialización (5%)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcular()">
+        Calcular salario estimado →
+      </button>
+    </div>
+
+    <!-- ── PANEL PREUNIVERSITARIO ── -->
+    <div id="panel-preuniversitario">
+      <div class="calc-grid">
+        <div class="calc-field full">
+          <label class="calc-label">Cargo Preuniversitario</label>
+          <select id="pre-cargo"></select>
+        </div>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label class="calc-label">Antigüedad</label>
+          <select id="pre-antiguedad"></select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Posgrado</label>
+          <select id="pre-posgrado">
+            <option value="0">No posee Posgrado</option>
+            <option value="0.18">Doctorado (18%)</option>
+            <option value="0.08">Maestría (8%)</option>
+            <option value="0.05">Especialización (5%)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcularPre()">
+        Calcular salario estimado →
+      </button>
+    </div>
+
+    <!-- ── RESULTADO (compartido) ── -->
+    <div class="calc-resultado" id="calc-resultado">
+      <div class="calc-resultado-tag">📊 Resultado estimado · Mayo 2026</div>
+      <div class="calc-resultado-detalle" id="calc-detalle"></div>
+      <div class="calc-total-label">Salario bruto estimado</div>
+      <div class="calc-total-val" id="calc-total">$ 0</div>
+
+      <!-- AVISO LEGAL DESTACADO -->
+      <div class="calc-aviso-legal">
+        <p>
+          <strong>⚠ Cálculo estimativo.</strong>
+          Los descuentos por Ley son aproximadamente el <strong>21%</strong>, que contemplan
+          aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda).
+          <strong>No incluye descuentos adicionales locales, cuota sindical ni otros añadidos.</strong>
+        </p>
+      </div>
+      <div class="calc-aviso-fuente">
+        Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA
+      </div>
+    </div>
+
+    <button class="calc-btn-pdf" id="btn-pdf" onclick="descargarPDF()">
+      📄 Descargar constancia PDF
+    </button>
+  </div>
+</section>
+
+<!-- ══ MÓDULO CONVENIO COLECTIVO ══ -->
+<section class="convenio-section reveal">
+  <div class="convenio-section-label">
+    📜 CONVENIO COLECTIVO DE TRABAJO
+  </div>
+
+  <a href="https://gducatamarca.github.io/canasta-sueldo/convenio.html" class="convenio-link" target="_blank" rel="noopener noreferrer">
+    <div class="convenio-container">
+      <!-- Portada -->
+      <div class="convenio-portada">
+        <img src="caratula.png" alt="Portada del Convenio Colectivo de Trabajo · CONADU HISTÓRICA">
+      </div>
+
+      <!-- Contenido -->
+      <div class="convenio-contenido">
+        <h2 class="convenio-titulo">
+          Convenio Colectivo
+          <span class="accent">de Trabajo</span>
+        </h2>
+
+        <p class="convenio-descripcion">
+          El Convenio Colectivo de Trabajo es el <strong>acuerdo fundamental</strong> que regula las condiciones laborales de los docentes universitarios. 
+          Establece derechos, obligaciones, jornadas, salarios, prestaciones sociales y todas las normas que protegen la relación laboral.
+        </p>
+
+        <div class="convenio-cta">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+          Explorar documentación completa →
+        </div>
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">
+    <img src="logo-gdu.png" alt="GDU Catamarca">
+  </div>
+  <div class="footer-nombre">Gremio Docente Universitario</div>
+  <div class="footer-sub">CONADU HISTÓRICA · Catamarca</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener" class="ig">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/gremiodocente.universitario" target="_blank" rel="noopener" class="fb">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Gremio Docente Universitario · CONADU HISTÓRICA</span><br>
+    Todos los derechos reservados. El contenido de este sitio es de carácter
+    informativo y sindical. Su reproducción parcial o total está permitida
+    citando la fuente: <em>GDU Catamarca · CONADU HISTÓRICA</em>.
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+/* ════════════════════════════════
+   CARGAR JSON Y LUEGO OCULTAR LOADER
+   ════════════════════════════════ */
+let SALARIOS = {};
+let PRE_CARGOS = {};
+let PRE_TRAMOS = [];
+let tipoActivo = 'universitario';
+let ultimoResultado = { tipo: '', dedicacion: '', cargo: '', antTexto: '', posTexto: '', total: '' };
+
+fetch('datos_salarios.json')
+  .then(r => {
+    if (!r.ok) throw new Error('Error al cargar JSON');
+    return r.json();
+  })
+  .then(data => {
+    SALARIOS = data.dedicaciones;
+    PRE_CARGOS = data.preuniversitarios.cargos;
+    PRE_TRAMOS = data.preuniversitarios.antiguedad_tramos;
+
+    document.getElementById('calc-subtitle').textContent = `Escala salarial ${data.ultima_actualizacion} · GDU Catamarca`;
+    
+    cargarDedicaciones();
+    cargarSelectsPre();
+    
+    // OCULTAR LOADER DESPUÉS DE CARGAR TODO
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 800);
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    document.getElementById('calc-subtitle').textContent = '⚠ Error al cargar la escala';
+    document.getElementById('calc-subtitle').style.color = '#FF6B6B';
+    // Ocultar loader aún si hay error
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 1000);
+  });
+
+/* ════════════════════════════════
+   FUNCIONES CALCULADORA
+   ════════════════════════════════ */
+function switchTipo(tipo) {
+  tipoActivo = tipo;
+  document.getElementById('btn-universitario').classList.toggle('activo', tipo === 'universitario');
+  document.getElementById('btn-preuniversitario').classList.toggle('activo', tipo === 'preuniversitario');
+  document.getElementById('panel-universitario').style.display = tipo === 'universitario' ? 'block' : 'none';
+  document.getElementById('panel-preuniversitario').style.display = tipo === 'preuniversitario' ? 'block' : 'none';
+  document.getElementById('calc-resultado').classList.remove('visible');
+  document.getElementById('btn-pdf').classList.remove('visible');
+}
+
+function cargarDedicaciones() {
+  const sel = document.getElementById('dedicacion');
+  sel.innerHTML = '';
+  for (let d in SALARIOS) {
+    sel.innerHTML += `<option value="${d}">${d}</option>`;
+  }
+  cargarCargos();
+}
+
+function cargarCargos() {
+  const ded = document.getElementById('dedicacion').value;
+  const sel = document.getElementById('cargo');
+  sel.innerHTML = '';
+  for (let c in SALARIOS[ded]) {
+    sel.innerHTML += `<option value="${c}">${c}</option>`;
+  }
+}
+
+function calcular() {
+  const dedicacion = document.getElementById('dedicacion').value;
+  const cargo = document.getElementById('cargo').value;
+  const antiguedad = parseFloat(document.getElementById('antiguedad').value);
+  const posgrado = parseFloat(document.getElementById('posgrado').value);
+  const antTexto = document.getElementById('antiguedad').selectedOptions[0].text;
+  const posTexto = document.getElementById('posgrado').selectedOptions[0].text;
+
+  const basico = SALARIOS[dedicacion][cargo];
+  const total = basico * (1 + antiguedad) * (1 + posgrado);
+  const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
+
+  ultimoResultado = { tipo: 'Universitario', dedicacion, cargo, antTexto, posTexto, total: totalFmt };
+
+  document.getElementById('calc-total').textContent = totalFmt;
+  document.getElementById('calc-detalle').innerHTML = `<strong style="color:var(--blanco)">${dedicacion} · ${cargo}</strong><br>Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
+
+  mostrarResultado();
+}
+
+function cargarSelectsPre() {
+  const selCargo = document.getElementById('pre-cargo');
+  selCargo.innerHTML = '';
+  for (let nombre in PRE_CARGOS) {
+    selCargo.innerHTML += `<option value="${nombre}">${nombre}</option>`;
+  }
+
+  const selAnt = document.getElementById('pre-antiguedad');
+  selAnt.innerHTML = '';
+  PRE_TRAMOS.forEach(t => {
+    selAnt.innerHTML += `<option value="${t.factor}">${t.label}</option>`;
+  });
+}
+
+function calcularPre() {
+  const cargo = document.getElementById('pre-cargo').value;
+  const factor = parseFloat(document.getElementById('pre-antiguedad').value);
+  const posgrado = parseFloat(document.getElementById('pre-posgrado').value);
+  const antTexto = document.getElementById('pre-antiguedad').selectedOptions[0].text;
+  const posTexto = document.getElementById('pre-posgrado').selectedOptions[0].text;
+
+  const basico = PRE_CARGOS[cargo];
+  const total = basico * factor * (1 + posgrado);
+  const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
+
+  ultimoResultado = { tipo: 'Preuniversitario', dedicacion: 'Preuniversitario', cargo, antTexto, posTexto, total: totalFmt };
+
+  document.getElementById('calc-total').textContent = totalFmt;
+  document.getElementById('calc-detalle').innerHTML = `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}</strong><br>Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
+
+  mostrarResultado();
+}
+
+function mostrarResultado() {
+  document.getElementById('calc-resultado').classList.add('visible');
+  document.getElementById('btn-pdf').classList.add('visible');
+  document.getElementById('calc-resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function descargarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const r = ultimoResultado;
+  const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+  const img = new Image();
+  img.src = 'logo-gdu.png';
+  img.onload = function () {
+    doc.setFillColor(8, 17, 28);
+    doc.rect(0, 0, 210, 297, 'F');
+
+    doc.setFillColor(27, 63, 114);
+    doc.rect(0, 0, 210, 38, 'F');
+    doc.addImage(img, 'PNG', 10, 6, 100, 26);
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Emisión: ${fecha}`, 200, 12, { align: 'right' });
+    doc.text('Mayo 2026', 200, 20, { align: 'right' });
+
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.8);
+    doc.line(10, 44, 200, 44);
+
+    doc.setTextColor(247, 249, 252);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text('Constancia de Cálculo Salarial', 105, 58, { align: 'center' });
+    doc.setFontSize(10);
+    doc.setTextColor(160, 174, 192);
+    doc.setFont('helvetica', 'normal');
+
+    const subtituloTipo = r.tipo === 'Preuniversitario'
+      ? 'Escala preuniversitaria · CONADU HISTÓRICA · GDU Catamarca'
+      : 'Escala universitaria · CONADU HISTÓRICA · GDU Catamarca';
+    doc.text(subtituloTipo, 105, 66, { align: 'center' });
+
+    doc.setFillColor(14, 28, 45);
+    doc.roundedRect(14, 76, 182, 74, 4, 4, 'F');
+    doc.setDrawColor(45, 111, 191);
+    doc.setLineWidth(0.4);
+    doc.roundedRect(14, 76, 182, 74, 4, 4, 'S');
+
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DETALLE DE LA SIMULACIÓN', 22, 86);
+
+    const items = [
+      ['Tipo:', r.tipo],
+      ['Cargo:', r.cargo],
+      r.tipo === 'Universitario' ? ['Dedicación:', r.dedicacion] : null,
+      ['Antigüedad:', r.antTexto],
+      ['Posgrado:', r.posTexto],
+    ].filter(Boolean);
+
+    let y = 96;
+    items.forEach(([lbl, val]) => {
+      doc.setTextColor(160, 174, 192);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.text(lbl, 22, y);
+      doc.setTextColor(247, 249, 252);
+      doc.setFont('helvetica', 'bold');
+      const valLines = doc.splitTextToSize(val, 108);
+      doc.text(valLines, 70, y);
+      y += 11 * valLines.length;
+    });
+
+    doc.setFillColor(27, 63, 114);
+    doc.roundedRect(14, 160, 182, 52, 4, 4, 'F');
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.6);
+    doc.roundedRect(14, 160, 182, 52, 4, 4, 'S');
+    doc.setTextColor(160, 174, 192);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text('SALARIO BRUTO ESTIMADO', 105, 173, { align: 'center' });
+    doc.setTextColor(126, 200, 240);
+    doc.setFontSize(28);
+    doc.setFont('helvetica', 'bold');
+    doc.text(r.total, 105, 197, { align: 'center' });
+
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.4);
+    doc.line(14, 222, 196, 222);
+
+    doc.setFillColor(50, 10, 10);
+    doc.roundedRect(14, 226, 182, 40, 3, 3, 'F');
+    doc.setDrawColor(180, 30, 30);
+    doc.setLineWidth(0.35);
+    doc.roundedRect(14, 226, 182, 40, 3, 3, 'S');
+
+    doc.setTextColor(255, 160, 160);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('⚠  AVISO IMPORTANTE', 22, 235);
+
+    doc.setTextColor(220, 180, 180);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    const avisoTexto = 'Este cálculo es estimativo. Los descuentos por Ley son aproximadamente el 21%, que contemplan aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda). No incluye descuentos adicionales locales, cuota sindical ni otros añadidos. Para liquidación oficial consultá con tu área de RRHH.';
+    doc.text(doc.splitTextToSize(avisoTexto, 172), 22, 242);
+
+    doc.setTextColor(70, 90, 110);
+    doc.setFontSize(7);
+    doc.text('Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA', 105, 274, { align: 'center' });
+
+    doc.setFillColor(14, 28, 45);
+    doc.rect(0, 279, 210, 18, 'F');
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.3);
+    doc.line(0, 279, 210, 279);
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('GDU CATAMARCA · CONADU HISTÓRICA', 105, 287, { align: 'center' });
+    doc.setTextColor(90, 112, 144);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.text('instagram.com/gducatamarca · facebook.com/gremiodocente.universitario', 105, 293, { align: 'center' });
+
+    doc.save(`Calculo_Salarial_GDU_${fecha.replace(/\//g, '-')}.pdf`);
+  };
+}
+
+/* ════════════════════════════════
+   ANIMACIONES REVEAL
+   ════════════════════════════════ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.barra-fill').forEach((bar, i) => {
+        setTimeout(() => {
+          bar.style.width = bar.dataset.w + '%';
+          bar.classList.add('animada');
+        }, i * 250);
+      });
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
