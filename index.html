@@ -3,1017 +3,1454 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salario Docente vs Pobreza · CONADU HISTÓRICA</title>
+<title>Salario Docente vs Pobreza · CONADU HISTÓRICA · GDU Catamarca</title>
 
-<meta name="description" content="El salario docente universitario cubre apenas el 36,4% de la Canasta Básica Total. Datos oficiales INDEC mayo 2026.">
-<meta name="theme-color" content="#08111C">
+<meta name="description" content="El salario docente universitario cubre apenas el 36,4% de la Canasta Básica Total. Datos oficiales INDEC mayo 2026. CONADU HISTÓRICA · GDU Catamarca.">
+<meta name="author" content="GDU Catamarca · CONADU HISTÓRICA">
+<meta name="keywords" content="salario docente, pobreza, INDEC, CONADU HISTÓRICA, GDU Catamarca, canasta básica, universitarios">
 
-<meta property="og:title" content="36,4% · Salario docente debajo de la línea de pobreza">
-<meta property="og:description" content="Un cargo testigo, números reales, una realidad inocultable. CONADU HISTÓRICA · GDU Catamarca">
-<meta property="og:image" content="preview.jpg">
-<meta property="og:url" content="https://gdu-catamarca.github.io/salario-pobreza/">
+<meta property="og:type"         content="website">
+<meta property="og:site_name"    content="CONADU HISTÓRICA · GDU Catamarca">
+<meta property="og:title"        content="Salario docente: debajo de la línea de pobreza">
+<meta property="og:description"  content="El cargo testigo docente universitario alcanza solo el 36,4% de la Canasta Básica Total (mayo 2026). Datos INDEC oficiales.">
+<meta property="og:image"        content="preview.jpg">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"    content="Infografía: salario docente vs línea de pobreza mayo 2026">
+<meta property="og:url"          content="https://gdu-catamarca.github.io/salario-pobreza/">
+<meta property="og:locale"       content="es_AR">
+
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="Salario docente: debajo de la línea de pobreza">
+<meta name="twitter:description" content="El cargo testigo docente universitario alcanza solo el 36,4% de la Canasta Básica Total. Datos INDEC mayo 2026.">
+<meta name="twitter:image"       content="preview.jpg">
+<meta name="twitter:image:alt"   content="Infografía: salario docente vs línea de pobreza mayo 2026">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;900&display=swap');
 
 :root {
-  --rojo:     #DC2626;
-  --rojo-suave:#991B1B;
-  --azul:     #1E3A8A;
-  --azul-claro:#3B82F6;
-  --oro:      #D97706;
-  --oro-claro:#F59E0B;
-  --bg:       #020617;
-  --bg-elev:  #0F172A;
-  --surface:  rgba(30, 41, 59, 0.4);
-  --text:     #F8FAFC;
-  --text-muted:#94A3B8;
-  --border:   rgba(148, 163, 184, 0.1);
+  --rojo:   #E02020;
+  --rojo-d: #900C0C;
+  --azul:   #1B3F72;
+  --azul-c: #2D6FBF;
+  --oro:    #D4A017;
+  --bg:     #08111C;
+  --bg2:    #0E1C2D;
+  --gris:   #A0AEC0;
+  --blanco: #F7F9FC;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-/* Loader minimalista */
+/* ════════════════════════════════
+   PANTALLA DE CARGA
+   ════════════════════════════════ */
 #loader {
   position: fixed; inset: 0;
-  background: var(--bg);
-  z-index: 9999;
-  display: grid;
-  place-items: center;
-  transition: opacity 0.4s ease;
+  background: var(--bg); z-index: 9999;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 24px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-#loader.hidden { opacity: 0; pointer-events: none; }
-.loader-content {
-  text-align: center;
-  opacity: 0.8;
+#loader.hidden { opacity: 0; visibility: hidden; }
+#loader img {
+  width: min(320px, 80vw);
+  filter: drop-shadow(0 0 32px rgba(212,160,23,0.55));
+  animation: loaderPulse 1.8s ease-in-out infinite;
+}
+@keyframes loaderPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.78; transform: scale(0.97); }
+}
+.loader-bar-wrap {
+  width: min(280px, 70vw); height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px; overflow: hidden;
 }
 .loader-bar {
-  width: 120px; height: 2px;
-  background: var(--border);
-  margin: 20px auto 0;
-  position: relative;
-  overflow: hidden;
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
+  border-radius: 99px;
+  animation: loaderFill 1.4s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
 }
-.loader-bar::after {
-  content: ''; position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 40%; background: var(--oro);
-  animation: load 1s ease-in-out infinite;
-}
-@keyframes load {
-  0% { left: -40%; }
-  100% { left: 100%; }
+@keyframes loaderFill { to { width: 100%; } }
+.loader-txt {
+  font-size: 10px; letter-spacing: 3px;
+  color: var(--gris); text-transform: uppercase; font-weight: 600;
 }
 
-/* Navegación flotante minimalista */
+/* ════════════════════════════════
+   LOGO EN HERO
+   ════════════════════════════════ */
+.hero-logo {
+  margin-bottom: 32px;
+  display: flex; justify-content: center;
+}
+.hero-logo img {
+  width: min(280px, 72vw);
+  height: auto;
+  /* Fondo oscuro detrás para legibilidad */
+  background: rgba(8,17,28,0.55);
+  border-radius: 14px;
+  padding: 10px 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  /* Mantener colores originales del logo */
+  filter: drop-shadow(0 2px 10px rgba(212,160,23,0.25));
+}
+
+/* ════════════════════════════════
+   BOTONES FLOTANTES DE REDES
+   ════════════════════════════════ */
 .social-float {
-  position: fixed;
-  right: 24px; top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  position: fixed; right: 20px; top: 50%;
+  transform: translateY(-50%); z-index: 999;
+  display: flex; flex-direction: column; gap: 12px;
 }
 .social-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  display: grid; place-items: center;
-  background: var(--surface);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  color: var(--text);
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
   text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 18px;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s;
+  position: relative;
 }
-.social-btn:hover {
-  background: var(--oro);
-  color: var(--bg);
-  transform: scale(1.1);
+.social-btn svg { width: 22px; height: 22px; fill: white; display: block; }
+.social-btn:hover { transform: scale(1.18); }
+.social-btn.ig {
+  background: radial-gradient(circle at 30% 107%,
+    #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  box-shadow: 0 4px 20px rgba(214,36,159,0.45);
 }
-@media (max-width: 768px) {
+.social-btn.ig:hover { box-shadow: 0 6px 28px rgba(214,36,159,0.65); }
+.social-btn.fb { background: #1877F2; box-shadow: 0 4px 20px rgba(24,119,242,0.45); }
+.social-btn.fb:hover { box-shadow: 0 6px 28px rgba(24,119,242,0.65); }
+.social-btn::before {
+  content: attr(data-tip); position: absolute; right: 58px;
+  background: rgba(0,0,0,0.75); color: #fff;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.5px; white-space: nowrap;
+  padding: 5px 10px; border-radius: 6px;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  backdrop-filter: blur(4px);
+}
+.social-btn:hover::before { opacity: 1; }
+
+@media (max-width: 640px) {
   .social-float {
-    right: 16px; top: auto; bottom: 24px;
-    transform: none;
-    flex-direction: row;
-    background: var(--surface);
-    backdrop-filter: blur(10px);
-    padding: 8px;
-    border-radius: 40px;
-    border: 1px solid var(--border);
+    right: unset; top: unset; bottom: 20px;
+    left: 50%; transform: translateX(-50%); flex-direction: row;
   }
-  .social-btn { width: 36px; height: 36px; font-size: 16px; }
+  .social-btn::before { display: none; }
 }
 
-/* Hero Minimalista Impactante */
+/* ════════════════════════════════
+   HERO
+   ════════════════════════════════ */
 .hero {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 24px;
-  position: relative;
-  background: radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(30, 58, 138, 0.1) 0%, transparent 40%),
-              var(--bg);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 60px 24px 40px;
+  position: relative; overflow: hidden;
 }
-.hero-logo {
-  position: absolute; top: 40px;
-  opacity: 0.6;
-  transition: opacity 0.3s;
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(160deg, #0E1C2D 0%, #08111C 55%, #1a0404 100%);
+  z-index: 0;
 }
-.hero-logo:hover { opacity: 1; }
-.hero-logo img { height: 32px; width: auto; filter: brightness(0) invert(1); }
-
-.hero-content {
-  text-align: center;
-  max-width: 900px;
-  animation: fadeUp 0.8s ease-out;
+.hero::after {
+  content: ''; position: absolute;
+  width: 200%; height: 3px; background: var(--rojo);
+  top: 50%; left: -50%; transform: rotate(-8deg);
+  opacity: 0.15; z-index: 0;
 }
+.hero-inner { position: relative; z-index: 1; max-width: 700px; }
 
 .hero-kicker {
-  font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.hero-stat {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(120px, 30vw, 240px);
-  line-height: 0.85;
-  color: var(--text);
-  margin: 0;
-  letter-spacing: -2px;
-  position: relative;
-  display: inline-block;
+  font-size: clamp(13px, 3.5vw, 18px);
+  letter-spacing: 5px; color: var(--gris);
+  margin-bottom: 12px; text-transform: uppercase;
 }
-.hero-stat::after {
-  content: '%';
-  font-size: 0.3em;
-  position: absolute;
-  top: 0.2em;
-  margin-left: 0.1em;
-  color: var(--rojo);
-}
-
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(32px, 8vw, 64px);
-  color: var(--rojo);
-  margin: 16px 0 24px;
-  line-height: 1;
-  letter-spacing: 2px;
+  font-size: clamp(52px, 13vw, 110px);
+  line-height: 0.9; letter-spacing: 2px;
+  color: var(--blanco); margin-bottom: 8px;
 }
-
-.hero-desc {
-  font-size: clamp(14px, 2vw, 18px);
-  color: var(--text-muted);
-  max-width: 500px;
-  margin: 0 auto 40px;
-  font-weight: 300;
-  line-height: 1.7;
+.hero-title .accent { color: var(--rojo); display: block; }
+.hero-sub {
+  font-size: clamp(13px, 2.5vw, 16px); color: var(--gris);
+  margin-top: 20px; line-height: 1.6; max-width: 500px;
+  margin-left: auto; margin-right: auto;
 }
-.hero-desc strong {
-  color: var(--text);
-  font-weight: 600;
+.hero-line {
+  width: 60px; height: 3px; background: var(--oro);
+  border-radius: 2px; margin: 20px auto 0; transform-origin: left;
+  animation: lineGrow 0.8s cubic-bezier(0.22,1,0.36,1) 0.4s both;
 }
-
+.hero-btns {
+  margin-top: 40px; display: flex; gap: 12px;
+  justify-content: center; flex-wrap: wrap;
+}
 .hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text);
-  text-decoration: none;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  display: inline-block; background: var(--rojo); color: white;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 14px 36px; border-radius: 40px;
+  text-decoration: none; transition: background 0.2s, transform 0.2s;
 }
-.hero-cta:hover {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
-  transform: translateY(-2px);
+.hero-cta:hover { background: var(--rojo-d); transform: translateY(-2px); }
+.hero-cta-calc {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--azul), var(--azul-c));
+  color: white; font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 36px; border-radius: 40px; text-decoration: none;
+  transition: filter 0.2s, transform 0.2s;
+  box-shadow: 0 4px 20px rgba(27,63,114,0.4);
 }
-.hero-cta.primary {
-  background: var(--rojo);
-  border-color: var(--rojo);
-  color: white;
-}
-.hero-cta.primary:hover {
-  background: var(--rojo-suave);
-  border-color: var(--rojo-suave);
-}
+.hero-cta-calc:hover { filter: brightness(1.15); transform: translateY(-2px); }
 
 .scroll-hint {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-muted);
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  animation: bounce 2s infinite;
+  margin-top: 48px; font-size: 11px; color: #4A5568;
+  letter-spacing: 2px; display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
 }
-.scroll-hint::after {
-  content: '';
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, var(--text-muted), transparent);
+.scroll-hint span {
+  display: block; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--oro)); margin: 0 auto;
 }
 
-/* Secciones generales */
-.section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 100px 24px;
-}
+/* ════════════════════════════════
+   SECCIÓN DATOS
+   ════════════════════════════════ */
+.section { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
 
-.section-header {
-  margin-bottom: 60px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 20px;
-}
 .section-label {
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--oro);
-  font-weight: 600;
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--oro); margin-bottom: 48px;
+  display: flex; align-items: center; gap: 12px;
 }
+.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(212,160,23,0.25); }
 
-/* Tarjeta de confrontación minimalista */
+/* CONFRONTACIÓN */
 .confronta {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 80px;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: stretch; margin-bottom: 60px;
 }
-.confronta-card {
-  background: var(--surface);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 40px 32px;
-  text-align: center;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+.confronta-card { padding: 40px 28px; border-radius: 20px; text-align: center; }
+.confronta-card.salario {
+  background: linear-gradient(145deg, #0D2645, #122f55);
+  border: 1px solid rgba(45,111,191,0.4);
 }
-.confronta-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255,255,255,0.2);
+.confronta-card.pobreza {
+  background: linear-gradient(145deg, #1c0505, #2d0808);
+  border: 1px solid rgba(224,32,32,0.35);
 }
-.confronta-card.salario { border-top: 3px solid var(--azul-claro); }
-.confronta-card.pobreza { border-top: 3px solid var(--rojo); }
-
+.confronta-sep {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 16px; position: relative;
+}
+.vs-badge {
+  background: var(--bg); border: 2px solid var(--oro);
+  color: var(--oro); font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; width: 56px; height: 56px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.confronta-sep::before {
+  content: ''; position: absolute; width: 1px; height: 100%;
+  background: rgba(212,160,23,0.2);
+}
 .c-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  font-weight: 600;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 16px;
 }
+.salario .c-label { color: #5B9BD5; }
+.pobreza .c-label { color: #FC7070; }
 .c-amount {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(36px, 6vw, 56px);
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 8px;
+  font-size: clamp(30px, 6vw, 50px); line-height: 1; margin-bottom: 8px;
 }
-.salario .c-amount { color: var(--azul-claro); }
-.pobreza .c-amount { color: var(--rojo); }
-.c-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 16px;
-  line-height: 1.6;
-}
-.c-desc strong {
-  display: block;
-  margin-top: 4px;
-  color: var(--text);
-  font-weight: 500;
-}
+.salario .c-amount { color: #7EC8F0; }
+.pobreza .c-amount { color: #FF6B6B; }
+.c-desc { font-size: 11px; color: var(--gris); line-height: 1.5; margin-top: 12px; }
 
-.vs-divider {
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  border: 2px solid var(--oro);
-  display: grid; place-items: center;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 14px;
-  color: var(--oro);
-  background: var(--bg);
-  position: relative;
+/* BARRAS */
+.barra-section {
+  background: var(--bg2); border-radius: 24px;
+  padding: 40px 36px; margin-bottom: 60px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
-.vs-divider::before,
-.vs-divider::after {
-  content: ''; position: absolute;
-  width: 1px; height: 60px;
-  background: var(--border);
-}
-.vs-divider::before { bottom: 100%; margin-bottom: 12px; }
-.vs-divider::after { top: 100%; margin-top: 12px; }
-
-/* Barras de progreso limpias */
-.barras-container {
-  background: var(--surface);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 40px;
-  margin-bottom: 80px;
-}
-.barra-row {
-  margin-bottom: 32px;
-}
-.barra-row:last-child { margin-bottom: 0; }
-.barra-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 12px;
-}
-.barra-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-}
-.barra-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 24px;
-  color: var(--text-muted);
-}
-.barra-track {
-  height: 8px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
+.barra-titulo { font-size: 13px; font-weight: 700; color: var(--gris); margin-bottom: 28px; letter-spacing: 1px; }
+.barra-row { margin-bottom: 28px; }
+.barra-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.barra-name { font-size: 12px; font-weight: 600; color: var(--blanco); letter-spacing: 0.5px; }
+.barra-val  { font-family: 'Bebas Neue', sans-serif; font-size: 20px; }
+.barra-track { height: 36px; background: rgba(255,255,255,0.06); border-radius: 40px; overflow: hidden; }
 .barra-fill {
-  height: 100%;
-  border-radius: 4px;
-  width: 0;
-  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-  position: relative;
+  height: 100%; border-radius: 40px;
+  display: flex; align-items: center; justify-content: flex-end; padding-right: 14px;
+  font-size: 11px; font-weight: 700; color: white;
+  width: 0; position: relative; overflow: hidden;
+  transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.fill-cbt { background: var(--rojo); width: 100%; }
-.fill-sal { background: var(--azul-claro); width: 36.4%; }
-.barra-fill::after {
-  content: ''; position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: shimmer 2s infinite;
-}
+.fill-cbt { background: linear-gradient(90deg, var(--rojo-d), var(--rojo)); }
+.fill-sal { background: linear-gradient(90deg, var(--azul), var(--azul-c)); }
 
-/* Grid de impacto */
+/* IMPACTO */
 .impacto-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 80px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-bottom: 60px;
 }
 .impacto-card {
-  background: var(--surface);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 32px 24px;
-  text-align: center;
-  transition: all 0.3s ease;
+  background: var(--bg2); border-radius: 20px; padding: 28px 22px;
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative; overflow: hidden;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s;
 }
-.impacto-card:hover {
-  border-color: rgba(255,255,255,0.2);
-  transform: translateY(-2px);
+.impacto-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%; border-radius: 4px 0 0 4px;
 }
-.impacto-card.rojo { border-bottom: 3px solid var(--rojo); }
-.impacto-card.azul { border-bottom: 3px solid var(--azul-claro); }
-.impacto-card.oro { border-bottom: 3px solid var(--oro); }
-.ic-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(28px, 4vw, 40px);
-  margin: 12px 0;
-  line-height: 1;
-}
-.rojo .ic-val { color: var(--rojo); }
-.azul .ic-val { color: var(--azul-claro); }
-.oro .ic-val { color: var(--oro-claro); }
-.ic-label {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-.ic-desc {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-top: 8px;
-}
+.impacto-card.rojo::before { background: var(--rojo); }
+.impacto-card.azul::before { background: var(--azul-c); }
+.impacto-card.oro::before  { background: var(--oro); }
+.impacto-grid.visible .impacto-card { opacity: 1; transform: none; }
+.impacto-grid.visible .impacto-card:nth-child(1) { transition-delay: 0.05s; }
+.impacto-grid.visible .impacto-card:nth-child(2) { transition-delay: 0.18s; }
+.impacto-grid.visible .impacto-card:nth-child(3) { transition-delay: 0.31s; }
+.ic-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gris); margin-bottom: 12px; }
+.ic-val   { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px, 5vw, 40px); line-height: 1; margin-bottom: 6px; }
+.impacto-card.rojo .ic-val { color: #FF6B6B; }
+.impacto-card.azul .ic-val { color: #7EC8F0; }
+.impacto-card.oro  .ic-val { color: var(--oro); }
+.ic-desc { font-size: 11px; color: var(--gris); line-height: 1.5; }
 
-/* Alerta textual elegante */
-.alerta-box {
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.05));
-  border-left: 4px solid var(--rojo);
-  padding: 32px;
-  border-radius: 0 16px 16px 0;
-  margin-bottom: 80px;
-  font-size: clamp(16px, 2.5vw, 20px);
-  line-height: 1.7;
-  color: var(--text);
-  font-weight: 300;
+/* REFLEXIÓN */
+.alerta {
+  background: linear-gradient(135deg, #1c0505, #200808);
+  border: 1px solid rgba(224,32,32,0.4); border-radius: 20px;
+  padding: 32px 36px; margin-bottom: 60px; position: relative; overflow: hidden;
 }
-.alerta-box strong {
-  color: var(--rojo);
-  font-weight: 600;
+.alerta::before {
+  content: '"'; position: absolute; right: 20px; top: -10px;
+  font-size: 160px; opacity: 0.06; line-height: 1;
+  font-family: Georgia, serif; color: var(--oro);
 }
+.alerta-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--oro); text-transform: uppercase; margin-bottom: 14px; }
+.alerta-texto { font-size: clamp(15px, 2.5vw, 19px); font-weight: 700; color: var(--blanco); line-height: 1.5; max-width: 580px; }
+.alerta-texto strong { color: #FF6B6B; }
 
-/* Preview imagen */
-.preview-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 8px;
-  margin-bottom: 80px;
+/* PREVIEW */
+.preview-section {
+  background: var(--bg2); border-radius: 24px; padding: 28px;
+  margin-bottom: 60px; border: 1px solid rgba(212,160,23,0.2);
 }
-.preview-card img {
-  width: 100%;
-  border-radius: 12px;
-  display: block;
-}
+.preview-label { font-size: 10px; letter-spacing: 3px; color: var(--oro); font-weight: 700; text-transform: uppercase; margin-bottom: 16px; }
+.preview-section img { width: 100%; border-radius: 16px; display: block; }
 
-/* Fuente */
+/* FUENTE */
 .fuente-box {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.8;
-  padding: 24px;
-  background: rgba(255,255,255,0.02);
-  border-radius: 16px;
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px; padding: 28px 32px;
+  font-size: 11px; color: var(--gris); line-height: 1.8;
 }
-.fuente-box strong { color: var(--text); font-weight: 600; }
+.fuente-box strong { color: var(--blanco); }
 
-/* CTA Block */
-.cta-block {
-  max-width: 800px;
-  margin: 0 auto 100px;
-  padding: 0 24px;
+/* ════════════════════════════════
+   BLOQUE DATOS COMPARATIVOS
+   ════════════════════════════════ */
+.datos-cta-wrapper { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+.datos-cta-block {
+  position: relative; border-radius: 28px; overflow: hidden;
+  border: 1px solid rgba(212,160,23,0.3);
+  background: linear-gradient(135deg, #0b1e35 0%, #0f1f10 50%, #1a1500 100%);
 }
-.cta-inner {
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(217, 119, 6, 0.1));
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 48px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.datos-cta-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro), var(--rojo));
 }
-.cta-inner::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--oro), transparent);
+.datos-cta-block::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg, transparent, transparent 40px,
+    rgba(212,160,23,0.015) 40px, rgba(212,160,23,0.015) 41px
+  );
+  pointer-events: none;
 }
-.cta-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(28px, 5vw, 48px);
-  margin-bottom: 16px;
-  letter-spacing: 1px;
+.datos-cta-inner {
+  position: relative; z-index: 1; padding: 44px 44px 40px;
+  display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
 }
-.cta-desc {
-  color: var(--text-muted);
-  max-width: 500px;
-  margin: 0 auto 32px;
-  font-size: 15px;
-  line-height: 1.7;
+.datos-cta-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(212,160,23,0.12); border: 1px solid rgba(212,160,23,0.3);
+  color: var(--oro); font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 40px; margin-bottom: 18px; width: fit-content;
+}
+.datos-cta-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 5vw, 44px);
+  line-height: 0.95; letter-spacing: 1px; color: var(--blanco); margin-bottom: 16px;
+}
+.datos-cta-title .hl-azul { color: #7EC8F0; }
+.datos-cta-title .hl-oro  { color: var(--oro); }
+.datos-cta-desc {
+  font-size: clamp(12px, 1.8vw, 14px); color: var(--gris);
+  line-height: 1.7; max-width: 480px;
+}
+.datos-cta-desc strong { color: var(--blanco); }
+.datos-mini-stats { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+.mini-stat { display: flex; flex-direction: column; gap: 3px; }
+.mini-stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 22px; line-height: 1; }
+.mini-stat-val.verde { color: #4ADE80; }
+.mini-stat-val.rojo  { color: #FF6B6B; }
+.mini-stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #5A7090; }
+.datos-cta-btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+.datos-cta-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(135deg, #1B3F72, #D4A017); color: white; text-decoration: none;
+  border-radius: 20px; padding: 22px 28px; min-width: 140px; text-align: center;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, filter 0.25s;
+  box-shadow: 0 6px 28px rgba(212,160,23,0.25), 0 2px 8px rgba(0,0,0,0.4);
+  position: relative; overflow: hidden;
+}
+.datos-cta-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  border-radius: inherit;
+}
+.datos-cta-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 40px rgba(212,160,23,0.45), 0 4px 16px rgba(0,0,0,0.5);
+  filter: brightness(1.1);
+}
+.datos-cta-btn svg { width: 32px; height: 32px; fill: white; display: block; }
+.datos-cta-btn-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; line-height: 1.4; }
+.datos-cta-btn-sub { font-size: 9px; opacity: 0.75; letter-spacing: 1px; font-weight: 500; }
+
+@media (max-width: 640px) {
+  .datos-cta-inner { grid-template-columns: 1fr; padding: 28px 22px 26px; gap: 24px; }
+  .datos-cta-btn-wrap { width: 100%; }
+  .datos-cta-btn { flex-direction: row; width: 100%; padding: 18px 24px; justify-content: center; min-width: unset; }
+  .datos-mini-stats { gap: 16px; }
+  .datos-cta-wrapper { padding-bottom: 110px; }
 }
 
-/* Calculadora minimalista */
-.calc-section {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 24px 100px;
+/* ════════════════════════════════
+   CALCULADORA SALARIAL
+   ════════════════════════════════ */
+.calc-section { max-width: 860px; margin: 0 auto; padding: 0 24px 100px; }
+.calc-section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--oro); margin-bottom: 32px; display: flex; align-items: center; gap: 12px;
 }
-.calc-container {
-  background: var(--surface);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 40px;
+.calc-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(212,160,23,0.25); }
+.calculadora-gdu {
+  background: var(--bg2); border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 28px; padding: 40px 40px 36px; position: relative; overflow: hidden;
 }
-.calc-header {
-  text-align: center;
-  margin-bottom: 32px;
+.calculadora-gdu::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
 }
 .calc-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 32px;
-  margin-bottom: 8px;
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: 2px; color: var(--blanco); margin-bottom: 6px; text-align: center;
 }
-.calc-subtitle {
-  font-size: 12px;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-}
+.calc-subtitle { font-size: 12px; color: var(--gris); text-align: center; margin-bottom: 32px; letter-spacing: 0.5px; }
 
-/* Toggle switch elegante */
-.calc-toggle {
-  display: flex;
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
-  padding: 4px;
-  margin-bottom: 32px;
-  border: 1px solid var(--border);
+/* Switch universitario / preuniversitario */
+.calc-tipo-switch {
+  display: flex; gap: 0; margin-bottom: 28px;
+  background: rgba(255,255,255,0.04); border-radius: 12px; padding: 4px;
+  border: 1px solid rgba(255,255,255,0.08);
 }
-.calc-toggle button {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.3s;
+.calc-tipo-btn {
+  flex: 1; padding: 10px 16px; border: none; border-radius: 9px;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+  color: var(--gris); background: transparent;
 }
-.calc-toggle button.active {
-  background: var(--azul);
+.calc-tipo-btn.activo {
+  background: linear-gradient(135deg, var(--azul), var(--azul-c));
   color: white;
+  box-shadow: 0 3px 14px rgba(27,63,114,0.45);
 }
+.calc-tipo-btn:not(.activo):hover { color: var(--blanco); background: rgba(255,255,255,0.06); }
 
-.calc-field {
-  margin-bottom: 20px;
-}
-.calc-field label {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  font-weight: 600;
-}
+/* Panel universitario */
+#panel-universitario { display: block; }
+/* Panel preuniversitario */
+#panel-preuniversitario { display: none; }
+
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.calc-field { display: flex; flex-direction: column; gap: 6px; }
+.calc-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gris); }
 .calc-field select {
-  width: 100%;
-  padding: 14px 16px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 14px;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  transition: all 0.3s;
+  width: 100%; padding: 12px 16px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; color: var(--blanco); font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 500; appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23A0AEC0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  cursor: pointer; transition: border-color 0.2s, background-color 0.2s;
 }
-.calc-field select:focus {
-  outline: none;
-  border-color: var(--oro);
-  background-color: rgba(217, 119, 6, 0.05);
-}
+.calc-field select:focus { outline: none; border-color: var(--oro); background-color: rgba(212,160,23,0.08); }
+.calc-field select option { background: #0E1C2D; color: var(--blanco); }
+
+/* full-width field */
+.calc-field.full { grid-column: 1 / -1; }
 
 .calc-btn {
-  width: 100%;
-  padding: 16px;
-  background: var(--text);
-  color: var(--bg);
-  border: none;
-  border-radius: 12px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-top: 12px;
-  transition: all 0.3s;
+  width: 100%; padding: 14px; margin-top: 20px;
+  background: linear-gradient(135deg, var(--azul), var(--azul-c)); color: white;
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; border: none; border-radius: 12px;
+  cursor: pointer; transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(27,63,114,0.4);
 }
-.calc-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px -10px rgba(255,255,255,0.3);
-}
+.calc-btn:hover { filter: brightness(1.15); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,111,191,0.5); }
+.calc-btn:active { transform: translateY(0); }
 
-.calc-result {
-  margin-top: 32px;
-  padding: 32px;
-  background: rgba(30, 58, 138, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 16px;
-  text-align: center;
-  display: none;
+/* ──────────────────────────────
+   RESULTADO
+   ────────────────────────────── */
+.calc-resultado {
+  margin-top: 28px;
+  background: linear-gradient(135deg, rgba(27,63,114,0.3), rgba(212,160,23,0.1));
+  border: 1px solid rgba(212,160,23,0.3); border-radius: 16px;
+  padding: 28px 24px; text-align: center; display: none;
 }
-.calc-result.visible {
-  display: block;
-  animation: fadeUp 0.5s ease;
-}
-.calc-result-amount {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(36px, 8vw, 56px);
-  color: var(--azul-claro);
-  line-height: 1;
-  margin: 16px 0;
-}
-.calc-result-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-.calc-legal {
-  margin-top: 24px;
-  padding: 20px;
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.2);
-  border-radius: 12px;
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.6;
+.calc-resultado.visible { display: block; animation: fadeDown 0.4s ease; }
+.calc-resultado-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--oro); margin-bottom: 8px; }
+.calc-resultado-detalle { font-size: 11px; color: var(--gris); margin-bottom: 16px; line-height: 1.6; }
+.calc-total-label { font-size: 11px; font-weight: 700; color: var(--gris); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.calc-total-val { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 8vw, 56px); color: #7EC8F0; line-height: 1; margin-bottom: 8px; }
+
+/* ── AVISO LEGAL DESTACADO ── */
+.calc-aviso-legal {
+  margin-top: 18px;
+  background: rgba(224,32,32,0.1);
+  border: 1px solid rgba(224,32,32,0.35);
+  border-radius: 10px;
+  padding: 14px 16px;
   text-align: left;
 }
-.calc-legal strong { color: var(--rojo); }
-
-/* Footer minimalista */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 60px 24px;
+.calc-aviso-legal p {
+  font-size: 11px; line-height: 1.65; color: #F7C5C5;
+  margin: 0;
+}
+.calc-aviso-legal strong { color: #FF6B6B; font-weight: 700; }
+.calc-aviso-fuente {
+  font-size: 10px; color: #5A7090; margin-top: 10px; line-height: 1.6;
   text-align: center;
 }
-.footer-logo img {
-  height: 28px;
-  opacity: 0.5;
-  margin-bottom: 24px;
+
+.calc-nota { font-size: 10px; color: #5A7090; margin-top: 16px; line-height: 1.6; }
+.calc-btn-pdf {
+  width: 100%; padding: 12px; margin-top: 14px;
+  background: linear-gradient(135deg, #1e4d2b, #2f7d4f); color: white;
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; border: none; border-radius: 12px;
+  cursor: pointer; transition: filter 0.2s, transform 0.2s; display: none;
 }
-.footer-text {
-  font-size: 12px;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  margin-bottom: 8px;
+.calc-btn-pdf.visible { display: block; }
+.calc-btn-pdf:hover { filter: brightness(1.15); transform: translateY(-2px); }
+
+@media (max-width: 640px) {
+  .calculadora-gdu { padding: 28px 18px 24px; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .calc-section { padding: 0 16px 110px; }
+  .calc-tipo-btn { font-size: 10px; padding: 9px 10px; }
+}
+
+/* ════════════════════════════════
+   FOOTER
+   ════════════════════════════════ */
+footer {
+  border-top: 1px solid rgba(212,160,23,0.15);
+  padding: 36px 24px;
+  text-align: center;
+  background: var(--bg);
+}
+.footer-logo {
+  display: flex; justify-content: center; margin-bottom: 20px;
+}
+.footer-logo img {
+  height: 36px; width: auto;
+  filter: brightness(0) invert(1) opacity(0.5);
+}
+.footer-nombre {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; letter-spacing: 3px;
+  color: var(--blanco); margin-bottom: 4px;
+}
+.footer-sub {
+  font-size: 10px; letter-spacing: 2px; color: #4A5568;
+  text-transform: uppercase; margin-bottom: 20px;
 }
 .footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 24px;
+  display: flex; justify-content: center; gap: 20px; margin-bottom: 24px;
 }
 .footer-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 12px;
-  letter-spacing: 1px;
-  transition: color 0.3s;
+  display: flex; align-items: center; gap: 6px;
+  text-decoration: none; font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; transition: opacity 0.2s;
 }
-.footer-links a:hover { color: var(--oro); }
-
-/* Utilidades */
-.hidden { display: none !important; }
-
-/* Animaciones */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+.footer-links a:hover { opacity: 0.75; }
+.footer-links a.ig { color: #E1306C; }
+.footer-links a.fb { color: #1877F2; }
+.footer-links svg { width: 14px; height: 14px; fill: currentColor; }
+.footer-copy {
+  font-size: 10px; color: #2D3748; letter-spacing: 1.5px;
+  text-transform: uppercase; line-height: 1.8;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding-top: 20px; margin-top: 4px;
 }
+.footer-copy span { color: #3D4F63; }
+
+@media (max-width: 640px) {
+  footer { padding-bottom: 90px; }
+  .footer-links { flex-direction: column; align-items: center; gap: 12px; }
+}
+
+/* ════════════════════════════════
+   RESPONSIVE GENERAL
+   ════════════════════════════════ */
+@media (max-width: 640px) {
+  .confronta { grid-template-columns: 1fr; gap: 12px; }
+  .confronta-sep { flex-direction: row; padding: 4px 0; }
+  .confronta-sep::before { width: 100%; height: 1px; top: 50%; left: 0; }
+  .confronta-card { padding: 28px 20px; }
+  .barra-meta { flex-wrap: wrap; gap: 4px; }
+  .barra-name { font-size: 11px; flex: 1 1 100%; }
+  .barra-val  { font-size: 16px; }
+  .barra-section { padding: 24px 16px; }
+  .impacto-grid { grid-template-columns: 1fr; }
+  .alerta { padding: 22px 18px; }
+  .alerta-texto { font-size: 14px; }
+  .section { padding: 48px 16px; }
+  .preview-section { padding: 20px 14px; }
+  .fuente-box { padding: 22px 18px; }
+  .hero { padding: 48px 18px 32px; }
+  .hero-cta, .hero-cta-calc { padding: 12px 22px; font-size: 11px; }
+}
+
+/* ════════════════════════════════
+   ANIMACIONES
+   ════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+.barra-fill.animada::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
+  background-size: 400px 100%; animation: shimmer 1.2s ease-out 0.3s 1;
+}
+@keyframes pulseSoft {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+.confronta.visible .c-amount { animation: pulseSoft 0.7s ease-out 0.5s 1; }
+@keyframes glowRed {
+  0%, 100% { box-shadow: inset 0 0 0 0 rgba(224,32,32,0); }
+  50%       { box-shadow: inset 0 0 18px 2px rgba(224,32,32,0.12); }
+}
+.impacto-card.rojo { animation: glowRed 3s ease-in-out infinite; }
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-kicker { animation: fadeDown 0.6s ease-out 0.2s both; }
+.hero-title  { animation: fadeDown 0.7s ease-out 0.3s both; }
+.hero-sub    { animation: fadeDown 0.6s ease-out 0.5s both; }
+.hero-btns   { animation: fadeDown 0.6s ease-out 0.65s both; }
+.scroll-hint { animation: fadeDown 0.6s ease-out 0.8s both, bounce 2s ease-in-out 1.5s infinite; }
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50%       { transform: translateY(6px); }
 }
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+@keyframes glowOro {
+  0%, 100% { box-shadow: 0 6px 28px rgba(212,160,23,0.25), 0 2px 8px rgba(0,0,0,0.4); }
+  50%       { box-shadow: 0 8px 36px rgba(212,160,23,0.5), 0 2px 12px rgba(0,0,0,0.5); }
 }
+.datos-cta-btn { animation: glowOro 2.8s ease-in-out infinite; }
+.datos-cta-btn:hover { animation: none; }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .confronta {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .vs-divider {
-    transform: rotate(90deg);
-    margin: 8px auto;
-  }
-  .vs-divider::before, .vs-divider::after { display: none; }
-  .impacto-grid {
-    grid-template-columns: 1fr;
-  }
-  .cta-inner { padding: 32px 24px; }
-  .calc-container { padding: 24px; }
-  .barras-container { padding: 24px; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .impacto-card { opacity: 1; transform: none; }
+  .barra-fill { transition: none; }
+  .hero-kicker, .hero-title, .hero-sub, .hero-btns, .scroll-hint { animation: none; }
+  .impacto-card.rojo, .datos-cta-btn { animation: none; }
+  #loader { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- Loader -->
+<!-- ══ PANTALLA DE CARGA ══ -->
 <div id="loader">
-  <div class="loader-content">
-    <div style="font-family: 'Bebas Neue'; font-size: 24px; letter-spacing: 4px;">GDU</div>
+  <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
+  <div class="loader-bar-wrap">
     <div class="loader-bar"></div>
   </div>
+  <div class="loader-txt">Cargando información sindical</div>
 </div>
 
-<!-- Redes -->
-<div class="social-float">
-  <a href="https://www.instagram.com/gducatamarca/" target="_blank" class="social-btn" aria-label="Instagram">📷</a>
-  <a href="https://www.facebook.com/gremiodocente.universitario" target="_blank" class="social-btn" aria-label="Facebook">f</a>
+<!-- ══ BOTONES FLOTANTES DE REDES SOCIALES ══ -->
+<div class="social-float" aria-label="Redes sociales">
+  <a class="social-btn ig"
+     href="https://www.instagram.com/gducatamarca/"
+     target="_blank" rel="noopener noreferrer"
+     data-tip="Instagram" aria-label="Instagram GDU Catamarca">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+  </a>
+  <a class="social-btn fb"
+     href="https://www.facebook.com/gremiodocente.universitario"
+     target="_blank" rel="noopener noreferrer"
+     data-tip="Facebook" aria-label="Facebook GDU Catamarca">
+    <svg viewBox="0 0 24 24">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  </a>
 </div>
 
-<!-- Hero -->
+<!-- ══ HERO ══ -->
 <section class="hero">
-  <div class="hero-logo">
-    <img src="logo-gdu.png" alt="GDU Catamarca">
-  </div>
-  
-  <div class="hero-content">
-    <p class="hero-kicker">Mayo 2026 · Datos INDEC Oficiales</p>
-    <h1 class="hero-stat">36,4</h1>
-    <h2 class="hero-title">DEBAJO DE LA LÍNEA</h2>
-    <p class="hero-desc">
-      El salario docente universitario cubre apenas el <strong>36,4%</strong> de la Canasta Básica Total. 
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
+    </div>
+    <p class="hero-kicker">Mayo 2026 · Datos oficiales INDEC</p>
+    <h1 class="hero-title">
+      DEBAJO
+      <span class="accent">DE LA LÍNEA</span>
+    </h1>
+    <p class="hero-sub">
+      El salario docente universitario cubre apenas el <strong style="color:#FF6B6B">36,4%</strong> de la Canasta Básica Total.
       Un cargo testigo, números reales, una realidad inocultable.
     </p>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="#datos" class="hero-cta primary">Ver análisis completo</a>
-      <a href="#calc" class="hero-cta">Calculadora salarial</a>
+    <div class="hero-line"></div>
+    <div class="hero-btns">
+      <a href="#datos" class="hero-cta">Ver los datos →</a>
+      <a href="#calculadora" class="hero-cta-calc">🧮 Calculadora de salarios</a>
+    </div>
+    <div class="scroll-hint">
+      <span></span>
+      BAJÁ
     </div>
   </div>
-  
-  <div class="scroll-hint">Desplazá</div>
 </section>
 
-<!-- Datos -->
+<!-- ══ DATOS ══ -->
 <section class="section" id="datos">
-  <div class="section-header">
-    <div class="section-label">Comparativa Salarial</div>
-  </div>
 
-  <div class="confronta">
+  <div class="section-label reveal">COMPARATIVA SALARIAL</div>
+
+  <div class="confronta reveal">
     <div class="confronta-card salario">
-      <div class="c-label">Salario Docente</div>
+      <div class="c-label">💼 Salario Docente</div>
       <div class="c-amount">$545.300</div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
       <p class="c-desc">
         Auxiliar Diplomado de Primera<br>
         Dedicación Semiexclusiva<br>
-        <strong>CONADU HISTÓRICA · Mayo 2026</strong>
+        <strong style="color:#7EC8F0">Escala CONADU HISTÓRICA · Mayo 2026</strong>
       </p>
     </div>
-    
-    <div class="vs-divider">VS</div>
-    
+    <div class="confronta-sep">
+      <div class="vs-badge">VS</div>
+    </div>
     <div class="confronta-card pobreza">
-      <div class="c-label">Línea de Pobreza</div>
+      <div class="c-label">🚫 Línea de Pobreza</div>
       <div class="c-amount">$1.498.741</div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
       <p class="c-desc">
         Canasta Básica Total (CBT)<br>
         Hogar de 4 integrantes<br>
-        <strong>INDEC · Publicado 11/06/2026</strong>
+        <strong style="color:#FF6B6B">INDEC · Publicado 11/06/2026</strong>
       </p>
     </div>
   </div>
 
-  <div class="barras-container">
+  <div class="barra-section reveal">
+    <p class="barra-titulo">Proporción visual respecto a la Canasta Básica Total</p>
     <div class="barra-row">
-      <div class="barra-header">
-        <span class="barra-label">Línea de pobreza (CBT)</span>
-        <span class="barra-val" style="color: var(--rojo);">$1.498.741</span>
+      <div class="barra-meta">
+        <span class="barra-name">🚫 Línea de pobreza (CBT)</span>
+        <span class="barra-val" style="color:#FF6B6B">$1.498.741</span>
       </div>
       <div class="barra-track">
-        <div class="barra-fill fill-cbt"></div>
+        <div class="barra-fill fill-cbt" data-w="100">100%</div>
       </div>
     </div>
     <div class="barra-row">
-      <div class="barra-header">
-        <span class="barra-label">Salario docente (Aux. Diplomado 1ra)</span>
-        <span class="barra-val" style="color: var(--azul-claro);">$545.300</span>
+      <div class="barra-meta">
+        <span class="barra-name">📚 Salario Auxiliar Diplomado de Primera · Semiexclusiva</span>
+        <span class="barra-val" style="color:#7EC8F0">$545.300</span>
       </div>
       <div class="barra-track">
-        <div class="barra-fill fill-sal"></div>
+        <div class="barra-fill fill-sal" data-w="36.4">36%</div>
       </div>
     </div>
   </div>
 
-  <div class="section-header">
-    <div class="section-label">Impacto</div>
-  </div>
+  <div class="section-label reveal" style="margin-bottom:28px">IMPACTO EN NÚMEROS</div>
 
-  <div class="impacto-grid">
+  <div class="impacto-grid reveal">
     <div class="impacto-card rojo">
-      <div class="ic-label">Déficit Mensual</div>
-      <div class="ic-val">-$953.441</div>
-      <div class="ic-desc">Lo que le falta al sueldo para no ser pobre</div>
+      <div class="ic-label">Déficit mensual</div>
+      <div class="ic-val" id="counter-deficit">-$953.441</div>
+      <div class="ic-desc">Lo que le falta al sueldo para cubrir la línea de pobreza de una familia tipo</div>
     </div>
     <div class="impacto-card azul">
-      <div class="ic-label">Cobertura</div>
-      <div class="ic-val">36,4%</div>
-      <div class="ic-desc">De la canasta básica total</div>
+      <div class="ic-label">El sueldo cubre</div>
+      <div class="ic-val" id="counter-pct">36,4%</div>
+      <div class="ic-desc">De la Canasta Básica Total. Menos de la mitad de lo necesario para no ser pobre</div>
     </div>
     <div class="impacto-card oro">
-      <div class="ic-label">Variación CBT</div>
-      <div class="ic-val">+2,0%</div>
-      <div class="ic-desc">La canasta sigue subiendo</div>
+      <div class="ic-label">Variación CBT mayo</div>
+      <div class="ic-val" id="counter-variacion">+2,0%</div>
+      <div class="ic-desc">La canasta siguió subiendo. El salario docente acumula -6,38% de pérdida en 2026</div>
     </div>
   </div>
 
-  <div class="alerta-box">
-    Un docente universitario con dedicación semiexclusiva <strong>cobra menos de la mitad</strong> de lo que una familia necesita para no caer en la pobreza. Detrás de estos números hay <strong>trayectorias, vocaciones y familias</strong> que merecen una respuesta real.
+  <div class="alerta reveal">
+    <div class="alerta-tag">💬 Reflexión final</div>
+    <p class="alerta-texto">
+      Un docente universitario (Diplomado de 1ra.) con dedicación semiexclusiva
+      <strong>cobra menos de la mitad</strong> de lo que una familia necesita para no caer en la pobreza.
+      Detrás de estos números hay <strong>trayectorias, vocaciones y familias</strong>
+      que merecen una respuesta real.
+    </p>
   </div>
 
-  <div class="preview-card">
-    <img src="preview.jpg" alt="Infografía salario vs pobreza">
+  <div class="preview-section reveal">
+    <div class="preview-label">📸 Imagen de difusión</div>
+    <img src="preview.jpg" alt="Salario docente vs línea de pobreza · CONADU HISTÓRICA · GDU Catamarca">
   </div>
 
-  <div class="fuente-box">
-    <strong>Fuente oficial INDEC (mayo 2026):</strong> Canasta Básica Total (CBT) – Línea de pobreza: $1.498.741 para un hogar de 4 integrantes. Variación mensual: +2,0%. Publicado el 11 de junio de 2026.<br><br>
-    <strong>Salario docente:</strong> Auxiliar Diplomado de Primera con Dedicación Semiexclusiva – escala salarial CONADU HISTÓRICA, liquidación mayo 2026.<br><br>
-    <em>Elaboración: GDU Catamarca · CONADU HISTÓRICA.</em>
+  <div class="fuente-box reveal">
+    <strong>🔍 Fuente oficial INDEC (mayo 2026):</strong><br>
+    Canasta Básica Total (CBT) – Línea de pobreza: $1.498.741 para un hogar de 4 integrantes.
+    Variación mensual: +2,0%. Publicado el 11 de junio de 2026.<br><br>
+    <strong>📌 Salario docente:</strong>
+    Auxiliar Diplomado de Primera con Dedicación Semiexclusiva – escala salarial CONADU HISTÓRICA, liquidación mayo 2026.<br><br>
+    <em style="opacity:0.7">📊 Elaboración: GDU Catamarca · CONADU HISTÓRICA.
+    El salario docente no cubre la canasta básica total, evidenciando un déficit crítico frente a la línea de pobreza.</em>
   </div>
+
 </section>
 
-<!-- CTA Datos Comparativos -->
-<div class="cta-block">
-  <div class="cta-inner">
-    <h2 class="cta-title">INDEC vs AUMENTOS DOCENTES</h2>
-    <p class="cta-desc">
-      Visualizá el desfase acumulado mes a mes: la brecha que el Estado no cierra y que los docentes pagan con su bolsillo.
-    </p>
-    <a href="https://gducatamarca.github.io/datoscomparativos/" target="_blank" class="hero-cta primary" style="display: inline-flex;">
-      Ver datos comparativos →
-    </a>
+<!-- ══ BLOQUE DATOS COMPARATIVOS ══ -->
+<div class="datos-cta-wrapper">
+  <div class="datos-cta-block reveal">
+    <div class="datos-cta-inner">
+      <div>
+        <div class="datos-cta-tag">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3.5 18.5l6-6 4 4L22 6.92 20.59 5.5l-7.09 8.54-4-4L2 17l1.5 1.5z"/>
+          </svg>
+          MÁS DATOS · ANÁLISIS COMPARATIVO
+        </div>
+        <h2 class="datos-cta-title">
+          INDEC vs<br>
+          <span class="hl-azul">AUMENTOS</span> <span class="hl-oro">DOCENTES</span>
+        </h2>
+        <p class="datos-cta-desc">
+          ¿Cuánto subió la inflación oficial según el INDEC y cuánto aumentaron realmente
+          los salarios docentes sin paritarias? Visualizá el <strong>desfase acumulado</strong>
+          mes a mes: la brecha que el Estado no cierra y que los docentes pagan con su bolsillo.
+        </p>
+        <div class="datos-mini-stats">
+          <div class="mini-stat">
+            <span class="mini-stat-val rojo">↑ INDEC</span>
+            <span class="mini-stat-lbl">Inflación oficial</span>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,0.08);align-self:stretch;"></div>
+          <div class="mini-stat">
+            <span class="mini-stat-val verde">↑ Salarios</span>
+            <span class="mini-stat-lbl">Aumentos otorgados</span>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,0.08);align-self:stretch;"></div>
+          <div class="mini-stat">
+            <span class="mini-stat-val" style="color:var(--oro);">= Brecha</span>
+            <span class="mini-stat-lbl">Pérdida real</span>
+          </div>
+        </div>
+      </div>
+      <div class="datos-cta-btn-wrap">
+        <a class="datos-cta-btn"
+           href="https://gducatamarca.github.io/datoscomparativos/"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Ver datos comparativos">
+          <svg viewBox="0 0 24 24">
+            <path d="M3.5 18.49l6-6.01 4 4L22 6.92 20.59 5.5l-7.09 8.54-4-4L2 17l1.5 1.49z" fill="white"/>
+          </svg>
+          <div>
+            <div class="datos-cta-btn-label">Ver datos<br>comparativos</div>
+            <div class="datos-cta-btn-sub">gráficos interactivos</div>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Calculadora -->
-<section class="calc-section" id="calc">
-  <div class="calc-container">
-    <div class="calc-header">
-      <h2 class="calc-title">Calculadora Salarial</h2>
-      <p class="calc-subtitle">Mayo 2026 · Escala CONADU HISTÓRICA</p>
+<!-- ══ CALCULADORA SALARIAL ══ -->
+<section class="calc-section" id="calculadora">
+  <div class="calc-section-label reveal">🧮 CALCULADORA SALARIAL · MAYO 2026</div>
+
+  <div class="calculadora-gdu reveal">
+    <h2 class="calc-title">Calculadora Salarial Docente</h2>
+    <p class="calc-subtitle" id="calc-subtitle">Cargando escala salarial...</p>
+
+    <!-- Switch tipo de docente -->
+    <div class="calc-tipo-switch">
+      <button class="calc-tipo-btn activo" id="btn-universitario" onclick="switchTipo('universitario')">
+        🎓 Universitario
+      </button>
+      <button class="calc-tipo-btn" id="btn-preuniversitario" onclick="switchTipo('preuniversitario')">
+        🏫 Preuniversitario
+      </button>
     </div>
 
-    <div class="calc-toggle">
-      <button class="active" onclick="switchTipo('uni', this)">Universitario</button>
-      <button onclick="switchTipo('pre', this)">Preuniversitario</button>
-    </div>
-
-    <!-- Formulario Universal (simplificado para demo, expandible) -->
-    <div id="form-uni">
-      <div class="calc-field">
-        <label>Cargo y Dedicación</label>
-        <select id="cargo-uni">
-          <option>Auxiliar Diplomado - Semiexclusiva</option>
-          <option>Auxiliar Diplomado - Exclusiva</option>
-          <option>Ayudante Diplomado - Semiexclusiva</option>
-        </select>
-      </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+    <!-- ── PANEL UNIVERSITARIO ── -->
+    <div id="panel-universitario">
+      <div class="calc-grid">
         <div class="calc-field">
-          <label>Antigüedad</label>
-          <select>
-            <option>0-4 años (20%)</option>
-            <option>5-6 años (30%)</option>
-            <option>7-9 años (40%)</option>
-            <option>10+ años (50%+)</option>
+          <label class="calc-label">Dedicación</label>
+          <select id="dedicacion" onchange="cargarCargos()"></select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Cargo</label>
+          <select id="cargo"></select>
+        </div>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label class="calc-label">Antigüedad</label>
+          <select id="antiguedad">
+            <option value="0.20">0 a 4 años (20%)</option>
+            <option value="0.30">5 a 6 años (30%)</option>
+            <option value="0.40">7 a 9 años (40%)</option>
+            <option value="0.50">10 a 11 años (50%)</option>
+            <option value="0.60">12 a 14 años (60%)</option>
+            <option value="0.70">15 a 16 años (70%)</option>
+            <option value="0.80">17 a 19 años (80%)</option>
+            <option value="1.00">20 a 21 años (100%)</option>
+            <option value="1.10">22 a 23 años (110%)</option>
+            <option value="1.20">24 o más años (120%)</option>
           </select>
         </div>
         <div class="calc-field">
-          <label>Posgrado</label>
-          <select>
-            <option>Sin posgrado</option>
-            <option>Especialización (5%)</option>
-            <option>Maestría (8%)</option>
-            <option>Doctorado (18%)</option>
+          <label class="calc-label">Posgrado</label>
+          <select id="posgrado">
+            <option value="0">No posee Posgrado</option>
+            <option value="0.18">Doctorado (18%)</option>
+            <option value="0.08">Maestría (8%)</option>
+            <option value="0.05">Especialización (5%)</option>
           </select>
         </div>
       </div>
-      <button class="calc-btn" onclick="calcular()">Calcular estimación</button>
+      <button class="calc-btn" onclick="calcular()">
+        Calcular salario estimado →
+      </button>
     </div>
 
-    <div id="form-pre" class="hidden">
-      <div class="calc-field">
-        <label>Cargo Preuniversitario</label>
-        <select>
-          <option>Titular 1ra (Preuniversitario)</option>
-          <option>Asociado 1ra</option>
-          <option>Auxiliar 1ra</option>
-        </select>
+    <!-- ── PANEL PREUNIVERSITARIO ── -->
+    <div id="panel-preuniversitario">
+      <div class="calc-grid">
+        <div class="calc-field full">
+          <label class="calc-label">Cargo Preuniversitario</label>
+          <select id="pre-cargo"></select>
+        </div>
       </div>
-      <button class="calc-btn" onclick="calcular()">Calcular estimación</button>
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label class="calc-label">Antigüedad</label>
+          <select id="pre-antiguedad"></select>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Posgrado</label>
+          <select id="pre-posgrado">
+            <option value="0">No posee Posgrado</option>
+            <option value="0.18">Doctorado (18%)</option>
+            <option value="0.08">Maestría (8%)</option>
+            <option value="0.05">Especialización (5%)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcularPre()">
+        Calcular salario estimado →
+      </button>
     </div>
 
-    <!-- Resultado -->
-    <div class="calc-result" id="calc-result">
-      <div class="calc-result-label">Salario Bruto Estimado</div>
-      <div class="calc-result-amount" id="calc-amount">$ 545.300,00</div>
-      <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
-        Auxiliar Diplomado · Semiexclusiva · 20% antigüedad
+    <!-- ── RESULTADO (compartido) ── -->
+    <div class="calc-resultado" id="calc-resultado">
+      <div class="calc-resultado-tag">📊 Resultado estimado · Mayo 2026</div>
+      <div class="calc-resultado-detalle" id="calc-detalle"></div>
+      <div class="calc-total-label">Salario bruto estimado</div>
+      <div class="calc-total-val" id="calc-total">$ 0</div>
+
+      <!-- AVISO LEGAL DESTACADO -->
+      <div class="calc-aviso-legal">
+        <p>
+          <strong>⚠ Cálculo estimativo.</strong>
+          Los descuentos por Ley son aproximadamente el <strong>21%</strong>, que contemplan
+          aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda).
+          <strong>No incluye descuentos adicionales locales, cuota sindical ni otros añadidos.</strong>
+        </p>
       </div>
-      <div class="calc-legal">
-        <strong>Aviso importante:</strong> Este cálculo es estimativo. Los descuentos por Ley son aproximadamente el 21% (aportes jubilatorios, obra social, ganancias). No incluye descuentos locales ni cuota sindical.
+      <div class="calc-aviso-fuente">
+        Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA
       </div>
     </div>
+
+    <button class="calc-btn-pdf" id="btn-pdf" onclick="descargarPDF()">
+      📄 Descargar constancia PDF
+    </button>
   </div>
 </section>
 
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-logo">
-    <img src="logo-gdu.png" alt="GDU">
+    <img src="logo-gdu.png" alt="GDU Catamarca">
   </div>
-  <div class="footer-text">GREMO DOCENTE UNIVERSITARIO · CONADU HISTÓRICA</div>
-  <div class="footer-text" style="opacity: 0.6;">Catamarca · Argentina · 2026</div>
+  <div class="footer-nombre">Gremio Docente Universitario</div>
+  <div class="footer-sub">CONADU HISTÓRICA · Catamarca</div>
   <div class="footer-links">
-    <a href="https://instagram.com/gducatamarca" target="_blank">Instagram</a>
-    <a href="https://facebook.com/gremiodocente.universitario" target="_blank">Facebook</a>
-    <a href="mailto:info@gducatamarca.org">Contacto</a>
+    <a href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener" class="ig">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/gremiodocente.universitario" target="_blank" rel="noopener" class="fb">
+      <svg viewBox="0 0 24 24">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+      Facebook
+    </a>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Gremio Docente Universitario · CONADU HISTÓRICA</span><br>
+    Todos los derechos reservados. El contenido de este sitio es de carácter
+    informativo y sindical. Su reproducción parcial o total está permitida
+    citando la fuente: <em>GDU Catamarca · CONADU HISTÓRICA</em>.
   </div>
 </footer>
 
+<!-- ══ SCRIPTS ══ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <script>
-// Loader
+/* ════════════════════════════════
+   PANTALLA DE CARGA
+   ════════════════════════════════ */
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loader').classList.add('hidden');
-    // Animar barras después de cargar
-    setTimeout(() => {
-      document.querySelector('.fill-sal').style.width = '36.4%';
-    }, 500);
-  }, 1200);
+  }, 1600);
 });
 
-// Toggle calculadora
-function switchTipo(tipo, btn) {
-  document.querySelectorAll('.calc-toggle button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  
-  if(tipo === 'uni') {
-    document.getElementById('form-uni').classList.remove('hidden');
-    document.getElementById('form-pre').classList.add('hidden');
-  } else {
-    document.getElementById('form-uni').classList.add('hidden');
-    document.getElementById('form-pre').classList.remove('hidden');
-  }
-  document.getElementById('calc-result').classList.remove('visible');
-}
+/* ════════════════════════════════
+   DATOS GLOBALES
+   ════════════════════════════════ */
+let SALARIOS    = {};   // dedicaciones universitarias
+let PRE_CARGOS  = {};   // cargos preuniversitarios  { nombre: basicoSinAntiguedad }
+let PRE_TRAMOS  = [];   // tramos de antigüedad preuniversitarios
+let tipoActivo  = 'universitario';
+// Guarda el último resultado calculado para el PDF
+let ultimoResultado = {
+  tipo: '', dedicacion: '', cargo: '',
+  antTexto: '', posTexto: '', total: ''
+};
 
-// Calcular (demo)
-function calcular() {
-  document.getElementById('calc-result').classList.add('visible');
-  // Scroll suave al resultado
-  document.getElementById('calc-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
+/* ════════════════════════════════
+   CARGA DEL JSON
+   ════════════════════════════════ */
+fetch('datos_salarios.json')
+  .then(r => {
+    if (!r.ok) throw new Error('No se pudo cargar datos_salarios.json');
+    return r.json();
+  })
+  .then(data => {
+    SALARIOS   = data.dedicaciones;
+    PRE_CARGOS = data.preuniversitarios.cargos;
+    PRE_TRAMOS = data.preuniversitarios.antiguedad_tramos;
 
-// Animaciones on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+    const sub = document.getElementById('calc-subtitle');
+    if (sub && data.ultima_actualizacion) {
+      sub.textContent = `Escala salarial ${data.ultima_actualizacion} · GDU Catamarca`;
+    }
+
+    cargarDedicaciones();
+    cargarSelectsPre();
+  })
+  .catch(err => {
+    console.error('Error cargando salarios:', err);
+    const sub = document.getElementById('calc-subtitle');
+    if (sub) {
+      sub.textContent = '⚠ Error al cargar la escala. Recargá la página.';
+      sub.style.color = '#FF6B6B';
     }
   });
-}, { threshold: 0.1 });
 
-document.querySelectorAll('.confronta-card, .impacto-card, .barras-container').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'all 0.6s ease-out';
-  observer.observe(el);
-});
+/* ════════════════════════════════
+   SWITCH UNIVERSITARIO / PREUNIVERSITARIO
+   ════════════════════════════════ */
+function switchTipo(tipo) {
+  tipoActivo = tipo;
+
+  document.getElementById('btn-universitario').classList.toggle('activo', tipo === 'universitario');
+  document.getElementById('btn-preuniversitario').classList.toggle('activo', tipo === 'preuniversitario');
+  document.getElementById('panel-universitario').style.display    = tipo === 'universitario'    ? 'block' : 'none';
+  document.getElementById('panel-preuniversitario').style.display = tipo === 'preuniversitario' ? 'block' : 'none';
+
+  // Ocultar resultado anterior al cambiar tipo
+  document.getElementById('calc-resultado').classList.remove('visible');
+  document.getElementById('btn-pdf').classList.remove('visible');
+}
+
+/* ════════════════════════════════
+   UNIVERSITARIO — LÓGICA
+   ════════════════════════════════ */
+function cargarDedicaciones() {
+  const sel = document.getElementById('dedicacion');
+  sel.innerHTML = '';
+  for (let d in SALARIOS) {
+    sel.innerHTML += `<option value="${d}">${d}</option>`;
+  }
+  cargarCargos();
+}
+
+function cargarCargos() {
+  const ded = document.getElementById('dedicacion').value;
+  const sel = document.getElementById('cargo');
+  sel.innerHTML = '';
+  for (let c in SALARIOS[ded]) {
+    sel.innerHTML += `<option value="${c}">${c}</option>`;
+  }
+}
+
+function calcular() {
+  if (!SALARIOS || Object.keys(SALARIOS).length === 0) {
+    alert('Los datos todavía están cargando. Intentá en un momento.');
+    return;
+  }
+  const dedicacion = document.getElementById('dedicacion').value;
+  const cargo      = document.getElementById('cargo').value;
+  const antiguedad = parseFloat(document.getElementById('antiguedad').value);
+  const posgrado   = parseFloat(document.getElementById('posgrado').value);
+  const antTexto   = document.getElementById('antiguedad').selectedOptions[0].text;
+  const posTexto   = document.getElementById('posgrado').selectedOptions[0].text;
+
+  const basico = SALARIOS[dedicacion][cargo];
+  const total  = basico * (1 + antiguedad) * (1 + posgrado);
+  const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
+
+  ultimoResultado = {
+    tipo: 'Universitario', dedicacion, cargo,
+    antTexto, posTexto, total: totalFmt
+  };
+
+  document.getElementById('calc-total').textContent = totalFmt;
+  document.getElementById('calc-detalle').innerHTML =
+    `<strong style="color:var(--blanco)">${dedicacion} · ${cargo}</strong><br>
+     Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
+
+  mostrarResultado();
+}
+
+/* ════════════════════════════════
+   PREUNIVERSITARIO — LÓGICA
+   ════════════════════════════════ */
+function cargarSelectsPre() {
+  // Cargos
+  const selCargo = document.getElementById('pre-cargo');
+  selCargo.innerHTML = '';
+  for (let nombre in PRE_CARGOS) {
+    selCargo.innerHTML += `<option value="${nombre}">${nombre}</option>`;
+  }
+
+  // Tramos de antigüedad (provienen del JSON)
+  const selAnt = document.getElementById('pre-antiguedad');
+  selAnt.innerHTML = '';
+  PRE_TRAMOS.forEach(t => {
+    selAnt.innerHTML += `<option value="${t.factor}">${t.label}</option>`;
+  });
+}
+
+function calcularPre() {
+  if (!PRE_CARGOS || Object.keys(PRE_CARGOS).length === 0) {
+    alert('Los datos todavía están cargando. Intentá en un momento.');
+    return;
+  }
+  const cargo    = document.getElementById('pre-cargo').value;
+  const factor   = parseFloat(document.getElementById('pre-antiguedad').value);
+  const posgrado = parseFloat(document.getElementById('pre-posgrado').value);
+  const antTexto = document.getElementById('pre-antiguedad').selectedOptions[0].text;
+  const posTexto = document.getElementById('pre-posgrado').selectedOptions[0].text;
+
+  /*
+   * Cálculo preuniversitario:
+   *  - El "básico" del JSON ya es el sueldo SIN antigüedad (valor columna año 0)
+   *  - La antigüedad se aplica multiplicando por el factor (ej: 1.20 = +20%)
+   *  - El posgrado se aplica sobre el básico (sin antigüedad), luego se suma
+   *    Fórmula: total = basico × factor_antiguedad + basico × posgrado
+   *    Equivalente: total = basico × (factor_antiguedad + posgrado)
+   */
+  const basico   = PRE_CARGOS[cargo];
+  const total    = basico * factor * (1 + posgrado);
+  const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
+
+  ultimoResultado = {
+    tipo: 'Preuniversitario', dedicacion: 'Preuniversitario', cargo,
+    antTexto, posTexto, total: totalFmt
+  };
+
+  document.getElementById('calc-total').textContent = totalFmt;
+  document.getElementById('calc-detalle').innerHTML =
+    `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}</strong><br>
+     Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
+
+  mostrarResultado();
+}
+
+/* ════════════════════════════════
+   MOSTRAR RESULTADO
+   ════════════════════════════════ */
+function mostrarResultado() {
+  document.getElementById('calc-resultado').classList.add('visible');
+  document.getElementById('btn-pdf').classList.add('visible');
+  // Scroll suave al resultado
+  document.getElementById('calc-resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ════════════════════════════════
+   PDF
+   ════════════════════════════════ */
+function descargarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc  = new jsPDF();
+  const r    = ultimoResultado;
+  const fecha = new Date().toLocaleDateString('es-AR', {
+    day: '2-digit', month: '2-digit', year: 'numeric'
+  });
+
+  const img  = new Image();
+  img.src    = 'logo-gdu.png';
+  img.onload = function () {
+
+    // Fondo general
+    doc.setFillColor(8, 17, 28);
+    doc.rect(0, 0, 210, 297, 'F');
+
+    // Encabezado azul
+    doc.setFillColor(27, 63, 114);
+    doc.rect(0, 0, 210, 38, 'F');
+    doc.addImage(img, 'PNG', 10, 6, 100, 26);
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Emisión: ${fecha}`, 200, 12, { align: 'right' });
+    doc.text('Mayo 2026', 200, 20, { align: 'right' });
+
+    // Línea dorada
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.8);
+    doc.line(10, 44, 200, 44);
+
+    // Título
+    doc.setTextColor(247, 249, 252);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text('Constancia de Cálculo Salarial', 105, 58, { align: 'center' });
+    doc.setFontSize(10);
+    doc.setTextColor(160, 174, 192);
+    doc.setFont('helvetica', 'normal');
+
+    const subtituloTipo = r.tipo === 'Preuniversitario'
+      ? 'Escala preuniversitaria · CONADU HISTÓRICA · GDU Catamarca'
+      : 'Escala universitaria · CONADU HISTÓRICA · GDU Catamarca';
+    doc.text(subtituloTipo, 105, 66, { align: 'center' });
+
+    // Cuadro detalle
+    doc.setFillColor(14, 28, 45);
+    doc.roundedRect(14, 76, 182, 74, 4, 4, 'F');
+    doc.setDrawColor(45, 111, 191);
+    doc.setLineWidth(0.4);
+    doc.roundedRect(14, 76, 182, 74, 4, 4, 'S');
+
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DETALLE DE LA SIMULACIÓN', 22, 86);
+
+    const items = [
+      ['Tipo:',        r.tipo],
+      ['Cargo:',       r.cargo],
+      r.tipo === 'Universitario' ? ['Dedicación:', r.dedicacion] : null,
+      ['Antigüedad:',  r.antTexto],
+      ['Posgrado:',    r.posTexto],
+    ].filter(Boolean);
+
+    let y = 96;
+    items.forEach(([lbl, val]) => {
+      doc.setTextColor(160, 174, 192);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.text(lbl, 22, y);
+      doc.setTextColor(247, 249, 252);
+      doc.setFont('helvetica', 'bold');
+      const valLines = doc.splitTextToSize(val, 108);
+      doc.text(valLines, 70, y);
+      y += 11 * valLines.length;
+    });
+
+    // Cuadro total
+    doc.setFillColor(27, 63, 114);
+    doc.roundedRect(14, 160, 182, 52, 4, 4, 'F');
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.6);
+    doc.roundedRect(14, 160, 182, 52, 4, 4, 'S');
+    doc.setTextColor(160, 174, 192);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text('SALARIO BRUTO ESTIMADO', 105, 173, { align: 'center' });
+    doc.setTextColor(126, 200, 240);
+    doc.setFontSize(28);
+    doc.setFont('helvetica', 'bold');
+    doc.text(r.total, 105, 197, { align: 'center' });
+
+    // Línea separadora
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.4);
+    doc.line(14, 222, 196, 222);
+
+    // AVISO LEGAL en el PDF
+    doc.setFillColor(50, 10, 10);
+    doc.roundedRect(14, 226, 182, 40, 3, 3, 'F');
+    doc.setDrawColor(180, 30, 30);
+    doc.setLineWidth(0.35);
+    doc.roundedRect(14, 226, 182, 40, 3, 3, 'S');
+
+    doc.setTextColor(255, 160, 160);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('⚠  AVISO IMPORTANTE', 22, 235);
+
+    doc.setTextColor(220, 180, 180);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    const avisoTexto =
+      'Este cálculo es estimativo. Los descuentos por Ley son aproximadamente el 21%, que ' +
+      'contemplan aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda). ' +
+      'No incluye descuentos adicionales locales, cuota sindical ni otros añadidos. ' +
+      'Para liquidación oficial consultá con tu área de RRHH.';
+    doc.text(doc.splitTextToSize(avisoTexto, 172), 22, 242);
+
+    // Fuente
+    doc.setTextColor(70, 90, 110);
+    doc.setFontSize(7);
+    doc.text(
+      'Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA',
+      105, 274, { align: 'center' }
+    );
+
+    // Pie de página
+    doc.setFillColor(14, 28, 45);
+    doc.rect(0, 279, 210, 18, 'F');
+    doc.setDrawColor(212, 160, 23);
+    doc.setLineWidth(0.3);
+    doc.line(0, 279, 210, 279);
+    doc.setTextColor(212, 160, 23);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.text('GDU CATAMARCA · CONADU HISTÓRICA', 105, 287, { align: 'center' });
+    doc.setTextColor(90, 112, 144);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.text(
+      'instagram.com/gducatamarca · facebook.com/gremiodocente.universitario',
+      105, 293, { align: 'center' }
+    );
+
+    doc.save(`Calculo_Salarial_GDU_${fecha.replace(/\//g, '-')}.pdf`);
+  };
+}
+
+/* ════════════════════════════════
+   OBSERVER — ANIMACIONES
+   ════════════════════════════════ */
+function animateCounter(el, from, to, duration, prefix='', suffix='') {
+  const start    = performance.now();
+  const decimals = String(to).includes('.') ? String(to).split('.')[1].length : 0;
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease     = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    const val      = from + (to - from) * ease;
+    el.textContent = prefix + val.toLocaleString('es-AR', {
+      minimumFractionDigits: decimals, maximumFractionDigits: decimals
+    }) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function activateBars(container) {
+  container.querySelectorAll('.barra-fill').forEach((bar, i) => {
+    setTimeout(() => {
+      bar.style.width = bar.dataset.w + '%';
+      bar.classList.add('animada');
+    }, i * 250);
+  });
+}
+
+const counterMap = {
+  'counter-deficit':   { from: 0, to: 953441, prefix: '-$', suffix: '',  duration: 1600 },
+  'counter-pct':       { from: 0, to: 36.4,   prefix: '',   suffix: '%', duration: 1200 },
+  'counter-variacion': { from: 0, to: 2.0,    prefix: '+',  suffix: '%', duration: 900  },
+};
+let countersTriggered = false;
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    activateBars(e.target);
+    if (e.target.classList.contains('impacto-grid') && !countersTriggered) {
+      countersTriggered = true;
+      Object.entries(counterMap).forEach(([id, cfg]) => {
+        const el = document.getElementById(id);
+        if (el) animateCounter(el, cfg.from, cfg.to, cfg.duration, cfg.prefix, cfg.suffix);
+      });
+    }
+    observer.unobserve(e.target);
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
