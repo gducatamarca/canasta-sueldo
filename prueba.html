@@ -562,7 +562,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 /* ════════════════════════════════
    MÓDULO CONVENIO COLECTIVO
    ════════════════════════════════ */
-.convenio-section { max-width: 860px; margin: 0 auto; padding: 0 24px 100px; }
+.convenio-section { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 .convenio-section-label {
   font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
   color: var(--oro); margin-bottom: 32px; display: flex; align-items: center; gap: 12px;
@@ -699,6 +699,134 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
     margin: 0 auto;
   }
   .convenio-section { padding: 0 16px 100px; }
+}
+
+/* ════════════════════════════════
+   MÓDULO EXPEDIENTE COMPLETO
+   ════════════════════════════════ */
+.expediente-wrapper {
+  max-width: 860px; margin: 0 auto; padding: 0 24px 80px;
+}
+
+.expediente-block {
+  position: relative; border-radius: 24px; overflow: hidden;
+  border: 1px solid rgba(212,160,23,0.25);
+  background: linear-gradient(135deg, #0D1823 0%, #0F1F32 50%, #0C1A2A 100%);
+}
+
+.expediente-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--oro), transparent);
+}
+
+.expediente-block::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg, transparent, transparent 80px,
+    rgba(212,160,23,0.02) 80px, rgba(212,160,23,0.02) 81px
+  );
+  pointer-events: none;
+}
+
+.expediente-inner {
+  position: relative; z-index: 1; padding: 44px 44px 40px;
+  display: flex; gap: 28px; align-items: center; justify-content: space-between;
+}
+
+.expediente-content {
+  flex: 1;
+}
+
+.expediente-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.25);
+  color: var(--oro); font-size: 8px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 4px; margin-bottom: 16px;
+  width: fit-content;
+}
+
+.expediente-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--blanco);
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.expediente-title em {
+  color: var(--oro);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.expediente-desc {
+  font-size: clamp(12px, 1.7vw, 14px);
+  color: var(--gris);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+
+.expediente-desc strong {
+  color: #D4D8E3;
+  font-weight: 600;
+}
+
+.expediente-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(135deg, var(--azul-c), var(--oro));
+  color: white;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 32px; border-radius: 8px;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.25s, filter 0.25s;
+  box-shadow: 0 6px 24px rgba(212,160,23,0.3);
+  position: relative; overflow: hidden;
+}
+
+.expediente-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  border-radius: inherit;
+}
+
+.expediente-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(212,160,23,0.45);
+  filter: brightness(1.1);
+}
+
+.expediente-cta svg {
+  width: 18px; height: 18px;
+  fill: currentColor;
+}
+
+.expediente-ico {
+  font-size: 64px; opacity: 0.15; text-align: center;
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .expediente-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .expediente-ico {
+    margin-left: 0;
+    margin-top: 12px;
+    opacity: 0.08;
+    font-size: 48px;
+  }
+  .expediente-wrapper { padding: 0 16px 80px; }
+  .expediente-inner { padding: 32px 24px 28px; }
 }
 
 /* ════════════════════════════════
@@ -1208,12 +1336,38 @@ footer {
         </div>
       </div>
 
-      <a href="#" class="convenio-cta" onclick="alert('El PDF del Convenio Colectivo se descargará próximamente. Seguinos para más información.')">
+      <a href="https://gducatamarca.github.io/canasta-sueldo/convenio.html" class="convenio-cta" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24">
           <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
         </svg>
-        Descargar PDF
+        Explorar más →
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MÓDULO EXPEDIENTE COMPLETO ══ -->
+<section class="expediente-wrapper reveal">
+  <div class="expediente-block">
+    <div class="expediente-inner">
+      <div class="expediente-content">
+        <div class="expediente-tag">📑 INFORMACIÓN COMPLETA</div>
+        <h2 class="expediente-title">
+          Toda la documentación<br>
+          del <em>Convenio Colectivo</em>
+        </h2>
+        <p class="expediente-desc">
+          Accedé al expediente completo con información detallada, PDFs descargables 
+          y todos los documentos oficiales del convenio colectivo de trabajo de CONADU HISTÓRICA.
+        </p>
+        <a href="https://gducatamarca.github.io/canasta-sueldo/convenio.html" class="expediente-cta" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="currentColor"/>
+          </svg>
+          Ir al expediente completo
+        </a>
+      </div>
+      <div class="expediente-ico">📄</div>
     </div>
   </div>
 </section>
@@ -1263,11 +1417,10 @@ window.addEventListener('load', () => {
 /* ════════════════════════════════
    DATOS GLOBALES
    ════════════════════════════════ */
-let SALARIOS    = {};   // dedicaciones universitarias
-let PRE_CARGOS  = {};   // cargos preuniversitarios  { nombre: basicoSinAntiguedad }
-let PRE_TRAMOS  = [];   // tramos de antigüedad preuniversitarios
+let SALARIOS    = {};
+let PRE_CARGOS  = {};
+let PRE_TRAMOS  = [];
 let tipoActivo  = 'universitario';
-// Guarda el último resultado calculado para el PDF
 let ultimoResultado = {
   tipo: '', dedicacion: '', cargo: '',
   antTexto: '', posTexto: '', total: ''
@@ -1314,7 +1467,6 @@ function switchTipo(tipo) {
   document.getElementById('panel-universitario').style.display    = tipo === 'universitario'    ? 'block' : 'none';
   document.getElementById('panel-preuniversitario').style.display = tipo === 'preuniversitario' ? 'block' : 'none';
 
-  // Ocultar resultado anterior al cambiar tipo
   document.getElementById('calc-resultado').classList.remove('visible');
   document.getElementById('btn-pdf').classList.remove('visible');
 }
@@ -1373,14 +1525,12 @@ function calcular() {
    PREUNIVERSITARIO — LÓGICA
    ════════════════════════════════ */
 function cargarSelectsPre() {
-  // Cargos
   const selCargo = document.getElementById('pre-cargo');
   selCargo.innerHTML = '';
   for (let nombre in PRE_CARGOS) {
     selCargo.innerHTML += `<option value="${nombre}">${nombre}</option>`;
   }
 
-  // Tramos de antigüedad (provienen del JSON)
   const selAnt = document.getElementById('pre-antiguedad');
   selAnt.innerHTML = '';
   PRE_TRAMOS.forEach(t => {
@@ -1422,7 +1572,6 @@ function calcularPre() {
 function mostrarResultado() {
   document.getElementById('calc-resultado').classList.add('visible');
   document.getElementById('btn-pdf').classList.add('visible');
-  // Scroll suave al resultado
   document.getElementById('calc-resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
@@ -1441,11 +1590,9 @@ function descargarPDF() {
   img.src    = 'logo-gdu.png';
   img.onload = function () {
 
-    // Fondo general
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, 'F');
 
-    // Encabezado azul
     doc.setFillColor(27, 63, 114);
     doc.rect(0, 0, 210, 38, 'F');
     doc.addImage(img, 'PNG', 10, 6, 100, 26);
@@ -1455,12 +1602,10 @@ function descargarPDF() {
     doc.text(`Emisión: ${fecha}`, 200, 12, { align: 'right' });
     doc.text('Mayo 2026', 200, 20, { align: 'right' });
 
-    // Línea dorada
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
 
-    // Título
     doc.setTextColor(247, 249, 252);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(20);
@@ -1474,7 +1619,6 @@ function descargarPDF() {
       : 'Escala universitaria · CONADU HISTÓRICA · GDU Catamarca';
     doc.text(subtituloTipo, 105, 66, { align: 'center' });
 
-    // Cuadro detalle
     doc.setFillColor(14, 28, 45);
     doc.roundedRect(14, 76, 182, 74, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191);
@@ -1507,7 +1651,6 @@ function descargarPDF() {
       y += 11 * valLines.length;
     });
 
-    // Cuadro total
     doc.setFillColor(27, 63, 114);
     doc.roundedRect(14, 160, 182, 52, 4, 4, 'F');
     doc.setDrawColor(212, 160, 23);
@@ -1522,12 +1665,10 @@ function descargarPDF() {
     doc.setFont('helvetica', 'bold');
     doc.text(r.total, 105, 197, { align: 'center' });
 
-    // Línea separadora
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.4);
     doc.line(14, 222, 196, 222);
 
-    // AVISO LEGAL en el PDF
     doc.setFillColor(50, 10, 10);
     doc.roundedRect(14, 226, 182, 40, 3, 3, 'F');
     doc.setDrawColor(180, 30, 30);
@@ -1549,7 +1690,6 @@ function descargarPDF() {
       'Para liquidación oficial consultá con tu área de RRHH.';
     doc.text(doc.splitTextToSize(avisoTexto, 172), 22, 242);
 
-    // Fuente
     doc.setTextColor(70, 90, 110);
     doc.setFontSize(7);
     doc.text(
@@ -1557,7 +1697,6 @@ function descargarPDF() {
       105, 274, { align: 'center' }
     );
 
-    // Pie de página
     doc.setFillColor(14, 28, 45);
     doc.rect(0, 279, 210, 18, 'F');
     doc.setDrawColor(212, 160, 23);
