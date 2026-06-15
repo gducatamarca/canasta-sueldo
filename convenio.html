@@ -3,194 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Consulta del Convenio Colectivo de Trabajo para docentes universitarios y preuniversitarios de las Universidades Nacionales. Información clara basada en el CCT vigente.">
+<meta name="author" content="CONADU HISTÓRICA · GDU Catamarca">
 <title>Consulta Convenio Colectivo de Trabajo | Docentes Universitarios</title>
-<meta name="description" content="Consulta del Convenio Colectivo de Trabajo para docentes universitarios y preuniversitarios de las Universidades Nacionales. CONADU HISTÓRICA · GDU Catamarca.">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
 :root {
-  --azul:   #1B3F72;
+  --azul: #1B3F72;
   --azul-c: #2D6FBF;
-  --oro:    #D4A017;
-  --rojo:   #E02020;
+  --oro: #D4A017;
+  --rojo: #E02020;
   --rojo-d: #900C0C;
-  --bg:     #08111C;
-  --bg2:    #0E1C2D;
-  --gris:   #A0AEC0;
+  --bg: #08111C;
+  --bg2: #0E1C2D;
+  --gris: #A0AEC0;
   --blanco: #F7F9FC;
-  --trans:  all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
+html{scroll-behavior:smooth}
+body{
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--blanco);
-  line-height: 1.6;
-  overflow-x: hidden;
+  background: var(--bg); color: var(--blanco); line-height: 1.6; overflow-x: hidden;
+  padding:0; margin:0;
 }
-/* ══════════ HERO ══════════ */
-.hero-section {
+
+/* ═══ HERO ═══ */
+.hero-section{
   background: linear-gradient(160deg, #0E1C2D 0%, #08111C 55%, #1a0404 100%);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
   padding: 80px 24px 60px;
-  text-align: center;
+  min-height: 60vh; display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid rgba(212,160,23,0.15);
 }
-.hero-section::before {
+.hero-section::before{
   content: ''; position: absolute;
   width: 200%; height: 3px; background: var(--rojo);
-  top: 50%; left: -50%; transform: rotate(-8deg);
-  opacity: 0.15; z-index: 0;
+  top: 50%; left: -50%; transform: rotate(-8deg); opacity: 0.15; z-index: 0;
 }
-.hero-content { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
-.hero-logo { margin-bottom: 32px; display: flex; justify-content: center; animation: fadeDown .8s ease-out .1s both; }
-.hero-logo img {
+.hero-content{
+  position: relative; z-index: 1; max-width: 860px;
+  margin: 0 auto; text-align: center;
+  animation: fadeDown 0.8s ease-out 0.2s both;
+}
+.hero-logo{
+  margin-bottom: 32px; display: flex; justify-content: center;
+  animation: fadeDown 0.8s ease-out 0.1s both;
+}
+.hero-logo img{
   width: min(280px, 75vw); height: auto; max-height: 120px;
   mix-blend-mode: screen;
   filter: drop-shadow(0 4px 20px rgba(212,160,23,0.35));
-  opacity: .95; transition: var(--trans);
+  opacity: 0.95; transition: var(--transition);
 }
-.hero-logo img:hover { opacity: 1; filter: drop-shadow(0 6px 28px rgba(212,160,23,0.5)); }
-.hero-title {
+.hero-logo img:hover{opacity:1;filter:drop-shadow(0 6px 28px rgba(212,160,23,0.5))}
+.hero-title{
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(36px, 8vw, 56px); letter-spacing: 2px;
-  line-height: 1.2; margin-bottom: 20px;
-  animation: fadeDown .8s ease-out .2s both;
+  font-size: clamp(36px, 8vw, 56px); font-weight: 700;
+  letter-spacing: 2px; margin-bottom: 20px; line-height: 1.2; color: var(--blanco);
 }
-.hero-title .accent { display: block; color: var(--rojo); margin-top: 8px; }
-.hero-subtitle {
+.hero-title .accent{display:block;color:var(--rojo);margin-top:8px}
+.title-with-image{
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  flex-wrap:wrap;max-width:900px;margin:0 auto;
+}
+.caratula-thumb{
+  width:min(140px,25vw);height:auto;max-height:180px;
+  border-radius:12px;box-shadow:0 8px 24px rgba(212,160,23,0.3);
+  transition:var(--transition);animation:fadeDown .8s ease-out .3s both;
+}
+.caratula-thumb:hover{
+  transform:scale(1.05);box-shadow:0 12px 32px rgba(212,160,23,0.5);
+}
+.hero-subtitle{
   font-size: clamp(14px, 2vw, 16px); color: var(--gris);
-  line-height: 1.8; max-width: 700px; margin: 0 auto 32px;
-  animation: fadeDown .8s ease-out .3s both;
+  margin-bottom: 32px; line-height: 1.8;
+  max-width: 700px; margin-left: auto; margin-right: auto;
 }
-.download-area {
+.download-area{
   display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
   justify-content: center;
   background: rgba(45,111,191,0.1); backdrop-filter: blur(8px);
   padding: 24px 28px; border-radius: 20px;
   border: 1px solid rgba(212,160,23,0.2);
-  animation: fadeDown .8s ease-out .35s both;
+  animation: fadeDown 0.8s ease-out 0.35s both;
 }
-.btn-download {
+.btn-download{
   background: linear-gradient(135deg, var(--azul), var(--azul-c));
-  color: white; border: none; padding: 14px 32px;
-  font-size: 13px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; border-radius: 40px; cursor: pointer;
+  color: white; border: none;
+  padding: 14px 32px; font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; border-radius: 40px; cursor: pointer;
+  transition: var(--transition);
   display: inline-flex; align-items: center; gap: 8px;
   box-shadow: 0 6px 28px rgba(27,63,114,0.45);
-  transition: var(--trans); font-family: inherit;
+  text-decoration: none; text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
 }
-.btn-download:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 12px 40px rgba(45,111,191,0.6); }
-.info-pdf { font-size: 11px; background: rgba(0,0,0,0.3); padding: 8px 14px; border-radius: 30px; color: var(--gris); }
-/* ══════════ FAQ ══════════ */
-.faq-section { max-width: 900px; margin: 0 auto; padding: 80px 24px; }
-.faq-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(28px, 5vw, 44px); letter-spacing: 1px;
-  border-left: 6px solid var(--oro); padding-left: 20px;
-  margin-bottom: 48px; animation: fadeDown .8s ease-out .3s both;
+.btn-download:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(45,111,191,0.6);
+  filter: brightness(1.1);
 }
-.faq-grid { display: flex; flex-direction: column; gap: 16px; }
-.faq-item {
-  background: linear-gradient(145deg, #0F1F35, #12253F);
-  border-radius: 16px; border: 1px solid rgba(45,111,191,0.25);
-  overflow: hidden; transition: var(--trans);
-  animation: fadeDown .6s ease-out backwards;
+.btn-download:active{transform:translateY(-1px)}
+.info-pdf{
+  font-size: 11px; background: rgba(0,0,0,0.3);
+  padding: 8px 14px; border-radius: 30px;
+  color: var(--gris); backdrop-filter: blur(4px);
 }
-.faq-item:nth-child(1){animation-delay:.35s} .faq-item:nth-child(2){animation-delay:.40s}
-.faq-item:nth-child(3){animation-delay:.45s} .faq-item:nth-child(4){animation-delay:.50s}
-.faq-item:nth-child(5){animation-delay:.55s} .faq-item:nth-child(n+6){animation-delay:.60s}
-.faq-item:hover { border-color: rgba(212,160,23,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-.faq-question {
-  background: rgba(45,111,191,0.15); padding: 20px 24px;
-  font-weight: 700; font-size: 15px; color: var(--blanco);
-  cursor: pointer; width: 100%; text-align: left;
-  display: flex; justify-content: space-between; align-items: center;
-  border: none; font-family: inherit; transition: background .3s ease;
+
+/* ═══ FAQ ═══ */
+.faq-section{max-width:900px;margin:0 auto;padding:80px 24px}
+.faq-header{margin-bottom:48px;animation:fadeDown .8s ease-out .3s both}
+.faq-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(28px,5vw,44px);
+  font-weight:700;letter-spacing:1px;color:var(--blanco);
+  border-left:6px solid var(--oro);padding-left:20px;
+  position:relative
 }
-.faq-question:hover { background: rgba(45,111,191,0.25); }
-.faq-question.active { background: linear-gradient(135deg, rgba(45,111,191,0.35), rgba(212,160,23,0.15)); }
-.question-text { flex: 1; }
-.icon { font-size: 18px; color: var(--oro); margin-left: 12px; flex-shrink: 0; transition: transform .35s cubic-bezier(0.34,1.56,0.64,1); }
-.icon.rotated { transform: rotate(180deg); }
-.faq-answer { max-height: 0; overflow: hidden; background: rgba(0,0,0,0.2); transition: max-height .4s cubic-bezier(0.2,0.9,0.4,1.1); }
-.faq-answer.active { max-height: 2000px; padding: 24px 24px 28px; }
-.sub-question { margin-bottom: 20px; padding-left: 16px; border-left: 3px solid var(--azul-c); }
-.sub-question:last-of-type { margin-bottom: 0; }
-.sub-question strong { color: var(--oro); display: block; font-size: 14px; margin-bottom: 6px; }
-.sub-question p { color: var(--gris); font-size: 13px; line-height: 1.7; }
-.highlight {
-  background: rgba(212,160,23,0.1); border-radius: 12px;
-  padding: 14px 16px; margin-top: 20px; font-size: 12px;
-  border-left: 4px solid var(--oro); color: var(--gris);
+.faq-grid{display:flex;flex-direction:column;gap:16px}
+.faq-item{
+  background:linear-gradient(145deg,#0F1F35,#12253F);
+  border-radius:16px;border:1px solid rgba(45,111,191,0.25);
+  transition:var(--transition);overflow:hidden;
+  animation:fadeDown .6s ease-out backwards
 }
-/* ══════════ FOOTER ══════════ */
-.footer {
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
-  border-top: 1px solid rgba(212,160,23,0.15);
-  padding: 48px 24px 32px; margin-top: 64px;
+.faq-item:nth-child(1){animation-delay:.35s}
+.faq-item:nth-child(2){animation-delay:.40s}
+.faq-item:nth-child(3){animation-delay:.45s}
+.faq-item:nth-child(4){animation-delay:.50s}
+.faq-item:nth-child(5){animation-delay:.55s}
+.faq-item:nth-child(n+6){animation-delay:.60s}
+.faq-item:hover{
+  border-color:rgba(212,160,23,.4);
+  box-shadow:0 12px 40px rgba(0,0,0,.3)
 }
-.footer-content { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; animation: fadeDown .8s ease-out .4s both; }
-.footer-left { border-right: 1px solid rgba(255,255,255,0.08); padding-right: 24px; }
-.footer-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--oro); margin-bottom: 16px; text-transform: uppercase; }
-.footer-text { font-size: 12px; color: var(--gris); line-height: 1.8; margin-bottom: 12px; }
-.footer-text.small { font-size: 11px; opacity: 0.85; }
-.footer-right { display: flex; flex-direction: column; justify-content: center; }
-.footer-logo { margin-bottom: 14px; display: flex; justify-content: flex-start; }
-.footer-logo img { height: 40px; width: auto; mix-blend-mode: screen; opacity: 0.8; }
-.footer-credit { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--blanco); margin-bottom: 8px; }
-.footer-credit strong { color: var(--oro); }
-.footer-copy { font-size: 11px; color: var(--gris); opacity: 0.7; }
-/* ══════════ ANIMACIONES ══════════ */
-@keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-button:focus-visible, a:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
-/* ══════════ RESPONSIVE ══════════ */
-@media (max-width: 768px) {
-  .hero-section { padding: 60px 16px 40px; }
-  .download-area { flex-direction: column; align-items: stretch; gap: 12px; }
-  .btn-download { width: 100%; justify-content: center; }
-  .info-pdf { text-align: center; }
-  .faq-section { padding: 48px 16px; }
-  .footer-content { grid-template-columns: 1fr; }
-  .footer-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding-right: 0; padding-bottom: 24px; }
+.faq-question{
+  background:rgba(45,111,191,.15);
+  padding:20px 24px;font-weight:700;font-size:15px;
+  color:var(--blanco);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .3s ease;
+  border:none;font-family:'Inter',sans-serif;width:100%;text-align:left
 }
-@media (max-width: 480px) {
-  .hero-section { padding: 48px 12px 32px; }
-  .faq-section { padding: 40px 12px; }
-  .faq-question { padding: 16px 16px; font-size: 14px; }
-  .faq-answer.active { padding: 18px 16px 20px; }
-  .footer { padding: 32px 12px 24px; }
+.faq-question:hover{background:rgba(45,111,191,.25)}
+.faq-question.active{
+  background:linear-gradient(135deg,rgba(45,111,191,.35),rgba(212,160,23,.15))
 }
+.question-text{flex:1;display:block}
+.icon{
+  font-size:18px;font-weight:400;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  flex-shrink:0;margin-left:12px;color:var(--oro)
+}
+.icon.rotated{transform:rotate(180deg)}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.2,.9,.4,1.1);
+  background:rgba(0,0,0,.2)
+}
+.faq-answer.active{max-height:2000px;padding:24px 24px 28px}
+.sub-question{
+  margin-bottom:20px;padding-left:16px;
+  border-left:3px solid var(--azul-c);
+  animation:slideIn .4s ease-out
+}
+.sub-question:last-of-type{margin-bottom:0}
+.sub-question strong{
+  color:var(--oro);display:block;font-size:14px;
+  margin-bottom:6px;letter-spacing:.5px
+}
+.sub-question p{color:var(--gris);font-size:13px;margin:0;line-height:1.7}
+.highlight{
+  background:rgba(212,160,23,.1);border-radius:12px;
+  padding:14px 16px;margin-top:20px;font-size:12px;
+  border-left:4px solid var(--oro);color:var(--gris);line-height:1.6
+}
+
+/* ═══ FOOTER ═══ */
+.footer{
+  background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+  border-top:1px solid rgba(212,160,23,.15);
+  padding:48px 24px 32px;margin-top:64px
+}
+.footer-content{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.footer-left{border-right:1px solid rgba(255,255,255,.08);padding-right:24px}
+.footer-title{
+  font-family:'Bebas Neue',sans-serif;font-size:18px;
+  letter-spacing:2px;color:var(--oro);margin-bottom:16px;text-transform:uppercase
+}
+.footer-text{font-size:12px;color:var(--gris);line-height:1.8;margin-bottom:12px}
+.footer-text.small{font-size:11px;opacity:.85}
+.footer-right{display:flex;flex-direction:column;justify-content:center}
+.footer-credit{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--blanco);margin-bottom:8px}
+.footer-credit strong{color:var(--oro)}
+.footer-copy{font-size:11px;color:var(--gris);opacity:.7}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .hero-section{padding:60px 16px 40px;min-height:auto}
+  .title-with-image{gap:16px}
+  .caratula-thumb{width:min(100px,20vw);max-height:140px}
+  .hero-title{font-size:28px}
+  .hero-subtitle{font-size:13px;margin-bottom:24px}
+  .download-area{flex-direction:column;align-items:stretch;gap:12px}
+  .btn-download{width:100%;justify-content:center;padding:12px 20px;font-size:12px}
+  .info-pdf{text-align:center;padding:10px 12px}
+  .faq-section{padding:48px 16px}
+  .faq-title{font-size:24px;padding-left:16px;border-left-width:4px}
+  .faq-question{padding:16px 18px;font-size:14px}
+  .faq-answer.active{padding:18px 18px 20px}
+  .sub-question{padding-left:12px;margin-bottom:16px}
+  .sub-question strong{font-size:13px}
+  .sub-question p{font-size:12px}
+  .highlight{padding:12px 14px;font-size:11px;border-left-width:3px}
+  .footer-content{grid-template-columns:1fr;gap:24px}
+  .footer-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding-right:0;padding-bottom:24px}
+  .footer-right{justify-content:flex-start}
+}
+@media(max-width:480px){
+  .hero-section{padding:48px 12px 32px}
+  .title-with-image{flex-direction:column;gap:12px}
+  .caratula-thumb{width:min(90px,18vw);max-height:120px}
+  .hero-title{font-size:22px;letter-spacing:1px}
+  .hero-title .accent{margin-top:4px}
+  .hero-subtitle{font-size:12px;margin-bottom:20px}
+  .download-area{padding:16px 12px;gap:8px}
+  .btn-download{font-size:11px;padding:10px 16px}
+  .info-pdf{font-size:10px;padding:6px 10px}
+  .faq-section{padding:40px 12px}
+  .faq-title{font-size:20px;padding-left:12px}
+  .faq-grid{gap:12px}
+  .faq-question{padding:14px;font-size:13px}
+  .faq-answer.active{padding:16px 14px 18px}
+  .footer{padding:32px 12px 24px}
+  .footer-content{gap:16px}
+  .footer-title{font-size:14px}
+  .footer-credit{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+button:focus-visible,a:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
 </style>
 </head>
 <body>
-<!-- ══════════ HERO ══════════ -->
-<section class="hero-section">
+
+<div class="hero-section">
   <div class="hero-content">
     <div class="hero-logo">
-      <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
+      <img src="../logo-gdu.png" alt="GDU Catamarca - CONADU HISTÓRICA">
     </div>
-    <h1 class="hero-title">
-      📘 Consulta del
-      <span class="accent">Convenio Colectivo</span> de Trabajo
-    </h1>
+    <div class="title-with-image">
+      <h1 class="hero-title">
+        📘 Consulta del <span class="accent">Convenio Colectivo</span> de Trabajo
+      </h1>
+      <img src="../caratula.png" alt="Carátula del Convenio Colectivo" class="caratula-thumb">
+    </div>
     <p class="hero-subtitle">
       Docentes universitarios y preuniversitarios de las Universidades Nacionales · Respuestas claras basadas en el CCT vigente (anexo y articulado).
     </p>
     <div class="download-area">
-      <button class="btn-download" id="downloadBtn">📄 Descargar Convenio Colectivo (PDF)</button>
+      <button class="btn-download" id="downloadBtn">
+        📄 Descargar Convenio Colectivo (PDF)
+      </button>
       <span class="info-pdf">📑 Texto completo · Homologado · Vigencia 2 años + ultraactividad</span>
     </div>
   </div>
-</section>
-<!-- ══════════ FAQ ══════════ -->
-<section class="faq-section">
-  <h2 class="faq-title">❓ Preguntas frecuentes para docentes que ingresan</h2>
+</div>
+
+<div class="faq-section">
+  <div class="faq-header">
+    <h2 class="faq-title">❓ Preguntas Frecuentes de Docentes</h2>
+  </div>
   <div class="faq-grid" id="faqContainer"></div>
-</section>
-<!-- ══════════ FOOTER ══════════ -->
+</div>
+
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-left">
@@ -203,139 +293,120 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--oro); outline-o
       </p>
     </div>
     <div class="footer-right">
-      <div class="footer-logo">
-        <img src="logo-gdu.png" alt="GDU Catamarca">
-      </div>
-      <p class="footer-credit"><strong>GDU CATAMARCA · CONADU HISTÓRICA</strong></p>
+      <p class="footer-credit"><strong>CONADU HISTÓRICA · GDU Catamarca</strong></p>
       <p class="footer-copy">© 2026 Todos los derechos reservados</p>
     </div>
   </div>
 </footer>
+
 <script>
-/* ════════════════════════════════════════════════
-   ⚙️ CONFIGURACIÓN
-   Cambiá esta ruta por la de tu PDF del convenio.
-   Si el PDF está en la raíz del repositorio junto a
-   este archivo, dejá solo el nombre del archivo.
-   ════════════════════════════════════════════════ */
-const PDF_URL = "convenio-cct.pdf";
-/* ── DATOS DE PREGUNTAS ── */
+// ═══ DATOS DE PREGUNTAS ═══
 const preguntasData = [
-  { pregunta: "🎓 ¿Cuáles son las categorías docentes universitarias y sus dedicaciones?",
-    subItems: [
-      { titulo: "Categorías (Art. 7)", texto: "Profesor Titular, Asociado, Adjunto, Jefe de Trabajos Prácticos, Ayudante. También docentes ordinarios, interinos, suplentes y extraordinarios (Art. 6)." },
-      { titulo: "Dedicaciones horarias (Art. 9)", texto: "Exclusiva: 40h semanales · Semiexclusiva: 20h semanales · Simple: 10h semanales. Relación salarial según Art. 35: Dedicación exclusiva índice 4,0; semiexclusiva 2,0; simple 1,0." },
-      { titulo: "¿Puedo acumular cargos?", texto: "El régimen de incompatibilidades (Art. 31) fija que las tareas académicas en todo el sistema no superen 50h semanales. Cada universidad regula su régimen." }
-    ] },
-  { pregunta: "📋 ¿Cómo es el ingreso a la carrera docente y la permanencia?",
-    subItems: [
-      { titulo: "Ingreso regular (Art. 11)", texto: "Mediante concurso público y abierto de antecedentes y oposición, con jurados integrados por pares ordinarios. Las asociaciones sindicales pueden designar veedor gremial." },
-      { titulo: "Permanencia y evaluación periódica (Art. 12)", texto: "Cada 4 años (o más según estatuto). Dos evaluaciones negativas causan llamado a concurso del cargo, pero el docente continúa hasta la nueva cobertura." },
-      { titulo: "Ascensos (Art. 13)", texto: "Por concurso público y abierto. La promoción a Jefe de Trabajos Prácticos se realiza mediante concurso cerrado, salvo disposición más favorable." }
-    ] },
-  { pregunta: "🕒 Licencia anual ordinaria, ¿cuántos días me corresponden?",
-    subItems: [
-      { titulo: "Antigüedad hasta 15 años (Art. 45.a)", texto: "30 días corridos que coincidirán con el receso estival anual de la universidad." },
-      { titulo: "Más de 15 años de antigüedad", texto: "45 días corridos. Puede fraccionarse en dos períodos, el primero no menor a 30 días durante el receso estival, el resto según planificación." },
-      { titulo: "Antigüedad computable", texto: "Se suman todos los años como docente en niveles y modalidades de instituciones educativas reconocidas (Art. 45.b)." },
-      { titulo: "Vacaciones no gozadas", texto: "No se acumulan al año siguiente; deben tomarse hasta el 30 de noviembre. En caso de cese, se liquidan proporcionalmente." }
-    ] },
-  { pregunta: "🩺 Licencias por enfermedad, accidente y familiares (derechos básicos)",
-    subItems: [
-      { titulo: "Corto tratamiento (Art. 46.a)", texto: "Hasta 45 días corridos por año calendario con goce íntegro de haberes, para afecciones inculpables." },
-      { titulo: "Largo tratamiento (Art. 46.c)", texto: "Hasta 4 años: 2 años con goce íntegro, 1 año al 50% y 1 año sin goce. Requiere agotar los 45 días previos salvo excepción." },
-      { titulo: "Maternidad / parental (Art. 48)", texto: "45 días previos al parto y 45 posteriores (puede optar por reducir preparto). Padre/madre no gestante: 15 días corridos. Licencia post maternidad de 90 días adicional con goce." },
-      { titulo: "Licencia por fallecimiento", texto: "Cónyuge o familiar 1er grado: 7 días corridos; 2do grado y afines: 5 días (Art. 48.h)." },
-      { titulo: "Atención de hijos menores o enfermos", texto: "Hasta 6 meses con goce si fallece el cónyuge y hay hijos menores de 12 años. Atención de enfermos grupo familiar: 30 días corridos con goce, prorrogable hasta 6 meses." }
-    ] },
-  { pregunta: "💰 Remuneración: básico, antigüedad, adicionales y jerarquización",
-    subItems: [
-      { titulo: "Estructura salarial (Arts. 33-35)", texto: "Sueldo básico + bonificación por antigüedad. Relaciones: Prof. Titular índice 1,8; Asociado 1,6; Adjunto 1,4; JTP 1,2; Ayudante 1,0. Dedicación exclusiva 4,0; semiexclusiva 2,0; simple 1,0." },
-      { titulo: "Bonificación por antigüedad (Art. 36)", texto: "Desde 10% al año hasta 120% a los 24 años (escala anual progresiva). Se computa toda la docencia en niveles reconocidos." },
-      { titulo: "Adicionales (Art. 37-40)", texto: "Por título de posgrado (Doctorado 20%, Maestría 12.5%, Especialización 5%). Adicional por riesgo laboral (máx 10%), por zona desfavorable según normativa." },
-      { titulo: "Jerarquización laboral (Art. 42)", texto: "Complemento salarial del 25% remunerativo y bonificable, implementación gradual (2014-2019)." }
-    ] },
-  { pregunta: "📌 Docentes interinos: ¿qué derechos y condiciones tengo?",
-    subItems: [
-      { titulo: "Definición (Art. 6 inc.2)", texto: "Designación sin concurso público abierto por razones fundadas. Suplencia (inc.3) reemplazo de ausentes." },
-      { titulo: "Disposición transitoria (Art. 73)", texto: "Interinos con 5+ años de antigüedad a la firma, en vacantes definitivas, serán incorporados a carrera mediante mecanismos de cada Universidad. Los de 2 a 5 años, la UUNN debe realizar concurso conforme Art.11. No se puede modificar en detrimento hasta cobertura." },
-      { titulo: "Cobertura de vacantes (Art. 14-15)", texto: "Promoción transitoria de docentes ordinarios de categoría inferior. Si es vacante definitiva, debe llamarse a concurso simultáneamente. Para cargos temporales o nuevas carreras, máximo 3 años de interinato antes del concurso." }
-    ] },
-  { pregunta: "⚖️ ¿Cuáles son los derechos gremiales y licencias sindicales?",
-    subItems: [
-      { titulo: "Licencia gremial (Art. 65)", texto: "Las universidades pagan salario a Secretarios Generales o miembros designados. El tiempo no se computa para evaluaciones salvo comunicación expresa." },
-      { titulo: "Delegados y cartelera (Arts. 67-68)", texto: "Posibilidad de elegir delegados y comisiones internas. Las asociaciones sindicales disponen de cartelera física y espacio en sitio web universitario." },
-      { titulo: "Cuota sindical (Art. 66)", texto: "Las instituciones descuentan la cuota de afiliación a requerimiento del sindicato." },
-      { titulo: "Participación en órganos de gobierno (Art. 18)", texto: "Garantizado el derecho a elegir e integrar órganos colegiados según Ley de Educación Superior." }
-    ] },
-  { pregunta: "🏛️ ¿Qué protecciones tengo frente a discriminación, violencia laboral y debido proceso?",
-    subItems: [
-      { titulo: "Erradicación de violencia y discriminación (Arts. 22-23)", texto: "Compromiso contra acoso laboral, mobbing, acoso sexual, discriminación por género, orientación sexual, etnia, religión, VIH, etc." },
-      { titulo: "Régimen disciplinario (Art. 32)", texto: "Sanciones: apercibimiento, suspensión hasta 30 días, cesantía, exoneración. Se requiere juicio académico o sumario con debido proceso. Plazos de prescripción: 6 meses a 2 años según falta." },
-      { titulo: "Facultad de dirección (Art. 17)", texto: "Las autoridades deben ejercer sus facultades con carácter funcional, preservando derechos patrimoniales y personales del docente." }
-    ] },
-  { pregunta: "🏫 Docentes preuniversitarios (colegios universitarios): ¿cómo aplica el convenio?",
-    subItems: [
-      { titulo: "Aplicación (Anexo Art. 1)", texto: "Se aplican todas las cláusulas del CCT con exclusiones: arts. 7,8,9 (categorías/dedicación) y adecuaciones en ascensos. Sus categorías específicas figuran en Anexo Art. 2 (desde Rector hasta Ayudante de clases prácticas)." },
-      { titulo: "Nomenclador de remuneraciones (Anexo Art. 4)", texto: "Índices por hora reloj según categoría y dedicación semanal. Ejemplo: Preceptor 0,4800; Profesor 15hs cátedra nivel medio índice 1,0; Jefe de Trabajos Prácticos Nivel Superior índice 0,7980." },
-      { titulo: "Hora cátedra (Anexo Art. 3)", texto: "Duración referencial 40 minutos. Equivalencia: 1 hora cátedra = 0,6667 hora reloj. La liquidación se hace según carga horaria de cada Institución." }
-    ] },
-  { pregunta: "🧭 ¿Qué hago si tengo conflictos o dudas sobre la aplicación del convenio?",
-    subItems: [
-      { titulo: "Comisión de Seguimiento e Interpretación (Art. 71)", texto: "Cuerpo paritario (6 miembros por parte gremial + 6 por CIN). Interpreta el convenio, resuelve diferencias. Plazo para expedirse: 5 días hábiles. Mientras dure la instancia, se suspenden medidas de fuerza." },
-      { titulo: "Comisión Negociadora de Nivel Particular (Art. 70)", texto: "Trata cuestiones delegadas a cada universidad, materias no tratadas en nivel general y particularidades locales." },
-      { titulo: "Principio de norma más favorable (Art. 72)", texto: "En caso de duda entre distintas normas (estatuto, ley, convenio), se aplicará la más favorable al docente. Cláusula central del derecho laboral." },
-      { titulo: "Condiciones más favorables (Art. 69)", texto: "El CCT no puede afectar condiciones ya existentes que sean superiores para el docente." }
-    ] }
+  { pregunta: "🎓 ¿Cuáles son las categorías docentes universitarias y sus dedicaciones?", subItems: [
+    { titulo: "Categorías (Art. 7)", texto: "Profesor Titular, Asociado, Adjunto, Jefe de Trabajos Prácticos, Ayudante. También docentes ordinarios, interinos, suplentes y extraordinarios (Art. 6)." },
+    { titulo: "Dedicaciones horarias (Art. 9)", texto: "Exclusiva: 40h semanales · Semiexclusiva: 20h semanales · Simple: 10h semanales. Relación salarial según Art. 35: Dedicación exclusiva índice 4,0; semiexclusiva 2,0; simple 1,0." },
+    { titulo: "¿Puedo acumular cargos?", texto: "El régimen de incompatibilidades (Art. 31) fija que las tareas académicas en todo el sistema no superen 50h semanales. Cada universidad regula su régimen." }
+  ]},
+  { pregunta: "📋 ¿Cómo es el ingreso a la carrera docente y la permanencia?", subItems: [
+    { titulo: "Ingreso regular (Art. 11)", texto: "Mediante concurso público y abierto de antecedentes y oposición, con jurados integrados por pares ordinarios. Las asociaciones sindicales pueden designar veedor gremial." },
+    { titulo: "Permanencia y evaluación periódica (Art. 12)", texto: "Cada 4 años (o más según estatuto). Dos evaluaciones negativas causan llamado a concurso del cargo, pero el docente continúa hasta la nueva cobertura." },
+    { titulo: "Ascensos (Art. 13)", texto: "Por concurso público y abierto. La promoción a Jefe de Trabajos Prácticos se realiza mediante concurso cerrado, salvo disposición más favorable." }
+  ]},
+  { pregunta: "🕒 Licencia anual ordinaria, ¿cuántos días me corresponden?", subItems: [
+    { titulo: "Antigüedad hasta 15 años (Art. 45.a)", texto: "30 días corridos que coincidirán con el receso estival anual de la universidad." },
+    { titulo: "Más de 15 años de antigüedad", texto: "45 días corridos. Puede fraccionarse en dos períodos, el primero no menor a 30 días durante el receso estival, el resto según planificación." },
+    { titulo: "Antigüedad computable", texto: "Se suman todos los años como docente en niveles y modalidades de instituciones educativas reconocidas (Art. 45.b)." },
+    { titulo: "Vacaciones no gozadas", texto: "No se acumulan al año siguiente; deben tomarse hasta el 30 de noviembre. En caso de cese, se liquidan proporcionalmente." }
+  ]},
+  { pregunta: "🩺 Licencias por enfermedad, accidente y familiares (derechos básicos)", subItems: [
+    { titulo: "Corto tratamiento (Art. 46.a)", texto: "Hasta 45 días corridos por año calendario con goce íntegro de haberes, para afecciones inculpables." },
+    { titulo: "Largo tratamiento (Art. 46.c)", texto: "Hasta 4 años: 2 años con goce íntegro, 1 año al 50% y 1 año sin goce. Requiere agotar los 45 días previos salvo excepción." },
+    { titulo: "Maternidad / parental (Art. 48)", texto: "45 días previos al parto y 45 posteriores (puede optar por reducir preparto). Padre/madre no gestante: 15 días corridos. Licencia post maternidad de 90 días adicional con goce." },
+    { titulo: "Licencia por fallecimiento", texto: "Cónyuge o familiar 1er grado: 7 días corridos; 2do grado y afines: 5 días (Art. 48.h)." },
+    { titulo: "Atención de hijos menores o enfermos", texto: "Hasta 6 meses con goce si fallece el cónyuge y hay hijos menores de 12 años. Atención de enfermos grupo familiar: 30 días corridos con goce, prorrogable hasta 6 meses." }
+  ]},
+  { pregunta: "💰 Remuneración: básico, antigüedad, adicionales y jerarquización", subItems: [
+    { titulo: "Estructura salarial (Arts. 33-35)", texto: "Sueldo básico + bonificación por antigüedad. Relaciones: Prof. Titular índice 1,8; Asociado 1,6; Adjunto 1,4; JTP 1,2; Ayudante 1,0. Dedicación exclusiva 4,0; semiexclusiva 2,0; simple 1,0." },
+    { titulo: "Bonificación por antigüedad (Art. 36)", texto: "Desde 10% al año hasta 120% a los 24 años (escala anual progresiva). Se computa toda la docencia en niveles reconocidos." },
+    { titulo: "Adicionales (Art. 37-40)", texto: "Por título de posgrado (Doctorado 20%, Maestría 12.5%, Especialización 5%). Adicional por riesgo laboral (máx 10%), por zona desfavorable según normativa." },
+    { titulo: "Jerarquización laboral (Art. 42)", texto: "Complemento salarial del 25% remunerativo y bonificable, implementación gradual (2014-2019)." }
+  ]},
+  { pregunta: "📌 Docentes interinos: ¿qué derechos y condiciones tengo?", subItems: [
+    { titulo: "Definición (Art. 6 inc.2)", texto: "Designación sin concurso público abierto por razones fundadas. Suplencia (inc.3) reemplazo de ausentes." },
+    { titulo: "Disposición transitoria (Art. 73)", texto: "Interinos con 5+ años de antigüedad a la firma, en vacantes definitivas, serán incorporados a carrera mediante mecanismos de cada Universidad. Los de 2 a 5 años, la UUNN debe realizar concurso conforme Art.11. No se puede modificar en detrimento hasta cobertura." },
+    { titulo: "Cobertura de vacantes (Art. 14-15)", texto: "Promoción transitoria de docentes ordinarios de categoría inferior. Si es vacante definitiva, debe llamarse a concurso simultáneamente. Para cargos temporales o nuevas carreras, máximo 3 años de interinato antes del concurso." }
+  ]},
+  { pregunta: "⚖️ ¿Cuáles son los derechos gremiales y licencias sindicales?", subItems: [
+    { titulo: "Licencia gremial (Art. 65)", texto: "Las universidades pagan salario a Secretarios Generales o miembros designados. El tiempo no se computa para evaluaciones salvo comunicación expresa." },
+    { titulo: "Delegados y cartelera (Arts. 67-68)", texto: "Posibilidad de elegir delegados y comisiones internas. Las asociaciones sindicales disponen de cartelera física y espacio en sitio web universitario." },
+    { titulo: "Cuota sindical (Art. 66)", texto: "Las instituciones descuentan la cuota de afiliación a requerimiento del sindicato." },
+    { titulo: "Participación en órganos de gobierno (Art. 18)", texto: "Garantizado el derecho a elegir e integrar órganos colegiados según Ley de Educación Superior." }
+  ]},
+  { pregunta: "🏛️ ¿Qué protecciones tengo frente a discriminación, violencia laboral y debido proceso?", subItems: [
+    { titulo: "Erradicación de violencia y discriminación (Arts. 22-23)", texto: "Compromiso contra acoso laboral, mobbing, acoso sexual, discriminación por género, orientación sexual, etnia, religión, VIH, etc." },
+    { titulo: "Régimen disciplinario (Art. 32)", texto: "Sanciones: apercibimiento, suspensión hasta 30 días, cesantía, exoneración. Se requiere juicio académico o sumario con debido proceso. Plazos de prescripción: 6 meses a 2 años según falta." },
+    { titulo: "Facultad de dirección (Art. 17)", texto: "Las autoridades deben ejercer sus facultades con carácter funcional, preservando derechos patrimoniales y personales del docente." }
+  ]},
+  { pregunta: "🏫 Docentes preuniversitarios (colegios universitarios): ¿cómo aplica el convenio?", subItems: [
+    { titulo: "Aplicación (Anexo Art. 1)", texto: "Se aplican todas las cláusulas del CCT con exclusiones: arts. 7,8,9 (categorías/dedicación) y adecuaciones en ascensos. Sus categorías específicas figuran en Anexo Art. 2 (desde Rector hasta Ayudante de clases prácticas)." },
+    { titulo: "Nomenclador de remuneraciones (Anexo Art. 4)", texto: "Índices por hora reloj según categoría y dedicación semanal. Ejemplo: Preceptor 0,4800; Profesor 15hs cátedra nivel medio índice 1,0; Jefe de Trabajos Prácticos Nivel Superior índice 0,7980." },
+    { titulo: "Hora cátedra (Anexo Art. 3)", texto: "Duración referencial 40 minutos. Equivalencia: 1 hora cátedra = 0,6667 hora reloj. La liquidación se hace según carga horaria de cada Institución." }
+  ]},
+  { pregunta: "🧭 ¿Qué hago si tengo conflictos o dudas sobre la aplicación del convenio?", subItems: [
+    { titulo: "Comisión de Seguimiento e Interpretación (Art. 71)", texto: "Cuerpo paritario (6 miembros por parte gremial + 6 por CIN). Interpreta el convenio, resuelve diferencias. Plazo para expedirse: 5 días hábiles. Mientras dure la instancia, se suspenden medidas de fuerza." },
+    { titulo: "Comisión Negociadora de Nivel Particular (Art. 70)", texto: "Trata cuestiones delegadas a cada universidad, materias no tratadas en nivel general y particularidades locales." },
+    { titulo: "Principio de norma más favorable (Art. 72)", texto: "En caso de duda entre distintas normas (estatuto, ley, convenio), se aplicará la más favorable al docente. Cláusula central del derecho laboral." },
+    { titulo: "Condiciones más favorables (Art. 69)", texto: "El CCT no puede afectar condiciones ya existentes que sean superiores para el docente." }
+  ]}
 ];
-/* ── RENDER DEL ACORDEÓN ── */
-function renderFaq() {
+
+// ═══ RENDER ═══
+function renderFaq(){
   const container = document.getElementById('faqContainer');
+  if(!container) return;
   let html = '';
   preguntasData.forEach((item, idx) => {
-    const id = `faq-${idx}`;
-    let subs = '';
+    html += `<div class="faq-item">
+      <button class="faq-question" data-target="faq-${idx}" onclick="toggleFaq(this)">
+        <span class="question-text">${item.pregunta}</span>
+        <span class="icon">▼</span>
+      </button>
+      <div id="faq-${idx}" class="faq-answer">`;
     item.subItems.forEach(sub => {
-      subs += `<div class="sub-question"><strong>📌 ${sub.titulo}</strong><p>${sub.texto}</p></div>`;
+      html += `<div class="sub-question"><strong>📌 ${sub.titulo}</strong><p>${sub.texto}</p></div>`;
     });
-    html += `
-      <div class="faq-item">
-        <button class="faq-question" data-target="${id}">
-          <span class="question-text">${item.pregunta}</span>
-          <span class="icon">▼</span>
-        </button>
-        <div id="${id}" class="faq-answer">
-          ${subs}
-          <div class="highlight">🔍 Base normativa: Convenio Colectivo Docente UUNN – Capítulos indicados. Recordá que el art. 72 garantiza la aplicación de la norma más favorable.</div>
-        </div>
-      </div>`;
+    html += `<div class="highlight">🔍 Base normativa: Convenio Colectivo Docente UUNN – Capítulos indicados. Recordá que el art. 72 garantiza la aplicación de la norma más favorable.</div>`;
+    html += `</div></div>`;
   });
   container.innerHTML = html;
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', function() {
-      const target = document.getElementById(this.getAttribute('data-target'));
-      const isActive = target.classList.contains('active');
-      target.classList.toggle('active', !isActive);
-      this.classList.toggle('active', !isActive);
-      this.querySelector('.icon').style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)';
-    });
-  });
 }
-/* ── DESCARGA PDF ── */
-document.getElementById('downloadBtn').addEventListener('click', () => {
-  const link = document.createElement('a');
-  link.href = PDF_URL;
-  link.download = PDF_URL.split('/').pop();
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+
+function toggleFaq(btn){
+  const targetId = btn.getAttribute('data-target');
+  const answer = document.getElementById(targetId);
+  if(!answer) return;
+  const isActive = answer.classList.contains('active');
+  answer.classList.toggle('active');
+  const icon = btn.querySelector('.icon');
+  if(icon) icon.classList.toggle('rotated');
+}
+
+// ═══ DESCARGA PDF ═══
+document.addEventListener('DOMContentLoaded', function(){
+  renderFaq();
+
+  const downloadBtn = document.getElementById('downloadBtn');
+  if(downloadBtn){
+    downloadBtn.addEventListener('click', function(){
+      const link = document.createElement('a');
+      link.href = '../CCT_Docentes_UUNN_2014.pdf';
+      link.download = 'CCT_Docentes_UUNN_2014.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
 });
-renderFaq();
-/* Abrir la primera pregunta por defecto */
-setTimeout(() => {
-  const firstQ = document.querySelector('.faq-question');
-  if (firstQ) firstQ.click();
-}, 100);
 </script>
 </body>
 </html>
