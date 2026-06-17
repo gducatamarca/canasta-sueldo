@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Consulta del Convenio Colectivo de Trabajo para docentes universitarios y preuniversitarios de las Universidades Nacionales.">
+<meta name="author" content="CONADU HISTÓRICA · GDU Catamarca">
+<title>Consulta Convenio Colectivo de Trabajo | Docentes Universitarios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --azul: #1B3F72;
+  --azul-c: #2D6FBF;
+  --oro: #D4A017;
+  --rojo: #E02020;
+  --rojo-d: #900C0C;
+  --bg: #08111C;
+  --bg2: #0E1C2D;
+  --gris: #A0AEC0;
+  --blanco: #F7F9FC;
+  --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg); color: var(--blanco); line-height: 1.6; overflow-x: hidden;
+  padding:0; margin:0;
+}
+
+/* ═══ HERO ═══ */
+.hero-section{
+  background: linear-gradient(160deg, #0E1C2D 0%, #08111C 55%, #1a0404 100%);
+  position: relative; overflow: hidden;
+  padding: 80px 24px 60px;
+  min-height: auto; display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid rgba(212,160,23,0.15);
+}
+.hero-section::before{
+  content: ''; position: absolute;
+  width: 200%; height: 3px; background: var(--rojo);
+  top: 50%; left: -50%; transform: rotate(-8deg); opacity: 0.15; z-index: 0;
+}
+.hero-content{
+  position: relative; z-index: 1; max-width: 900px;
+  margin: 0 auto;
+  animation: fadeDown 0.8s ease-out 0.2s both;
+}
+.hero-logo{
+  margin-bottom: 32px; display: flex; justify-content: center;
+  animation: fadeDown 0.8s ease-out 0.1s both;
+}
+.hero-logo img{
+  width: min(280px, 75vw); height: auto; max-height: 120px;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 4px 20px rgba(212,160,23,0.35));
+  opacity: 0.95; transition: var(--transition);
+}
+.hero-logo img:hover{opacity:1;filter:drop-shadow(0 6px 28px rgba(212,160,23,0.5))}
+.title-with-image{
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  flex-wrap:wrap;max-width:900px;margin:0 auto 32px;
+}
+.hero-title{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 7vw, 48px); font-weight: 700;
+  letter-spacing: 2px; line-height: 1.2; color: var(--blanco);
+}
+.hero-title .accent{display:block;color:var(--rojo);margin-top:8px}
+.caratula-thumb{
+  width:min(130px,22vw);height:auto;max-height:160px;
+  border-radius:12px;box-shadow:0 8px 24px rgba(212,160,23,0.3);
+  transition:var(--transition);animation:fadeDown .8s ease-out .3s both;
+}
+.caratula-thumb:hover{
+  transform:scale(1.05);box-shadow:0 12px 32px rgba(212,160,23,0.5);
+}
+.hero-subtitle{
+  font-size: clamp(12px, 1.8vw, 14px); color: var(--gris);
+  margin-bottom: 24px; line-height: 1.8;
+  max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;
+}
+.download-area{
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+  justify-content: center;
+  background: rgba(45,111,191,0.1); backdrop-filter: blur(8px);
+  padding: 20px 24px; border-radius: 16px;
+  border: 1px solid rgba(212,160,23,0.2);
+  animation: fadeDown 0.8s ease-out 0.35s both;
+}
+.btn-download{
+  background: linear-gradient(135deg, var(--azul), var(--azul-c));
+  color: white; border: none;
+  padding: 12px 28px; font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; border-radius: 40px; cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 6px 28px rgba(27,63,114,0.45);
+  text-decoration: none; text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+.btn-download:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(45,111,191,0.6);
+  filter: brightness(1.1);
+}
+.btn-download:active{transform:translateY(-1px)}
+.info-pdf{
+  font-size: 10px; background: rgba(0,0,0,0.3);
+  padding: 8px 12px; border-radius: 30px;
+  color: var(--gris); backdrop-filter: blur(4px);
+}
+
+/* ═══ SEARCH ═══ */
+.search-wrapper{
+  max-width: 900px; margin: 32px auto 0;
+  background: rgba(45,111,191,0.08);
+  padding: 20px 24px; border-radius: 16px;
+  border: 1px solid rgba(212,160,23,0.2);
+  animation: fadeDown 0.8s ease-out 0.4s both;
+}
+.search-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(20px,4vw,28px);
+  font-weight:700;letter-spacing:1px;color:var(--blanco);
+  width:100%;margin-bottom:12px
+}
+.search-box{
+  display: flex; align-items: center; flex: 1 1 280px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.2);
+  padding: 10px 16px; border-radius: 12px;
+  transition: border 0.2s;
+}
+.search-box:focus-within{
+  border-color: var(--oro);
+  background: rgba(255,255,255,0.08);
+}
+.search-box input{
+  border: none; background: transparent; padding: 8px 8px;
+  font-size: 14px; width: 100%; outline: none;
+  font-family: 'Inter', sans-serif; color: var(--blanco);
+}
+.search-box input::placeholder{color: var(--gris)}
+.search-box span{color: var(--gris); padding-right: 8px}
+.result-counter{
+  font-size: 12px; font-weight: 600; color: var(--gris);
+  background: rgba(212,160,23,0.1); padding: 8px 16px;
+  border: 1px solid rgba(212,160,23,0.2); border-radius: 8px;
+  white-space: nowrap;
+}
+.result-counter strong{color: var(--oro); font-size: 14px}
+
+/* ═══ MAIN ═══ */
+.main-wrapper{
+  max-width: 900px; margin: 0 auto; padding: 0 24px 80px;
+}
+
+/* ═══ FAQ GRID ═══ */
+.faq-grid{
+  display: grid; grid-template-columns: 1fr;
+  gap: 16px; margin-top: 32px;
+}
+
+/* ═══ FAQ CARD ═══ */
+.faq-card{
+  background:linear-gradient(145deg,#0F1F35,#12253F);
+  border-radius:16px;border:1px solid rgba(45,111,191,0.25);
+  transition:var(--transition);overflow:hidden;
+  animation:fadeDown .6s ease-out backwards;
+}
+.faq-card:nth-child(1){animation-delay:.35s}
+.faq-card:nth-child(2){animation-delay:.40s}
+.faq-card:nth-child(3){animation-delay:.45s}
+.faq-card:nth-child(4){animation-delay:.50s}
+.faq-card:nth-child(5){animation-delay:.55s}
+.faq-card:nth-child(n+6){animation-delay:.60s}
+.faq-card:hover{
+  border-color:rgba(212,160,23,.4);
+  box-shadow:0 12px 40px rgba(0,0,0,.3)
+}
+.faq-card.hidden{display:none}
+.faq-header{
+  background:rgba(45,111,191,.15);
+  padding:20px 24px;display:flex;
+  justify-content:space-between;align-items:center;
+  gap:12px;cursor:pointer;
+  transition:background .3s ease;
+  border:none;font-family:'Inter',sans-serif;width:100%;text-align:left;
+}
+.faq-header:hover{background:rgba(45,111,191,.25)}
+.faq-header h3{
+  font-size:15px;font-weight:700;color:var(--blanco);
+  letter-spacing:-.2px;display:flex;
+  align-items:center;gap:10px;flex:1
+}
+.faq-header h3 .badge{
+  font-size:10px;font-weight:600;
+  background:rgba(212,160,23,.2);color:var(--oro);
+  padding:4px 8px;border-radius:4px;text-transform:uppercase;
+  letter-spacing:.5px;white-space:nowrap;
+}
+.toggle-icon{
+  font-size:18px;font-weight:400;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  flex-shrink:0;color:var(--oro);width:24px;text-align:center
+}
+.faq-card.active .toggle-icon{transform:rotate(45deg)}
+.faq-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.2,.9,.4,1.1);
+  background:rgba(0,0,0,.2)
+}
+.faq-card.active .faq-body{
+  max-height:2000px;padding:24px;
+}
+.sub-item{
+  margin-bottom:20px;padding-bottom:16px;
+  border-bottom:1px dashed rgba(212,160,23,.2)
+}
+.sub-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.sub-item strong{
+  color:var(--oro);display:block;font-size:13px;
+  margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase
+}
+.sub-item p{color:var(--gris);font-size:13px;margin:0;line-height:1.6}
+.highlight-box{
+  background:rgba(212,160,23,.1);border-radius:12px;
+  padding:14px 16px;margin-top:16px;font-size:12px;
+  border-left:4px solid var(--oro);color:var(--gris);
+  display:flex;align-items:center;gap:8px
+}
+.highlight-box span{font-size:16px;flex-shrink:0}
+
+/* ═══ FOOTER LEGAL ═══ */
+.footer-legal{
+  max-width: 900px; margin: 48px auto 0;
+  padding: 24px;
+  border-top: 1px solid rgba(212,160,23,.15);
+  display: flex; flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center; gap: 16px;
+  font-size: 11px; color: var(--gris);
+  text-align: center;
+}
+.footer-legal strong{color: var(--blanco)}
+
+/* ═══ FOOTER GREMIAL ═══ */
+footer {
+  border-top: 1px solid rgba(212,160,23,0.15);
+  padding: 36px 24px;
+  text-align: center;
+  background: var(--bg);
+}
+.footer-logo {
+  display: flex; justify-content: center; margin-bottom: 20px;
+}
+.footer-logo img {
+  height: 42px; width: auto;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 10px rgba(212,160,23,0.2));
+  transition: var(--transition);
+}
+.footer-logo img:hover { opacity: 1; }
+.footer-nombre {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px; letter-spacing: 3px;
+  color: var(--blanco); margin-bottom: 4px;
+}
+.footer-sub {
+  font-size: 11px; letter-spacing: 2px; color: var(--gris);
+  text-transform: uppercase; margin-bottom: 20px;
+}
+.footer-links {
+  display: flex; justify-content: center; gap: 24px; margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  display: flex; align-items: center; gap: 6px;
+  text-decoration: none; font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; transition: var(--transition);
+  padding: 8px 16px;
+  border-radius: 30px;
+}
+.footer-links a:hover { opacity: 1; transform: translateY(-2px); }
+.footer-links a.ig { 
+  color: #E1306C; 
+  background: rgba(225,48,108,0.08);
+}
+.footer-links a.fb { 
+  color: #1877F2;
+  background: rgba(24,119,242,0.08);
+}
+.footer-links svg { width: 16px; height: 16px; fill: currentColor; }
+.footer-copy {
+  font-size: 10px; color: #4A5568; letter-spacing: 1px;
+  text-transform: uppercase; line-height: 1.8;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding-top: 20px; margin-top: 4px;
+  max-width: 700px; margin-left: auto; margin-right: auto;
+}
+.footer-copy span { color: var(--oro); }
+
+/* ═══ EMPTY STATE ═══ */
+.faq-empty-message{
+  grid-column: 1 / -1;
+  text-align: center; padding: 48px 24px;
+  background: rgba(45,111,191,.08);
+  border: 1px dashed rgba(212,160,23,.2);
+  border-radius: 16px;
+}
+.faq-empty-message span{font-size:40px;display:block;margin-bottom:12px}
+.faq-empty-message p{color:var(--gris);margin:8px 0}
+.faq-empty-message p strong{color:var(--oro)}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .hero-section{padding:60px 16px 40px}
+  .title-with-image{gap:16px;margin-bottom:24px}
+  .caratula-thumb{width:min(100px,18vw);max-height:130px}
+  .hero-title{font-size:24px}
+  .hero-subtitle{font-size:12px;margin-bottom:16px}
+  .download-area{padding:16px 20px;gap:8px}
+  .btn-download{padding:10px 20px;font-size:11px}
+  .info-pdf{font-size:9px;padding:6px 10px}
+  .search-wrapper{padding:16px;gap:12px}
+  .search-title{margin-bottom:8px}
+  .faq-header{padding:16px 18px}
+  .faq-header h3{font-size:14px}
+  .faq-card.active .faq-body{padding:18px}
+  .main-wrapper{padding:0 16px 60px}
+  .footer-legal{padding:16px;font-size:10px}
+  footer { padding-bottom: 60px; }
+  .footer-links { flex-direction: column; align-items: center; gap: 12px; }
+}
+@media(max-width:480px){
+  .hero-section{padding:48px 12px 32px}
+  .title-with-image{flex-direction:column;gap:12px;margin-bottom:16px}
+  .caratula-thumb{width:min(80px,16vw);max-height:110px}
+  .hero-title{font-size:20px}
+  .hero-subtitle{font-size:11px}
+  .search-box{flex:1 1 100%}
+  .result-counter{width:100%;text-align:center}
+  .search-wrapper{padding:12px}
+  .search-title{font-size:18px;margin-bottom:12px}
+  .faq-header{padding:14px}
+  .faq-header h3{font-size:13px}
+  .main-wrapper{padding:0 12px 50px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+button:focus-visible,a:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="hero-section">
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="logo-gdu.png" alt="GDU Catamarca - CONADU HISTÓRICA">
+    </div>
+    <div class="title-with-image">
+      <h1 class="hero-title">
+        📘 Consulta del <span class="accent">Convenio Colectivo</span> de Trabajo
+      </h1>
+      <img src="caratula.png" alt="Carátula del Convenio Colectivo" class="caratula-thumb">
+    </div>
+    <p class="hero-subtitle">
+      Docentes universitarios y preuniversitarios de las Universidades Nacionales · Respuestas claras basadas en el CCT vigente.
+    </p>
+    <div class="download-area">
+      <button class="btn-download" id="downloadBtn">
+        📄 Descargar Convenio Colectivo (PDF)
+      </button>
+      <span class="info-pdf">📑 Texto completo · Homologado · Vigencia 2 años + ultraactividad</span>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrapper">
+  <div class="search-wrapper">
+    <div style="width:100%;display:flex;align-items:center;flex-wrap:wrap;gap:16px;justify-content:space-between;">
+      <h2 class="search-title">❓ Preguntas Frecuentes de Docentes y Preuniversitarios</h2>
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Filtrar preguntas... (ej. licencia, interino, salario)" autocomplete="off">
+      </div>
+      <div class="result-counter">
+        <strong id="visibleCount">0</strong> / <span id="totalCount">0</span> preguntas
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-grid" id="faqGrid"></div>
+
+  <div class="footer-legal">
+    <span>⚖️ <strong>Art. 72:</strong> Principio de norma más favorable al docente · Consultas a Comisión de Seguimiento (Art. 71)</span>
+    <span>📌 <strong>Fuente:</strong> CCT Docentes UUNN · 2014</span>
+  </div>
+</div>
+
+<!-- Pie de página gremial -->
+<footer>
+  <div class="footer-logo">
+    <img src="logo-gdu.png" alt="GDU Catamarca">
+  </div>
+  <div class="footer-nombre">Gremio Docente Universitario</div>
+  <div class="footer-sub">CONADU HISTÓRICA · Catamarca</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener" class="ig">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.facebook.com/gremiodocente.universitario" target="_blank" rel="noopener" class="fb">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
+  <div class="footer-copy">
+    <span>© 2026 Gremio Docente Universitario · CONADU HISTÓRICA</span><br>
+    Todos los derechos reservados. El contenido de este sitio es de carácter informativo y sindical.
+    Su reproducción parcial o total está permitida citando la fuente: <em>GDU Catamarca · CONADU HISTÓRICA</em>.
+  </div>
+</footer>
+
+<script>
+const faqData = [
+  {
+    id: 1,
+    pregunta: "Categorías y dedicaciones horarias",
+    subItems: [
+      { titulo: "Categorías (Art. 7)", texto: "Profesor Titular, Asociado, Adjunto, Jefe de Trabajos Prácticos, Ayudante. También docentes ordinarios, interinos, suplentes y extraordinarios (Art. 6)." },
+      { titulo: "Dedicaciones (Art. 9)", texto: "Exclusiva: 40h · Semiexclusiva: 20h · Simple: 10h semanales. Relación salarial (Art. 35): Exclusiva 4,0; Semiexclusiva 2,0; Simple 1,0." },
+      { titulo: "Acumulación de cargos (Art. 31)", texto: "No se pueden superar las 50 horas semanales en todo el sistema universitario. Cada universidad regula su régimen de incompatibilidades." }
+    ]
+  },
+  {
+    id: 2,
+    pregunta: "Ingreso, permanencia y ascensos",
+    subItems: [
+      { titulo: "Ingreso a carrera (Art. 11)", texto: "Concurso público y abierto de antecedentes y oposición. Jurados integrados por pares ordinarios. Veedor gremial designado por el sindicato." },
+      { titulo: "Permanencia (Art. 12)", texto: "Evaluación periódica individual cada 4 años (o más según estatuto). Dos evaluaciones negativas: llamado a concurso, pero el docente continúa hasta nueva cobertura." },
+      { titulo: "Ascenso y promoción (Art. 13)", texto: "Ascenso por concurso público y abierto. Promoción a JTP por concurso cerrado, salvo disposición más beneficiosa en estatuto o acuerdo local." }
+    ]
+  },
+  {
+    id: 3,
+    pregunta: "Licencia anual ordinaria (vacaciones)",
+    subItems: [
+      { titulo: "Hasta 15 años de antigüedad", texto: "30 días corridos, que coincidirán con el receso estival anual de la universidad (Art. 45.a)." },
+      { titulo: "Más de 15 años de antigüedad", texto: "45 días corridos. Fraccionable en dos períodos: primero no menor a 30 días en receso estival, el resto a planificar." },
+      { titulo: "Antigüedad computable", texto: "Se suma toda la docencia en todos los niveles y modalidades en instituciones reconocidas (Art. 45.b)." },
+      { titulo: "No gozadas / cese", texto: "No se acumulan al año siguiente; se deben tomar hasta el 30 de noviembre. En caso de cese, se liquidan proporcionalmente." }
+    ]
+  },
+  {
+    id: 4,
+    pregunta: "Licencias por salud, familia y accidentes",
+    subItems: [
+      { titulo: "Corto tratamiento (Art. 46.a)", texto: "Hasta 45 días corridos por año calendario con goce íntegro de haberes (afecciones inculpables)." },
+      { titulo: "Largo tratamiento (Art. 46.c)", texto: "Hasta 4 años: 2 años con goce íntegro, 1 año al 50%, 1 año sin goce. Se debe agotar el plazo de 45 días previo." },
+      { titulo: "Maternidad / parental (Art. 48)", texto: "45 días preparto y 45 postparto (opción de reducir preparto). Padre/madre no gestante: 15 días. Post-maternidad: 90 días adicionales con goce." },
+      { titulo: "Fallecimiento / familiares", texto: "Cónyuge o 1er grado: 7 días; 2do grado y afines: 5 días (Art. 48.h). Atención de enfermos grupo familiar: 30 días con goce, prorrogable a 6 meses." }
+    ]
+  },
+  {
+    id: 5,
+    pregunta: "Salario, bonificaciones y adicionales",
+    subItems: [
+      { titulo: "Estructura (Arts. 33-35)", texto: "Sueldo básico + antigüedad. Índices: Titular 1,8; Asociado 1,6; Adjunto 1,4; JTP 1,2; Ayudante 1,0. Dedicación exclusiva 4,0; semiexclusiva 2,0; simple 1,0." },
+      { titulo: "Bonificación por antigüedad (Art. 36)", texto: "Escala del 10% (1 año) al 120% (24 años). Se computa toda la docencia en niveles reconocidos." },
+      { titulo: "Adicionales (Arts. 37-40)", texto: "Posgrado: Doctorado 20%, Maestría 12,5%, Especialización 5%. Riesgo laboral (máx 10%), zona desfavorable según normativa." },
+      { titulo: "Jerarquización (Art. 42)", texto: "Complemento salarial del 25% remunerativo y bonificable, implementación gradual hasta 2019." }
+    ]
+  },
+  {
+    id: 6,
+    pregunta: "Docentes interinos: derechos y cobertura",
+    subItems: [
+      { titulo: "Definición y suplencia (Art. 6)", texto: "Designación sin concurso por razones fundadas. Suplente: reemplaza a regular o interino ausente." },
+      { titulo: "Disposición transitoria (Art. 73)", texto: "Interinos con +5 años en vacantes definitivas: incorporación a carrera. De 2 a 5 años: la UUNN debe llamar a concurso. No se puede modificar en detrimento hasta cobertura." },
+      { titulo: "Cobertura de vacantes (Arts. 14-15)", texto: "Promoción transitoria de docentes ordinarios de categoría inferior. Si es definitiva, llamado a concurso simultáneo. Para cargos temporales/nuevas carreras, plazo máximo de 3 años de interinato." }
+    ]
+  },
+  {
+    id: 7,
+    pregunta: "Derechos gremiales y licencias sindicales",
+    subItems: [
+      { titulo: "Licencia gremial (Art. 65)", texto: "Las universidades abonan el salario a Secretarios Generales o miembros designados. El tiempo no se computa para evaluaciones salvo comunicación expresa." },
+      { titulo: "Delegados y cartelera (Arts. 67-68)", texto: "Elección de delegados y comisiones internas. Cartelera física y espacio en el sitio web de la universidad." },
+      { titulo: "Cuota sindical (Art. 66)", texto: "Descuento automático de la cuota a requerimiento del sindicato." },
+      { titulo: "Participación política (Art. 18)", texto: "Derecho a elegir e integrar órganos de gobierno según Ley de Educación Superior." }
+    ]
+  },
+  {
+    id: 8,
+    pregunta: "Protecciones y régimen disciplinario",
+    subItems: [
+      { titulo: "Violencia y discriminación (Arts. 22-23)", texto: "Prohibición de acoso laboral, mobbing, acoso sexual, discriminación por género, orientación sexual, etnia, religión, VIH, etc." },
+      { titulo: "Sanciones (Art. 32)", texto: "Apercibimiento, suspensión hasta 30 días, cesantía, exoneración. Requiere juicio académico con debido proceso. Prescripción: 6 meses a 2 años según falta." },
+      { titulo: "Facultad de dirección (Art. 17)", texto: "Las autoridades deben ejercer su poder con carácter funcional, preservando derechos patrimoniales y personales." }
+    ]
+  },
+  {
+    id: 9,
+    pregunta: "Docentes preuniversitarios (colegios UUNN)",
+    subItems: [
+      { titulo: "Aplicación del CCT (Anexo Art. 1)", texto: "Se aplica todo el convenio con exclusiones: arts. 7,8,9 (categorías/dedicación) y adecuaciones en ascensos. Categorías específicas listadas en Anexo Art. 2." },
+      { titulo: "Nomenclador (Anexo Art. 4)", texto: "Índices por hora reloj según categoría. Ejemplo: Preceptor 0,4800; Profesor 15hs cátedra nivel medio 1,0; JTP Nivel Superior 0,7980." },
+      { titulo: "Hora cátedra (Anexo Art. 3)", texto: "Duración referencial: 40 minutos. Equivalencia: 1 hora cátedra = 0,6667 hora reloj. Liquidación según carga horaria de cada institución." }
+    ]
+  },
+  {
+    id: 10,
+    pregunta: "Conflictos, interpretación y norma más favorable",
+    subItems: [
+      { titulo: "Comisión de Seguimiento (Art. 71)", texto: "Órgano paritario (6+6 miembros). Interpreta el convenio, resuelve diferencias. Plazo: 5 días hábiles. Durante la instancia se suspenden medidas de fuerza." },
+      { titulo: "Comisión de Nivel Particular (Art. 70)", texto: "Trata cuestiones delegadas a cada universidad y particularidades locales." },
+      { titulo: "Principio de norma más favorable (Art. 72)", texto: "En caso de conflicto entre estatuto, ley o convenio, se aplica la norma que otorgue mayores derechos al docente." },
+      { titulo: "Condiciones más favorables (Art. 69)", texto: "El CCT no puede reducir condiciones existentes que sean superiores para el docente." }
+    ]
+  }
+];
+
+const grid = document.getElementById('faqGrid');
+const searchInput = document.getElementById('searchInput');
+const visibleCount = document.getElementById('visibleCount');
+const totalCount = document.getElementById('totalCount');
+
+function renderFaq(items) {
+  grid.innerHTML = '';
+  if (!items.length) {
+    const emptyDiv = document.createElement('div');
+    emptyDiv.className = 'faq-empty-message';
+    emptyDiv.innerHTML = `
+      <span>🔎</span>
+      <p>No hay coincidencias para "<strong>${searchInput.value}</strong>"</p>
+      <p>Probá con otra palabra (ej. licencia, interino, salario, maternidad)</p>
+    `;
+    grid.appendChild(emptyDiv);
+    return;
+  }
+
+  items.forEach((item) => {
+    const card = document.createElement('div');
+    // Todas las tarjetas empiezan SIN clase 'active' → cerradas por defecto
+    card.className = 'faq-card';
+    card.dataset.id = item.id;
+    card.dataset.search = item.pregunta.toLowerCase();
+
+    const header = document.createElement('button');
+    header.className = 'faq-header';
+    header.innerHTML = `
+      <h3>${item.pregunta} <span class="badge">Art. clave</span></h3>
+      <span class="toggle-icon">+</span>
+    `;
+    header.addEventListener('click', () => toggleCard(card));
+
+    const body = document.createElement('div');
+    body.className = 'faq-body';
+
+    let subHtml = '';
+    item.subItems.forEach(sub => {
+      subHtml += `
+        <div class="sub-item">
+          <strong>${sub.titulo}</strong>
+          <p>${sub.texto}</p>
+        </div>
+      `;
+    });
+
+    subHtml += `
+      <div class="highlight-box">
+        <span>⚡</span> Art. 72: Principio de norma más favorable para el docente.
+      </div>
+    `;
+    body.innerHTML = subHtml;
+
+    card.appendChild(header);
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+
+  const total = faqData.length;
+  totalCount.textContent = total;
+  updateCounter();
+}
+
+function toggleCard(card) {
+  card.classList.toggle('active');
+  const icon = card.querySelector('.toggle-icon');
+  icon.textContent = card.classList.contains('active') ? '×' : '+';
+}
+
+function updateCounter() {
+  const visible = document.querySelectorAll('.faq-card:not(.hidden)').length;
+  visibleCount.textContent = visible;
+}
+
+function filterFaq(query) {
+  const cards = document.querySelectorAll('.faq-card');
+  let visible = 0;
+  const q = query.toLowerCase().trim();
+  
+  cards.forEach(card => {
+    const text = card.dataset.search || '';
+    const match = text.includes(q);
+    
+    if (match || q === '') {
+      card.classList.remove('hidden');
+      visible++;
+    } else {
+      card.classList.add('hidden');
+      if (card.classList.contains('active')) {
+        card.classList.remove('active');
+        card.querySelector('.toggle-icon').textContent = '+';
+      }
+    }
+  });
+
+  if (visible === 0 && q !== '') {
+    let msg = document.querySelector('.faq-empty-message');
+    if (!msg) {
+      msg = document.createElement('div');
+      msg.className = 'faq-empty-message';
+      msg.innerHTML = `
+        <span>🔎</span>
+        <p>No hay coincidencias para "<strong>${q}</strong>"</p>
+        <p>Probá con otra palabra (ej. licencia, interino, salario, maternidad)</p>
+      `;
+      grid.appendChild(msg);
+    }
+  } else {
+    const msg = document.querySelector('.faq-empty-message');
+    if (msg) msg.remove();
+  }
+
+  visibleCount.textContent = visible;
+}
+
+searchInput.addEventListener('input', (e) => {
+  filterFaq(e.target.value);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', function() {
+  const filename = "CCT_Docentes_UUNN_2014.pdf";
+  const link = document.createElement('a');
+  link.href = filename;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
+
+renderFaq(faqData);
+
+setTimeout(() => {
+  updateCounter();
+}, 150);
+</script>
+</body>
+</html>
