@@ -183,12 +183,12 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .social-btn::before { content: attr(data-tip); position: absolute; right: 58px; background: rgba(0,0,0,0.75); color: #fff; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; white-space: nowrap; padding: 5px 10px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity 0.2s; backdrop-filter: blur(4px); }
 .social-btn:hover::before { opacity: 1; }
 
-/* ══ HEADER CON LOGO ══ */
+/* ══ HEADER CON LOGO (solo logo, sin botones ni subtítulo) ══ */
 .site-header {
   position: relative;
   background: linear-gradient(160deg, #0b1e35 0%, #08111C 100%);
   border-bottom: 1px solid rgba(212,160,23,0.15);
-  padding: 28px 24px 24px;
+  padding: 24px 24px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,44 +205,16 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
     radial-gradient(circle at 90% 50%, rgba(212,160,23,0.08) 0%, transparent 40%);
   pointer-events: none;
 }
-.site-header-inner {
-  position: relative; z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  text-align: center;
+.site-header-logo {
+  position: relative;
+  z-index: 1;
 }
 .site-header-logo img {
-  width: min(180px, 48vw);
-  height: auto;
+  height: 52px;
+  width: auto;
   mix-blend-mode: screen;
   filter: drop-shadow(0 2px 16px rgba(212,160,23,0.35));
-  transition: filter 0.3s;
-}
-.site-header-logo img:hover {
-  filter: drop-shadow(0 4px 24px rgba(212,160,23,0.55));
-}
-.site-header-nombre {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(20px, 5vw, 30px);
-  letter-spacing: 4px;
-  color: var(--blanco);
-  line-height: 1;
-}
-.site-header-nombre span { color: #4A9EFF; }
-.site-header-sub {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: var(--gris);
-  text-transform: uppercase;
-}
-.site-header-btns {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 4px;
+  display: block;
 }
 
 /* ══ BOTONES CTA ══ */
@@ -613,8 +585,9 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
   .aviso-item-text { font-size: 10.5px; line-height: 1.6; }
   .calc-aviso-legal .aviso-titulo { font-size: 10.5px; }
   .calc-descuento-badge { font-size: 9px; padding: 8px 10px; }
-  .site-header { padding: 24px 16px 20px; }
+  .site-header { padding: 18px 16px 16px; }
   .debajo-block { padding: 52px 16px 60px; }
+  .debajo-btns { gap: 10px; }
 }
 
 /* ══ ANIMACIONES ══ */
@@ -630,7 +603,6 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
 @keyframes glowOro { 0%, 100% { box-shadow: 0 6px 28px rgba(212,160,23,0.25), 0 2px 8px rgba(0,0,0,0.4); } 50% { box-shadow: 0 8px 36px rgba(212,160,23,0.5), 0 2px 12px rgba(0,0,0,0.5); } }
 .datos-cta-btn { animation: glowOro 2.8s ease-in-out infinite; }
 .datos-cta-btn:hover { animation: none; }
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .impacto-card { opacity: 1; transform: none; }
   .barra-fill { transition: none; }
@@ -723,18 +695,10 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
   </a>
 </div>
 
-<!-- ══ HEADER CON LOGO ══ -->
+<!-- ══ HEADER: SOLO LOGO ══ -->
 <header class="site-header">
-  <div class="site-header-inner">
-    <div class="site-header-logo">
-      <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
-    </div>
-    <div class="site-header-nombre"><span>GDU</span> CATAMARCA</div>
-    <div class="site-header-sub">CONADU HISTÓRICA · Gremio Docente Universitario</div>
-    <div class="site-header-btns">
-      <a href="#datos" class="hero-cta">Ver los datos →</a>
-      <a href="#calculadora" class="hero-cta-calc">🧮 Calculadora de salarios</a>
-    </div>
+  <div class="site-header-logo">
+    <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
   </div>
 </header>
 
@@ -1212,7 +1176,6 @@ function descargarPDF() {
   img.onload = function () {
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, 'F');
-
     doc.setFillColor(27, 63, 114);
     doc.rect(0, 0, 210, 38, 'F');
     doc.addImage(img, 'PNG', 10, 6, 100, 26);
@@ -1220,10 +1183,8 @@ function descargarPDF() {
     doc.setFontSize(8); doc.setFont('helvetica', 'normal');
     doc.text(`Emision: ${fecha}`, 200, 12, { align: 'right' });
     doc.text('Junio 2026', 200, 20, { align: 'right' });
-
     doc.setDrawColor(212, 160, 23); doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
-
     doc.setTextColor(247, 249, 252); doc.setFont('helvetica', 'bold'); doc.setFontSize(20);
     doc.text('Constancia de Calculo Salarial', 105, 58, { align: 'center' });
     doc.setFontSize(10); doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal');
@@ -1233,14 +1194,12 @@ function descargarPDF() {
         : 'Escala universitaria · CONADU HISTORICA · GDU Catamarca',
       105, 66, { align: 'center' }
     );
-
     doc.setFillColor(14, 28, 45);
     doc.roundedRect(14, 72, 182, 62, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191); doc.setLineWidth(0.4);
     doc.roundedRect(14, 72, 182, 62, 4, 4, 'S');
     doc.setTextColor(212, 160, 23); doc.setFontSize(8); doc.setFont('helvetica', 'bold');
     doc.text('DETALLE DE LA SIMULACION', 22, 82);
-
     const items = [
       ['Tipo:',       r.tipo],
       ['Cargo:',      r.cargo],
@@ -1248,7 +1207,6 @@ function descargarPDF() {
       ['Antiguedad:', r.antTexto],
       ['Posgrado:',   r.posTexto],
     ].filter(Boolean);
-
     let y = 92;
     items.forEach(([lbl, val]) => {
       doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
@@ -1258,7 +1216,6 @@ function descargarPDF() {
       doc.text(lines, 70, y);
       y += 10 * lines.length;
     });
-
     doc.setFillColor(20, 40, 80);
     doc.roundedRect(14, 142, 87, 44, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191); doc.setLineWidth(0.5);
@@ -1269,7 +1226,6 @@ function descargarPDF() {
     doc.text(r.totalBruto, 57, 168, { align: 'center' });
     doc.setFontSize(7); doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal');
     doc.text('Antes de descuentos', 57, 178, { align: 'center' });
-
     doc.setFillColor(10, 40, 20);
     doc.roundedRect(109, 142, 87, 44, 4, 4, 'F');
     doc.setDrawColor(34, 197, 94); doc.setLineWidth(0.5);
@@ -1280,15 +1236,12 @@ function descargarPDF() {
     doc.text(r.totalNeto, 152, 168, { align: 'center' });
     doc.setFontSize(7); doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal');
     doc.text('Aplicando 21% descuento Ley', 152, 178, { align: 'center' });
-
     doc.setFillColor(40, 30, 5);
     doc.roundedRect(14, 192, 182, 10, 2, 2, 'F');
     doc.setTextColor(252, 211, 77); doc.setFontSize(7.5); doc.setFont('helvetica', 'bold');
     doc.text('Descuento 21% por Ley: Jubilacion · Obra Social · ANSSAL · Seguro de Vida', 105, 198.5, { align: 'center' });
-
     doc.setDrawColor(212, 160, 23); doc.setLineWidth(0.3);
     doc.line(14, 207, 196, 207);
-
     doc.setFillColor(50, 10, 10);
     doc.roundedRect(14, 210, 182, 58, 3, 3, 'F');
     doc.setDrawColor(180, 30, 30); doc.setLineWidth(0.35);
@@ -1304,13 +1257,9 @@ function descargarPDF() {
       '· El monto neto real puede ser INFERIOR al estimado. Para tu liquidacion exacta consulta con',
       '  el area de Recursos Humanos o Liquidaciones de tu institucion.'
     ];
-    avisoLineas.forEach((linea, i) => {
-      doc.text(linea, 20, 228 + i * 7);
-    });
-
+    avisoLineas.forEach((linea, i) => { doc.text(linea, 20, 228 + i * 7); });
     doc.setTextColor(70, 90, 110); doc.setFontSize(7);
     doc.text('Fuente: Acta Paritaria Junio 2026 · CONADU HISTORICA', 105, 274, { align: 'center' });
-
     doc.setFillColor(14, 28, 45);
     doc.rect(0, 279, 210, 18, 'F');
     doc.setDrawColor(212, 160, 23); doc.setLineWidth(0.3);
@@ -1319,7 +1268,6 @@ function descargarPDF() {
     doc.text('GDU CATAMARCA · CONADU HISTORICA', 105, 287, { align: 'center' });
     doc.setTextColor(90, 112, 144); doc.setFont('helvetica', 'normal'); doc.setFontSize(7);
     doc.text('instagram.com/gducatamarca · facebook.com/gremiodocente.universitario', 105, 293, { align: 'center' });
-
     doc.save(`Calculo_Salarial_GDU_${fecha.replace(/\//g, '-')}.pdf`);
   };
 }
