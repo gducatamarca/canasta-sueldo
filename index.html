@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nuevo Sistema Web · Datos Salariales · GDU Catamarca · CONADU HISTÓRICA</title>
+<title>Datos Salariales · GDU Catamarca · CONADU HISTÓRICA</title>
 
-<meta name="description" content="Nuevo sistema web | Datos salariales | Calcula tu salario | Resuelve dudas del convenio colectivo de trabajo. CONADU HISTÓRICA · GDU Catamarca">
+<meta name="description" content="Datos salariales | Calcula tu salario | Resuelve dudas del convenio colectivo de trabajo. CONADU HISTÓRICA · GDU Catamarca">
 <meta name="author" content="GDU Catamarca · CONADU HISTÓRICA">
 <meta name="keywords" content="datos salariales, calculadora de salarios, convenio colectivo, CONADU HISTÓRICA, GDU Catamarca, salarios docentes, estructura salarial, preuniversitario, universitario">
 <meta property="og:type"         content="website">
 <meta property="og:site_name"    content="CONADU HISTÓRICA · GDU Catamarca">
-<meta property="og:title"        content="Nuevo Sistema Web · GDU Catamarca">
-<meta property="og:description"  content="Nuevo sistema web | Datos salariales | Calcula tu salario | Resuelve dudas del convenio colectivo de trabajo. CONADU HISTÓRICA · GDU Catamarca">
+<meta property="og:title"        content="Datos Salariales · GDU Catamarca">
+<meta property="og:description"  content="Datos salariales | Calcula tu salario | Resuelve dudas del convenio colectivo de trabajo. CONADU HISTÓRICA · GDU Catamarca">
 <meta property="og:image"        content="preview.jpg">
 <meta property="og:image:width"  content="1200">
 <meta property="og:image:height" content="630">
@@ -20,8 +20,8 @@
 <meta property="og:locale"       content="es_AR">
 
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="Nuevo Sistema Web · GDU Catamarca">
-<meta name="twitter:description" content="Nuevo sistema web | Datos salariales | Calcula tu salario | Resuelve dudas del convenio colectivo de trabajo. CONADU HISTÓRICA · GDU Catamarca">
+<meta name="twitter:title"       content="Datos Salariales · GDU Catamarca">
+<meta name="twitter:description" content="Datos salariales | Calcula tu salario | Resuelve dudas del convenio colectivo de trabajo. CONADU HISTÓRICA · GDU Catamarca">
 <meta name="twitter:image"       content="preview.jpg">
 <meta name="twitter:image:alt"   content="Sistema web de datos salariales y convenio colectivo">
 
@@ -171,10 +171,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .nav-overlay { position: fixed; inset: 0; z-index: 9997; background: rgba(8, 17, 28, 0.6); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
 .nav-overlay.visible { opacity: 1; pointer-events: all; }
 
-/* ══ HERO LOGO ══ */
-.hero-logo { margin-bottom: 32px; display: flex; justify-content: center; }
-.hero-logo img { width: min(220px, 55vw); height: auto; mix-blend-mode: screen; filter: drop-shadow(0 2px 14px rgba(212,160,23,0.3)); }
-
 /* ══ SOCIAL FLOAT ══ */
 .social-float { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 999; display: flex; flex-direction: column; gap: 12px; }
 .social-btn { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s; position: relative; }
@@ -187,66 +183,109 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .social-btn::before { content: attr(data-tip); position: absolute; right: 58px; background: rgba(0,0,0,0.75); color: #fff; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; white-space: nowrap; padding: 5px 10px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity 0.2s; backdrop-filter: blur(4px); }
 .social-btn:hover::before { opacity: 1; }
 
-@media (max-width: 640px) {
-  .social-float { right: unset; top: unset; bottom: 20px; left: 50%; transform: translateX(-50%); flex-direction: row; }
-  .social-btn::before { display: none; }
-  .nav-toggle { top: 16px; right: 16px; }
+/* ══ HEADER CON LOGO ══ */
+.site-header {
+  position: relative;
+  background: linear-gradient(160deg, #0b1e35 0%, #08111C 100%);
+  border-bottom: 1px solid rgba(212,160,23,0.15);
+  padding: 28px 24px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.site-header::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro), var(--rojo));
+}
+.site-header::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 50%, rgba(27,63,114,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 90% 50%, rgba(212,160,23,0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+.site-header-inner {
+  position: relative; z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.site-header-logo img {
+  width: min(180px, 48vw);
+  height: auto;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 2px 16px rgba(212,160,23,0.35));
+  transition: filter 0.3s;
+}
+.site-header-logo img:hover {
+  filter: drop-shadow(0 4px 24px rgba(212,160,23,0.55));
+}
+.site-header-nombre {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20px, 5vw, 30px);
+  letter-spacing: 4px;
+  color: var(--blanco);
+  line-height: 1;
+}
+.site-header-nombre span { color: #4A9EFF; }
+.site-header-sub {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gris);
+  text-transform: uppercase;
+}
+.site-header-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4px;
 }
 
-/* ══ HERO ══ */
-.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 24px 40px; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(8,17,28,0.85) 0%, rgba(8,17,28,0.75) 50%, rgba(26,4,4,0.88) 100%); z-index: 0; }
-.hero-bg-crowd { position: absolute; inset: 0; z-index: -1; background: linear-gradient(160deg, #0b1e35 0%, #08111C 40%, #1a0404 100%); overflow: hidden; }
-.hero-bg-crowd::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 50%, rgba(224,32,32,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(27,63,114,0.2) 0%, transparent 40%), radial-gradient(circle at 60% 80%, rgba(212,160,23,0.08) 0%, transparent 40%); }
-.hero-bg-crowd::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px); }
-.hero-inner { position: relative; z-index: 1; max-width: 720px; width: 100%; }
-.paro-kicker { display: inline-flex; align-items: center; gap: 8px; background: rgba(224,32,32,0.15); border: 1px solid rgba(224,32,32,0.4); color: #FF6B6B; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 6px 18px; border-radius: 40px; margin-bottom: 24px; animation: fadeDown 0.6s ease-out 0.2s both; }
-.paro-kicker::before { content: '●'; color: var(--rojo); animation: blink 1.2s ease-in-out infinite; }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-.paro-title-block { margin-bottom: 16px; animation: fadeDown 0.7s ease-out 0.3s both; }
-.paro-main { font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 22vw, 160px); line-height: 0.85; color: var(--rojo); letter-spacing: 3px; text-shadow: 0 0 60px rgba(224,32,32,0.5), 0 4px 30px rgba(224,32,32,0.3), 4px 4px 0px rgba(144,12,12,0.8); display: block; }
-.paro-nacional { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 13vw, 96px); line-height: 0.9; color: var(--rojo); letter-spacing: 4px; text-shadow: 0 0 40px rgba(224,32,32,0.4), 0 4px 20px rgba(224,32,32,0.2), 3px 3px 0px rgba(144,12,12,0.7); display: block; }
-.paro-subtitulo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(13px, 3.5vw, 20px); letter-spacing: 4px; color: var(--blanco); opacity: 0.9; margin-top: 8px; display: block; text-transform: uppercase; }
-.paro-fecha-block { margin: 28px 0; animation: fadeDown 0.7s ease-out 0.45s both; }
-.paro-semana-label { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 8vw, 60px); color: var(--oro); letter-spacing: 3px; line-height: 1; text-shadow: 0 0 30px rgba(212,160,23,0.4); display: block; }
-.paro-fecha-range { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 10vw, 78px); color: var(--oro); letter-spacing: 2px; line-height: 0.95; text-shadow: 0 0 40px rgba(212,160,23,0.5), 3px 3px 0px rgba(120,80,0,0.6); display: block; }
-.paro-consigna-block { margin: 20px 0 32px; animation: fadeDown 0.6s ease-out 0.6s both; }
-.paro-unidad { font-size: clamp(12px, 2.5vw, 16px); color: var(--blanco); opacity: 0.75; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
-.paro-lema { font-family: 'Bebas Neue', sans-serif; font-size: clamp(22px, 5.5vw, 42px); color: var(--oro); letter-spacing: 2px; line-height: 1.15; text-shadow: 0 0 20px rgba(212,160,23,0.3); }
-.paro-logos-row { display: flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 36px; padding: 16px 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; backdrop-filter: blur(8px); animation: fadeDown 0.6s ease-out 0.7s both; }
-.paro-logo-gdu { font-family: 'Bebas Neue', sans-serif; font-size: clamp(18px, 4vw, 26px); letter-spacing: 3px; color: var(--blanco); }
-.paro-logo-gdu span { color: #4A9EFF; }
-.paro-logos-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
-.paro-logo-conadu { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
-.paro-logo-conadu .conadu-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 3.5vw, 22px); letter-spacing: 3px; color: var(--blanco); }
-.paro-logo-conadu .conadu-name span { color: #4A9EFF; }
-.paro-logo-conadu .conadu-sub { font-size: 7px; letter-spacing: 1.5px; color: var(--gris); text-transform: uppercase; line-height: 1.3; max-width: 160px; }
-.hero-btns { margin-top: 8px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; animation: fadeDown 0.6s ease-out 0.8s both; }
-.hero-cta { display: inline-block; background: var(--rojo); color: white; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border-radius: 40px; text-decoration: none; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(224,32,32,0.4); }
+/* ══ BOTONES CTA ══ */
+.hero-cta { display: inline-block; background: var(--rojo); color: white; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 12px 28px; border-radius: 40px; text-decoration: none; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(224,32,32,0.4); }
 .hero-cta:hover { background: var(--rojo-d); transform: translateY(-2px); }
-.hero-cta-calc { display: inline-block; background: linear-gradient(135deg, var(--azul), var(--azul-c)); color: white; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border-radius: 40px; text-decoration: none; transition: filter 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(27,63,114,0.4); }
+.hero-cta-calc { display: inline-block; background: linear-gradient(135deg, var(--azul), var(--azul-c)); color: white; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 12px 28px; border-radius: 40px; text-decoration: none; transition: filter 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(27,63,114,0.4); }
 .hero-cta-calc:hover { filter: brightness(1.15); transform: translateY(-2px); }
-.scroll-hint { margin-top: 40px; font-size: 11px; color: #4A5568; letter-spacing: 2px; display: flex; flex-direction: column; align-items: center; gap: 6px; animation: fadeDown 0.6s ease-out 0.95s both, bounce 2s ease-in-out 1.5s infinite; }
-.scroll-hint span { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--oro)); margin: 0 auto; }
-
-/* ══ SEPARADOR ══ */
-.separador-debajo { position: relative; padding: 0; overflow: hidden; }
-.separador-inner { display: flex; align-items: center; justify-content: center; gap: 0; padding: 0 24px; max-width: 860px; margin: 0 auto; }
-.sep-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,160,23,0.6)); }
-.sep-line.right { background: linear-gradient(90deg, rgba(212,160,23,0.6), transparent); }
-.sep-badge { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 20px 28px; position: relative; }
-.sep-badge::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, rgba(212,160,23,0.12), transparent 70%); }
-.sep-icon { font-size: 22px; position: relative; z-index: 1; }
-.sep-text { font-size: 8px; font-weight: 700; letter-spacing: 3px; color: var(--oro); text-transform: uppercase; position: relative; z-index: 1; }
 
 /* ══ DEBAJO DE LA LÍNEA ══ */
-.debajo-block { background: linear-gradient(160deg, #0b1a2e 0%, #08111C 60%, #150303 100%); padding: 64px 24px 72px; text-align: center; position: relative; overflow: hidden; }
-.debajo-block::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 15% 50%, rgba(27,63,114,0.12) 0%, transparent 50%), radial-gradient(circle at 85% 30%, rgba(224,32,32,0.08) 0%, transparent 40%); }
+.debajo-block {
+  background: linear-gradient(160deg, #0b1a2e 0%, #08111C 60%, #150303 100%);
+  padding: 72px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.debajo-block::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(27,63,114,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(224,32,32,0.08) 0%, transparent 40%);
+}
 .debajo-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-.debajo-mes { display: inline-flex; align-items: center; gap: 8px; font-size: 9px; font-weight: 700; letter-spacing: 4px; color: var(--gris); text-transform: uppercase; margin-bottom: 28px; padding: 5px 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: 40px; background: rgba(255,255,255,0.03); }
-.debajo-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 13vw, 100px); line-height: 0.88; letter-spacing: 2px; color: var(--blanco); margin-bottom: 8px; }
+.debajo-mes {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 9px; font-weight: 700; letter-spacing: 4px;
+  color: var(--gris); text-transform: uppercase;
+  margin-bottom: 28px; padding: 5px 16px;
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 40px;
+  background: rgba(255,255,255,0.03);
+}
+.debajo-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 13vw, 100px);
+  line-height: 0.88; letter-spacing: 2px;
+  color: var(--blanco); margin-bottom: 8px;
+}
 .debajo-title .accent { color: var(--rojo); display: block; text-shadow: 0 0 40px rgba(224,32,32,0.3); }
-.debajo-sub { font-size: clamp(14px, 2.5vw, 17px); color: var(--gris); line-height: 1.7; max-width: 520px; margin: 24px auto 0; }
+.debajo-sub {
+  font-size: clamp(14px, 2.5vw, 17px);
+  color: var(--gris); line-height: 1.7;
+  max-width: 520px; margin: 24px auto 0;
+}
 .debajo-sub strong { color: #FF6B6B; }
 .debajo-line { width: 60px; height: 3px; background: var(--oro); border-radius: 2px; margin: 24px auto 0; }
 .debajo-btns { margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
@@ -490,7 +529,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   color: #FF6B6B;
   font-weight: 700;
 }
-
 .calc-aviso-fuente {
   font-size: 10px;
   color: #5A7090;
@@ -539,6 +577,9 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
 
 /* ══ RESPONSIVE ══ */
 @media (max-width: 640px) {
+  .social-float { right: unset; top: unset; bottom: 20px; left: 50%; transform: translateX(-50%); flex-direction: row; }
+  .social-btn::before { display: none; }
+  .nav-toggle { top: 16px; right: 16px; }
   footer { padding-bottom: 90px; }
   .footer-links { flex-direction: column; align-items: center; gap: 12px; }
   .confronta { grid-template-columns: 1fr; gap: 12px; }
@@ -554,10 +595,7 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
   .alerta-texto { font-size: 14px; }
   .section { padding: 48px 16px; }
   .fuente-box { padding: 22px 18px; }
-  .hero { padding: 48px 18px 32px; }
-  .hero-cta, .hero-cta-calc { padding: 12px 22px; font-size: 11px; }
-  .paro-logos-row { flex-direction: column; gap: 12px; }
-  .paro-logos-divider { width: 40px; height: 1px; }
+  .hero-cta, .hero-cta-calc { padding: 11px 20px; font-size: 10px; }
   .datos-cta-inner { grid-template-columns: 1fr; padding: 28px 22px 26px; gap: 24px; }
   .datos-cta-btn-wrap { width: 100%; }
   .datos-cta-btn { flex-direction: row; width: 100%; padding: 18px 24px; justify-content: center; min-width: unset; }
@@ -575,6 +613,8 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
   .aviso-item-text { font-size: 10.5px; line-height: 1.6; }
   .calc-aviso-legal .aviso-titulo { font-size: 10.5px; }
   .calc-descuento-badge { font-size: 9px; padding: 8px 10px; }
+  .site-header { padding: 24px 16px 20px; }
+  .debajo-block { padding: 52px 16px 60px; }
 }
 
 /* ══ ANIMACIONES ══ */
@@ -591,12 +631,10 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
 .datos-cta-btn { animation: glowOro 2.8s ease-in-out infinite; }
 .datos-cta-btn:hover { animation: none; }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
-@keyframes parpadeoRojo { 0%, 100% { text-shadow: 0 0 60px rgba(224,32,32,0.5), 0 4px 30px rgba(224,32,32,0.3), 4px 4px 0px rgba(144,12,12,0.8); } 50% { text-shadow: 0 0 80px rgba(224,32,32,0.7), 0 4px 40px rgba(224,32,32,0.5), 4px 4px 0px rgba(144,12,12,0.9); } }
-.paro-main { animation: parpadeoRojo 3s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .impacto-card { opacity: 1; transform: none; }
   .barra-fill { transition: none; }
-  .impacto-card.rojo, .datos-cta-btn, .paro-main { animation: none; }
+  .impacto-card.rojo, .datos-cta-btn { animation: none; }
   #loader { display: none; }
 }
 </style>
@@ -685,57 +723,25 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
   </a>
 </div>
 
-<!-- ══ HERO ══ -->
-<section class="hero">
-  <div class="hero-bg-crowd"></div>
-  <div class="hero-inner">
-    <div class="hero-logo"><img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA"></div>
-    <div class="paro-kicker">ALERTA SINDICAL · SEMANA DE ACCIÓN</div>
-    <div class="paro-title-block">
-      <span class="paro-main">PARO</span>
-      <span class="paro-nacional">NACIONAL</span>
-      <span class="paro-subtitulo">De la Docencia de las Universidades Nacionales</span>
+<!-- ══ HEADER CON LOGO ══ -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="site-header-logo">
+      <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
     </div>
-    <div class="paro-fecha-block">
-      <span class="paro-semana-label">SEMANA</span>
-      <span class="paro-fecha-range">del 16 al 20 de JUNIO</span>
-    </div>
-    <div class="paro-consigna-block">
-      <p class="paro-unidad">En Unidad</p>
-      <p class="paro-lema">DEFENDAMOS LA LEY Y<br>LA UNIVERSIDAD PÚBLICA</p>
-    </div>
-    <div class="paro-logos-row">
-      <div class="paro-logo-gdu"><span style="color:#4A9EFF">GDU</span>-CATAMARCA</div>
-      <div class="paro-logos-divider"></div>
-      <div class="paro-logo-conadu">
-        <div class="conadu-name"><span style="color:#4A9EFF">CONADU</span> HISTÓRICA</div>
-        <div class="conadu-sub">Federación Nacional de Docentes,<br>Investigadores y Creadores Universitarios</div>
-      </div>
-    </div>
-    <div class="hero-btns">
+    <div class="site-header-nombre"><span>GDU</span> CATAMARCA</div>
+    <div class="site-header-sub">CONADU HISTÓRICA · Gremio Docente Universitario</div>
+    <div class="site-header-btns">
       <a href="#datos" class="hero-cta">Ver los datos →</a>
       <a href="#calculadora" class="hero-cta-calc">🧮 Calculadora de salarios</a>
     </div>
-    <div class="scroll-hint"><span></span>BAJÁ</div>
   </div>
-</section>
-
-<!-- ══ SEPARADOR ══ -->
-<div class="separador-debajo">
-  <div class="separador-inner">
-    <div class="sep-line"></div>
-    <div class="sep-badge">
-      <div class="sep-icon">📊</div>
-      <div class="sep-text">Datos Salariales</div>
-    </div>
-    <div class="sep-line right"></div>
-  </div>
-</div>
+</header>
 
 <!-- ══ DEBAJO DE LA LÍNEA ══ -->
 <div class="debajo-block">
   <div class="debajo-inner">
-    <div class="debajo-mes">Mayo 2026 · Datos oficiales INDEC</div>
+    <div class="debajo-mes">Junio 2026 · Datos oficiales INDEC</div>
     <h1 class="debajo-title">DEBAJO<span class="accent">DE LA LÍNEA</span></h1>
     <p class="debajo-sub">
       El salario docente universitario cubre apenas el <strong>36,4%</strong> de la Canasta Básica Total.
@@ -931,11 +937,8 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
 
     <!-- ══ RESULTADO ══ -->
     <div class="calc-resultado" id="calc-resultado">
-
       <div class="calc-resultado-tag">📊 Resultado estimado · Junio 2026</div>
       <div class="calc-resultado-detalle" id="calc-detalle"></div>
-
-      <!-- Grilla bruto / neto -->
       <div class="calc-montos-grid">
         <div class="calc-monto-box bruto">
           <div class="calc-monto-label">💼 Salario Bruto</div>
@@ -948,13 +951,9 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
           <div class="calc-monto-sub">Aplicando 21% de descuento por Ley</div>
         </div>
       </div>
-
-      <!-- Badge explicativo del descuento -->
       <div class="calc-descuento-badge">
         📉 Descuento por Ley (21%): Jubilación · Obra Social · ANSSAL · Seguro de Vida
       </div>
-
-      <!-- Aviso legal reforzado -->
       <div class="calc-aviso-legal">
         <div class="aviso-titulo">
           <span>⚠</span>
@@ -991,7 +990,6 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
           </li>
         </ul>
       </div>
-
       <div class="calc-aviso-fuente">
         Fuente: Acta Paritaria Junio 2026 · CONADU HISTÓRICA
       </div>
@@ -1212,7 +1210,6 @@ function descargarPDF() {
   const img = new Image();
   img.src = 'logo-gdu.png';
   img.onload = function () {
-
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, 'F');
 
@@ -1221,19 +1218,19 @@ function descargarPDF() {
     doc.addImage(img, 'PNG', 10, 6, 100, 26);
     doc.setTextColor(212, 160, 23);
     doc.setFontSize(8); doc.setFont('helvetica', 'normal');
-    doc.text(`Emisión: ${fecha}`, 200, 12, { align: 'right' });
+    doc.text(`Emision: ${fecha}`, 200, 12, { align: 'right' });
     doc.text('Junio 2026', 200, 20, { align: 'right' });
 
     doc.setDrawColor(212, 160, 23); doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
 
     doc.setTextColor(247, 249, 252); doc.setFont('helvetica', 'bold'); doc.setFontSize(20);
-    doc.text('Constancia de Cálculo Salarial', 105, 58, { align: 'center' });
+    doc.text('Constancia de Calculo Salarial', 105, 58, { align: 'center' });
     doc.setFontSize(10); doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal');
     doc.text(
       r.tipo === 'Preuniversitario'
-        ? 'Escala preuniversitaria · CONADU HISTÓRICA · GDU Catamarca'
-        : 'Escala universitaria · CONADU HISTÓRICA · GDU Catamarca',
+        ? 'Escala preuniversitaria · CONADU HISTORICA · GDU Catamarca'
+        : 'Escala universitaria · CONADU HISTORICA · GDU Catamarca',
       105, 66, { align: 'center' }
     );
 
@@ -1242,13 +1239,13 @@ function descargarPDF() {
     doc.setDrawColor(45, 111, 191); doc.setLineWidth(0.4);
     doc.roundedRect(14, 72, 182, 62, 4, 4, 'S');
     doc.setTextColor(212, 160, 23); doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-    doc.text('DETALLE DE LA SIMULACIÓN', 22, 82);
+    doc.text('DETALLE DE LA SIMULACION', 22, 82);
 
     const items = [
       ['Tipo:',       r.tipo],
       ['Cargo:',      r.cargo],
-      r.tipo === 'Universitario' ? ['Dedicación:', r.dedicacion] : null,
-      ['Antigüedad:', r.antTexto],
+      r.tipo === 'Universitario' ? ['Dedicacion:', r.dedicacion] : null,
+      ['Antiguedad:', r.antTexto],
       ['Posgrado:',   r.posTexto],
     ].filter(Boolean);
 
