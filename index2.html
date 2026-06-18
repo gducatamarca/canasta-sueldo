@@ -358,8 +358,11 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .calc-resultado {
   margin-top: 28px;
   background: linear-gradient(135deg, rgba(27,63,114,0.3), rgba(212,160,23,0.1));
-  border: 1px solid rgba(212,160,23,0.3); border-radius: 16px;
-  padding: 28px 24px; text-align: center; display: none;
+  border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  display: none;
 }
 .calc-resultado.visible { display: block; animation: fadeDown 0.4s ease; }
 .calc-resultado-tag { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--oro); margin-bottom: 8px; }
@@ -388,8 +391,11 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   border: 1px solid rgba(34, 197, 94, 0.4);
 }
 .calc-monto-label {
-  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; margin-bottom: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 .calc-monto-box.bruto .calc-monto-label { color: #7EC8F0; }
 .calc-monto-box.neto  .calc-monto-label { color: #4ADE80; }
@@ -401,47 +407,97 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .calc-monto-box.bruto .calc-monto-val { color: #7EC8F0; }
 .calc-monto-box.neto  .calc-monto-val { color: #4ADE80; }
 .calc-monto-sub {
-  font-size: 9px; color: var(--gris); margin-top: 6px; line-height: 1.4;
+  font-size: 9px;
+  color: var(--gris);
+  margin-top: 6px;
+  line-height: 1.4;
 }
 
-/* ── Separador entre bruto y neto ── */
+/* ── Badge descuento ── */
 .calc-descuento-badge {
-  display: flex; align-items: center; justify-content: center;
-  gap: 6px; margin-bottom: 16px;
-  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: #FCD34D;
   background: rgba(251, 191, 36, 0.1);
   border: 1px solid rgba(251, 191, 36, 0.25);
-  border-radius: 8px; padding: 8px 14px;
+  border-radius: 8px;
+  padding: 8px 14px;
+  flex-wrap: wrap;
+  text-align: center;
+  line-height: 1.5;
 }
 
 /* ── Aviso legal reforzado ── */
 .calc-aviso-legal {
   margin-top: 4px;
-  background: rgba(224,32,32,0.1);
-  border: 1px solid rgba(224,32,32,0.35);
-  border-radius: 10px; padding: 16px 18px; text-align: left;
+  background: rgba(224, 32, 32, 0.1);
+  border: 1px solid rgba(224, 32, 32, 0.35);
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
 }
 .calc-aviso-legal .aviso-titulo {
-  font-size: 11px; font-weight: 700; color: #FF6B6B;
-  letter-spacing: 1px; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #FF6B6B;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  line-height: 1.4;
 }
-.calc-aviso-legal ul {
-  list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 6px;
+.aviso-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.calc-aviso-legal ul li {
-  font-size: 11px; line-height: 1.6; color: #F7C5C5;
-  display: flex; align-items: flex-start; gap: 8px;
+.aviso-item {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 8px;
+  align-items: start;
 }
-.calc-aviso-legal ul li::before {
-  content: '·'; color: #FF6B6B; font-weight: 900;
-  font-size: 16px; line-height: 1.2; flex-shrink: 0;
+.aviso-item-bullet {
+  color: #FF6B6B;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.1;
+  display: block;
+  flex-shrink: 0;
 }
-.calc-aviso-legal strong { color: #FF6B6B; font-weight: 700; }
+.aviso-item-text {
+  font-size: 11px;
+  line-height: 1.65;
+  color: #F7C5C5;
+  display: block;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+.aviso-item-text strong {
+  color: #FF6B6B;
+  font-weight: 700;
+}
 
-.calc-aviso-fuente { font-size: 10px; color: #5A7090; margin-top: 12px; line-height: 1.6; text-align: center; }
+.calc-aviso-fuente {
+  font-size: 10px;
+  color: #5A7090;
+  margin-top: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
 
 .calc-btn-pdf { width: 100%; padding: 12px; margin-top: 14px; background: linear-gradient(135deg, #1e4d2b, #2f7d4f); color: white; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: none; border-radius: 12px; cursor: pointer; transition: filter 0.2s, transform 0.2s; display: none; }
 .calc-btn-pdf.visible { display: block; }
@@ -514,8 +570,11 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
   .convenio-container { grid-template-columns: 1fr; gap: 28px; }
   .convenio-portada { max-width: 320px; margin: 0 auto; }
   .convenio-section { padding: 0 16px 80px; }
-  /* Neto en móvil: apila las cajas */
   .calc-montos-grid { grid-template-columns: 1fr; }
+  .calc-aviso-legal { padding: 14px 14px; }
+  .aviso-item-text { font-size: 10.5px; line-height: 1.6; }
+  .calc-aviso-legal .aviso-titulo { font-size: 10.5px; }
+  .calc-descuento-badge { font-size: 9px; padding: 8px 10px; }
 }
 
 /* ══ ANIMACIONES ══ */
@@ -897,11 +956,39 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
 
       <!-- Aviso legal reforzado -->
       <div class="calc-aviso-legal">
-        <div class="aviso-titulo">⚠ Aviso importante — Cálculo estimativo</div>
-        <ul>
-          <li>El <strong>salario neto</strong> se calculó descontando el <strong>21% establecido por Ley</strong>, que comprende aportes jubilatorios, obra social (DOSPU u otras), ANSSAL y seguro de vida colectivo.</li>
-          <li><strong>No están incluidos</strong> en este cálculo: cuota sindical, embargos judiciales, préstamos o créditos contraídos con el empleador u otras entidades, impuesto a las Ganancias (según corresponda a la situación particular de cada docente), ni ningún otro descuento local o institucional.</li>
-          <li>El monto neto real puede ser <strong>inferior al aquí estimado</strong> dependiendo de los descuentos adicionales que cada docente tenga vigentes. Para conocer tu liquidación exacta, consultá con el área de <strong>Recursos Humanos o Liquidaciones</strong> de tu institución.</li>
+        <div class="aviso-titulo">
+          <span>⚠</span>
+          <span>Aviso importante — Cálculo estimativo</span>
+        </div>
+        <ul class="aviso-items">
+          <li class="aviso-item">
+            <span class="aviso-item-bullet">·</span>
+            <span class="aviso-item-text">
+              El <strong>salario neto</strong> se calculó descontando el
+              <strong>21% establecido por Ley</strong>, que comprende aportes
+              jubilatorios, obra social (DOSPU u otras), ANSSAL y seguro de vida
+              colectivo.
+            </span>
+          </li>
+          <li class="aviso-item">
+            <span class="aviso-item-bullet">·</span>
+            <span class="aviso-item-text">
+              <strong>No están incluidos</strong> en este cálculo: cuota sindical,
+              embargos judiciales, préstamos o créditos contraídos con el empleador
+              u otras entidades, impuesto a las Ganancias (según corresponda a la
+              situación particular de cada docente), ni ningún otro descuento local
+              o institucional.
+            </span>
+          </li>
+          <li class="aviso-item">
+            <span class="aviso-item-bullet">·</span>
+            <span class="aviso-item-text">
+              El monto neto real puede ser <strong>inferior al aquí estimado</strong>
+              dependiendo de los descuentos adicionales que cada docente tenga
+              vigentes. Para conocer tu liquidación exacta, consultá con el área de
+              <strong>Recursos Humanos o Liquidaciones</strong> de tu institución.
+            </span>
+          </li>
         </ul>
       </div>
 
@@ -964,7 +1051,7 @@ footer { border-top: 1px solid rgba(212,160,23,0.15); padding: 36px 24px; text-a
 /* ════════════════════════════════
    CONSTANTE DE DESCUENTO
    ════════════════════════════════ */
-const DESCUENTO_LEY = 0.21; // 21% aportes por Ley
+const DESCUENTO_LEY = 0.21;
 
 /* ════════════════════════════════
    MENÚ HAMBURGUESA
@@ -1060,17 +1147,14 @@ function cargarCargos() {
 
 function mostrarMontos(bruto, detalle, tipo, dedicacion, cargo, antTexto, posTexto) {
   const neto = bruto * (1 - DESCUENTO_LEY);
-
   document.getElementById('calc-total-bruto').textContent = formatARS(bruto);
   document.getElementById('calc-total-neto').textContent  = formatARS(neto);
   document.getElementById('calc-detalle').innerHTML = detalle;
-
   ultimoResultado = {
     tipo, dedicacion, cargo, antTexto, posTexto,
     totalBruto: formatARS(bruto),
     totalNeto:  formatARS(neto)
   };
-
   mostrarResultado();
 }
 
@@ -1117,7 +1201,7 @@ function mostrarResultado() {
 }
 
 /* ════════════════════════════════
-   PDF — ahora incluye bruto y neto
+   PDF
    ════════════════════════════════ */
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
@@ -1129,11 +1213,9 @@ function descargarPDF() {
   img.src = 'logo-gdu.png';
   img.onload = function () {
 
-    // Fondo
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, 'F');
 
-    // Header
     doc.setFillColor(27, 63, 114);
     doc.rect(0, 0, 210, 38, 'F');
     doc.addImage(img, 'PNG', 10, 6, 100, 26);
@@ -1142,11 +1224,9 @@ function descargarPDF() {
     doc.text(`Emisión: ${fecha}`, 200, 12, { align: 'right' });
     doc.text('Junio 2026', 200, 20, { align: 'right' });
 
-    // Línea dorada
     doc.setDrawColor(212, 160, 23); doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
 
-    // Título
     doc.setTextColor(247, 249, 252); doc.setFont('helvetica', 'bold'); doc.setFontSize(20);
     doc.text('Constancia de Cálculo Salarial', 105, 58, { align: 'center' });
     doc.setFontSize(10); doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal');
@@ -1157,7 +1237,6 @@ function descargarPDF() {
       105, 66, { align: 'center' }
     );
 
-    // Caja detalle
     doc.setFillColor(14, 28, 45);
     doc.roundedRect(14, 72, 182, 62, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191); doc.setLineWidth(0.4);
@@ -1183,71 +1262,64 @@ function descargarPDF() {
       y += 10 * lines.length;
     });
 
-    // ── Caja BRUTO ──
     doc.setFillColor(20, 40, 80);
     doc.roundedRect(14, 142, 87, 44, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191); doc.setLineWidth(0.5);
     doc.roundedRect(14, 142, 87, 44, 4, 4, 'S');
     doc.setTextColor(126, 200, 240); doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-    doc.text('💼 SALARIO BRUTO', 57, 153, { align: 'center' });
+    doc.text('SALARIO BRUTO', 57, 153, { align: 'center' });
     doc.setFontSize(20); doc.setTextColor(126, 200, 240);
     doc.text(r.totalBruto, 57, 168, { align: 'center' });
     doc.setFontSize(7); doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal');
     doc.text('Antes de descuentos', 57, 178, { align: 'center' });
 
-    // ── Caja NETO ──
     doc.setFillColor(10, 40, 20);
     doc.roundedRect(109, 142, 87, 44, 4, 4, 'F');
     doc.setDrawColor(34, 197, 94); doc.setLineWidth(0.5);
     doc.roundedRect(109, 142, 87, 44, 4, 4, 'S');
     doc.setTextColor(74, 222, 128); doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-    doc.text('💵 SALARIO NETO EST.', 152, 153, { align: 'center' });
+    doc.text('SALARIO NETO EST.', 152, 153, { align: 'center' });
     doc.setFontSize(20); doc.setTextColor(74, 222, 128);
     doc.text(r.totalNeto, 152, 168, { align: 'center' });
     doc.setFontSize(7); doc.setTextColor(160, 174, 192); doc.setFont('helvetica', 'normal');
     doc.text('Aplicando 21% descuento Ley', 152, 178, { align: 'center' });
 
-    // ── Badge descuento ──
     doc.setFillColor(40, 30, 5);
     doc.roundedRect(14, 192, 182, 10, 2, 2, 'F');
     doc.setTextColor(252, 211, 77); doc.setFontSize(7.5); doc.setFont('helvetica', 'bold');
-    doc.text('Descuento 21% por Ley: Jubilación · Obra Social · ANSSAL · Seguro de Vida', 105, 198.5, { align: 'center' });
+    doc.text('Descuento 21% por Ley: Jubilacion · Obra Social · ANSSAL · Seguro de Vida', 105, 198.5, { align: 'center' });
 
-    // Separador
     doc.setDrawColor(212, 160, 23); doc.setLineWidth(0.3);
     doc.line(14, 207, 196, 207);
 
-    // ── Aviso legal ──
     doc.setFillColor(50, 10, 10);
     doc.roundedRect(14, 210, 182, 58, 3, 3, 'F');
     doc.setDrawColor(180, 30, 30); doc.setLineWidth(0.35);
     doc.roundedRect(14, 210, 182, 58, 3, 3, 'S');
     doc.setTextColor(255, 160, 160); doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-    doc.text('⚠  AVISO IMPORTANTE — CÁLCULO ESTIMATIVO', 22, 219);
+    doc.text('AVISO IMPORTANTE - CALCULO ESTIMATIVO', 22, 219);
     doc.setTextColor(220, 180, 180); doc.setFont('helvetica', 'normal'); doc.setFontSize(7.2);
     const avisoLineas = [
       '· El salario NETO surge de aplicar el 21% de descuentos por Ley (aportes jubilatorios, obra social,',
       '  ANSSAL y seguro de vida colectivo).',
-      '· NO están incluidos: cuota sindical, embargos judiciales, préstamos o créditos con el empleador u',
-      '  otras entidades, ni Impuesto a las Ganancias según situación particular de cada docente.',
-      '· El monto neto real puede ser INFERIOR al estimado. Para tu liquidación exacta consultá con',
-      '  el área de Recursos Humanos o Liquidaciones de tu institución.'
+      '· NO estan incluidos: cuota sindical, embargos judiciales, prestamos o creditos con el empleador u',
+      '  otras entidades, ni Impuesto a las Ganancias segun situacion particular de cada docente.',
+      '· El monto neto real puede ser INFERIOR al estimado. Para tu liquidacion exacta consulta con',
+      '  el area de Recursos Humanos o Liquidaciones de tu institucion.'
     ];
     avisoLineas.forEach((linea, i) => {
       doc.text(linea, 20, 228 + i * 7);
     });
 
-    // Fuente
     doc.setTextColor(70, 90, 110); doc.setFontSize(7);
-    doc.text('Fuente: Acta Paritaria Junio 2026 · CONADU HISTÓRICA', 105, 274, { align: 'center' });
+    doc.text('Fuente: Acta Paritaria Junio 2026 · CONADU HISTORICA', 105, 274, { align: 'center' });
 
-    // Pie
     doc.setFillColor(14, 28, 45);
     doc.rect(0, 279, 210, 18, 'F');
     doc.setDrawColor(212, 160, 23); doc.setLineWidth(0.3);
     doc.line(0, 279, 210, 279);
     doc.setTextColor(212, 160, 23); doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-    doc.text('GDU CATAMARCA · CONADU HISTÓRICA', 105, 287, { align: 'center' });
+    doc.text('GDU CATAMARCA · CONADU HISTORICA', 105, 287, { align: 'center' });
     doc.setTextColor(90, 112, 144); doc.setFont('helvetica', 'normal'); doc.setFontSize(7);
     doc.text('instagram.com/gducatamarca · facebook.com/gremiodocente.universitario', 105, 293, { align: 'center' });
 
