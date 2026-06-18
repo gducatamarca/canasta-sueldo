@@ -152,7 +152,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
     linear-gradient(160deg, #0b1e35 0%, #08111C 40%, #1a0404 100%);
   overflow: hidden;
 }
-/* Partículas decorativas de fondo */
 .hero-bg-crowd::before {
   content: '';
   position: absolute; inset: 0;
@@ -175,7 +174,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 
 .hero-inner { position: relative; z-index: 1; max-width: 720px; width: 100%; }
 
-/* ── Kicker paro ── */
 .paro-kicker {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(224,32,32,0.15);
@@ -196,7 +194,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   50% { opacity: 0.2; }
 }
 
-/* ── Título PARO ── */
 .paro-title-block {
   margin-bottom: 16px;
   animation: fadeDown 0.7s ease-out 0.3s both;
@@ -236,7 +233,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   text-transform: uppercase;
 }
 
-/* ── Semana destacada ── */
 .paro-fecha-block {
   margin: 28px 0;
   animation: fadeDown 0.7s ease-out 0.45s both;
@@ -262,7 +258,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   display: block;
 }
 
-/* ── Consigna ── */
 .paro-consigna-block {
   margin: 20px 0 32px;
   animation: fadeDown 0.6s ease-out 0.6s both;
@@ -284,7 +279,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   text-shadow: 0 0 20px rgba(212,160,23,0.3);
 }
 
-/* ── Logos gremiales ── */
 .paro-logos-row {
   display: flex; align-items: center; justify-content: center;
   gap: 24px; margin-bottom: 36px;
@@ -322,7 +316,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   max-width: 160px;
 }
 
-/* ── Botones hero paro ── */
 .hero-btns {
   margin-top: 8px; display: flex; gap: 12px;
   justify-content: center; flex-wrap: wrap;
@@ -985,36 +978,30 @@ footer {
 
   <div class="hero-inner">
 
-    <!-- Logo gremio -->
     <div class="hero-logo">
       <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
     </div>
 
-    <!-- Kicker de alerta -->
     <div class="paro-kicker">
       ALERTA SINDICAL · SEMANA DE ACCIÓN
     </div>
 
-    <!-- PARO NACIONAL -->
     <div class="paro-title-block">
       <span class="paro-main">PARO</span>
       <span class="paro-nacional">NACIONAL</span>
       <span class="paro-subtitulo">De la Docencia de las Universidades Nacionales</span>
     </div>
 
-    <!-- Fecha -->
     <div class="paro-fecha-block">
       <span class="paro-semana-label">SEMANA</span>
       <span class="paro-fecha-range">del 16 al 20 de JUNIO</span>
     </div>
 
-    <!-- Consigna -->
     <div class="paro-consigna-block">
       <p class="paro-unidad">En Unidad</p>
       <p class="paro-lema">DEFENDAMOS LA LEY Y<br>LA UNIVERSIDAD PÚBLICA</p>
     </div>
 
-    <!-- Logos gremiales -->
     <div class="paro-logos-row">
       <div class="paro-logo-gdu">
         <span style="color:#4A9EFF">GDU</span>-CATAMARCA
@@ -1026,7 +1013,6 @@ footer {
       </div>
     </div>
 
-    <!-- Botones -->
     <div class="hero-btns">
       <a href="#datos" class="hero-cta">Ver los datos →</a>
       <a href="#calculadora" class="hero-cta-calc">🧮 Calculadora de salarios</a>
@@ -1040,9 +1026,7 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     SEPARADOR MODERNO
-     ══════════════════════════════════════════ -->
+<!-- ══ SEPARADOR ══ -->
 <div class="separador-debajo">
   <div class="separador-inner">
     <div class="sep-line"></div>
@@ -1055,11 +1039,12 @@ footer {
 </div>
 
 <!-- ══════════════════════════════════════════
-     BLOQUE "DEBAJO DE LA LÍNEA" (antes hero)
+     BLOQUE "DEBAJO DE LA LÍNEA"
      ══════════════════════════════════════════ -->
 <div class="debajo-block">
   <div class="debajo-inner">
 
+    <!-- ① ACTUALIZADO: referencia a mayo 2026 (último dato INDEC disponible) -->
     <div class="debajo-mes">Mayo 2026 · Datos oficiales INDEC</div>
 
     <h1 class="debajo-title">
@@ -1067,6 +1052,7 @@ footer {
       <span class="accent">DE LA LÍNEA</span>
     </h1>
 
+    <!-- ② ACTUALIZADO: porcentaje recalculado · 545.300,21 / 1.498.741 = 36,4% -->
     <p class="debajo-sub">
       El salario docente universitario cubre apenas el <strong>36,4%</strong> de la Canasta Básica Total.
       Un cargo testigo, números reales, una realidad inocultable.
@@ -1090,12 +1076,14 @@ footer {
   <div class="confronta reveal">
     <div class="confronta-card salario">
       <div class="c-label">💼 Salario Docente</div>
+      <!-- ③ ACTUALIZADO: nuevo cargo testigo junio 2026 -->
       <div class="c-amount">$545.300</div>
       <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
       <p class="c-desc">
-        Auxiliar Diplomado de Primera<br>
+        Auxiliar de Primera Categoría<br>
         Dedicación Semiexclusiva<br>
-        <strong style="color:#7EC8F0">Escala CONADU HISTÓRICA · Mayo 2026</strong>
+        <!-- ④ ACTUALIZADO: escala junio 2026 -->
+        <strong style="color:#7EC8F0">Escala CONADU HISTÓRICA · Junio 2026</strong>
       </p>
     </div>
     <div class="confronta-sep">
@@ -1103,6 +1091,7 @@ footer {
     </div>
     <div class="confronta-card pobreza">
       <div class="c-label">🚫 Línea de Pobreza</div>
+      <!-- ⑤ SIN CAMBIO: último dato INDEC disponible es mayo 2026 -->
       <div class="c-amount">$1.498.741</div>
       <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
       <p class="c-desc">
@@ -1126,10 +1115,12 @@ footer {
     </div>
     <div class="barra-row">
       <div class="barra-meta">
-        <span class="barra-name">📚 Salario Auxiliar Diplomado de Primera · Semiexclusiva</span>
+        <!-- ⑥ ACTUALIZADO: nombre de cargo corregido -->
+        <span class="barra-name">📚 Salario Auxiliar de Primera Categoría · Semiexclusiva</span>
         <span class="barra-val" style="color:#7EC8F0">$545.300</span>
       </div>
       <div class="barra-track">
+        <!-- ⑦ ACTUALIZADO: 545300.21 / 1498741 = 36,38% ≈ 36,4% -->
         <div class="barra-fill fill-sal" data-w="36.4">36%</div>
       </div>
     </div>
@@ -1140,11 +1131,13 @@ footer {
   <div class="impacto-grid reveal">
     <div class="impacto-card rojo">
       <div class="ic-label">Déficit mensual</div>
+      <!-- ⑧ ACTUALIZADO: 1.498.741 - 545.300 = 953.441 -->
       <div class="ic-val" id="counter-deficit">-$953.441</div>
       <div class="ic-desc">Lo que le falta al sueldo para cubrir la línea de pobreza de una familia tipo</div>
     </div>
     <div class="impacto-card azul">
       <div class="ic-label">El sueldo cubre</div>
+      <!-- ⑨ SIN CAMBIO: el porcentaje se mantiene igual -->
       <div class="ic-val" id="counter-pct">36,4%</div>
       <div class="ic-desc">De la Canasta Básica Total. Menos de la mitad de lo necesario para no ser pobre</div>
     </div>
@@ -1158,7 +1151,8 @@ footer {
   <div class="alerta reveal">
     <div class="alerta-tag">💬 Reflexión final</div>
     <p class="alerta-texto">
-      Un docente universitario (Diplomado de 1ra.) con dedicación semiexclusiva
+      <!-- ⑩ ACTUALIZADO: nombre de cargo actualizado -->
+      Un docente universitario (Auxiliar de Primera Categoría) con dedicación semiexclusiva
       <strong>cobra menos de la mitad</strong> de lo que una familia necesita para no caer en la pobreza.
       Detrás de estos números hay <strong>trayectorias, vocaciones y familias</strong>
       que merecen una respuesta real.
@@ -1169,8 +1163,9 @@ footer {
     <strong>🔍 Fuente oficial INDEC (mayo 2026):</strong><br>
     Canasta Básica Total (CBT) – Línea de pobreza: $1.498.741 para un hogar de 4 integrantes.
     Variación mensual: +2,0%. Publicado el 11 de junio de 2026.<br><br>
+    <!-- ⑪ ACTUALIZADO: nombre de cargo y período de escala -->
     <strong>📌 Salario docente:</strong>
-    Auxiliar Diplomado de Primera con Dedicación Semiexclusiva – escala salarial CONADU HISTÓRICA, liquidación mayo 2026.<br><br>
+    Auxiliar de Primera Categoría con Dedicación Semiexclusiva – escala salarial CONADU HISTÓRICA, liquidación Junio 2026.<br><br>
     <em style="opacity:0.7">📊 Elaboración: GDU Catamarca · CONADU HISTÓRICA.
     El salario docente no cubre la canasta básica total, evidenciando un déficit crítico frente a la línea de pobreza.</em>
   </div>
@@ -1231,7 +1226,8 @@ footer {
 
 <!-- ══ CALCULADORA SALARIAL ══ -->
 <section class="calc-section" id="calculadora">
-  <div class="calc-section-label reveal">🧮 CALCULADORA SALARIAL · MAYO 2026</div>
+  <!-- ⑫ ACTUALIZADO: etiqueta de la sección -->
+  <div class="calc-section-label reveal">🧮 CALCULADORA SALARIAL · JUNIO 2026</div>
 
   <div class="calculadora-gdu reveal">
     <h2 class="calc-title">Calculadora Salarial Docente</h2>
@@ -1319,7 +1315,8 @@ footer {
 
     <!-- ── RESULTADO ── -->
     <div class="calc-resultado" id="calc-resultado">
-      <div class="calc-resultado-tag">📊 Resultado estimado · Mayo 2026</div>
+      <!-- ⑬ ACTUALIZADO: período del resultado -->
+      <div class="calc-resultado-tag">📊 Resultado estimado · Junio 2026</div>
       <div class="calc-resultado-detalle" id="calc-detalle"></div>
       <div class="calc-total-label">Salario bruto estimado</div>
       <div class="calc-total-val" id="calc-total">$ 0</div>
@@ -1331,8 +1328,9 @@ footer {
           <strong>No incluye descuentos adicionales locales, cuota sindical ni otros añadidos.</strong>
         </p>
       </div>
+      <!-- ⑭ ACTUALIZADO: fuente del resultado -->
       <div class="calc-aviso-fuente">
-        Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA
+        Fuente: Acta Paritaria Junio 2026 · CONADU HISTÓRICA
       </div>
     </div>
 
@@ -1406,7 +1404,10 @@ let SALARIOS = {};
 let PRE_CARGOS = {};
 let PRE_TRAMOS = [];
 let tipoActivo = 'universitario';
-let ultimoResultado = { tipo: '', dedicacion: '', cargo: '', antTexto: '', posTexto: '', total: '' };
+let ultimoResultado = {
+  tipo: '', dedicacion: '', cargo: '',
+  antTexto: '', posTexto: '', total: ''
+};
 
 fetch('datos_salarios.json')
   .then(r => {
@@ -1414,15 +1415,17 @@ fetch('datos_salarios.json')
     return r.json();
   })
   .then(data => {
-    SALARIOS = data.dedicaciones;
+    SALARIOS   = data.dedicaciones;
     PRE_CARGOS = data.preuniversitarios.cargos;
     PRE_TRAMOS = data.preuniversitarios.antiguedad_tramos;
 
-    document.getElementById('calc-subtitle').textContent = `Escala salarial ${data.ultima_actualizacion} · GDU Catamarca`;
-    
+    // ⑮ ACTUALIZADO: muestra "Junio 2026" tomado del propio JSON
+    document.getElementById('calc-subtitle').textContent =
+      `Escala salarial ${data.ultima_actualizacion} · GDU Catamarca`;
+
     cargarDedicaciones();
     cargarSelectsPre();
-    
+
     setTimeout(() => {
       document.getElementById('loader').classList.add('hidden');
     }, 800);
@@ -1443,7 +1446,7 @@ function switchTipo(tipo) {
   tipoActivo = tipo;
   document.getElementById('btn-universitario').classList.toggle('activo', tipo === 'universitario');
   document.getElementById('btn-preuniversitario').classList.toggle('activo', tipo === 'preuniversitario');
-  document.getElementById('panel-universitario').style.display = tipo === 'universitario' ? 'block' : 'none';
+  document.getElementById('panel-universitario').style.display   = tipo === 'universitario'   ? 'block' : 'none';
   document.getElementById('panel-preuniversitario').style.display = tipo === 'preuniversitario' ? 'block' : 'none';
   document.getElementById('calc-resultado').classList.remove('visible');
   document.getElementById('btn-pdf').classList.remove('visible');
@@ -1469,20 +1472,22 @@ function cargarCargos() {
 
 function calcular() {
   const dedicacion = document.getElementById('dedicacion').value;
-  const cargo = document.getElementById('cargo').value;
+  const cargo      = document.getElementById('cargo').value;
   const antiguedad = parseFloat(document.getElementById('antiguedad').value);
-  const posgrado = parseFloat(document.getElementById('posgrado').value);
-  const antTexto = document.getElementById('antiguedad').selectedOptions[0].text;
-  const posTexto = document.getElementById('posgrado').selectedOptions[0].text;
+  const posgrado   = parseFloat(document.getElementById('posgrado').value);
+  const antTexto   = document.getElementById('antiguedad').selectedOptions[0].text;
+  const posTexto   = document.getElementById('posgrado').selectedOptions[0].text;
 
   const basico = SALARIOS[dedicacion][cargo];
-  const total = basico * (1 + antiguedad) * (1 + posgrado);
+  const total  = basico * (1 + antiguedad) * (1 + posgrado);
   const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
 
   ultimoResultado = { tipo: 'Universitario', dedicacion, cargo, antTexto, posTexto, total: totalFmt };
 
-  document.getElementById('calc-total').textContent = totalFmt;
-  document.getElementById('calc-detalle').innerHTML = `<strong style="color:var(--blanco)">${dedicacion} · ${cargo}</strong><br>Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
+  document.getElementById('calc-total').textContent  = totalFmt;
+  document.getElementById('calc-detalle').innerHTML  =
+    `<strong style="color:var(--blanco)">${dedicacion} · ${cargo}</strong><br>` +
+    `Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
 
   mostrarResultado();
 }
@@ -1502,20 +1507,25 @@ function cargarSelectsPre() {
 }
 
 function calcularPre() {
-  const cargo = document.getElementById('pre-cargo').value;
-  const factor = parseFloat(document.getElementById('pre-antiguedad').value);
+  const cargo    = document.getElementById('pre-cargo').value;
+  const factor   = parseFloat(document.getElementById('pre-antiguedad').value);
   const posgrado = parseFloat(document.getElementById('pre-posgrado').value);
   const antTexto = document.getElementById('pre-antiguedad').selectedOptions[0].text;
   const posTexto = document.getElementById('pre-posgrado').selectedOptions[0].text;
 
-  const basico = PRE_CARGOS[cargo];
-  const total = basico * factor * (1 + posgrado);
+  const basico   = PRE_CARGOS[cargo];
+  const total    = basico * factor * (1 + posgrado);
   const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
 
-  ultimoResultado = { tipo: 'Preuniversitario', dedicacion: 'Preuniversitario', cargo, antTexto, posTexto, total: totalFmt };
+  ultimoResultado = {
+    tipo: 'Preuniversitario', dedicacion: 'Preuniversitario',
+    cargo, antTexto, posTexto, total: totalFmt
+  };
 
-  document.getElementById('calc-total').textContent = totalFmt;
-  document.getElementById('calc-detalle').innerHTML = `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}</strong><br>Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
+  document.getElementById('calc-total').textContent  = totalFmt;
+  document.getElementById('calc-detalle').innerHTML  =
+    `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}</strong><br>` +
+    `Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
 
   mostrarResultado();
 }
@@ -1526,18 +1536,26 @@ function mostrarResultado() {
   document.getElementById('calc-resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+/* ════════════════════════════════
+   GENERACIÓN PDF
+   ════════════════════════════════ */
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  const r = ultimoResultado;
-  const fecha = new Date().toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const doc  = new jsPDF();
+  const r    = ultimoResultado;
+  const fecha = new Date().toLocaleDateString('es-AR', {
+    day: '2-digit', month: '2-digit', year: 'numeric'
+  });
 
   const img = new Image();
   img.src = 'logo-gdu.png';
   img.onload = function () {
+
+    // Fondo general
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, 'F');
 
+    // Encabezado
     doc.setFillColor(27, 63, 114);
     doc.rect(0, 0, 210, 38, 'F');
     doc.addImage(img, 'PNG', 10, 6, 100, 26);
@@ -1545,25 +1563,29 @@ function descargarPDF() {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.text(`Emisión: ${fecha}`, 200, 12, { align: 'right' });
-    doc.text('Mayo 2026', 200, 20, { align: 'right' });
+    // ⑯ ACTUALIZADO: período en el PDF
+    doc.text('Junio 2026', 200, 20, { align: 'right' });
 
+    // Línea dorada
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
 
+    // Título
     doc.setTextColor(247, 249, 252);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(20);
     doc.text('Constancia de Cálculo Salarial', 105, 58, { align: 'center' });
+
     doc.setFontSize(10);
     doc.setTextColor(160, 174, 192);
     doc.setFont('helvetica', 'normal');
-
     const subtituloTipo = r.tipo === 'Preuniversitario'
       ? 'Escala preuniversitaria · CONADU HISTÓRICA · GDU Catamarca'
       : 'Escala universitaria · CONADU HISTÓRICA · GDU Catamarca';
     doc.text(subtituloTipo, 105, 66, { align: 'center' });
 
+    // Caja detalle
     doc.setFillColor(14, 28, 45);
     doc.roundedRect(14, 76, 182, 74, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191);
@@ -1596,6 +1618,7 @@ function descargarPDF() {
       y += 11 * valLines.length;
     });
 
+    // Caja total
     doc.setFillColor(27, 63, 114);
     doc.roundedRect(14, 160, 182, 52, 4, 4, 'F');
     doc.setDrawColor(212, 160, 23);
@@ -1610,31 +1633,40 @@ function descargarPDF() {
     doc.setFont('helvetica', 'bold');
     doc.text(r.total, 105, 197, { align: 'center' });
 
+    // Separador
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.4);
     doc.line(14, 222, 196, 222);
 
+    // Aviso legal
     doc.setFillColor(50, 10, 10);
     doc.roundedRect(14, 226, 182, 40, 3, 3, 'F');
     doc.setDrawColor(180, 30, 30);
     doc.setLineWidth(0.35);
     doc.roundedRect(14, 226, 182, 40, 3, 3, 'S');
-
     doc.setTextColor(255, 160, 160);
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.text('⚠  AVISO IMPORTANTE', 22, 235);
-
     doc.setTextColor(220, 180, 180);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7.5);
-    const avisoTexto = 'Este cálculo es estimativo. Los descuentos por Ley son aproximadamente el 21%, que contemplan aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda). No incluye descuentos adicionales locales, cuota sindical ni otros añadidos. Para liquidación oficial consultá con tu área de RRHH.';
+    const avisoTexto =
+      'Este cálculo es estimativo. Los descuentos por Ley son aproximadamente el 21%, que contemplan ' +
+      'aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda). No incluye ' +
+      'descuentos adicionales locales, cuota sindical ni otros añadidos. Para liquidación oficial ' +
+      'consultá con tu área de RRHH.';
     doc.text(doc.splitTextToSize(avisoTexto, 172), 22, 242);
 
+    // ⑰ ACTUALIZADO: fuente en el PDF
     doc.setTextColor(70, 90, 110);
     doc.setFontSize(7);
-    doc.text('Fuente: Instructivo de Liquidación Mayo 2026 · CONADU HISTÓRICA', 105, 274, { align: 'center' });
+    doc.text(
+      'Fuente: Acta Paritaria Junio 2026 · CONADU HISTÓRICA',
+      105, 274, { align: 'center' }
+    );
 
+    // Pie
     doc.setFillColor(14, 28, 45);
     doc.rect(0, 279, 210, 18, 'F');
     doc.setDrawColor(212, 160, 23);
@@ -1647,7 +1679,10 @@ function descargarPDF() {
     doc.setTextColor(90, 112, 144);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-    doc.text('instagram.com/gducatamarca · facebook.com/gremiodocente.universitario', 105, 293, { align: 'center' });
+    doc.text(
+      'instagram.com/gducatamarca · facebook.com/gremiodocente.universitario',
+      105, 293, { align: 'center' }
+    );
 
     doc.save(`Calculo_Salarial_GDU_${fecha.replace(/\//g, '-')}.pdf`);
   };
