@@ -6,20 +6,16 @@
   <title>Autoridades GDU Catamarca · CONADU HISTÓRICA</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --azul: #1B3F72;
+      --azul:   #1B3F72;
       --azul-c: #2D6FBF;
-      --oro: #D4A017;
-      --rojo: #E02020;
+      --oro:    #D4A017;
+      --rojo:   #E02020;
       --rojo-d: #900C0C;
-      --bg: #08111C;
-      --bg2: #0E1C2D;
-      --gris: #A0AEC0;
+      --bg:     #08111C;
+      --bg2:    #0E1C2D;
+      --gris:   #A0AEC0;
       --blanco: #F7F9FC;
       --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -29,9 +25,174 @@
       background: var(--bg);
       color: var(--blanco);
       line-height: 1.6;
-      padding: 0;
-      margin: 0;
     }
+
+    /* ══ NAVEGACIÓN HAMBURGUESA ══ */
+    .nav-toggle {
+      position: fixed;
+      top: 20px; right: 20px;
+      z-index: 10000;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(14, 28, 45, 0.92);
+      border: 1px solid rgba(212, 160, 23, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      cursor: pointer;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 5px;
+      transition: background 0.25s, border-color 0.25s,
+                  transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      outline: none;
+    }
+    .nav-toggle:hover {
+      background: rgba(27, 63, 114, 0.95);
+      border-color: rgba(212, 160, 23, 0.7);
+      box-shadow: 0 6px 28px rgba(212, 160, 23, 0.25);
+      transform: scale(1.08);
+    }
+    .nav-toggle.abierto {
+      background: rgba(27, 63, 114, 0.98);
+      border-color: var(--oro);
+      box-shadow: 0 6px 32px rgba(212, 160, 23, 0.35);
+    }
+    .nav-toggle .ham-line {
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--oro);
+      border-radius: 2px;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.25s ease, width 0.25s ease;
+      transform-origin: center;
+    }
+    .nav-toggle.abierto .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.abierto .ham-line:nth-child(2) { opacity: 0; width: 0; }
+    .nav-toggle.abierto .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Panel lateral */
+    .nav-panel {
+      position: fixed;
+      top: 0; right: 0;
+      z-index: 9998;
+      width: min(320px, 88vw);
+      height: 100dvh;
+      background: linear-gradient(160deg, #0b1e35 0%, #08111C 60%, #0f1500 100%);
+      border-left: 1px solid rgba(212, 160, 23, 0.2);
+      display: flex; flex-direction: column;
+      padding: 88px 32px 40px;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: -8px 0 48px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+    }
+    .nav-panel.abierto { transform: translateX(0); }
+    .nav-panel::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--azul-c), var(--oro));
+    }
+    .nav-panel-header {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(212, 160, 23, 0.15);
+    }
+    .nav-panel-gdu {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px; letter-spacing: 3px; color: var(--blanco); line-height: 1.2;
+    }
+    .nav-panel-gdu span { color: #4A9EFF; }
+    .nav-panel-sub {
+      font-size: 8px; letter-spacing: 2px;
+      color: var(--gris); text-transform: uppercase; margin-top: 4px;
+    }
+    .nav-section-label {
+      font-size: 8px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--oro);
+      margin-bottom: 12px; margin-top: 8px; opacity: 0.8;
+    }
+    .nav-items { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .nav-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px; border-radius: 12px;
+      text-decoration: none; color: var(--blanco);
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: background 0.2s,
+                  transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+                  color 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+      cursor: pointer; border: 1px solid transparent;
+    }
+    .nav-item::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; border-radius: 3px 0 0 3px;
+      background: var(--oro);
+      transform: scaleY(0);
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-item:hover {
+      background: rgba(212, 160, 23, 0.08);
+      border-color: rgba(212, 160, 23, 0.2);
+      transform: translateX(4px);
+      color: var(--oro);
+      box-shadow: 0 2px 12px rgba(212, 160, 23, 0.1);
+    }
+    .nav-item:hover::before { transform: scaleY(1); }
+
+    /* Ítem activo (página actual) */
+    .nav-item.activo {
+      background: rgba(212, 160, 23, 0.1);
+      border-color: rgba(212, 160, 23, 0.3);
+      color: var(--oro);
+    }
+    .nav-item.activo::before { transform: scaleY(1); }
+
+    .nav-item-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-item:hover .nav-item-icon { transform: scale(1.15); }
+    .nav-item-icon.ic-datos    { background: rgba(224, 32, 32, 0.15); }
+    .nav-item-icon.ic-calc     { background: rgba(27, 63, 114, 0.3); }
+    .nav-item-icon.ic-convenio { background: rgba(212, 160, 23, 0.15); }
+    .nav-item-icon.ic-aut      { background: rgba(74, 158, 255, 0.2); }
+    .nav-item-text { display: flex; flex-direction: column; gap: 2px; }
+    .nav-item-title { font-size: 13px; font-weight: 700; line-height: 1.2; }
+    .nav-item-desc {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.5px;
+      color: var(--gris); transition: color 0.2s;
+    }
+    .nav-item:hover .nav-item-desc { color: rgba(212, 160, 23, 0.7); }
+    .nav-item-arrow {
+      margin-left: auto; font-size: 10px; opacity: 0.4;
+      transition: opacity 0.2s, transform 0.2s; flex-shrink: 0;
+    }
+    .nav-item:hover .nav-item-arrow { opacity: 1; transform: translateX(3px); }
+    .nav-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 16px 0; }
+    .nav-panel-footer {
+      margin-top: 24px; padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 9px; color: #3D4F63;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-align: center; line-height: 1.8;
+    }
+
+    /* Overlay */
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 9997;
+      background: rgba(8, 17, 28, 0.6);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .nav-overlay.visible { opacity: 1; pointer-events: all; }
 
     /* ── Encabezado con logo ── */
     .header-logo {
@@ -41,13 +202,10 @@
       border-bottom: 1px solid rgba(212, 160, 23, 0.15);
     }
     .header-logo img {
-      width: min(280px, 75vw);
-      height: auto;
-      max-height: 120px;
+      width: min(280px, 75vw); height: auto; max-height: 120px;
       mix-blend-mode: screen;
       filter: drop-shadow(0 4px 20px rgba(212, 160, 23, 0.35));
-      opacity: 0.95;
-      transition: var(--transition);
+      opacity: 0.95; transition: var(--transition);
     }
     .header-logo img:hover {
       opacity: 1;
@@ -56,42 +214,29 @@
     .header-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(24px, 5vw, 40px);
-      letter-spacing: 2px;
-      color: var(--blanco);
-      margin-top: 8px;
+      letter-spacing: 2px; color: var(--blanco); margin-top: 8px;
     }
-    .header-title .accent {
-      color: var(--rojo);
-    }
+    .header-title .accent { color: var(--rojo); }
 
     /* ── Contenedor principal ── */
     .autoridades-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 24px 60px;
+      max-width: 900px; margin: 0 auto; padding: 40px 24px 60px;
     }
-
     .autoridades-wrapper h2 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(22px, 4vw, 32px);
-      letter-spacing: 1px;
-      color: var(--oro);
-      margin: 40px 0 20px;
+      font-size: clamp(22px, 4vw, 32px); letter-spacing: 1px;
+      color: var(--oro); margin: 40px 0 20px;
       padding-bottom: 8px;
       border-bottom: 2px solid rgba(212, 160, 23, 0.25);
     }
-    .autoridades-wrapper h2:first-of-type {
-      margin-top: 0;
-    }
+    .autoridades-wrapper h2:first-of-type { margin-top: 0; }
 
-    /* ── Tablas modernas ── */
+    /* ── Tablas ── */
     .comision-tabla {
-      width: 100%;
-      border-collapse: collapse;
+      width: 100%; border-collapse: collapse;
       background: rgba(45, 111, 191, 0.06);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
       border: 1px solid rgba(212, 160, 23, 0.15);
     }
     .comision-tabla thead {
@@ -99,60 +244,33 @@
       backdrop-filter: blur(4px);
     }
     .comision-tabla th {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 16px 20px;
-      text-align: left;
-      color: var(--oro);
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+      padding: 16px 20px; text-align: left; color: var(--oro);
       border-bottom: 2px solid rgba(212, 160, 23, 0.3);
     }
     .comision-tabla td {
-      padding: 14px 20px;
-      font-size: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: var(--blanco);
-      vertical-align: middle;
+      padding: 14px 20px; font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--blanco); vertical-align: middle;
     }
-    .comision-tabla tbody tr {
-      transition: var(--transition);
-    }
-    .comision-tabla tbody tr:hover {
-      background: rgba(45, 111, 191, 0.15);
-    }
-    .comision-tabla tbody tr:last-child td {
-      border-bottom: none;
-    }
+    .comision-tabla tbody tr { transition: var(--transition); }
+    .comision-tabla tbody tr:hover { background: rgba(45, 111, 191, 0.15); }
+    .comision-tabla tbody tr:last-child td { border-bottom: none; }
     .comision-tabla .cargo {
-      font-weight: 600;
-      color: var(--gris);
-      width: 40%;
-      letter-spacing: 0.3px;
+      font-weight: 600; color: var(--gris);
+      width: 40%; letter-spacing: 0.3px;
     }
-    .comision-tabla .nombre {
-      font-weight: 500;
-      color: var(--blanco);
-    }
-    .comision-tabla .nombre strong {
-      color: var(--oro);
-      font-weight: 600;
-    }
+    .comision-tabla .nombre { font-weight: 500; color: var(--blanco); }
+    .comision-tabla .nombre strong { color: var(--oro); font-weight: 600; }
 
     /* ── Foto institucional ── */
-    .foto-institucional {
-      margin-top: 48px;
-      text-align: center;
-    }
+    .foto-institucional { margin-top: 48px; text-align: center; }
     .foto-institucional img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      max-width: 100%; height: auto; border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
       border: 1px solid rgba(212, 160, 23, 0.25);
-      transition: var(--transition);
-      display: inline-block;
+      transition: var(--transition); display: inline-block;
     }
     .foto-institucional img:hover {
       transform: scale(1.02);
@@ -160,162 +278,157 @@
       border-color: rgba(212, 160, 23, 0.5);
     }
     .foto-institucional .caption {
-      font-size: 13px;
-      color: var(--gris);
-      margin-top: 12px;
-      letter-spacing: 1px;
-      font-weight: 400;
+      font-size: 13px; color: var(--gris); margin-top: 12px;
+      letter-spacing: 1px; font-weight: 400;
       border-top: 1px solid rgba(212, 160, 23, 0.1);
-      padding-top: 12px;
-      display: inline-block;
+      padding-top: 12px; display: inline-block;
     }
-    .foto-institucional .caption strong {
-      color: var(--oro);
-      font-weight: 600;
-    }
+    .foto-institucional .caption strong { color: var(--oro); font-weight: 600; }
 
-    /* ── Pie de página gremial ── */
+    /* ── Footer ── */
     footer {
       border-top: 1px solid rgba(212, 160, 23, 0.15);
-      padding: 36px 24px;
-      text-align: center;
-      background: var(--bg);
+      padding: 36px 24px; text-align: center; background: var(--bg);
     }
-    .footer-logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+    .footer-logo { display: flex; justify-content: center; margin-bottom: 20px; }
     .footer-logo img {
-      height: 42px;
-      width: auto;
-      mix-blend-mode: screen;
-      opacity: 0.85;
+      height: 42px; width: auto; mix-blend-mode: screen; opacity: 0.85;
       filter: drop-shadow(0 2px 10px rgba(212, 160, 23, 0.2));
       transition: var(--transition);
     }
-    .footer-logo img:hover {
-      opacity: 1;
-    }
+    .footer-logo img:hover { opacity: 1; }
     .footer-nombre {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      letter-spacing: 3px;
-      color: var(--blanco);
-      margin-bottom: 4px;
+      font-size: 18px; letter-spacing: 3px; color: var(--blanco); margin-bottom: 4px;
     }
     .footer-sub {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--gris);
-      text-transform: uppercase;
-      margin-bottom: 20px;
+      font-size: 11px; letter-spacing: 2px; color: var(--gris);
+      text-transform: uppercase; margin-bottom: 20px;
     }
     .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
+      display: flex; justify-content: center; gap: 24px;
+      margin-bottom: 24px; flex-wrap: wrap;
     }
     .footer-links a {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: var(--transition);
-      padding: 8px 16px;
-      border-radius: 30px;
+      display: flex; align-items: center; gap: 6px;
+      text-decoration: none; font-size: 12px; font-weight: 600;
+      letter-spacing: 1px; transition: var(--transition);
+      padding: 8px 16px; border-radius: 30px;
     }
-    .footer-links a:hover {
-      opacity: 1;
-      transform: translateY(-2px);
-    }
-    .footer-links a.ig {
-      color: #E1306C;
-      background: rgba(225, 48, 108, 0.08);
-    }
-    .footer-links a.fb {
-      color: #1877F2;
-      background: rgba(24, 119, 242, 0.08);
-    }
-    .footer-links svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
+    .footer-links a:hover { opacity: 1; transform: translateY(-2px); }
+    .footer-links a.ig { color: #E1306C; background: rgba(225,48,108,0.08); }
+    .footer-links a.fb { color: #1877F2; background: rgba(24,119,242,0.08); }
+    .footer-links svg { width: 16px; height: 16px; fill: currentColor; }
     .footer-copy {
-      font-size: 10px;
-      color: #4A5568;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      line-height: 1.8;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      padding-top: 20px;
-      margin-top: 4px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 10px; color: #4A5568; letter-spacing: 1px;
+      text-transform: uppercase; line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 20px; margin-top: 4px;
+      max-width: 700px; margin-left: auto; margin-right: auto;
     }
-    .footer-copy span {
-      color: var(--oro);
-    }
+    .footer-copy span { color: var(--oro); }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .header-logo {
-        padding: 30px 16px 16px;
-      }
-      .autoridades-wrapper {
-        padding: 24px 16px 40px;
-      }
+      .header-logo { padding: 30px 16px 16px; }
+      .autoridades-wrapper { padding: 24px 16px 40px; }
       .comision-tabla th,
-      .comision-tabla td {
-        padding: 12px 16px;
-        font-size: 13px;
-      }
-      .comision-tabla .cargo {
-        width: 45%;
-      }
-      .foto-institucional {
-        margin-top: 32px;
-      }
-      footer {
-        padding-bottom: 60px;
-      }
-      .footer-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
+      .comision-tabla td { padding: 12px 16px; font-size: 13px; }
+      .comision-tabla .cargo { width: 45%; }
+      .foto-institucional { margin-top: 32px; }
+      footer { padding-bottom: 60px; }
+      .footer-links { flex-direction: column; align-items: center; gap: 12px; }
+      .nav-toggle { top: 16px; right: 16px; }
     }
     @media (max-width: 480px) {
       .comision-tabla th,
-      .comision-tabla td {
-        padding: 10px 12px;
-        font-size: 12px;
-      }
-      .comision-tabla .cargo {
-        width: 50%;
-      }
-      .header-title {
-        font-size: 20px;
-      }
+      .comision-tabla td { padding: 10px 12px; font-size: 12px; }
+      .comision-tabla .cargo { width: 50%; }
+      .header-title { font-size: 20px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *:before,
-      *:after {
-        animation: none !important;
-        transition: none !important;
-      }
+      *, *:before, *:after { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ══ OVERLAY DEL MENÚ ══ -->
+  <div class="nav-overlay" id="nav-overlay" onclick="cerrarNav()" aria-hidden="true"></div>
+
+  <!-- ══ BOTÓN HAMBURGUESA ══ -->
+  <button
+    class="nav-toggle"
+    id="nav-toggle"
+    onclick="toggleNav()"
+    aria-label="Abrir menú de navegación"
+    aria-expanded="false"
+    aria-controls="nav-panel"
+  >
+    <span class="ham-line"></span>
+    <span class="ham-line"></span>
+    <span class="ham-line"></span>
+  </button>
+
+  <!-- ══ PANEL LATERAL DE NAVEGACIÓN ══ -->
+  <nav class="nav-panel" id="nav-panel" aria-label="Menú principal" aria-hidden="true">
+
+    <div class="nav-panel-header">
+      <div class="nav-panel-gdu"><span>GDU</span> CATAMARCA</div>
+      <div class="nav-panel-sub">CONADU HISTÓRICA</div>
+    </div>
+
+    <div class="nav-section-label">Inicio · Datos salariales</div>
+
+    <div class="nav-items">
+
+      <a class="nav-item" href="index.html#datos" onclick="cerrarNav()">
+        <div class="nav-item-icon ic-datos">📊</div>
+        <div class="nav-item-text">
+          <span class="nav-item-title">Datos</span>
+          <span class="nav-item-desc">Salario vs línea de pobreza</span>
+        </div>
+        <span class="nav-item-arrow">›</span>
+      </a>
+
+      <a class="nav-item" href="index.html#calculadora" onclick="cerrarNav()">
+        <div class="nav-item-icon ic-calc">🧮</div>
+        <div class="nav-item-text">
+          <span class="nav-item-title">Calculadora de Salarios</span>
+          <span class="nav-item-desc">Universitario y preuniversitario</span>
+        </div>
+        <span class="nav-item-arrow">›</span>
+      </a>
+
+      <a class="nav-item" href="index.html#convenio" onclick="cerrarNav()">
+        <div class="nav-item-icon ic-convenio">📜</div>
+        <div class="nav-item-text">
+          <span class="nav-item-title">Convenio Colectivo de Trabajo</span>
+          <span class="nav-item-desc">CCT · Docentes universitarios</span>
+        </div>
+        <span class="nav-item-arrow">›</span>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <!-- Ítem activo: estamos en Autoridades -->
+      <a class="nav-item activo" href="autoridades.html" onclick="cerrarNav()">
+        <div class="nav-item-icon ic-aut">👥</div>
+        <div class="nav-item-text">
+          <span class="nav-item-title">Autoridades</span>
+          <span class="nav-item-desc">Conducción GDU Catamarca</span>
+        </div>
+        <span class="nav-item-arrow">·</span>
+      </a>
+
+    </div>
+
+    <div class="nav-panel-footer">
+      GDU Catamarca · CONADU HISTÓRICA<br>
+      © 2026 · Todos los derechos reservados
+    </div>
+
+  </nav>
 
   <!-- ===== ENCABEZADO CON LOGO ===== -->
   <div class="header-logo">
@@ -380,7 +493,7 @@
 
   </div>
 
-  <!-- ===== PIE DE PÁGINA GREMIAL ===== -->
+  <!-- ===== PIE DE PÁGINA ===== -->
   <footer>
     <div class="footer-logo">
       <img src="logo-gdu.png" alt="GDU Catamarca">
@@ -403,6 +516,41 @@
       Su reproducción parcial o total está permitida citando la fuente: <em>GDU Catamarca · CONADU HISTÓRICA</em>.
     </div>
   </footer>
+
+  <script>
+    /* ════════════════════════════════
+       MENÚ HAMBURGUESA
+       ════════════════════════════════ */
+    function toggleNav() {
+      const toggle  = document.getElementById('nav-toggle');
+      const panel   = document.getElementById('nav-panel');
+      const overlay = document.getElementById('nav-overlay');
+      const abierto = toggle.classList.toggle('abierto');
+
+      panel.classList.toggle('abierto', abierto);
+      overlay.classList.toggle('visible', abierto);
+      toggle.setAttribute('aria-expanded', abierto);
+      panel.setAttribute('aria-hidden', !abierto);
+      document.body.style.overflow = abierto ? 'hidden' : '';
+    }
+
+    function cerrarNav() {
+      const toggle  = document.getElementById('nav-toggle');
+      const panel   = document.getElementById('nav-panel');
+      const overlay = document.getElementById('nav-overlay');
+
+      toggle.classList.remove('abierto');
+      panel.classList.remove('abierto');
+      overlay.classList.remove('visible');
+      toggle.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') cerrarNav();
+    });
+  </script>
 
 </body>
 </html>
