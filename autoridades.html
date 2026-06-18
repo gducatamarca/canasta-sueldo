@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autoridades GDU Catamarca · CONADU HISTÓRICA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --azul: #1B3F72;
+      --azul-c: #2D6FBF;
+      --oro: #D4A017;
+      --rojo: #E02020;
+      --rojo-d: #900C0C;
+      --bg: #08111C;
+      --bg2: #0E1C2D;
+      --gris: #A0AEC0;
+      --blanco: #F7F9FC;
+      --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--blanco);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* ── Encabezado con logo ── */
+    .header-logo {
+      background: linear-gradient(160deg, #0E1C2D 0%, #08111C 55%, #1a0404 100%);
+      padding: 40px 24px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(212, 160, 23, 0.15);
+    }
+    .header-logo img {
+      width: min(280px, 75vw);
+      height: auto;
+      max-height: 120px;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 4px 20px rgba(212, 160, 23, 0.35));
+      opacity: 0.95;
+      transition: var(--transition);
+    }
+    .header-logo img:hover {
+      opacity: 1;
+      filter: drop-shadow(0 6px 28px rgba(212, 160, 23, 0.5));
+    }
+    .header-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(24px, 5vw, 40px);
+      letter-spacing: 2px;
+      color: var(--blanco);
+      margin-top: 8px;
+    }
+    .header-title .accent {
+      color: var(--rojo);
+    }
+
+    /* ── Contenedor principal ── */
+    .autoridades-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    .autoridades-wrapper h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(22px, 4vw, 32px);
+      letter-spacing: 1px;
+      color: var(--oro);
+      margin: 40px 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(212, 160, 23, 0.25);
+    }
+    .autoridades-wrapper h2:first-of-type {
+      margin-top: 0;
+    }
+
+    /* ── Tablas modernas ── */
+    .comision-tabla {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(45, 111, 191, 0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(212, 160, 23, 0.15);
+    }
+    .comision-tabla thead {
+      background: rgba(27, 63, 114, 0.5);
+      backdrop-filter: blur(4px);
+    }
+    .comision-tabla th {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 20px;
+      text-align: left;
+      color: var(--oro);
+      border-bottom: 2px solid rgba(212, 160, 23, 0.3);
+    }
+    .comision-tabla td {
+      padding: 14px 20px;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--blanco);
+      vertical-align: middle;
+    }
+    .comision-tabla tbody tr {
+      transition: var(--transition);
+    }
+    .comision-tabla tbody tr:hover {
+      background: rgba(45, 111, 191, 0.15);
+    }
+    .comision-tabla tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .comision-tabla .cargo {
+      font-weight: 600;
+      color: var(--gris);
+      width: 40%;
+      letter-spacing: 0.3px;
+    }
+    .comision-tabla .nombre {
+      font-weight: 500;
+      color: var(--blanco);
+    }
+    .comision-tabla .nombre strong {
+      color: var(--oro);
+      font-weight: 600;
+    }
+
+    /* ── Foto institucional ── */
+    .foto-institucional {
+      margin-top: 48px;
+      text-align: center;
+    }
+    .foto-institucional img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(212, 160, 23, 0.25);
+      transition: var(--transition);
+      display: inline-block;
+    }
+    .foto-institucional img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 56px rgba(212, 160, 23, 0.25);
+      border-color: rgba(212, 160, 23, 0.5);
+    }
+    .foto-institucional .caption {
+      font-size: 13px;
+      color: var(--gris);
+      margin-top: 12px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      border-top: 1px solid rgba(212, 160, 23, 0.1);
+      padding-top: 12px;
+      display: inline-block;
+    }
+    .foto-institucional .caption strong {
+      color: var(--oro);
+      font-weight: 600;
+    }
+
+    /* ── Pie de página gremial ── */
+    footer {
+      border-top: 1px solid rgba(212, 160, 23, 0.15);
+      padding: 36px 24px;
+      text-align: center;
+      background: var(--bg);
+    }
+    .footer-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .footer-logo img {
+      height: 42px;
+      width: auto;
+      mix-blend-mode: screen;
+      opacity: 0.85;
+      filter: drop-shadow(0 2px 10px rgba(212, 160, 23, 0.2));
+      transition: var(--transition);
+    }
+    .footer-logo img:hover {
+      opacity: 1;
+    }
+    .footer-nombre {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: var(--blanco);
+      margin-bottom: 4px;
+    }
+    .footer-sub {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--gris);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      padding: 8px 16px;
+      border-radius: 30px;
+    }
+    .footer-links a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    .footer-links a.ig {
+      color: #E1306C;
+      background: rgba(225, 48, 108, 0.08);
+    }
+    .footer-links a.fb {
+      color: #1877F2;
+      background: rgba(24, 119, 242, 0.08);
+    }
+    .footer-links svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+    .footer-copy {
+      font-size: 10px;
+      color: #4A5568;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1.8;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 20px;
+      margin-top: 4px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer-copy span {
+      color: var(--oro);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .header-logo {
+        padding: 30px 16px 16px;
+      }
+      .autoridades-wrapper {
+        padding: 24px 16px 40px;
+      }
+      .comision-tabla th,
+      .comision-tabla td {
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+      .comision-tabla .cargo {
+        width: 45%;
+      }
+      .foto-institucional {
+        margin-top: 32px;
+      }
+      footer {
+        padding-bottom: 60px;
+      }
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+    @media (max-width: 480px) {
+      .comision-tabla th,
+      .comision-tabla td {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+      .comision-tabla .cargo {
+        width: 50%;
+      }
+      .header-title {
+        font-size: 20px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *:before,
+      *:after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO CON LOGO ===== -->
+  <div class="header-logo">
+    <img src="logo-gdu.png" alt="GDU Catamarca - CONADU HISTÓRICA">
+    <div class="header-title">
+      Autoridades <span class="accent">GDU</span> Catamarca
+    </div>
+  </div>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <div class="autoridades-wrapper">
+
+    <!-- COMISIÓN DIRECTIVA -->
+    <h2>Comisión Directiva</h2>
+    <table class="comision-tabla">
+      <thead>
+        <tr>
+          <th>Cargo</th>
+          <th>Apellidos y Nombres</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="cargo">Secretario General</td><td class="nombre"><strong>MORALES MORALES,</strong> LUIS FERNANDO</td></tr>
+        <tr><td class="cargo">Secretario Adjunto</td><td class="nombre"><strong>VERA,</strong> JOSÉ ANTONIO</td></tr>
+        <tr><td class="cargo">Secretario Gremial</td><td class="nombre"><strong>MOLINA,</strong> MÓNICA LORENA</td></tr>
+        <tr><td class="cargo">Secretario de Nivel Universitario</td><td class="nombre"><strong>MOLINA,</strong> JOSE LUIS</td></tr>
+        <tr><td class="cargo">Secretario de Nivel Preuniversitario</td><td class="nombre"><strong>JURADO MARRÓN,</strong> FÁTIMA TERESITA</td></tr>
+        <tr><td class="cargo">Secretario de Finanzas y Administración</td><td class="nombre"><strong>RIZO,</strong> RODOLFO RAMÓN</td></tr>
+        <tr><td class="cargo">Secretario de Prensa y Relaciones Institucionales</td><td class="nombre"><strong>SARACHO,</strong> JAVIER HORACIO</td></tr>
+        <tr><td class="cargo">Secretario de Actas</td><td class="nombre"><strong>BERRONDO,</strong> PATRICIA GUADALUPE</td></tr>
+        <tr><td class="cargo">Vocal 1º Suplente</td><td class="nombre"><strong>HAMMANN,</strong> ARIADNA</td></tr>
+        <tr><td class="cargo">Vocal 2º Suplente</td><td class="nombre"><strong>ORTIZ,</strong> ERLINDA DEL VALLE</td></tr>
+      </tbody>
+    </table>
+
+    <!-- COMISIÓN REVISORA DE CUENTAS -->
+    <h2>Comisión Revisora de Cuentas</h2>
+    <table class="comision-tabla">
+      <thead>
+        <tr>
+          <th>Cargo</th>
+          <th>Apellidos y Nombres</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="cargo">Miembros Titulares 1º</td><td class="nombre"><strong>BARRIONUEVO QUIROGA,</strong> MARIANO A.</td></tr>
+        <tr><td class="cargo">Miembros Titulares 2º</td><td class="nombre"><strong>PEREYRA,</strong> NORA ELISA</td></tr>
+        <tr><td class="cargo">Miembros Titulares 3º</td><td class="nombre"><strong>TORRES ANDREATTA,</strong> JORGE GUILLERMO</td></tr>
+        <tr><td class="cargo">Miembros Suplente 1º</td><td class="nombre"><strong>DE LA FUENTE,</strong> GUILLERMO ADRIÁN</td></tr>
+        <tr><td class="cargo">Miembros Suplente 2º</td><td class="nombre"><strong>ROJAS CONTRERAS,</strong> ESTELA NOEMÍ</td></tr>
+        <tr><td class="cargo">Miembros Suplente 3º</td><td class="nombre"><strong>LÓPEZ,</strong> MÓNICA ALEJANDRA</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ===== FOTO INSTITUCIONAL ===== -->
+    <div class="foto-institucional">
+      <img src="foto.jpeg" alt="Comisión Directiva y autoridades del GDU Catamarca">
+      <div class="caption">
+        <strong>GDU Catamarca</strong> · Comisión Directiva y autoridades gremiales
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== PIE DE PÁGINA GREMIAL ===== -->
+  <footer>
+    <div class="footer-logo">
+      <img src="logo-gdu.png" alt="GDU Catamarca">
+    </div>
+    <div class="footer-nombre">Gremio Docente Universitario</div>
+    <div class="footer-sub">CONADU HISTÓRICA · Catamarca</div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener" class="ig">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/gremiodocente.universitario" target="_blank" rel="noopener" class="fb">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+    </div>
+    <div class="footer-copy">
+      <span>© 2026 Gremio Docente Universitario · CONADU HISTÓRICA</span><br>
+      Todos los derechos reservados. El contenido de este sitio es de carácter informativo y sindical.
+      Su reproducción parcial o total está permitida citando la fuente: <em>GDU Catamarca · CONADU HISTÓRICA</em>.
+    </div>
+  </footer>
+
+</body>
+</html>
