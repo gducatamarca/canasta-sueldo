@@ -1,0 +1,41 @@
+{
+  "ultima_actualizacion": "Junio 2026",
+  "noticias": [
+    {
+      "tipo": "paro",
+      "etiqueta": "PARO NACIONAL",
+      "fecha": "16 de Junio de 2026",
+      "titulo": "SEMANA DE PARO NACIONAL DEL 16 AL 20 DE JUNIO",
+      "texto": "CONADU HISTÓRICA convoca a la semana de paro nacional de la docencia universitaria en defensa de la universidad pública, la Ley de Financiamiento Universitario y en reclamo de recomposición salarial urgente.",
+      "enlace": "https://www.facebook.com/gremiodocente.universitario",
+      "enlace_texto": "Ver en Facebook"
+    },
+    {
+      "tipo": "salario",
+      "etiqueta": "SALARIOS",
+      "fecha": "11 de Junio de 2026",
+      "titulo": "DATOS INDEC MAYO 2026: EL SALARIO CUBRE EL 36,4% DE LA CANASTA",
+      "texto": "Según datos oficiales del INDEC publicados el 11 de junio, la Canasta Básica Total para un hogar de 4 integrantes alcanzó los $1.498.741. El salario de un Auxiliar de Primera Categoría representa apenas el 36,4% de ese valor.",
+      "enlace": "index.html#datos",
+      "enlace_texto": "Ver los datos"
+    },
+    {
+      "tipo": "general",
+      "etiqueta": "COMUNICADO",
+      "fecha": "5 de Junio de 2026",
+      "titulo": "COMUNICADO SOBRE EL PRESUPUESTO UNIVERSITARIO 2026",
+      "texto": "GDU Catamarca emite comunicado ante la falta de actualización presupuestaria para las universidades nacionales. Exigimos al Poder Ejecutivo el envío urgente de partidas que garanticen el funcionamiento pleno de las instituciones.",
+      "enlace": "https://www.facebook.com/gremiodocente.universitario",
+      "enlace_texto": "Leer comunicado completo"
+    },
+    {
+      "tipo": "logro",
+      "etiqueta": "LOGRO GREMIAL",
+      "fecha": "28 de Mayo de 2026",
+      "titulo": "ACUERDO DE MEJORA EN CONDICIONES DE TRABAJO",
+      "texto": "Tras meses de negociación, GDU Catamarca alcanzó un acuerdo con el rectorado de la UNCa en materia de condiciones de higiene y seguridad laboral para los docentes de los institutos preuniversitarios.",
+      "enlace": "https://www.facebook.com/gremiodocente.universitario",
+      "enlace_texto": "Ver más"
+    }
+  ]
+}
