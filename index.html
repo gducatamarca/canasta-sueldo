@@ -44,6 +44,7 @@
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
+/* ══ LOADER ══ */
 #loader {
   position: fixed; inset: 0;
   background: var(--bg); z-index: 9999;
@@ -80,6 +81,247 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   color: var(--gris); text-transform: uppercase; font-weight: 600;
 }
 
+/* ══ NAVEGACIÓN HAMBURGUESA ══ */
+.nav-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(14, 28, 45, 0.92);
+  border: 1px solid rgba(212, 160, 23, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: background 0.25s, border-color 0.25s,
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+.nav-toggle:hover {
+  background: rgba(27, 63, 114, 0.95);
+  border-color: rgba(212, 160, 23, 0.7);
+  box-shadow: 0 6px 28px rgba(212, 160, 23, 0.25);
+  transform: scale(1.08);
+}
+.nav-toggle.abierto {
+  background: rgba(27, 63, 114, 0.98);
+  border-color: var(--oro);
+  box-shadow: 0 6px 32px rgba(212, 160, 23, 0.35);
+}
+.nav-toggle .ham-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--oro);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.25s ease,
+              width 0.25s ease;
+  transform-origin: center;
+}
+.nav-toggle.abierto .ham-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.abierto .ham-line:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.nav-toggle.abierto .ham-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Panel lateral */
+.nav-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9998;
+  width: min(320px, 88vw);
+  height: 100dvh;
+  background: linear-gradient(160deg, #0b1e35 0%, #08111C 60%, #0f1500 100%);
+  border-left: 1px solid rgba(212, 160, 23, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 88px 32px 40px;
+  gap: 0;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: -8px 0 48px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+.nav-panel.abierto {
+  transform: translateX(0);
+}
+.nav-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
+}
+.nav-panel-header {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(212, 160, 23, 0.15);
+}
+.nav-panel-gdu {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: var(--blanco);
+  line-height: 1.2;
+}
+.nav-panel-gdu span { color: #4A9EFF; }
+.nav-panel-sub {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--gris);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.nav-section-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 12px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+.nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--blanco);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: background 0.2s,
+              transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+              color 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 3px 0 0 3px;
+  background: var(--oro);
+  transform: scaleY(0);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nav-item:hover {
+  background: rgba(212, 160, 23, 0.08);
+  border-color: rgba(212, 160, 23, 0.2);
+  transform: translateX(4px);
+  color: var(--oro);
+  box-shadow: 0 2px 12px rgba(212, 160, 23, 0.1);
+}
+.nav-item:hover::before { transform: scaleY(1); }
+.nav-item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nav-item:hover .nav-item-icon { transform: scale(1.15); }
+.nav-item-icon.ic-datos    { background: rgba(224, 32, 32, 0.15); }
+.nav-item-icon.ic-calc     { background: rgba(27, 63, 114, 0.3); }
+.nav-item-icon.ic-convenio { background: rgba(212, 160, 23, 0.15); }
+.nav-item-icon.ic-ext      { background: rgba(74, 158, 255, 0.15); }
+.nav-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nav-item-title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.nav-item-desc {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--gris);
+  transition: color 0.2s;
+}
+.nav-item:hover .nav-item-desc { color: rgba(212, 160, 23, 0.7); }
+.nav-item-arrow {
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.4;
+  transition: opacity 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+.nav-item:hover .nav-item-arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+.nav-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 16px 0;
+}
+.nav-panel-footer {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 9px;
+  color: #3D4F63;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* Overlay */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  background: rgba(8, 17, 28, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.nav-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ══ HERO LOGO ══ */
 .hero-logo {
   margin-bottom: 32px;
   display: flex; justify-content: center;
@@ -91,6 +333,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   filter: drop-shadow(0 2px 14px rgba(212,160,23,0.3));
 }
 
+/* ══ SOCIAL FLOAT ══ */
 .social-float {
   position: fixed; right: 20px; top: 50%;
   transform: translateY(-50%); z-index: 999;
@@ -130,9 +373,10 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
     left: 50%; transform: translateX(-50%); flex-direction: row;
   }
   .social-btn::before { display: none; }
+  .nav-toggle { top: 16px; right: 16px; }
 }
 
-/* ══ HERO PARO ══ */
+/* ══ HERO ══ */
 .hero {
   min-height: 100vh;
   display: flex; flex-direction: column;
@@ -148,8 +392,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 }
 .hero-bg-crowd {
   position: absolute; inset: 0; z-index: -1;
-  background: 
-    linear-gradient(160deg, #0b1e35 0%, #08111C 40%, #1a0404 100%);
+  background: linear-gradient(160deg, #0b1e35 0%, #08111C 40%, #1a0404 100%);
   overflow: hidden;
 }
 .hero-bg-crowd::before {
@@ -164,14 +407,10 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   content: '';
   position: absolute; inset: 0;
   background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(255,255,255,0.012) 2px,
-    rgba(255,255,255,0.012) 4px
+    0deg, transparent, transparent 2px,
+    rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px
   );
 }
-
 .hero-inner { position: relative; z-index: 1; max-width: 720px; width: 100%; }
 
 .paro-kicker {
@@ -185,15 +424,13 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   animation: fadeDown 0.6s ease-out 0.2s both;
 }
 .paro-kicker::before {
-  content: '●';
-  color: var(--rojo);
+  content: '●'; color: var(--rojo);
   animation: blink 1.2s ease-in-out infinite;
 }
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.2; }
 }
-
 .paro-title-block {
   margin-bottom: 16px;
   animation: fadeDown 0.7s ease-out 0.3s both;
@@ -201,9 +438,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .paro-main {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(80px, 22vw, 160px);
-  line-height: 0.85;
-  color: var(--rojo);
-  letter-spacing: 3px;
+  line-height: 0.85; color: var(--rojo); letter-spacing: 3px;
   text-shadow: 
     0 0 60px rgba(224,32,32,0.5),
     0 4px 30px rgba(224,32,32,0.3),
@@ -213,9 +448,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .paro-nacional {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(48px, 13vw, 96px);
-  line-height: 0.9;
-  color: var(--rojo);
-  letter-spacing: 4px;
+  line-height: 0.9; color: var(--rojo); letter-spacing: 4px;
   text-shadow: 
     0 0 40px rgba(224,32,32,0.4),
     0 4px 20px rgba(224,32,32,0.2),
@@ -225,97 +458,67 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .paro-subtitulo {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(13px, 3.5vw, 20px);
-  letter-spacing: 4px;
-  color: var(--blanco);
-  opacity: 0.9;
-  margin-top: 8px;
-  display: block;
-  text-transform: uppercase;
+  letter-spacing: 4px; color: var(--blanco); opacity: 0.9;
+  margin-top: 8px; display: block; text-transform: uppercase;
 }
-
 .paro-fecha-block {
   margin: 28px 0;
   animation: fadeDown 0.7s ease-out 0.45s both;
 }
 .paro-semana-label {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(32px, 8vw, 60px);
-  color: var(--oro);
-  letter-spacing: 3px;
-  line-height: 1;
-  text-shadow: 0 0 30px rgba(212,160,23,0.4);
-  display: block;
+  font-size: clamp(32px, 8vw, 60px); color: var(--oro);
+  letter-spacing: 3px; line-height: 1;
+  text-shadow: 0 0 30px rgba(212,160,23,0.4); display: block;
 }
 .paro-fecha-range {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(40px, 10vw, 78px);
-  color: var(--oro);
-  letter-spacing: 2px;
-  line-height: 0.95;
+  font-size: clamp(40px, 10vw, 78px); color: var(--oro);
+  letter-spacing: 2px; line-height: 0.95;
   text-shadow: 
     0 0 40px rgba(212,160,23,0.5),
     3px 3px 0px rgba(120,80,0,0.6);
   display: block;
 }
-
 .paro-consigna-block {
   margin: 20px 0 32px;
   animation: fadeDown 0.6s ease-out 0.6s both;
 }
 .paro-unidad {
-  font-size: clamp(12px, 2.5vw, 16px);
-  color: var(--blanco);
-  opacity: 0.75;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+  font-size: clamp(12px, 2.5vw, 16px); color: var(--blanco);
+  opacity: 0.75; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px;
 }
 .paro-lema {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(22px, 5.5vw, 42px);
-  color: var(--oro);
-  letter-spacing: 2px;
-  line-height: 1.15;
+  font-size: clamp(22px, 5.5vw, 42px); color: var(--oro);
+  letter-spacing: 2px; line-height: 1.15;
   text-shadow: 0 0 20px rgba(212,160,23,0.3);
 }
-
 .paro-logos-row {
   display: flex; align-items: center; justify-content: center;
   gap: 24px; margin-bottom: 36px;
   padding: 16px 28px;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
+  border-radius: 12px; backdrop-filter: blur(8px);
   animation: fadeDown 0.6s ease-out 0.7s both;
 }
 .paro-logo-gdu {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(18px, 4vw, 26px);
-  letter-spacing: 3px;
-  color: var(--blanco);
+  font-size: clamp(18px, 4vw, 26px); letter-spacing: 3px; color: var(--blanco);
 }
 .paro-logo-gdu span { color: #4A9EFF; }
-.paro-logos-divider {
-  width: 1px; height: 32px;
-  background: rgba(255,255,255,0.2);
-}
-.paro-logo-conadu {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
-}
+.paro-logos-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.2); }
+.paro-logo-conadu { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
 .paro-logo-conadu .conadu-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(16px, 3.5vw, 22px);
-  letter-spacing: 3px;
-  color: var(--blanco);
+  font-size: clamp(16px, 3.5vw, 22px); letter-spacing: 3px; color: var(--blanco);
 }
 .paro-logo-conadu .conadu-name span { color: #4A9EFF; }
 .paro-logo-conadu .conadu-sub {
   font-size: 7px; letter-spacing: 1.5px;
-  color: var(--gris); text-transform: uppercase; line-height: 1.3;
-  max-width: 160px;
+  color: var(--gris); text-transform: uppercase; line-height: 1.3; max-width: 160px;
 }
-
 .hero-btns {
   margin-top: 8px; display: flex; gap: 12px;
   justify-content: center; flex-wrap: wrap;
@@ -339,7 +542,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   box-shadow: 0 4px 20px rgba(27,63,114,0.4);
 }
 .hero-cta-calc:hover { filter: brightness(1.15); transform: translateY(-2px); }
-
 .scroll-hint {
   margin-top: 40px; font-size: 11px; color: #4A5568;
   letter-spacing: 2px; display: flex; flex-direction: column;
@@ -351,126 +553,78 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   background: linear-gradient(to bottom, transparent, var(--oro)); margin: 0 auto;
 }
 
-/* ══ SEPARADOR MODERNO ══ */
-.separador-debajo {
-  position: relative;
-  padding: 0;
-  overflow: hidden;
-}
+/* ══ SEPARADOR ══ */
+.separador-debajo { position: relative; padding: 0; overflow: hidden; }
 .separador-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  padding: 0 24px;
-  max-width: 860px;
-  margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; padding: 0 24px; max-width: 860px; margin: 0 auto;
 }
 .sep-line {
-  flex: 1;
-  height: 1px;
+  flex: 1; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(212,160,23,0.6));
 }
-.sep-line.right {
-  background: linear-gradient(90deg, rgba(212,160,23,0.6), transparent);
-}
+.sep-line.right { background: linear-gradient(90deg, rgba(212,160,23,0.6), transparent); }
 .sep-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 20px 28px;
-  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 20px 28px; position: relative;
 }
 .sep-badge::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
+  content: ''; position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px; height: 80px;
-  border-radius: 50%;
+  width: 80px; height: 80px; border-radius: 50%;
   background: radial-gradient(circle, rgba(212,160,23,0.12), transparent 70%);
 }
-.sep-icon {
-  font-size: 22px;
-  position: relative; z-index: 1;
-}
+.sep-icon { font-size: 22px; position: relative; z-index: 1; }
 .sep-text {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--oro);
-  text-transform: uppercase;
-  position: relative; z-index: 1;
+  font-size: 8px; font-weight: 700; letter-spacing: 3px;
+  color: var(--oro); text-transform: uppercase; position: relative; z-index: 1;
 }
 
-/* ══ BLOQUE "DEBAJO DE LA LÍNEA" ══ */
+/* ══ BLOQUE DEBAJO DE LA LÍNEA ══ */
 .debajo-block {
   background: linear-gradient(160deg, #0b1a2e 0%, #08111C 60%, #150303 100%);
-  padding: 64px 24px 72px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  padding: 64px 24px 72px; text-align: center;
+  position: relative; overflow: hidden;
 }
 .debajo-block::before {
-  content: '';
-  position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0;
   background-image: 
     radial-gradient(circle at 15% 50%, rgba(27,63,114,0.12) 0%, transparent 50%),
     radial-gradient(circle at 85% 30%, rgba(224,32,32,0.08) 0%, transparent 40%);
 }
-.debajo-inner {
-  position: relative; z-index: 1;
-  max-width: 680px; margin: 0 auto;
-}
-
+.debajo-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
 .debajo-mes {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 9px; font-weight: 700; letter-spacing: 4px;
-  color: var(--gris); text-transform: uppercase;
-  margin-bottom: 28px;
-  padding: 5px 16px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 40px;
-  background: rgba(255,255,255,0.03);
+  color: var(--gris); text-transform: uppercase; margin-bottom: 28px;
+  padding: 5px 16px; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 40px; background: rgba(255,255,255,0.03);
 }
-
 .debajo-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(52px, 13vw, 100px);
-  line-height: 0.88;
-  letter-spacing: 2px;
-  color: var(--blanco);
-  margin-bottom: 8px;
+  line-height: 0.88; letter-spacing: 2px; color: var(--blanco); margin-bottom: 8px;
 }
 .debajo-title .accent {
-  color: var(--rojo);
-  display: block;
+  color: var(--rojo); display: block;
   text-shadow: 0 0 40px rgba(224,32,32,0.3);
 }
-
 .debajo-sub {
-  font-size: clamp(14px, 2.5vw, 17px);
-  color: var(--gris);
-  line-height: 1.7;
-  max-width: 520px;
-  margin: 24px auto 0;
+  font-size: clamp(14px, 2.5vw, 17px); color: var(--gris);
+  line-height: 1.7; max-width: 520px; margin: 24px auto 0;
 }
 .debajo-sub strong { color: #FF6B6B; }
-
 .debajo-line {
   width: 60px; height: 3px; background: var(--oro);
   border-radius: 2px; margin: 24px auto 0;
 }
-
 .debajo-btns {
   margin-top: 36px; display: flex; gap: 12px;
   justify-content: center; flex-wrap: wrap;
 }
 
-/* ══ SECCIONES PRINCIPALES ══ */
+/* ══ SECCIONES ══ */
 .section { max-width: 860px; margin: 0 auto; padding: 80px 24px; }
-
 .section-label {
   font-size: 10px; font-weight: 700; letter-spacing: 4px;
   text-transform: uppercase; color: var(--oro); margin-bottom: 48px;
@@ -591,6 +745,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 }
 .fuente-box strong { color: var(--blanco); }
 
+/* ══ DATOS CTA ══ */
 .datos-cta-wrapper { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 .datos-cta-block {
   position: relative; border-radius: 28px; overflow: hidden;
@@ -660,14 +815,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .datos-cta-btn-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; line-height: 1.4; }
 .datos-cta-btn-sub { font-size: 9px; opacity: 0.75; letter-spacing: 1px; font-weight: 500; }
 
-@media (max-width: 640px) {
-  .datos-cta-inner { grid-template-columns: 1fr; padding: 28px 22px 26px; gap: 24px; }
-  .datos-cta-btn-wrap { width: 100%; }
-  .datos-cta-btn { flex-direction: row; width: 100%; padding: 18px 24px; justify-content: center; min-width: unset; }
-  .datos-mini-stats { gap: 16px; }
-  .datos-cta-wrapper { padding-bottom: 110px; }
-}
-
+/* ══ CALCULADORA ══ */
 .calc-section { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 .calc-section-label {
   font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
@@ -687,7 +835,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
   letter-spacing: 2px; color: var(--blanco); margin-bottom: 6px; text-align: center;
 }
 .calc-subtitle { font-size: 12px; color: var(--gris); text-align: center; margin-bottom: 32px; letter-spacing: 0.5px; }
-
 .calc-tipo-switch {
   display: flex; gap: 0; margin-bottom: 28px;
   background: rgba(255,255,255,0.04); border-radius: 12px; padding: 4px;
@@ -702,14 +849,11 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 }
 .calc-tipo-btn.activo {
   background: linear-gradient(135deg, var(--azul), var(--azul-c));
-  color: white;
-  box-shadow: 0 3px 14px rgba(27,63,114,0.45);
+  color: white; box-shadow: 0 3px 14px rgba(27,63,114,0.45);
 }
 .calc-tipo-btn:not(.activo):hover { color: var(--blanco); background: rgba(255,255,255,0.06); }
-
 #panel-universitario { display: block; }
 #panel-preuniversitario { display: none; }
-
 .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 .calc-field { display: flex; flex-direction: column; gap: 6px; }
 .calc-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gris); }
@@ -724,9 +868,7 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 }
 .calc-field select:focus { outline: none; border-color: var(--oro); background-color: rgba(212,160,23,0.08); }
 .calc-field select option { background: #0E1C2D; color: var(--blanco); }
-
 .calc-field.full { grid-column: 1 / -1; }
-
 .calc-btn {
   width: 100%; padding: 14px; margin-top: 20px;
   background: linear-gradient(135deg, var(--azul), var(--azul-c)); color: white;
@@ -737,7 +879,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 }
 .calc-btn:hover { filter: brightness(1.15); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,111,191,0.5); }
 .calc-btn:active { transform: translateY(0); }
-
 .calc-resultado {
   margin-top: 28px;
   background: linear-gradient(135deg, rgba(27,63,114,0.3), rgba(212,160,23,0.1));
@@ -749,25 +890,13 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .calc-resultado-detalle { font-size: 11px; color: var(--gris); margin-bottom: 16px; line-height: 1.6; }
 .calc-total-label { font-size: 11px; font-weight: 700; color: var(--gris); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
 .calc-total-val { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 8vw, 56px); color: #7EC8F0; line-height: 1; margin-bottom: 8px; }
-
 .calc-aviso-legal {
-  margin-top: 18px;
-  background: rgba(224,32,32,0.1);
-  border: 1px solid rgba(224,32,32,0.35);
-  border-radius: 10px;
-  padding: 14px 16px;
-  text-align: left;
+  margin-top: 18px; background: rgba(224,32,32,0.1);
+  border: 1px solid rgba(224,32,32,0.35); border-radius: 10px; padding: 14px 16px; text-align: left;
 }
-.calc-aviso-legal p {
-  font-size: 11px; line-height: 1.65; color: #F7C5C5;
-  margin: 0;
-}
+.calc-aviso-legal p { font-size: 11px; line-height: 1.65; color: #F7C5C5; margin: 0; }
 .calc-aviso-legal strong { color: #FF6B6B; font-weight: 700; }
-.calc-aviso-fuente {
-  font-size: 10px; color: #5A7090; margin-top: 10px; line-height: 1.6;
-  text-align: center;
-}
-
+.calc-aviso-fuente { font-size: 10px; color: #5A7090; margin-top: 10px; line-height: 1.6; text-align: center; }
 .calc-btn-pdf {
   width: 100%; padding: 12px; margin-top: 14px;
   background: linear-gradient(135deg, #1e4d2b, #2f7d4f); color: white;
@@ -778,30 +907,20 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .calc-btn-pdf.visible { display: block; }
 .calc-btn-pdf:hover { filter: brightness(1.15); transform: translateY(-2px); }
 
-@media (max-width: 640px) {
-  .calculadora-gdu { padding: 28px 18px 24px; }
-  .calc-grid { grid-template-columns: 1fr; }
-  .calc-section { padding: 0 16px 110px; }
-  .calc-tipo-btn { font-size: 10px; padding: 9px 10px; }
-}
-
+/* ══ CONVENIO ══ */
 .convenio-section { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 .convenio-section-label {
   font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
   color: var(--oro); margin-bottom: 32px; display: flex; align-items: center; gap: 12px;
 }
 .convenio-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(212,160,23,0.25); }
-
 .convenio-link {
-  text-decoration: none;
-  display: block;
+  text-decoration: none; display: block;
   transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }
 .convenio-link:hover { transform: translateY(-4px); }
-
 .convenio-container {
-  display: grid; grid-template-columns: 280px 1fr; gap: 36px; align-items: center;
-  cursor: pointer;
+  display: grid; grid-template-columns: 280px 1fr; gap: 36px; align-items: center; cursor: pointer;
 }
 .convenio-portada {
   position: relative; border-radius: 16px; overflow: hidden;
@@ -830,28 +949,19 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .convenio-cta {
   display: inline-flex; align-items: center; gap: 10px;
   background: linear-gradient(135deg, var(--oro), #F5B34E);
-  color: #08111C; text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  color: #08111C; text-decoration: none; font-family: 'Inter', sans-serif;
   font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
   padding: 14px 28px; border-radius: 8px;
   transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, filter 0.2s;
-  box-shadow: 0 6px 24px rgba(212,160,23,0.35);
-  margin-top: 8px; width: fit-content;
+  box-shadow: 0 6px 24px rgba(212,160,23,0.35); margin-top: 8px; width: fit-content;
 }
 .convenio-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(212,160,23,0.5); filter: brightness(1.08); }
 .convenio-cta svg { width: 16px; height: 16px; fill: currentColor; }
 
-@media (max-width: 768px) {
-  .convenio-container { grid-template-columns: 1fr; gap: 28px; }
-  .convenio-portada { max-width: 320px; margin: 0 auto; }
-  .convenio-section { padding: 0 16px 80px; }
-}
-
+/* ══ FOOTER ══ */
 footer {
   border-top: 1px solid rgba(212,160,23,0.15);
-  padding: 36px 24px;
-  text-align: center;
-  background: var(--bg);
+  padding: 36px 24px; text-align: center; background: var(--bg);
 }
 .footer-logo { display: flex; justify-content: center; margin-bottom: 20px; }
 .footer-logo img { height: 36px; width: auto; mix-blend-mode: screen; opacity: 0.7; }
@@ -871,6 +981,7 @@ footer {
 }
 .footer-copy span { color: #3D4F63; }
 
+/* ══ RESPONSIVE ══ */
 @media (max-width: 640px) {
   footer { padding-bottom: 90px; }
   .footer-links { flex-direction: column; align-items: center; gap: 12px; }
@@ -891,8 +1002,21 @@ footer {
   .hero-cta, .hero-cta-calc { padding: 12px 22px; font-size: 11px; }
   .paro-logos-row { flex-direction: column; gap: 12px; }
   .paro-logos-divider { width: 40px; height: 1px; }
+  .datos-cta-inner { grid-template-columns: 1fr; padding: 28px 22px 26px; gap: 24px; }
+  .datos-cta-btn-wrap { width: 100%; }
+  .datos-cta-btn { flex-direction: row; width: 100%; padding: 18px 24px; justify-content: center; min-width: unset; }
+  .datos-mini-stats { gap: 16px; }
+  .datos-cta-wrapper { padding-bottom: 110px; }
+  .calculadora-gdu { padding: 28px 18px 24px; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .calc-section { padding: 0 16px 110px; }
+  .calc-tipo-btn { font-size: 10px; padding: 9px 10px; }
+  .convenio-container { grid-template-columns: 1fr; gap: 28px; }
+  .convenio-portada { max-width: 320px; margin: 0 auto; }
+  .convenio-section { padding: 0 16px 80px; }
 }
 
+/* ══ ANIMACIONES ══ */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
@@ -916,10 +1040,6 @@ footer {
   50%       { box-shadow: inset 0 0 18px 2px rgba(224,32,32,0.12); }
 }
 .impacto-card.rojo { animation: glowRed 3s ease-in-out infinite; }
-@keyframes lineGrow {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
 @keyframes fadeDown {
   from { opacity: 0; transform: translateY(-12px); }
   to   { opacity: 1; transform: none; }
@@ -934,7 +1054,6 @@ footer {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(6px); }
 }
-
 @keyframes parpadeoRojo {
   0%, 100% { text-shadow: 0 0 60px rgba(224,32,32,0.5), 0 4px 30px rgba(224,32,32,0.3), 4px 4px 0px rgba(144,12,12,0.8); }
   50%       { text-shadow: 0 0 80px rgba(224,32,32,0.7), 0 4px 40px rgba(224,32,32,0.5), 4px 4px 0px rgba(144,12,12,0.9); }
@@ -951,7 +1070,89 @@ footer {
 </head>
 <body>
 
-<!-- ══ PANTALLA DE CARGA ══ -->
+<!-- ══ OVERLAY DEL MENÚ ══ -->
+<div class="nav-overlay" id="nav-overlay" onclick="cerrarNav()" aria-hidden="true"></div>
+
+<!-- ══ BOTÓN HAMBURGUESA ══ -->
+<button
+  class="nav-toggle"
+  id="nav-toggle"
+  onclick="toggleNav()"
+  aria-label="Abrir menú de navegación"
+  aria-expanded="false"
+  aria-controls="nav-panel"
+>
+  <span class="ham-line"></span>
+  <span class="ham-line"></span>
+  <span class="ham-line"></span>
+</button>
+
+<!-- ══ PANEL LATERAL DE NAVEGACIÓN ══ -->
+<nav class="nav-panel" id="nav-panel" aria-label="Menú principal" aria-hidden="true">
+
+  <div class="nav-panel-header">
+    <div class="nav-panel-gdu"><span>GDU</span> CATAMARCA</div>
+    <div class="nav-panel-sub">CONADU HISTÓRICA</div>
+  </div>
+
+  <div class="nav-section-label">Esta página</div>
+
+  <div class="nav-items">
+
+    <a class="nav-item" href="#datos" onclick="cerrarNav()">
+      <div class="nav-item-icon ic-datos">📊</div>
+      <div class="nav-item-text">
+        <span class="nav-item-title">Datos</span>
+        <span class="nav-item-desc">Salario vs línea de pobreza</span>
+      </div>
+      <span class="nav-item-arrow">›</span>
+    </a>
+
+    <a class="nav-item" href="#calculadora" onclick="cerrarNav()">
+      <div class="nav-item-icon ic-calc">🧮</div>
+      <div class="nav-item-text">
+        <span class="nav-item-title">Calculadora de Salarios</span>
+        <span class="nav-item-desc">Universitario y preuniversitario</span>
+      </div>
+      <span class="nav-item-arrow">›</span>
+    </a>
+
+    <a class="nav-item" href="#convenio" onclick="cerrarNav()">
+      <div class="nav-item-icon ic-convenio">📜</div>
+      <div class="nav-item-text">
+        <span class="nav-item-title">Convenio Colectivo de Trabajo</span>
+        <span class="nav-item-desc">CCT · Docentes universitarios</span>
+      </div>
+      <span class="nav-item-arrow">›</span>
+    </a>
+
+    <div class="nav-divider"></div>
+
+    <a
+      class="nav-item"
+      href="https://gducatamarca.github.io/canasta-sueldo/autoridades.html"
+      target="_blank"
+      rel="noopener noreferrer"
+      onclick="cerrarNav()"
+    >
+      <div class="nav-item-icon ic-ext">👥</div>
+      <div class="nav-item-text">
+        <span class="nav-item-title">Autoridades</span>
+        <span class="nav-item-desc">Conducción GDU Catamarca</span>
+      </div>
+      <span class="nav-item-arrow">↗</span>
+    </a>
+
+  </div>
+
+  <div class="nav-panel-footer">
+    GDU Catamarca · CONADU HISTÓRICA<br>
+    © 2026 · Todos los derechos reservados
+  </div>
+
+</nav>
+
+<!-- ══ LOADER ══ -->
 <div id="loader">
   <img src="logo-gdu.png" alt="GDU Catamarca · CONADU HISTÓRICA">
   <div class="loader-bar-wrap">
@@ -960,7 +1161,7 @@ footer {
   <div class="loader-txt">Cargando información sindical</div>
 </div>
 
-<!-- ══ BOTONES FLOTANTES DE REDES SOCIALES ══ -->
+<!-- ══ SOCIAL FLOAT ══ -->
 <div class="social-float" aria-label="Redes sociales">
   <a class="social-btn ig" href="https://www.instagram.com/gducatamarca/" target="_blank" rel="noopener noreferrer" data-tip="Instagram" aria-label="Instagram GDU Catamarca">
     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
@@ -970,12 +1171,9 @@ footer {
   </a>
 </div>
 
-<!-- ══════════════════════════════════════════
-     HERO · PARO NACIONAL (PORTADA PRINCIPAL)
-     ══════════════════════════════════════════ -->
+<!-- ══ HERO ══ -->
 <section class="hero">
   <div class="hero-bg-crowd"></div>
-
   <div class="hero-inner">
 
     <div class="hero-logo">
@@ -1038,33 +1236,23 @@ footer {
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     BLOQUE "DEBAJO DE LA LÍNEA"
-     ══════════════════════════════════════════ -->
+<!-- ══ DEBAJO DE LA LÍNEA ══ -->
 <div class="debajo-block">
   <div class="debajo-inner">
-
-    <!-- ① ACTUALIZADO: referencia a mayo 2026 (último dato INDEC disponible) -->
     <div class="debajo-mes">Mayo 2026 · Datos oficiales INDEC</div>
-
     <h1 class="debajo-title">
       DEBAJO
       <span class="accent">DE LA LÍNEA</span>
     </h1>
-
-    <!-- ② ACTUALIZADO: porcentaje recalculado · 545.300,21 / 1.498.741 = 36,4% -->
     <p class="debajo-sub">
       El salario docente universitario cubre apenas el <strong>36,4%</strong> de la Canasta Básica Total.
       Un cargo testigo, números reales, una realidad inocultable.
     </p>
-
     <div class="debajo-line"></div>
-
     <div class="debajo-btns">
       <a href="#datos" class="hero-cta">Ver los datos →</a>
       <a href="#calculadora" class="hero-cta-calc">🧮 Calculadora de salarios</a>
     </div>
-
   </div>
 </div>
 
@@ -1076,13 +1264,11 @@ footer {
   <div class="confronta reveal">
     <div class="confronta-card salario">
       <div class="c-label">💼 Salario Docente</div>
-      <!-- ③ ACTUALIZADO: nuevo cargo testigo junio 2026 -->
       <div class="c-amount">$545.300</div>
       <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
       <p class="c-desc">
         Auxiliar de Primera Categoría<br>
         Dedicación Semiexclusiva<br>
-        <!-- ④ ACTUALIZADO: escala junio 2026 -->
         <strong style="color:#7EC8F0">Escala CONADU HISTÓRICA · Junio 2026</strong>
       </p>
     </div>
@@ -1091,7 +1277,6 @@ footer {
     </div>
     <div class="confronta-card pobreza">
       <div class="c-label">🚫 Línea de Pobreza</div>
-      <!-- ⑤ SIN CAMBIO: último dato INDEC disponible es mayo 2026 -->
       <div class="c-amount">$1.498.741</div>
       <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:16px 0">
       <p class="c-desc">
@@ -1115,12 +1300,10 @@ footer {
     </div>
     <div class="barra-row">
       <div class="barra-meta">
-        <!-- ⑥ ACTUALIZADO: nombre de cargo corregido -->
         <span class="barra-name">📚 Salario Auxiliar de Primera Categoría · Semiexclusiva</span>
         <span class="barra-val" style="color:#7EC8F0">$545.300</span>
       </div>
       <div class="barra-track">
-        <!-- ⑦ ACTUALIZADO: 545300.21 / 1498741 = 36,38% ≈ 36,4% -->
         <div class="barra-fill fill-sal" data-w="36.4">36%</div>
       </div>
     </div>
@@ -1131,13 +1314,11 @@ footer {
   <div class="impacto-grid reveal">
     <div class="impacto-card rojo">
       <div class="ic-label">Déficit mensual</div>
-      <!-- ⑧ ACTUALIZADO: 1.498.741 - 545.300 = 953.441 -->
       <div class="ic-val" id="counter-deficit">-$953.441</div>
       <div class="ic-desc">Lo que le falta al sueldo para cubrir la línea de pobreza de una familia tipo</div>
     </div>
     <div class="impacto-card azul">
       <div class="ic-label">El sueldo cubre</div>
-      <!-- ⑨ SIN CAMBIO: el porcentaje se mantiene igual -->
       <div class="ic-val" id="counter-pct">36,4%</div>
       <div class="ic-desc">De la Canasta Básica Total. Menos de la mitad de lo necesario para no ser pobre</div>
     </div>
@@ -1151,7 +1332,6 @@ footer {
   <div class="alerta reveal">
     <div class="alerta-tag">💬 Reflexión final</div>
     <p class="alerta-texto">
-      <!-- ⑩ ACTUALIZADO: nombre de cargo actualizado -->
       Un docente universitario (Auxiliar de Primera Categoría) con dedicación semiexclusiva
       <strong>cobra menos de la mitad</strong> de lo que una familia necesita para no caer en la pobreza.
       Detrás de estos números hay <strong>trayectorias, vocaciones y familias</strong>
@@ -1163,7 +1343,6 @@ footer {
     <strong>🔍 Fuente oficial INDEC (mayo 2026):</strong><br>
     Canasta Básica Total (CBT) – Línea de pobreza: $1.498.741 para un hogar de 4 integrantes.
     Variación mensual: +2,0%. Publicado el 11 de junio de 2026.<br><br>
-    <!-- ⑪ ACTUALIZADO: nombre de cargo y período de escala -->
     <strong>📌 Salario docente:</strong>
     Auxiliar de Primera Categoría con Dedicación Semiexclusiva – escala salarial CONADU HISTÓRICA, liquidación Junio 2026.<br><br>
     <em style="opacity:0.7">📊 Elaboración: GDU Catamarca · CONADU HISTÓRICA.
@@ -1224,9 +1403,8 @@ footer {
   </div>
 </div>
 
-<!-- ══ CALCULADORA SALARIAL ══ -->
+<!-- ══ CALCULADORA ══ -->
 <section class="calc-section" id="calculadora">
-  <!-- ⑫ ACTUALIZADO: etiqueta de la sección -->
   <div class="calc-section-label reveal">🧮 CALCULADORA SALARIAL · JUNIO 2026</div>
 
   <div class="calculadora-gdu reveal">
@@ -1242,7 +1420,6 @@ footer {
       </button>
     </div>
 
-    <!-- ── PANEL UNIVERSITARIO ── -->
     <div id="panel-universitario">
       <div class="calc-grid">
         <div class="calc-field">
@@ -1285,7 +1462,6 @@ footer {
       </button>
     </div>
 
-    <!-- ── PANEL PREUNIVERSITARIO ── -->
     <div id="panel-preuniversitario">
       <div class="calc-grid">
         <div class="calc-field full">
@@ -1313,9 +1489,7 @@ footer {
       </button>
     </div>
 
-    <!-- ── RESULTADO ── -->
     <div class="calc-resultado" id="calc-resultado">
-      <!-- ⑬ ACTUALIZADO: período del resultado -->
       <div class="calc-resultado-tag">📊 Resultado estimado · Junio 2026</div>
       <div class="calc-resultado-detalle" id="calc-detalle"></div>
       <div class="calc-total-label">Salario bruto estimado</div>
@@ -1328,7 +1502,6 @@ footer {
           <strong>No incluye descuentos adicionales locales, cuota sindical ni otros añadidos.</strong>
         </p>
       </div>
-      <!-- ⑭ ACTUALIZADO: fuente del resultado -->
       <div class="calc-aviso-fuente">
         Fuente: Acta Paritaria Junio 2026 · CONADU HISTÓRICA
       </div>
@@ -1340,8 +1513,9 @@ footer {
   </div>
 </section>
 
-<!-- ══ MÓDULO CONVENIO COLECTIVO ══ -->
-<section class="convenio-section reveal">
+<!-- ══ CONVENIO COLECTIVO ══ -->
+<!-- id="convenio" agregado para que el menú pueda navegar hasta aquí -->
+<section class="convenio-section reveal" id="convenio">
   <div class="convenio-section-label">
     📜 CONVENIO COLECTIVO DE TRABAJO
   </div>
@@ -1398,7 +1572,40 @@ footer {
 
 <script>
 /* ════════════════════════════════
-   CARGAR JSON Y LUEGO OCULTAR LOADER
+   MENÚ HAMBURGUESA
+   ════════════════════════════════ */
+function toggleNav() {
+  const toggle  = document.getElementById('nav-toggle');
+  const panel   = document.getElementById('nav-panel');
+  const overlay = document.getElementById('nav-overlay');
+  const abierto = toggle.classList.toggle('abierto');
+
+  panel.classList.toggle('abierto', abierto);
+  overlay.classList.toggle('visible', abierto);
+  toggle.setAttribute('aria-expanded', abierto);
+  panel.setAttribute('aria-hidden', !abierto);
+  document.body.style.overflow = abierto ? 'hidden' : '';
+}
+
+function cerrarNav() {
+  const toggle  = document.getElementById('nav-toggle');
+  const panel   = document.getElementById('nav-panel');
+  const overlay = document.getElementById('nav-overlay');
+
+  toggle.classList.remove('abierto');
+  panel.classList.remove('abierto');
+  overlay.classList.remove('visible');
+  toggle.setAttribute('aria-expanded', 'false');
+  panel.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') cerrarNav();
+});
+
+/* ════════════════════════════════
+   CARGAR JSON
    ════════════════════════════════ */
 let SALARIOS = {};
 let PRE_CARGOS = {};
@@ -1419,7 +1626,6 @@ fetch('datos_salarios.json')
     PRE_CARGOS = data.preuniversitarios.cargos;
     PRE_TRAMOS = data.preuniversitarios.antiguedad_tramos;
 
-    // ⑮ ACTUALIZADO: muestra "Junio 2026" tomado del propio JSON
     document.getElementById('calc-subtitle').textContent =
       `Escala salarial ${data.ultima_actualizacion} · GDU Catamarca`;
 
@@ -1440,13 +1646,13 @@ fetch('datos_salarios.json')
   });
 
 /* ════════════════════════════════
-   FUNCIONES CALCULADORA
+   CALCULADORA
    ════════════════════════════════ */
 function switchTipo(tipo) {
   tipoActivo = tipo;
   document.getElementById('btn-universitario').classList.toggle('activo', tipo === 'universitario');
   document.getElementById('btn-preuniversitario').classList.toggle('activo', tipo === 'preuniversitario');
-  document.getElementById('panel-universitario').style.display   = tipo === 'universitario'   ? 'block' : 'none';
+  document.getElementById('panel-universitario').style.display    = tipo === 'universitario'    ? 'block' : 'none';
   document.getElementById('panel-preuniversitario').style.display = tipo === 'preuniversitario' ? 'block' : 'none';
   document.getElementById('calc-resultado').classList.remove('visible');
   document.getElementById('btn-pdf').classList.remove('visible');
@@ -1478,14 +1684,14 @@ function calcular() {
   const antTexto   = document.getElementById('antiguedad').selectedOptions[0].text;
   const posTexto   = document.getElementById('posgrado').selectedOptions[0].text;
 
-  const basico = SALARIOS[dedicacion][cargo];
-  const total  = basico * (1 + antiguedad) * (1 + posgrado);
+  const basico   = SALARIOS[dedicacion][cargo];
+  const total    = basico * (1 + antiguedad) * (1 + posgrado);
   const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2 });
 
   ultimoResultado = { tipo: 'Universitario', dedicacion, cargo, antTexto, posTexto, total: totalFmt };
 
-  document.getElementById('calc-total').textContent  = totalFmt;
-  document.getElementById('calc-detalle').innerHTML  =
+  document.getElementById('calc-total').textContent = totalFmt;
+  document.getElementById('calc-detalle').innerHTML =
     `<strong style="color:var(--blanco)">${dedicacion} · ${cargo}</strong><br>` +
     `Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
 
@@ -1522,8 +1728,8 @@ function calcularPre() {
     cargo, antTexto, posTexto, total: totalFmt
   };
 
-  document.getElementById('calc-total').textContent  = totalFmt;
-  document.getElementById('calc-detalle').innerHTML  =
+  document.getElementById('calc-total').textContent = totalFmt;
+  document.getElementById('calc-detalle').innerHTML =
     `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}</strong><br>` +
     `Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
 
@@ -1537,7 +1743,7 @@ function mostrarResultado() {
 }
 
 /* ════════════════════════════════
-   GENERACIÓN PDF
+   PDF
    ════════════════════════════════ */
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
@@ -1551,11 +1757,9 @@ function descargarPDF() {
   img.src = 'logo-gdu.png';
   img.onload = function () {
 
-    // Fondo general
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, 'F');
 
-    // Encabezado
     doc.setFillColor(27, 63, 114);
     doc.rect(0, 0, 210, 38, 'F');
     doc.addImage(img, 'PNG', 10, 6, 100, 26);
@@ -1563,15 +1767,12 @@ function descargarPDF() {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.text(`Emisión: ${fecha}`, 200, 12, { align: 'right' });
-    // ⑯ ACTUALIZADO: período en el PDF
     doc.text('Junio 2026', 200, 20, { align: 'right' });
 
-    // Línea dorada
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
 
-    // Título
     doc.setTextColor(247, 249, 252);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(20);
@@ -1585,7 +1786,6 @@ function descargarPDF() {
       : 'Escala universitaria · CONADU HISTÓRICA · GDU Catamarca';
     doc.text(subtituloTipo, 105, 66, { align: 'center' });
 
-    // Caja detalle
     doc.setFillColor(14, 28, 45);
     doc.roundedRect(14, 76, 182, 74, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191);
@@ -1598,11 +1798,11 @@ function descargarPDF() {
     doc.text('DETALLE DE LA SIMULACIÓN', 22, 86);
 
     const items = [
-      ['Tipo:', r.tipo],
-      ['Cargo:', r.cargo],
+      ['Tipo:',       r.tipo],
+      ['Cargo:',      r.cargo],
       r.tipo === 'Universitario' ? ['Dedicación:', r.dedicacion] : null,
       ['Antigüedad:', r.antTexto],
-      ['Posgrado:', r.posTexto],
+      ['Posgrado:',   r.posTexto],
     ].filter(Boolean);
 
     let y = 96;
@@ -1618,7 +1818,6 @@ function descargarPDF() {
       y += 11 * valLines.length;
     });
 
-    // Caja total
     doc.setFillColor(27, 63, 114);
     doc.roundedRect(14, 160, 182, 52, 4, 4, 'F');
     doc.setDrawColor(212, 160, 23);
@@ -1633,12 +1832,10 @@ function descargarPDF() {
     doc.setFont('helvetica', 'bold');
     doc.text(r.total, 105, 197, { align: 'center' });
 
-    // Separador
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.4);
     doc.line(14, 222, 196, 222);
 
-    // Aviso legal
     doc.setFillColor(50, 10, 10);
     doc.roundedRect(14, 226, 182, 40, 3, 3, 'F');
     doc.setDrawColor(180, 30, 30);
@@ -1658,7 +1855,6 @@ function descargarPDF() {
       'consultá con tu área de RRHH.';
     doc.text(doc.splitTextToSize(avisoTexto, 172), 22, 242);
 
-    // ⑰ ACTUALIZADO: fuente en el PDF
     doc.setTextColor(70, 90, 110);
     doc.setFontSize(7);
     doc.text(
@@ -1666,7 +1862,6 @@ function descargarPDF() {
       105, 274, { align: 'center' }
     );
 
-    // Pie
     doc.setFillColor(14, 28, 45);
     doc.rect(0, 279, 210, 18, 'F');
     doc.setDrawColor(212, 160, 23);
