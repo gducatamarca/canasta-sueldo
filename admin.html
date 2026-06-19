@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Noticias · GDU Catamarca</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap');
+
+:root {
+  --rojo:   #E02020;
+  --rojo-d: #900C0C;
+  --azul:   #1B3F72;
+  --azul-c: #2D6FBF;
+  --oro:    #D4A017;
+  --bg:     #08111C;
+  --bg2:    #0E1C2D;
+  --gris:   #A0AEC0;
+  --blanco: #F7F9FC;
+  --verde:  #22C55E;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--blanco);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══ LOGIN ══ */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(27,63,114,0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(212,160,23,0.12) 0%, transparent 50%),
+    var(--bg);
+}
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg2);
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+.login-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
+}
+.login-logo {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.login-logo-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--azul-c), var(--oro));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px rgba(212,160,23,0.3);
+}
+.login-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 3px;
+  color: var(--blanco);
+  margin-bottom: 4px;
+}
+.login-title span { color: var(--oro); }
+.login-sub {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gris);
+  text-transform: uppercase;
+}
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 8px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--blanco);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--oro);
+  background: rgba(0,0,0,0.45);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: 'Inter', sans-serif;
+}
+.form-select option { background: var(--bg2); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--azul-c), var(--oro));
+  color: white;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(212,160,23,0.25);
+}
+.btn-primary:hover { filter: brightness(1.1); box-shadow: 0 8px 28px rgba(212,160,23,0.4); }
+.btn-danger { background: rgba(224,32,32,0.15); color: #FF6B6B; border: 1px solid rgba(224,32,32,0.3); }
+.btn-danger:hover { background: rgba(224,32,32,0.25); }
+.btn-secondary { background: rgba(255,255,255,0.05); color: var(--gris); border: 1px solid rgba(255,255,255,0.1); }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); color: var(--blanco); }
+.btn-success { background: linear-gradient(135deg, #16a34a, #22C55E); color: white; }
+.btn-success:hover { filter: brightness(1.1); }
+.btn-sm { padding: 8px 12px; font-size: 10px; letter-spacing: 1px; }
+.login-error {
+  background: rgba(224,32,32,0.15);
+  border: 1px solid rgba(224,32,32,0.4);
+  color: #FF6B6B;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-bottom: 16px;
+  display: none;
+}
+.login-error.visible { display: block; }
+
+/* ══ PANEL ADMIN ══ */
+.admin-wrap { display: none; min-height: 100vh; }
+.admin-wrap.visible { display: block; }
+.admin-header {
+  background: var(--bg2);
+  border-bottom: 1px solid rgba(212,160,23,0.2);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+.admin-header::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
+}
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.admin-brand-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--azul-c), var(--oro));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.admin-brand-text h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--blanco);
+  line-height: 1;
+}
+.admin-brand-text h1 span { color: var(--oro); }
+.admin-brand-text p {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gris);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.admin-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+.admin-section {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.admin-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--azul-c), var(--oro));
+  opacity: 0.5;
+}
+.admin-section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--blanco);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-section-title span { color: var(--oro); }
+.admin-section-sub {
+  font-size: 11px;
+  color: var(--gris);
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Form grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-grid .full { grid-column: 1 / -1; }
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* Lista de noticias */
+.noticias-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.noticia-item {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: border-color 0.2s, background 0.2s;
+}
+.noticia-item:hover {
+  border-color: rgba(212,160,23,0.25);
+  background: rgba(0,0,0,0.4);
+}
+.noticia-item-content { flex: 1; min-width: 0; }
+.noticia-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.noticia-item-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.tag-paro    { background: rgba(224,32,32,0.15); color: #FF6B6B; border: 1px solid rgba(224,32,32,0.3); }
+.tag-salario { background: rgba(45,111,191,0.2); color: #7EC8F0; border: 1px solid rgba(45,111,191,0.35); }
+.tag-general { background: rgba(212,160,23,0.12); color: var(--oro); border: 1px solid rgba(212,160,23,0.3); }
+.tag-logro   { background: rgba(34,197,94,0.12); color: #4ADE80; border: 1px solid rgba(34,197,94,0.3); }
+.noticia-item-fecha {
+  font-size: 10px;
+  color: #5A7090;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.noticia-item-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: var(--blanco);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.noticia-item-text {
+  font-size: 12px;
+  color: var(--gris);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.noticia-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg2);
+  border: 1px solid rgba(212,160,23,0.4);
+  color: var(--blanco);
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  z-index: 9999;
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.toast.success { border-color: rgba(34,197,94,0.5); }
+.toast.error   { border-color: rgba(224,32,32,0.5); }
+.toast.info    { border-color: rgba(45,111,191,0.5); }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gris);
+}
+.empty-state-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
+.empty-state-text { font-size: 13px; }
+
+/* Status bar */
+.status-bar {
+  background: rgba(212,160,23,0.08);
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: var(--oro);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status-bar::before {
+  content: 'ℹ️';
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .admin-header { padding: 16px; }
+  .admin-main { padding: 20px 16px 60px; }
+  .admin-section { padding: 18px; }
+  .noticia-item { flex-direction: column; }
+  .noticia-item-actions { flex-direction: row; width: 100%; }
+  .noticia-item-actions .btn { flex: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     LOGIN
+══════════════════════════════════ -->
+<div class="login-wrap" id="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">🔐</div>
+      <div class="login-title"><span>ADMIN</span> NOTICIAS</div>
+      <div class="login-sub">GDU Catamarca · Panel de gestión</div>
+    </div>
+
+    <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
+
+    <form id="login-form" onsubmit="return intentarLogin(event)">
+      <div class="form-group">
+        <label class="form-label" for="usuario">Usuario</label>
+        <input class="form-input" type="text" id="usuario" autocomplete="username" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Contraseña</label>
+        <input class="form-input" type="password" id="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Ingresar</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PANEL ADMIN
+══════════════════════════════════ -->
+<div class="admin-wrap" id="admin-wrap">
+
+  <header class="admin-header">
+    <div class="admin-brand">
+      <div class="admin-brand-icon">📰</div>
+      <div class="admin-brand-text">
+        <h1><span>GDU</span> · Panel de Noticias</h1>
+        <p>Administrador de contenido</p>
+      </div>
+    </div>
+    <div class="admin-actions">
+      <button class="btn btn-secondary btn-sm" onclick="recargarJSON()">🔄 Recargar JSON</button>
+      <button class="btn btn-success btn-sm" onclick="guardarJSON()">💾 Guardar</button>
+      <button class="btn btn-danger btn-sm" onclick="cerrarSesion()">Salir</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+
+    <div class="status-bar">
+      Los cambios se guardan en <strong>noticias.json</strong>. Al pulsar "Guardar" se te pedirá seleccionar el archivo para sobrescribirlo (Chrome/Edge).
+    </div>
+
+    <!-- FORMULARIO AGREGAR/EDITAR -->
+    <section class="admin-section">
+      <h2 class="admin-section-title" id="form-titulo">➕ <span>NUEVA NOTICIA</span></h2>
+      <p class="admin-section-sub">Completá los campos para agregar o editar una noticia.</p>
+
+      <form id="noticia-form" onsubmit="return guardarNoticia(event)">
+        <input type="hidden" id="noticia-index" value="-1">
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="f-tipo">Tipo</label>
+            <select class="form-select" id="f-tipo" required>
+              <option value="paro">🔴 Paro</option>
+              <option value="salario">🔵 Salario</option>
+              <option value="general" selected>🟡 General</option>
+              <option value="logro">🟢 Logro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-etiqueta">Etiqueta (se muestra)</label>
+            <input class="form-input" type="text" id="f-etiqueta" placeholder="Ej: PARO NACIONAL" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-fecha">Fecha</label>
+            <input class="form-input" type="text" id="f-fecha" placeholder="Ej: 19 de Junio de 2026" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-enlace-texto">Texto del enlace</label>
+            <input class="form-input" type="text" id="f-enlace-texto" placeholder="Ej: Ver en Facebook">
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="f-titulo">Título</label>
+            <input class="form-input" type="text" id="f-titulo" placeholder="Título de la noticia" required>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="f-texto">Texto / Resumen</label>
+            <textarea class="form-textarea" id="f-texto" rows="4" placeholder="Contenido de la noticia..." required></textarea>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label" for="f-enlace">Enlace (URL)</label>
+            <input class="form-input" type="url" id="f-enlace" placeholder="https://...">
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+          <button type="submit" class="btn btn-success">💾 Guardar noticia</button>
+          <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">✖ Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- LISTADO -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">📋 <span>NOTICIAS PUBLICADAS</span></h2>
+      <p class="admin-section-sub">Orden de aparición en noticias.html (el primero es el destacado).</p>
+      <div class="noticias-list" id="noticias-list"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════
+   CREDENCIALES
+══════════════════════════════════ */
+const USUARIO_VALIDO = 'admin';
+const PASSWORD_VALIDO = 'admin123+';
+
+/* ══════════════════════════════════
+   ESTADO
+══════════════════════════════════ */
+let datosJSON = {
+  ultima_actualizacion: '',
+  noticias: []
+};
+let fileHandle = null; // Para File System Access API
+
+/* ══════════════════════════════════
+   LOGIN
+══════════════════════════════════ */
+function intentarLogin(e) {
+  e.preventDefault();
+  const u = document.getElementById('usuario').value.trim();
+  const p = document.getElementById('password').value;
+  const err = document.getElementById('login-error');
+
+  if (u === USUARIO_VALIDO && p === PASSWORD_VALIDO) {
+    sessionStorage.setItem('gdu_admin_ok', '1');
+    err.classList.remove('visible');
+    mostrarPanel();
+  } else {
+    err.classList.add('visible');
+  }
+  return false;
+}
+
+function cerrarSesion() {
+  if (!confirm('¿Cerrar sesión?')) return;
+  sessionStorage.removeItem('gdu_admin_ok');
+  fileHandle = null;
+  location.reload();
+}
+
+function mostrarPanel() {
+  document.getElementById('login-wrap').style.display = 'none';
+  document.getElementById('admin-wrap').classList.add('visible');
+  cargarJSONInicial();
+}
+
+/* ══════════════════════════════════
+   CARGA INICIAL
+══════════════════════════════════ */
+async function cargarJSONInicial() {
+  try {
+    const res = await fetch('noticias.json?t=' + Date.now());
+    if (!res.ok) throw new Error('No se pudo cargar');
+    datosJSON = await res.json();
+    if (!datosJSON.noticias) datosJSON.noticias = [];
+    renderLista();
+    toast('Noticias cargadas desde servidor', 'info');
+  } catch (err) {
+    toast('No se pudo cargar noticias.json (iniciando vacío)', 'error');
+    datosJSON = { ultima_actualizacion: '', noticias: [] };
+    renderLista();
+  }
+}
+
+function recargarJSON() {
+  cargarJSONInicial();
+  limpiarFormulario();
+}
+
+/* ══════════════════════════════════
+   RENDER LISTA
+══════════════════════════════════ */
+function renderLista() {
+  const cont = document.getElementById('noticias-list');
+  if (!datosJSON.noticias.length) {
+    cont.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">📭</div>
+        <div class="empty-state-text">No hay noticias cargadas.<br>Agregá la primera con el formulario de arriba.</div>
+      </div>`;
+    return;
+  }
+
+  cont.innerHTML = datosJSON.noticias.map((n, i) => `
+    <div class="noticia-item">
+      <div class="noticia-item-content">
+        <div class="noticia-item-header">
+          <span class="noticia-item-tag tag-${n.tipo || 'general'}">${escapeHTML(n.etiqueta || n.tipo)}</span>
+          <span class="noticia-item-fecha">${escapeHTML(n.fecha || '')}</span>
+        </div>
+        <div class="noticia-item-title">${escapeHTML(n.titulo || '')}</div>
+        <div class="noticia-item-text">${escapeHTML(n.texto || '')}</div>
+      </div>
+      <div class="noticia-item-actions">
+        <button class="btn btn-secondary btn-sm" onclick="editarNoticia(${i})">✏️ Editar</button>
+        ${i > 0 ? `<button class="btn btn-secondary btn-sm" onclick="moverNoticia(${i},-1)">⬆</button>` : ''}
+        ${i < datosJSON.noticias.length - 1 ? `<button class="btn btn-secondary btn-sm" onclick="moverNoticia(${i},1)">⬇</button>` : ''}
+        <button class="btn btn-danger btn-sm" onclick="eliminarNoticia(${i})">🗑 Eliminar</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+/* ══════════════════════════════════
+   FORMULARIO
+══════════════════════════════════ */
+function limpiarFormulario() {
+  document.getElementById('noticia-form').reset();
+  document.getElementById('noticia-index').value = '-1';
+  document.getElementById('form-titulo').innerHTML = '➕ <span>NUEVA NOTICIA</span>';
+}
+
+function editarNoticia(i) {
+  const n = datosJSON.noticias[i];
+  if (!n) return;
+  document.getElementById('noticia-index').value = i;
+  document.getElementById('f-tipo').value = n.tipo || 'general';
+  document.getElementById('f-etiqueta').value = n.etiqueta || '';
+  document.getElementById('f-fecha').value = n.fecha || '';
+  document.getElementById('f-titulo').value = n.titulo || '';
+  document.getElementById('f-texto').value = n.texto || '';
+  document.getElementById('f-enlace').value = n.enlace || '';
+  document.getElementById('f-enlace-texto').value = n.enlace_texto || '';
+  document.getElementById('form-titulo').innerHTML = '✏️ <span>EDITANDO NOTICIA #' + (i+1) + '</span>';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function guardarNoticia(e) {
+  e.preventDefault();
+  const idx = parseInt(document.getElementById('noticia-index').value);
+  const obj = {
+    tipo: document.getElementById('f-tipo').value,
+    etiqueta: document.getElementById('f-etiqueta').value.trim(),
+    fecha: document.getElementById('f-fecha').value.trim(),
+    titulo: document.getElementById('f-titulo').value.trim(),
+    texto: document.getElementById('f-texto').value.trim(),
+    enlace: document.getElementById('f-enlace').value.trim(),
+    enlace_texto: document.getElementById('f-enlace-texto').value.trim()
+  };
+
+  if (idx >= 0) {
+    datosJSON.noticias[idx] = obj;
+    toast('Noticia actualizada', 'success');
+  } else {
+    datosJSON.noticias.unshift(obj); // Al principio (destacada)
+    toast('Noticia agregada al inicio', 'success');
+  }
+
+  // Actualizar fecha de modificación
+  const ahora = new Date();
+  const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  datosJSON.ultima_actualizacion = meses[ahora.getMonth()] + ' ' + ahora.getFullYear();
+
+  renderLista();
+  limpiarFormulario();
+  return false;
+}
+
+function eliminarNoticia(i) {
+  if (!confirm('¿Eliminar esta noticia? Esta acción no se puede deshacer.')) return;
+  datosJSON.noticias.splice(i, 1);
+  renderLista();
+  toast('Noticia eliminada', 'info');
+}
+
+function moverNoticia(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= datosJSON.noticias.length) return;
+  const arr = datosJSON.noticias;
+  [arr[i], arr[j]] = [arr[j], arr[i]];
+  renderLista();
+}
+
+/* ══════════════════════════════════
+   GUARDAR EN ARCHIVO
+══════════════════════════════════ */
+async function guardarJSON() {
+  const jsonStr = JSON.stringify(datosJSON, null, 2);
+
+  // Intentar File System Access API (Chrome/Edge)
+  if ('showSaveFilePicker' in window) {
+    try {
+      if (!fileHandle) {
+        fileHandle = await window.showSaveFilePicker({
+          suggestedName: 'noticias.json',
+          types: [{
+            description: 'Archivo JSON',
+            accept: { 'application/json': ['.json'] }
+          }]
+        });
+      }
+      const writable = await fileHandle.createWritable();
+      await writable.write(jsonStr);
+      await writable.close();
+      toast('✅ noticias.json actualizado correctamente', 'success');
+      return;
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        toast('Guardado cancelado', 'info');
+        return;
+      }
+      console.warn('File System Access falló, usando descarga:', err);
+    }
+  }
+
+  // Fallback: descarga manual
+  descargarJSON(jsonStr);
+}
+
+function descargarJSON(jsonStr) {
+  const blob = new Blob([jsonStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'noticias.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('📥 JSON descargado. Reemplazá manualmente el archivo en tu servidor.', 'info');
+}
+
+/* ══════════════════════════════════
+   TOAST
+══════════════════════════════════ */
+let toastTimer = null;
+function toast(msg, tipo = 'info') {
+  const t = document.getElementById('toast');
+  t.className = 'toast ' + tipo;
+  t.textContent = msg;
+  requestAnimationFrame(() => t.classList.add('visible'));
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('visible'), 3500);
+}
+
+/* ══════════════════════════════════
+   INIT
+══════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('gdu_admin_ok') === '1') {
+    mostrarPanel();
+  }
+});
+</script>
+</body>
+</html>
