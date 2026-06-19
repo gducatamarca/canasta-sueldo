@@ -2,6 +2,24 @@
   "ultima_actualizacion": "Junio 2026",
   "noticias": [
     {
+      "tipo": "general",
+      "etiqueta": "PARO EXITOSO",
+      "fecha": "18 de Junio 2026",
+      "titulo": "MASIVO ACATAMIENTO AL PARO UNIVERSITARIO Y PREUNIVERSITARIO",
+      "texto": "MASIVA MUESTRA DEL MALESTAR DE LA DOCENCIA UNIVERSITARIA, POR EL INCUMPLIMIENTO A LA LEY DE FINANCIAMIENTO UNIVERSITARIO Y LLA FALTA DE CONVICCION Y ENERGIA DE LAS CONDUCCIONE UNIVERSITARIAS. \nCARENCIA DE SALARIOS, INSUMOS DE CATEDRA, LOGISTICA Y FORMACION AL PERSONA DOCENTE.\nEN LE UNCA LA DOCENCIA RATIFICO SU PEDIDO DE QUE SE CUMPLEA LA LEY",
+      "enlace": "https://www.facebook.com/gremiodocente.universitario",
+      "enlace_texto": "https://www.facebook.com/gremiodocente.universitario"
+    },
+    {
+      "tipo": "general",
+      "etiqueta": "Conclusiones del plenario nacional de CONADU Histórica",
+      "fecha": "6 de Junio de 2026",
+      "titulo": "Conclusiones del plenario nacional de CONADU Histórica",
+      "texto": "Terminado el plenario de la Federación, el dia 4 de junio ppdo., hubo reunión virtual con el CIN, la FUA y las federaciones docentes y FATUN . Se nos informó que no había novedades con respecto a la propuesta del gobierno. En esta reunión se acordó realizar dos acciones: \n• El 9 de junio, frente a tribunales en plaza Lavalle (CABA), en horas de la mañana. El formato será de una clase pública y se propone replicarlo a nivel nacional. Se está organizando esta actividad, el lunes tendremos más información para compartir.\n• La semana del 16 de junio, una acción conjunta en Pizzurno, frente al Palacio Sarmiento para exigir la convocatoria paritarias.\nPor otra parte, ayer se conoció que la Corte sacó un fallo desfavorable al Gobierno que rechaza la recusación a jueces que fueran docentes universitarios y esta mañana llegó extraoficialmente la noticia de que el gobierno estaría dispuesto a reabrir el diálogo sosteniendo el 21,33% en junio, 3% (dicen que de octubre pasaría a julio), paritarias cada 3 meses según INDEC y comisión técnica por la deuda 2024. \nLo que también llegó es que el gobierno aceptaría que la demanda no se levante pero que habría una firma de acta conjunta con todos los sectores. Esta información está circulando, por lo tanto es importante que estemos en conocimiento y manejemos la misma información que nos va llegando. \nPor último, en el plenario de la CONADU  se resolvió convocar a paro de una semana el 16 en coincidencia con lo resuelto por nuestra Federación. Por lo tanto, trabajemos fuertemente para que ese paro sea contundente por la aplicación plena de la ley de financiamiento universitario y la convocatoria a paritarias de manera urgente.",
+      "enlace": "https://www.facebook.com/gremiodocente.universitario",
+      "enlace_texto": "https://www.facebook.com/gremiodocente.universitario"
+    },
+    {
       "tipo": "paro",
       "etiqueta": "PARO NACIONAL",
       "fecha": "16 de Junio de 2026",
@@ -18,24 +36,6 @@
       "texto": "Según datos oficiales del INDEC publicados el 11 de junio, la Canasta Básica Total para un hogar de 4 integrantes alcanzó los $1.498.741. El salario de un Auxiliar de Primera Categoría representa apenas el 36,4% de ese valor.",
       "enlace": "index.html#datos",
       "enlace_texto": "Ver los datos"
-    },
-    {
-      "tipo": "general",
-      "etiqueta": "COMUNICADO",
-      "fecha": "5 de Junio de 2026",
-      "titulo": "COMUNICADO SOBRE EL PRESUPUESTO UNIVERSITARIO 2026",
-      "texto": "GDU Catamarca emite comunicado ante la falta de actualización presupuestaria para las universidades nacionales. Exigimos al Poder Ejecutivo el envío urgente de partidas que garanticen el funcionamiento pleno de las instituciones.",
-      "enlace": "https://www.facebook.com/gremiodocente.universitario",
-      "enlace_texto": "Leer comunicado completo"
-    },
-    {
-      "tipo": "logro",
-      "etiqueta": "LOGRO GREMIAL",
-      "fecha": "28 de Mayo de 2026",
-      "titulo": "ACUERDO DE MEJORA EN CONDICIONES DE TRABAJO",
-      "texto": "Tras meses de negociación, GDU Catamarca alcanzó un acuerdo con el rectorado de la UNCa en materia de condiciones de higiene y seguridad laboral para los docentes de los institutos preuniversitarios.",
-      "enlace": "https://www.facebook.com/gremiodocente.universitario",
-      "enlace_texto": "Ver más"
     }
   ]
 }
