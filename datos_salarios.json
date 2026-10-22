@@ -1,76 +1,39 @@
 {
-  "ultima_actualizacion": "Junio 2026",
+  "ultima_actualizacion": "Octubre 2026",
   "dedicaciones": {
     "Exclusiva": {
-      "Titular": 1948581.14,
-      "Asociado": 1739955.09,
-      "Adjunto": 1520087.32,
-      "JTP": 1305455.41,
-      "Ayudante 1ra": 1090603.69
+      "Titular": 2067249.72,
+      "Asociado": 1839552.95,
+      "Adjunto": 1612660.62,
+      "JTP": 1384957.64,
+      "Ayudante de 1era.": 1157021.45
     },
     "Semiexclusiva": {
-      "Titular": 974292.19,
-      "Asociado": 869976.22,
-      "Adjunto": 760036.95,
-      "JTP": 652726.78,
-      "Ayudante 1ra": 545300.21
+      "Titular": 1033626.57,
+      "Asociado": 919775.05,
+      "Adjunto": 806323.19,
+      "JTP": 692477.82,
+      "Ayudante de 1era.": 578508.98
     },
     "Simple": {
-      "Titular": 487144.77,
-      "Asociado": 433982.17,
-      "Adjunto": 380014.62,
-      "JTP": 326359.56,
-      "Ayudante 1ra": 272645.27,
-      "Ayudante 2da": 218119.71
+      "Titular": 516811.87,
+      "Asociado": 459881.22,
+      "Adjunto": 403157.50,
+      "JTP": 346234.85,
+      "Ayudante de 1era.": 289249.34,
+      "Ayudante de 2da.": 231403.18
     }
   },
   "preuniversitarios": {
-    "antiguedad_tramos": [
-      { "label": "0 años (base)",        "anios": 0,  "factor": 1.00 },
-      { "label": "1 a 4 años (+20%)",    "anios": 1,  "factor": 1.20 },
-      { "label": "5 a 6 años (+30%)",    "anios": 5,  "factor": 1.30 },
-      { "label": "7 a 9 años (+40%)",    "anios": 7,  "factor": 1.40 },
-      { "label": "10 a 11 años (+50%)",  "anios": 10, "factor": 1.50 },
-      { "label": "12 a 14 años (+60%)",  "anios": 12, "factor": 1.60 },
-      { "label": "15 a 16 años (+70%)",  "anios": 15, "factor": 1.70 },
-      { "label": "17 a 19 años (+80%)",  "anios": 17, "factor": 1.80 },
-      { "label": "20 a 21 años (+100%)", "anios": 20, "factor": 2.00 },
-      { "label": "22 a 23 años (+110%)", "anios": 22, "factor": 2.10 },
-      { "label": "24 o más años (+120%)","anios": 24, "factor": 2.20 }
-    ],
     "cargos": {
-      "Preceptor":                              933576.72,
-      "Subjefe de Preceptores":                 1037191.63,
-      "Jefe de Preceptores":                    1120291.46,
-      "Bibliotecario":                          976013.40,
-      "Jefe de Biblioteca":                     1171212.75,
-      "Prof. de Equipo de Orientación":         990155.69,
-      "Ayudante Equipo de Orientación":         495050.42,
-      "Rector / Director":                      2386975.14,
-      "Vicerrector / Vicedirector":             2107789.35,
-      "Regente":                                1414505.79,
-      "Subregente":                             1202331.77,
-      "Asesor Pedagógico":                      1484349.10,
-      "Secretario":                             1414505.79,
-      "Prosecretario":                          1202331.77,
-      "Maestro Jardín Maternal":                999630.23,
-      "Maestro Jardín de Infantes":             971343.02,
-      "Maestro Especial Nivel Inicial":         1114915.20,
-      "Maestro de Grado":                       943054.17,
-      "Maestro Especial Nivel Primario":        1114915.20,
-      "Profesor 15 Hs. Cát. Niv. Medio":        707240.80,
-      "Maestro Coordinador":                    1001472.99,
-      "Ayud. Clases Práct. N. Medio":           451512.41,
-      "Jefe De Trab. Práct. N. Medio":          541813.82,
-      "Ayudante Tco. de Trab. Práct.":          451512.41,
-      "Maestro de Enseñanza Práctica":          792124.55,
-      "Maestro de Ens. Práct. Jefe de S.":      871336.75,
-      "Jefe Gral. de Enseñanza Práct.":         950548.34,
-      "Jefe Gral. de Taller de Ens. Práct.":    1029760.12,
-      "Profesor 12 Hs. Cátedra Niv. Superior":  707251.89,
-      "Ayud. Clases Práct. Niv. Sup.":          564389.79,
-      "Jefe Trabajos Práct. Niv. Sup.":         677265.56,
-      "Jefe/Director/Coord. de Departamento":   1113923.15
-    }
+      "Maestro de Grado": 1000485.00,
+      "Profesor Horas Cátedra Niv. Medio": 750321.40,
+      "Profesor Horas Cátedra Niv. Terciario": 750323.20
+    },
+    "antiguedad_tramos": [
+      { "label": "Sin antigüedad (100%)", "factor": 1 },
+      { "label": "Hasta 5 años (110%)", "factor": 1.10 },
+      { "label": "Hasta 10 años (120%)", "factor": 1.20 }
+    ]
   }
 }
