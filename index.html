@@ -46,6 +46,50 @@ html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
 /* ════════════════════════════════
+   BOTÓN FLOTANTE AL CONVENIO
+   ════════════════════════════════ */
+.convenio-float-btn {
+  position: fixed; bottom: 100px; right: 20px; z-index: 998;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #D4A017, #F4C430);
+  border: 2px solid rgba(244, 196, 48, 0.4);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; text-decoration: none;
+  font-size: 24px; box-shadow: 0 6px 32px rgba(212, 160, 23, 0.45);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s, filter 0.3s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: floatBounce 3s ease-in-out infinite;
+}
+.convenio-float-btn:hover {
+  transform: scale(1.15) translateY(-6px);
+  box-shadow: 0 10px 40px rgba(212, 160, 23, 0.65);
+  filter: brightness(1.15);
+}
+.convenio-float-btn::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: 68px; right: 0;
+  background: rgba(27, 63, 114, 0.98); color: var(--oro);
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  white-space: nowrap; padding: 6px 12px; border-radius: 6px;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  text-transform: uppercase; backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 160, 23, 0.4);
+}
+.convenio-float-btn:hover::after { opacity: 1; }
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@media (max-width: 640px) {
+  .convenio-float-btn {
+    width: 48px; height: 48px; bottom: 90px; right: 16px; font-size: 20px;
+  }
+  .convenio-float-btn::after { display: none; }
+}
+
+/* ════════════════════════════════
    PANTALLA DE CARGA
    ════════════════════════════════ */
 #loader {
@@ -560,11 +604,160 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .calc-btn-pdf.visible { display: block; }
 .calc-btn-pdf:hover { filter: brightness(1.15); transform: translateY(-2px); }
 
+/* ════════════════════════════════
+   MÓDULO CONVENIO COLECTIVO
+   ════════════════════════════════ */
+.convenio-section {
+  max-width: 860px; margin: 0 auto; padding: 0 24px 100px;
+}
+.convenio-section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--oro); margin-bottom: 32px;
+  display: flex; align-items: center; gap: 12px;
+}
+.convenio-section-label::after { content: ''; flex: 1; height: 1px; background: rgba(212,160,23,0.25); }
+
+.convenio-block {
+  position: relative; border-radius: 32px; overflow: hidden;
+  border: 1px solid rgba(212,160,23,0.35);
+  background: linear-gradient(135deg, #0b2235 0%, #0e1c2d 50%, #1a0f04 100%);
+  padding: 0;
+}
+.convenio-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--oro), var(--azul-c), var(--oro));
+}
+.convenio-block::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg, transparent, transparent 50px,
+    rgba(212,160,23,0.025) 50px, rgba(212,160,23,0.025) 51px
+  );
+  pointer-events: none;
+}
+
+.convenio-inner {
+  position: relative; z-index: 1; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  padding: 56px 56px;
+}
+
+/* Imagen del convenio */
+.convenio-img-wrap {
+  display: flex; justify-content: center; align-items: center;
+  perspective: 1200px;
+}
+.convenio-img {
+  width: 100%; max-width: 280px; height: auto;
+  border-radius: 20px; box-shadow: 0 20px 60px rgba(212,160,23,0.4);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.35s;
+  transform: rotateY(-8deg) rotateX(4deg);
+  image-rendering: auto;
+}
+.convenio-img:hover {
+  transform: rotateY(-4deg) rotateX(2deg) scale(1.06);
+  box-shadow: 0 28px 80px rgba(212,160,23,0.55);
+}
+
+/* Contenido del convenio */
+.convenio-content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 5vw, 48px); line-height: 1.1;
+  letter-spacing: 1px; color: var(--blanco); margin-bottom: 12px;
+}
+.convenio-content h2 .accent-oro { color: var(--oro); }
+.convenio-content h2 .accent-azul { color: #7EC8F0; }
+
+.convenio-subtitle {
+  font-size: 13px; font-weight: 600; color: var(--gris);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.convenio-desc {
+  font-size: clamp(14px, 2vw, 16px); line-height: 1.8;
+  color: var(--gris); margin-bottom: 28px;
+}
+.convenio-desc strong { color: var(--blanco); }
+.convenio-desc em { color: var(--oro); font-style: normal; font-weight: 600; }
+
+.convenio-features {
+  display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px;
+}
+.convenio-feature {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 16px; background: rgba(212,160,23,0.08);
+  border-left: 3px solid var(--oro); border-radius: 8px;
+  transition: background 0.2s, transform 0.2s;
+}
+.convenio-feature:hover {
+  background: rgba(212,160,23,0.15);
+  transform: translateX(4px);
+}
+.convenio-feature-icon {
+  font-size: 18px; flex-shrink: 0; margin-top: 2px;
+}
+.convenio-feature-text {
+  font-size: 12px; font-weight: 500;
+  color: var(--blanco); line-height: 1.5;
+}
+.convenio-feature-text strong { color: var(--oro); }
+
+.convenio-cta-wrap {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.convenio-cta {
+  flex: 1; min-width: 180px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(135deg, var(--oro), #F4C430);
+  color: #0a0a0a; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; font-size: 11px;
+  padding: 14px 28px; border-radius: 12px; text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.25s, filter 0.25s;
+  box-shadow: 0 8px 32px rgba(212,160,23,0.45);
+  border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+}
+.convenio-cta:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 48px rgba(212,160,23,0.65);
+  filter: brightness(1.12);
+}
+.convenio-cta svg { width: 18px; height: 18px; fill: currentColor; }
+
+.convenio-cta.secundario {
+  background: rgba(45,111,191,0.2); border: 1px solid rgba(45,111,191,0.5);
+  color: #7EC8F0;
+  box-shadow: 0 4px 16px rgba(45,111,191,0.25);
+}
+.convenio-cta.secundario:hover {
+  background: rgba(45,111,191,0.3);
+  box-shadow: 0 8px 28px rgba(45,111,191,0.45);
+}
+
+@media (max-width: 768px) {
+  .convenio-inner {
+    grid-template-columns: 1fr; gap: 32px; padding: 40px 32px;
+  }
+  .convenio-img {
+    max-width: 220px;
+    transform: rotateY(0) rotateX(0);
+  }
+  .convenio-img:hover {
+    transform: scale(1.05);
+  }
+}
+
 @media (max-width: 640px) {
-  .calculadora-gdu { padding: 28px 18px 24px; }
-  .calc-grid { grid-template-columns: 1fr; }
-  .calc-section { padding: 0 16px 110px; }
-  .calc-tipo-btn { font-size: 10px; padding: 9px 10px; }
+  .convenio-inner { padding: 28px 20px; gap: 24px; }
+  .convenio-img { max-width: 160px; }
+  .convenio-content h2 { font-size: 28px; margin-bottom: 8px; }
+  .convenio-subtitle { font-size: 10px; margin-bottom: 16px; }
+  .convenio-desc { font-size: 13px; margin-bottom: 20px; }
+  .convenio-features { gap: 10px; margin-bottom: 20px; }
+  .convenio-cta { font-size: 10px; padding: 12px 20px; }
+  .convenio-section { padding: 0 16px 120px; }
 }
 
 /* ════════════════════════════════
@@ -709,6 +902,11 @@ footer {
   </div>
   <div class="loader-txt">Cargando información sindical</div>
 </div>
+
+<!-- ══ BOTÓN FLOTANTE AL CONVENIO ══ -->
+<a href="#convenio" class="convenio-float-btn" data-tooltip="Ir al convenio" aria-label="Ir a Convenio Colectivo">
+  📜
+</a>
 
 <!-- ══ BOTONES FLOTANTES DE REDES SOCIALES ══ -->
 <div class="social-float" aria-label="Redes sociales">
@@ -1038,6 +1236,79 @@ footer {
   </div>
 </section>
 
+<!-- ══ MÓDULO CONVENIO COLECTIVO ══ -->
+<section class="convenio-section" id="convenio">
+  <div class="convenio-section-label reveal">📜 CONVENIO COLECTIVO DE TRABAJO</div>
+
+  <div class="convenio-block reveal">
+    <div class="convenio-inner">
+      <!-- Imagen -->
+      <div class="convenio-img-wrap">
+        <img src="caratula.png" alt="Convenio Colectivo de Trabajo - Docentes UUNN" class="convenio-img">
+      </div>
+
+      <!-- Contenido -->
+      <div class="convenio-content">
+        <h2>
+          Consulta del <span class="accent-oro">Convenio Colectivo</span>
+          <br>de Trabajo
+        </h2>
+        <p class="convenio-subtitle">Docentes Universitarios y Preuniversitarios · CONADU HISTÓRICA</p>
+        
+        <p class="convenio-desc">
+          El <em>Convenio Colectivo de Trabajo para docentes de las Universidades Nacionales</em>
+          es tu herramienta de consulta. Resuelve dudas sobre <strong>categorías, dedicaciones,
+          licencias, salarios, derechos gremiales y protecciones</strong> en un lenguaje claro.
+        </p>
+
+        <!-- Features -->
+        <div class="convenio-features">
+          <div class="convenio-feature">
+            <div class="convenio-feature-icon">⚡</div>
+            <div class="convenio-feature-text">
+              <strong>Búsqueda rápida</strong> de artículos, disposiciones y derechos específicos
+            </div>
+          </div>
+          <div class="convenio-feature">
+            <div class="convenio-feature-icon">📋</div>
+            <div class="convenio-feature-text">
+              Preguntas frecuentes respondidas con <strong>referencia directa al CCT</strong>
+            </div>
+          </div>
+          <div class="convenio-feature">
+            <div class="convenio-feature-icon">📱</div>
+            <div class="convenio-feature-text">
+              Accesible en cualquier dispositivo • Offline disponible • <strong>Sin complicaciones</strong>
+            </div>
+          </div>
+          <div class="convenio-feature">
+            <div class="convenio-feature-icon">✋</div>
+            <div class="convenio-feature-text">
+              Tus derechos en tus manos: <strong>Conocé el CCT, defendé tus derechos</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="convenio-cta-wrap">
+          <a href="convenio.html" class="convenio-cta">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+            Consultar Convenio
+          </a>
+          <button class="convenio-cta secundario" onclick="descargarConvenio()">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2z M11 3L5.5 8.5l1.42 1.41L11 5.83V15h2V5.83l4.08 4.08L18.5 8.5 13 3z"/>
+            </svg>
+            Descargar PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-logo">
@@ -1327,7 +1598,7 @@ function mostrarResultado() {
 }
 
 /* ════════════════════════════════
-   PDF (SIN CAMBIOS)
+   PDF CALCULADORA
    ════════════════════════════════ */
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
@@ -1459,7 +1730,20 @@ function descargarPDF() {
 }
 
 /* ════════════════════════════════
-   OBSERVER — ANIMACIONES (SIN CAMBIOS)
+   DESCARGAR CONVENIO
+   ════════════════════════════════ */
+function descargarConvenio() {
+  const filename = "CCT_Docentes_UUNN_2014.pdf";
+  const link = document.createElement('a');
+  link.href = filename;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+/* ════════════════════════════════
+   OBSERVER — ANIMACIONES
    ════════════════════════════════ */
 function animateCounter(el, from, to, duration, prefix='', suffix='') {
   const start = performance.now();
