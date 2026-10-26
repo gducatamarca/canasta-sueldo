@@ -218,50 +218,6 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .nav-overlay.visible { opacity: 1; pointer-events: all; }
 
 /* ════════════════════════════════
-   BOTÓN FLOTANTE AL CONVENIO
-   ════════════════════════════════ */
-.convenio-float-btn {
-  position: fixed; bottom: 100px; right: 20px; z-index: 998;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: linear-gradient(135deg, #D4A017, #F4C430);
-  border: 2px solid rgba(244, 196, 48, 0.4);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; text-decoration: none;
-  font-size: 24px; box-shadow: 0 6px 32px rgba(212, 160, 23, 0.45);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s, filter 0.3s;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  animation: floatBounce 3s ease-in-out infinite;
-}
-.convenio-float-btn:hover {
-  transform: scale(1.15) translateY(-6px);
-  box-shadow: 0 10px 40px rgba(212, 160, 23, 0.65);
-  filter: brightness(1.15);
-}
-.convenio-float-btn::after {
-  content: attr(data-tooltip);
-  position: absolute; bottom: 68px; right: 0;
-  background: rgba(27, 63, 114, 0.98); color: var(--oro);
-  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-  white-space: nowrap; padding: 6px 12px; border-radius: 6px;
-  opacity: 0; pointer-events: none; transition: opacity 0.2s;
-  text-transform: uppercase; backdrop-filter: blur(8px);
-  border: 1px solid rgba(212, 160, 23, 0.4);
-}
-.convenio-float-btn:hover::after { opacity: 1; }
-@keyframes floatBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-@media (max-width: 640px) {
-  .convenio-float-btn {
-    width: 48px; height: 48px; bottom: 90px; right: 16px; font-size: 20px;
-  }
-  .convenio-float-btn::after { display: none; }
-}
-
-/* ════════════════════════════════
    PANTALLA DE CARGA
    ════════════════════════════════ */
 #loader {
@@ -1236,11 +1192,6 @@ footer {
   </div>
   <div class="loader-txt">Cargando información sindical</div>
 </div>
-
-<!-- ══ BOTÓN FLOTANTE AL CONVENIO ══ -->
-<a href="#convenio" class="convenio-float-btn" data-tooltip="Ir al convenio" aria-label="Ir a Convenio Colectivo">
-  📜
-</a>
 
 <!-- ══ BOTONES FLOTANTES DE REDES SOCIALES ══ -->
 <div class="social-float" aria-label="Redes sociales">
