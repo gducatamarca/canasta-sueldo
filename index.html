@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -721,6 +722,32 @@ body { background: var(--bg); color: var(--blanco); font-family: 'Inter', sans-s
 .calc-resultado-detalle { font-size: 11px; color: var(--gris); margin-bottom: 16px; line-height: 1.6; }
 .calc-total-label { font-size: 11px; font-weight: 700; color: var(--gris); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
 .calc-total-val { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 8vw, 56px); color: #7EC8F0; line-height: 1; margin-bottom: 8px; }
+
+/* ── DESGLOSE: BRUTO Y DESCUENTO (debajo del neto) ── */
+.calc-bruto-wrap {
+  margin-top: 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.calc-bruto-linea { font-size: 12px; color: var(--gris); letter-spacing: 0.3px; }
+.calc-bruto-linea strong { color: var(--blanco); font-size: 14px; font-weight: 700; }
+.calc-descuento-linea { font-size: 11px; color: #FC7070; letter-spacing: 0.3px; }
+.calc-descuento-linea strong { color: #FF6B6B; font-weight: 700; }
+
+/* ── ACLARACIONES DEL NETO ── */
+.calc-aclaracion-neto {
+  margin-top: 18px;
+  background: rgba(27,63,114,0.25);
+  border: 1px solid rgba(45,111,191,0.4);
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: left;
+}
+.calc-aclaracion-neto p {
+  font-size: 11px; line-height: 1.65; color: var(--gris);
+  margin: 0 0 8px;
+}
+.calc-aclaracion-neto p:last-child { margin-bottom: 0; }
+.calc-aclaracion-neto strong { color: var(--blanco); font-weight: 700; }
 
 /* ── AVISO LEGAL DESTACADO ── */
 .calc-aviso-legal {
@@ -1505,16 +1532,39 @@ footer {
     <div class="calc-resultado" id="calc-resultado">
       <div class="calc-resultado-tag">📊 Resultado estimado · Octubre 2026</div>
       <div class="calc-resultado-detalle" id="calc-detalle"></div>
-      <div class="calc-total-label">Salario bruto estimado</div>
+
+      <!-- SALDO NETO (principal) -->
+      <div class="calc-total-label">Saldo neto estimado (sueldo de bolsillo)</div>
       <div class="calc-total-val" id="calc-total">$ 0</div>
+
+      <!-- DESGLOSE DEBAJO DEL NETO -->
+      <div class="calc-bruto-wrap">
+        <div class="calc-bruto-linea">Sueldo bruto: <strong id="calc-bruto">$ 0</strong></div>
+        <div class="calc-descuento-linea">Descuento de Ley (21%): <strong id="calc-descuento">$ 0</strong></div>
+      </div>
+
+      <!-- ACLARACIONES -->
+      <div class="calc-aclaracion-neto">
+        <p>
+          <strong>¿Qué es el saldo neto?</strong>
+          Es el sueldo de bolsillo: el monto que efectivamente se percibe una vez aplicados los descuentos de Ley.
+        </p>
+        <p>
+          <strong>¿Qué es el 21%?</strong>
+          Es el descuento de Ley, que incluye varios conceptos (aportes jubilatorios, obra social e impuesto a las ganancias, según corresponda).
+        </p>
+        <p>
+          <strong>Descuentos adicionales:</strong>
+          el empleado puede tener otros descuentos por cuestiones judiciales u otros descuentos externos.
+          Estos no están contemplados en este cálculo y reducirían el saldo final que percibe.
+        </p>
+      </div>
 
       <!-- AVISO LEGAL DESTACADO -->
       <div class="calc-aviso-legal">
         <p>
           <strong>⚠ Cálculo estimativo.</strong>
-          Los descuentos por Ley son aproximadamente el <strong>21%</strong>, que contemplan
-          aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda).
-          <strong>No incluye descuentos adicionales locales, cuota sindical ni otros añadidos.</strong>
+          Los valores son referenciales y no reemplazan la liquidación oficial. Para confirmar tu saldo, consultá con tu área de RRHH.
         </p>
       </div>
       <div class="calc-aviso-fuente">
@@ -1683,9 +1733,11 @@ let SALARIOS    = {};   // dedicaciones universitarias
 let PRE_CARGOS  = {};   // cargos preuniversitarios  { nombre: basicoSinAntiguedad }
 let PRE_TRAMOS  = [];   // tramos de antigüedad preuniversitarios
 let tipoActivo  = 'universitario';
+const DESCUENTO_LEY = 0.21;  // descuento de Ley (incluye varios conceptos)
 let ultimoResultado = {
   tipo: '', dedicacion: '', cargo: '',
-  antTexto: '', posTexto: '', total: ''
+  antTexto: '', posTexto: '',
+  bruto: '', descuento: '', neto: ''
 };
 
 /* ════════════════════════════════
@@ -1714,6 +1766,33 @@ fetch('datos_salarios.json')
   });
 
 /* ════════════════════════════════
+   UTILIDADES DE MONTOS
+   ════════════════════════════════ */
+function formatearPesos(n) {
+  return '$ ' + n.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+/* Dado el sueldo bruto, calcula descuento de Ley (21%) y saldo neto (sueldo de bolsillo) */
+function calcularMontos(bruto) {
+  const descuento = bruto * DESCUENTO_LEY;
+  const neto = bruto - descuento;
+  return {
+    bruto: formatearPesos(bruto),
+    descuento: formatearPesos(descuento),
+    neto: formatearPesos(neto)
+  };
+}
+
+/* Muestra en pantalla el saldo neto, el bruto y el descuento */
+function mostrarMontosEnPantalla(montos, detalleHTML) {
+  document.getElementById('calc-detalle').innerHTML = detalleHTML;
+  document.getElementById('calc-total').textContent = montos.neto;
+  document.getElementById('calc-bruto').textContent = montos.bruto;
+  document.getElementById('calc-descuento').textContent = '-' + montos.descuento;
+  mostrarResultado();
+}
+
+/* ════════════════════════════════
    SWITCH UNIVERSITARIO / PREUNIVERSITARIO
    ════════════════════════════════ */
 function switchTipo(tipo) {
@@ -1727,52 +1806,52 @@ function switchTipo(tipo) {
 }
 
 /* ════════════════════════════════
-   UNIVERSITARIO — LÓGICA (CORREGIDA)
+   UNIVERSITARIO — LÓGICA
    ════════════════════════════════ */
 function cargarDedicaciones() {
   const sel = document.getElementById('dedicacion');
   if (!sel) return;
-  
+
   sel.innerHTML = '';
   const dedicaciones = Object.keys(SALARIOS);
-  
+
   if (dedicaciones.length === 0) {
     sel.innerHTML = '<option>Sin datos disponibles</option>';
     return;
   }
-  
+
   dedicaciones.forEach(d => {
     const opt = document.createElement('option');
     opt.value = d;
     opt.textContent = d;
     sel.appendChild(opt);
   });
-  
+
   cargarCargos();
 }
 
 function cargarCargos() {
   const dedSel = document.getElementById('dedicacion');
   const cargoSel = document.getElementById('cargo');
-  
+
   if (!dedSel || !cargoSel) return;
-  
+
   const ded = dedSel.value;
-  
+
   cargoSel.innerHTML = '';
-  
+
   if (!SALARIOS[ded]) {
     cargoSel.innerHTML = '<option>Dedicación no encontrada</option>';
     return;
   }
-  
+
   const cargos = Object.keys(SALARIOS[ded]);
-  
+
   if (cargos.length === 0) {
     cargoSel.innerHTML = '<option>Sin cargos disponibles</option>';
     return;
   }
-  
+
   cargos.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c;
@@ -1786,30 +1865,29 @@ function calcular() {
     alert('⚠ Los datos todavía están cargando. Intentá en un momento.');
     return;
   }
-  
+
   const dedSel = document.getElementById('dedicacion');
   const cargoSel = document.getElementById('cargo');
   const antSel = document.getElementById('antiguedad');
   const posSel = document.getElementById('posgrado');
-  
+
   const dedicacion = dedSel.value;
   const cargo = cargoSel.value;
   const antiguedad = parseFloat(antSel.value);
   const posgrado = parseFloat(posSel.value);
-  
+
   if (!SALARIOS[dedicacion] || !SALARIOS[dedicacion][cargo]) {
     alert('⚠ Por favor selecciona una dedicación y cargo válidos.');
     return;
   }
-  
+
   const antTexto = antSel.selectedOptions[0].text;
   const posTexto = posSel.selectedOptions[0].text;
   const basico = SALARIOS[dedicacion][cargo];
-  /* CORRECCIÓN: los adicionales (antigüedad y posgrado) se aplican como porcentaje
-     del básico y se SUMAN entre sí (no se componen entre ellos). Así el +18% de
-     Doctorado siempre representa el 18% del básico, sin importar la antigüedad. */
-  const total = basico * (1 + antiguedad + posgrado);
-  const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  /* Los adicionales (antigüedad y posgrado) se aplican como porcentaje del básico
+     y se SUMAN entre sí (no se componen). */
+  const brutoNum = basico * (1 + antiguedad + posgrado);
+  const montos = calcularMontos(brutoNum);
 
   ultimoResultado = {
     tipo: 'Universitario',
@@ -1817,30 +1895,31 @@ function calcular() {
     cargo: cargo,
     antTexto: antTexto,
     posTexto: posTexto,
-    total: totalFmt
+    bruto: montos.bruto,
+    descuento: montos.descuento,
+    neto: montos.neto
   };
 
-  document.getElementById('calc-total').textContent = totalFmt;
-  document.getElementById('calc-detalle').innerHTML =
+  mostrarMontosEnPantalla(
+    montos,
     `<strong style="color:var(--blanco)">${dedicacion} · ${cargo}</strong><br>
-     Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
-
-  mostrarResultado();
+     Antigüedad: ${antTexto} · Posgrado: ${posTexto}`
+  );
 }
 
 /* ════════════════════════════════
-   PREUNIVERSITARIO — LÓGICA (CORREGIDA)
+   PREUNIVERSITARIO — LÓGICA
    ════════════════════════════════ */
 function cargarSelectsPre() {
   const selCargo = document.getElementById('pre-cargo');
   const selAnt = document.getElementById('pre-antiguedad');
-  
+
   if (!selCargo || !selAnt) return;
-  
+
   // Cargos
   selCargo.innerHTML = '';
   const cargos = Object.keys(PRE_CARGOS);
-  
+
   if (cargos.length === 0) {
     selCargo.innerHTML = '<option>Sin cargos disponibles</option>';
   } else {
@@ -1854,9 +1933,8 @@ function cargarSelectsPre() {
 
   // Tramos de antigüedad
   selAnt.innerHTML = '';
-  
+
   if (PRE_TRAMOS.length === 0) {
-    // Si no hay tramos, crear por defecto
     const opt = document.createElement('option');
     opt.value = '1';
     opt.textContent = 'Sin antigüedad (100%)';
@@ -1876,27 +1954,27 @@ function calcularPre() {
     alert('⚠ Los datos todavía están cargando. Intentá en un momento.');
     return;
   }
-  
+
   const cargoSel = document.getElementById('pre-cargo');
   const antSel = document.getElementById('pre-antiguedad');
   const posSel = document.getElementById('pre-posgrado');
-  
+
   const cargo = cargoSel.value;
   const factor = parseFloat(antSel.value);
   const posgrado = parseFloat(posSel.value);
-  
+
   if (!PRE_CARGOS[cargo]) {
     alert('⚠ Por favor selecciona un cargo válido.');
     return;
   }
-  
+
   const antTexto = antSel.selectedOptions[0].text;
   const posTexto = posSel.selectedOptions[0].text;
   const basico = PRE_CARGOS[cargo];
-  /* CORRECCIÓN: el factor de antigüedad es multiplicador (ej. 1, 1.20…) y el posgrado
-     es un porcentaje del básico; se SUMAN de forma aditiva para no componer el adicional. */
-  const total = basico * (factor + posgrado);
-  const totalFmt = '$ ' + total.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  /* El factor de antigüedad es multiplicador (ej. 1, 1.20…) y el posgrado es un
+     porcentaje del básico; se SUMAN de forma aditiva. */
+  const brutoNum = basico * (factor + posgrado);
+  const montos = calcularMontos(brutoNum);
 
   ultimoResultado = {
     tipo: 'Preuniversitario',
@@ -1904,15 +1982,16 @@ function calcularPre() {
     cargo: cargo,
     antTexto: antTexto,
     posTexto: posTexto,
-    total: totalFmt
+    bruto: montos.bruto,
+    descuento: montos.descuento,
+    neto: montos.neto
   };
 
-  document.getElementById('calc-total').textContent = totalFmt;
-  document.getElementById('calc-detalle').innerHTML =
+  mostrarMontosEnPantalla(
+    montos,
     `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}</strong><br>
-     Antigüedad: ${antTexto} · Posgrado: ${posTexto}`;
-
-  mostrarResultado();
+     Antigüedad: ${antTexto} · Posgrado: ${posTexto}`
+  );
 }
 
 /* ════════════════════════════════
@@ -1928,12 +2007,18 @@ function mostrarResultado() {
 }
 
 /* ════════════════════════════════
-   PDF CALCULADORA
+   PDF CALCULADORA (TICKET)
    ════════════════════════════════ */
 function descargarPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   const r = ultimoResultado;
+
+  if (!r || !r.neto) {
+    alert('⚠ Primero calculá un salario para generar la constancia.');
+    return;
+  }
+
   const fecha = new Date().toLocaleDateString('es-AR', {
     day: '2-digit', month: '2-digit', year: 'numeric'
   });
@@ -1941,9 +2026,11 @@ function descargarPDF() {
   const img = new Image();
   img.src = 'logo-gdu.png';
   img.onload = function () {
+    /* Fondo */
     doc.setFillColor(8, 17, 28);
     doc.rect(0, 0, 210, 297, 'F');
 
+    /* Encabezado */
     doc.setFillColor(27, 63, 114);
     doc.rect(0, 0, 210, 38, 'F');
     doc.addImage(img, 'PNG', 10, 6, 100, 26);
@@ -1957,6 +2044,7 @@ function descargarPDF() {
     doc.setLineWidth(0.8);
     doc.line(10, 44, 200, 44);
 
+    /* Título */
     doc.setTextColor(247, 249, 252);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(20);
@@ -1970,11 +2058,12 @@ function descargarPDF() {
       : 'Escala universitaria · CONADU HISTÓRICA · GDU Catamarca';
     doc.text(subtituloTipo, 105, 66, { align: 'center' });
 
+    /* Caja: detalle de la simulación */
     doc.setFillColor(14, 28, 45);
-    doc.roundedRect(14, 76, 182, 74, 4, 4, 'F');
+    doc.roundedRect(14, 76, 182, 62, 4, 4, 'F');
     doc.setDrawColor(45, 111, 191);
     doc.setLineWidth(0.4);
-    doc.roundedRect(14, 76, 182, 74, 4, 4, 'S');
+    doc.roundedRect(14, 76, 182, 62, 4, 4, 'S');
 
     doc.setTextColor(212, 160, 23);
     doc.setFontSize(8);
@@ -1989,7 +2078,7 @@ function descargarPDF() {
       ['Posgrado:', r.posTexto],
     ].filter(Boolean);
 
-    let y = 96;
+    let y = 95;
     items.forEach(([lbl, val]) => {
       doc.setTextColor(160, 174, 192);
       doc.setFont('helvetica', 'normal');
@@ -1999,57 +2088,81 @@ function descargarPDF() {
       doc.setFont('helvetica', 'bold');
       const valLines = doc.splitTextToSize(val, 108);
       doc.text(valLines, 70, y);
-      y += 11 * valLines.length;
+      y += 9 * valLines.length;
     });
 
+    /* Caja: saldo neto (principal) + bruto y descuento debajo */
     doc.setFillColor(27, 63, 114);
-    doc.roundedRect(14, 160, 182, 52, 4, 4, 'F');
+    doc.roundedRect(14, 146, 182, 72, 4, 4, 'F');
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.6);
-    doc.roundedRect(14, 160, 182, 52, 4, 4, 'S');
+    doc.roundedRect(14, 146, 182, 72, 4, 4, 'S');
+
     doc.setTextColor(160, 174, 192);
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
-    doc.text('SALARIO BRUTO ESTIMADO', 105, 173, { align: 'center' });
-    doc.setTextColor(126, 200, 240);
-    doc.setFontSize(28);
-    doc.setFont('helvetica', 'bold');
-    doc.text(r.total, 105, 197, { align: 'center' });
+    doc.text('SALARIO NETO ESTIMADO (SUELDO DE BOLSILLO)', 105, 156, { align: 'center' });
 
+    doc.setTextColor(126, 200, 240);
+    doc.setFontSize(26);
+    doc.setFont('helvetica', 'bold');
+    doc.text(r.neto, 105, 173, { align: 'center' });
+
+    doc.setTextColor(247, 249, 252);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Sueldo bruto: ${r.bruto}`, 105, 184, { align: 'center' });
+
+    doc.setTextColor(255, 150, 150);
+    doc.setFontSize(9);
+    doc.text(`Descuento de Ley (21%): -${r.descuento}`, 105, 193, { align: 'center' });
+
+    doc.setTextColor(160, 174, 192);
+    doc.setFontSize(7.5);
+    doc.text('No incluye descuentos judiciales ni otros descuentos externos del empleado.', 105, 209, { align: 'center' });
+
+    /* Línea separadora */
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.4);
-    doc.line(14, 222, 196, 222);
+    doc.line(14, 226, 196, 226);
 
+    /* Aviso importante + aclaraciones */
     doc.setFillColor(50, 10, 10);
-    doc.roundedRect(14, 226, 182, 40, 3, 3, 'F');
+    doc.roundedRect(14, 232, 182, 38, 3, 3, 'F');
     doc.setDrawColor(180, 30, 30);
     doc.setLineWidth(0.35);
-    doc.roundedRect(14, 226, 182, 40, 3, 3, 'S');
+    doc.roundedRect(14, 232, 182, 38, 3, 3, 'S');
 
     doc.setTextColor(255, 160, 160);
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
-    doc.text('⚠  AVISO IMPORTANTE', 22, 235);
+    doc.text('AVISO IMPORTANTE', 22, 240);
 
     doc.setTextColor(220, 180, 180);
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7.5);
-    const avisoTexto = 'Este cálculo es estimativo. Los descuentos por Ley son aproximadamente el 21%, que contemplan aportes jubilatorios, obra social e impuesto a las ganancias (según corresponda). No incluye descuentos adicionales locales, cuota sindical ni otros añadidos. Para liquidación oficial consultá con tu área de RRHH.';
-    doc.text(doc.splitTextToSize(avisoTexto, 172), 22, 242);
+    doc.setFontSize(7);
+    const avisoTexto =
+      'El saldo neto se entiende como sueldo de bolsillo, es decir, el monto que efectivamente se percibe. ' +
+      'El 21% es el descuento de Ley e incluye varios conceptos (aportes jubilatorios, obra social e impuesto a las ganancias, según corresponda). ' +
+      'El empleado puede tener además descuentos por cuestiones judiciales u otros descuentos externos, que no están incluidos en este cálculo. ' +
+      'Este cálculo es estimativo; para la liquidación oficial consultá con tu área de RRHH.';
+    doc.text(doc.splitTextToSize(avisoTexto, 170), 22, 246);
 
+    /* Fuente */
     doc.setTextColor(70, 90, 110);
     doc.setFontSize(7);
-    doc.text('Fuente: Instructivo de Liquidación Octubre 2026 · CONADU HISTÓRICA', 105, 274, { align: 'center' });
+    doc.text('Fuente: Instructivo de Liquidación Octubre 2026 · CONADU HISTÓRICA', 105, 277, { align: 'center' });
 
+    /* Pie */
     doc.setFillColor(14, 28, 45);
-    doc.rect(0, 279, 210, 18, 'F');
+    doc.rect(0, 282, 210, 15, 'F');
     doc.setDrawColor(212, 160, 23);
     doc.setLineWidth(0.3);
-    doc.line(0, 279, 210, 279);
+    doc.line(0, 282, 210, 282);
     doc.setTextColor(212, 160, 23);
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
-    doc.text('GDU CATAMARCA · CONADU HISTÓRICA', 105, 287, { align: 'center' });
+    doc.text('GDU CATAMARCA · CONADU HISTÓRICA', 105, 288, { align: 'center' });
     doc.setTextColor(90, 112, 144);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
