@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08111c">
+<meta name="description" content="Observatorio salarial GDU Catamarca: pérdida del poder adquisitivo universitario desde noviembre de 2023, serie histórica verificada hasta octubre de 2026.">
+<meta property="og:title" content="Observatorio Salarial · GDU Catamarca">
+<meta property="og:description" content="Pérdida salarial real, recomposición necesaria e historia mensual desde noviembre de 2023.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gducatamarca.com.ar/observatorio.html">
+<title>Observatorio Salarial · GDU Catamarca</title>
+<link rel="icon" href="logo-gdu.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08111c;--panel:#0e1c2d;--panel2:#14283d;--line:#29415b;--muted:#a0aec0;--light:#f7f9fc;--gold:#d4a017;--blue:#7ec8f0;--red:#ff7979}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--light);font:400 14px/1.55 Inter,Arial,sans-serif}
+a{color:var(--blue)}a:hover{color:white}.wrap{max-width:1130px;margin:auto;padding:0 20px}
+nav{border-bottom:1px solid var(--line);background:#0b1727;position:sticky;top:0;z-index:8}
+.navbar{display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:69px}.brand{display:flex;align-items:center;gap:12px;color:white;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.08em}.brand img{width:43px;height:43px;object-fit:contain}.navlinks{display:flex;gap:20px;flex-wrap:wrap}.navlinks a{font-size:12px;color:var(--muted);text-decoration:none;font-weight:700}
+.hero{padding:57px 0 28px;text-align:center}.kicker{font-size:11px;letter-spacing:.2em;font-weight:800;text-transform:uppercase;color:var(--gold)}h1,h2,h3{font-family:'Bebas Neue',Impact,Arial,sans-serif;font-weight:400;letter-spacing:.04em;line-height:1.12}h1{font-size:clamp(42px,7vw,83px);margin:11px 0 10px}h2{font-size:35px;margin:0 0 10px}h3{font-size:24px;margin:0 0 12px}.lead{color:var(--muted);max-width:730px;margin:0 auto 16px}
+.periodbar{display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 18px;margin:10px 0 20px}
+select{background:#0e1c2d;color:#fff;border:1px solid #44617f;border-radius:8px;padding:10px 12px;font:inherit}
+.periodbar label{font-size:11px;font-weight:700;color:var(--muted);margin-right:8px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px 16px;min-width:0}.card:first-child{border-top:3px solid var(--red)}.card:nth-child(2){border-top:3px solid var(--gold)}.card:nth-child(3){border-top:3px solid var(--blue)}.card:nth-child(4){border-top:3px solid #8fddb4}.label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:800}.big{font:400 clamp(31px,4vw,51px)/1 'Bebas Neue',Impact,sans-serif;margin:13px 0 5px}.red{color:var(--red)}.gold{color:var(--gold)}.blue{color:var(--blue)}.small{font-size:11px;color:var(--muted)}
+.note{background:#292319;border:1px solid #786232;color:#ebd7a4;border-radius:11px;padding:13px 16px;font-size:12px;margin-top:17px}
+.section{padding:31px 0 25px;scroll-margin-top:90px}.section-head{margin-bottom:18px}.section-head p{color:var(--muted);margin:0;max-width:780px;font-size:13px}
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:20px}
+.charts{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:14px}
+.chartbox{height:340px;position:relative}.chartbox canvas{height:100%!important;width:100%!important}.legend{color:var(--muted);font-size:11px;margin:12px 0 0}
+.split{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.stat{padding:13px;background:var(--panel2);border-radius:9px}.stat strong{display:block;font-size:19px;margin:3px 0}.stat span{font-size:11px;color:var(--muted)}
+.tablewrap{overflow:auto;max-height:470px}table{border-collapse:collapse;width:100%;min-width:580px;font-size:12px}th,td{padding:11px 12px;border-bottom:1px solid #2b4057;text-align:left}th{color:var(--gold);text-transform:uppercase;letter-spacing:.07em;font-size:10px;position:sticky;top:0;background:#0e1c2d}td:last-child,th:last-child{text-align:right}.footer{border-top:1px solid var(--line);padding:27px 0;margin-top:35px;color:var(--muted);font-size:11px}
+.button{display:inline-flex;padding:11px 17px;background:#1b3f72;border:1px solid #3766a1;border-radius:9px;text-decoration:none;color:white;align-items:center;font-weight:700;font-size:12px;cursor:pointer;font-family:Inter,Arial,sans-serif}
+.button:hover{background:#2d6fbf}.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.source{font-size:12px;color:var(--muted);padding-left:18px}.source li{margin-bottom:7px}
+@media(max-width:980px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.charts{grid-template-columns:1fr}.navlinks{gap:10px}}
+@media(max-width:580px){.cards{grid-template-columns:1fr 1fr;gap:8px}.card{padding:13px 12px}.big{font-size:34px}.navbar{min-height:60px}.brand{font-size:10px}.brand img{width:34px;height:34px}.navlinks a:not(:last-child){display:none}.hero{padding:36px 0 18px}.wrap{padding:0 13px}.panel{padding:14px}.split{grid-template-columns:1fr}.chartbox{height:270px}.periodbar{align-items:flex-start}.note{font-size:11px}}
+</style>
+</head><body>
+<nav><div class="wrap navbar"><a class="brand" href="index.html"><img src="logo-gdu.png" alt="GDU Catamarca"><span>CONADU HISTÓRICA · GDU CATAMARCA</span></a><div class="navlinks"><a href="#evolucion">Evolución</a><a href="#historico">Serie histórica</a><a href="index.html#calculadora">Calculadora</a><a href="index.html">Volver al inicio ↗</a></div></div></nav>
+<main class="wrap">
+<header class="hero"><div class="kicker">Serie histórica · Noviembre 2023 a Octubre 2026</div><h1>OBSERVATORIO SALARIAL</h1><p class="lead">¿Cuánto poder adquisitivo perdieron los salarios universitarios desde noviembre de 2023? Datos históricos publicados por CIICTI–FEDUN, con una comparación verificable y sin mezclar períodos.</p></header>
+<div class="periodbar"><div><strong>Base: noviembre de 2023 = 100</strong><div class="small">Seleccioná el mes para conocer cuánto representa del salario real inicial.</div></div><div><label for="mes">Mes analizado</label><select id="mes" aria-label="Mes de comparación salarial"></select></div></div>
+<section aria-label="Indicadores principales"><div class="cards">
+<article class="card"><div class="label">Pérdida del salario real</div><div id="kpi-perdida" class="big red">—</div><div class="small">Respecto de noviembre de 2023</div></article>
+<article class="card"><div class="label">Recomposición necesaria</div><div id="kpi-recomposicion" class="big gold">—</div><div class="small">Para regresar al poder de compra inicial</div></article>
+<article class="card"><div class="label">Índice salarial real</div><div id="kpi-indice" class="big blue">—</div><div class="small">Base noviembre de 2023 = 100</div></article>
+<article class="card"><div class="label">Poder de compra conservado</div><div id="kpi-conservado" class="big" style="color:#8fddb4">—</div><div class="small">Por cada 100 unidades de noviembre de 2023</div></article>
+</div>
+<div class="note" id="interpretacion">Cargando la serie histórica…</div></section>
+<section class="section" id="evolucion"><div class="section-head"><div class="kicker">Evolución 2023–2026</div><h2>LA PÉRDIDA SALARIAL, MES A MES</h2><p>Serie mensual de poder adquisitivo. El nivel de noviembre de 2023 equivale a 100. Los valores inferiores reflejan pérdida de salario real.</p></div>
+<div class="charts"><article class="panel"><h3>Índice de salario real</h3><div class="chartbox"><canvas id="grafico-real" aria-label="Evolución del salario real desde noviembre de 2023"></canvas></div><p class="legend">Línea dorada: noviembre 2023 = 100 · Línea azul: índice de salario real mensual · Punto rojo: mes seleccionado.</p></article>
+<article class="panel"><h3>Comparación acumulada</h3><div class="chartbox"><canvas id="grafico-acumulado" aria-label="Comparación entre inflación y salarios nominales acumulados desde noviembre de 2023"></canvas></div><p class="legend">Comparación acumulada publicada por CIICTI–FEDUN a octubre de 2026. Estos valores corresponden al período completo y no cambian al seleccionar otro mes.</p></article></div>
+</section>
+<section class="section" id="historico"><div class="section-head"><div class="kicker">Serie mensual verificada</div><h2>DATOS HISTÓRICOS</h2><p>Valores extraídos del informe N.º 17 de CIICTI–FEDUN, octubre de 2026. Descargá los datos para realizar tus propios cálculos.</p></div>
+<div class="panel"><div class="controls" style="justify-content:space-between;margin-bottom:15px"><strong>Índice mensual · Nov. 2023–Oct. 2026</strong><button id="descargar" class="button" type="button">↓ Descargar CSV</button></div><div class="tablewrap"><table><thead><tr><th>Mes</th><th>Índice real (base 100)</th><th>Pérdida real respecto de nov. 2023</th><th>Recomposición necesaria</th></tr></thead><tbody id="filas"></tbody></table></div></div>
+</section>
+<section class="section"><div class="section-head"><div class="kicker">Transparencia</div><h2>FUENTE Y METODOLOGÍA</h2></div><div class="panel"><p>La serie utilizada corresponde al <strong>conjunto de salarios de universidades nacionales (docentes, no docentes e investigadores)</strong> analizado por CIICTI–FEDUN. No representa un sueldo de bolsillo individual ni un escalafón salarial específico de la UNCa.</p><p>La pérdida salarial real se calcula como <strong>índice mensual − 100</strong>. La recomposición necesaria se calcula como <strong>(100 ÷ índice mensual − 1) × 100</strong>. Son conceptos distintos: una pérdida del 23,6% requiere un aumento aproximado del 31% para volver al poder de compra inicial.</p><p>El informe señala una pérdida mayor en mayo de 2026, seguida de una recuperación parcial en junio. Que haya mejorado en un mes no significa que se recuperó el nivel salarial de noviembre de 2023.</p><ul class="source"><li><a href="https://fedun.com.ar/wp-content/uploads/2026/11/informe17_citt-fedun-b.pdf" target="_blank" rel="noopener noreferrer">Informe de situación del sistema universitario N.º 17 — CIICTI–FEDUN, octubre 2026 (PDF)</a>.</li><li><a href="https://ctaa.org.ar/conadu-historica-reclama-recomposicion-salarial-para-la-docencia-universitaria/" target="_blank" rel="noopener noreferrer">CONADU Histórica — estimación de julio de 2026: pérdida del 23,8% y recomposición necesaria del 31,15%</a>.</li><li><a href="https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31" target="_blank" rel="noopener noreferrer">INDEC — Índice de Precios al Consumidor</a>.</li></ul><p class="small">Alcance de esta primera versión: serie agregada verificada. En una segunda etapa incorporaremos el básico histórico de una misma categoría docente (por ejemplo JTP, dedicación simple) utilizando instructivos de liquidación de cada período.</p></div></section>
+</main><footer class="footer"><div class="wrap">GDU CATAMARCA · CONADU HISTÓRICA · Observatorio Salarial · Fuente: CIICTI–FEDUN, Informe N.º 17 (octubre de 2026).</div></footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+<script src="observatorio/historico.js?v=20261121" defer></script>
+</body></html>

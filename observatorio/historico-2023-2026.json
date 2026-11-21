@@ -1,0 +1,170 @@
+{
+  "titulo": "Índice de salarios reales en universidades nacionales",
+  "base": "2023-11",
+  "ultima_actualizacion": "2026-10",
+  "cobertura": "Personal docente, no docente e investigadores de universidades nacionales (serie agregada del informe FEDUN-CIICti)",
+  "metodologia": "Salario real índice noviembre 2023=100; valores mensuales publicados por CIICTI-FEDUN. Pérdida real = índice - 100; recomposición necesaria = 100/índice - 1.",
+  "fuente": {
+    "organismo": "CIICti–FEDUN",
+    "informe": "Informe de situación del sistema universitario N.º 17 — Octubre 2026",
+    "url": "https://fedun.com.ar/wp-content/uploads/2026/11/informe17_citt-fedun-b.pdf",
+    "paginas": "4 a 6"
+  },
+  "serie": [
+    {
+      "periodo": "2023-11",
+      "indice_real": 100
+    },
+    {
+      "periodo": "2023-12",
+      "indice_real": 84.1
+    },
+    {
+      "periodo": "2024-01",
+      "indice_real": 69.7
+    },
+    {
+      "periodo": "2024-02",
+      "indice_real": 71.4
+    },
+    {
+      "periodo": "2024-03",
+      "indice_real": 72.1
+    },
+    {
+      "periodo": "2024-04",
+      "indice_real": 71.5
+    },
+    {
+      "periodo": "2024-05",
+      "indice_real": 74.8
+    },
+    {
+      "periodo": "2024-06",
+      "indice_real": 74.4
+    },
+    {
+      "periodo": "2024-07",
+      "indice_real": 76.9
+    },
+    {
+      "periodo": "2024-08",
+      "indice_real": 76
+    },
+    {
+      "periodo": "2024-09",
+      "indice_real": 74.9
+    },
+    {
+      "periodo": "2024-10",
+      "indice_real": 77.9
+    },
+    {
+      "periodo": "2024-11",
+      "indice_real": 77.6
+    },
+    {
+      "periodo": "2024-12",
+      "indice_real": 76.3
+    },
+    {
+      "periodo": "2025-01",
+      "indice_real": 75.8
+    },
+    {
+      "periodo": "2025-02",
+      "indice_real": 74.9
+    },
+    {
+      "periodo": "2025-03",
+      "indice_real": 73.1
+    },
+    {
+      "periodo": "2025-04",
+      "indice_real": 72.1
+    },
+    {
+      "periodo": "2025-05",
+      "indice_real": 72
+    },
+    {
+      "periodo": "2025-06",
+      "indice_real": 71.7
+    },
+    {
+      "periodo": "2025-07",
+      "indice_real": 71.3
+    },
+    {
+      "periodo": "2025-08",
+      "indice_real": 70.9
+    },
+    {
+      "periodo": "2025-09",
+      "indice_real": 70.3
+    },
+    {
+      "periodo": "2025-10",
+      "indice_real": 69.4
+    },
+    {
+      "periodo": "2025-11",
+      "indice_real": 68.5
+    },
+    {
+      "periodo": "2025-12",
+      "indice_real": 67.9
+    },
+    {
+      "periodo": "2026-01",
+      "indice_real": 67.7
+    },
+    {
+      "periodo": "2026-02",
+      "indice_real": 67.2
+    },
+    {
+      "periodo": "2026-03",
+      "indice_real": 66.3
+    },
+    {
+      "periodo": "2026-04",
+      "indice_real": 65.8
+    },
+    {
+      "periodo": "2026-05",
+      "indice_real": 65.3
+    },
+    {
+      "periodo": "2026-06",
+      "indice_real": 77.8
+    },
+    {
+      "periodo": "2026-07",
+      "indice_real": 76.2
+    },
+    {
+      "periodo": "2026-08",
+      "indice_real": 75
+    },
+    {
+      "periodo": "2026-09",
+      "indice_real": 75.7
+    },
+    {
+      "periodo": "2026-10",
+      "indice_real": 76.4
+    }
+  ],
+  "acumulados": {
+    "inflacion_pct": 354,
+    "aumento_nominal_pct": 246.7,
+    "perdida_real_pct": -23.6,
+    "recomposicion_informe_pct": 31
+  },
+  "advertencias": [
+    "El índice de FEDUN combina personal docente, no docente e investigadores de universidades nacionales. No es una liquidación salarial por cargo ni una serie específica de la UNCa.",
+    "La serie muestra un índice salarial real: no deben interpretarse los porcentajes del índice como cambios nominales.",
+    "La pérdida real actual y la recomposición necesaria son indicadores diferentes: un salario que vale 76,4 respecto a una base 100 necesita aumentar aproximadamente 30,9% para volver a 100."
+  ]
+}
