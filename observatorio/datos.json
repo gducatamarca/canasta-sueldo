@@ -8,55 +8,55 @@
     "2026-01": {
       "ipc": 2.9,
       "aumento": 2.5,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-02": {
       "ipc": 2.9,
       "aumento": 2.2,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-03": {
       "ipc": 3.4,
       "aumento": 2,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-04": {
       "ipc": 2.6,
       "aumento": 1.7,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-05": {
       "ipc": 2.1,
       "aumento": 1.3,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-06": {
       "ipc": 1.9,
       "aumento": 21.33,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-07": {
       "ipc": 2.1,
       "aumento": 0,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-08": {
       "ipc": 1.7,
       "aumento": 0,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-09": {
       "ipc": 1.9,
       "aumento": 0,
-      "estado_ipc": "pendiente",
+      "estado_ipc": "oficial",
       "estado_aumento": "pendiente"
     },
     "2026-10": {
@@ -79,10 +79,11 @@
     "ipc": "https://www.indec.gob.ar/uploads/informesdeprensa/ipc_11_269335F5BA6B.pdf",
     "aumento_octubre": "https://www.argentina.gob.ar/noticias/el-ministerio-de-capital-humano-recibio-los-representantes-de-las-federaciones-gremiales",
     "serie_preliminar": "https://github.com/gducatamarca/datoscomparativos/blob/backup2-2026-11-20/index.html",
-    "salarios": "datos_salarios.json"
+    "salarios": "datos_salarios.json",
+    "ipc_serie_2026": "https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31"
   },
   "notas": [
-    "Los datos mensuales de enero a septiembre de 2026 fueron reutilizados del proyecto datoscomparativos; requieren cotejo individual antes de considerarlos oficiales.",
+    "Las variaciones de IPC de enero a octubre 2026 fueron contrastadas con series que reproducen las cifras oficiales de INDEC. Los aumentos docentes de enero a septiembre proceden del proyecto datoscomparativos y requieren auditoría documental.",
     "El aumento de octubre de 2026 del 3% es una medida salarial publicada oficialmente; otros incrementos siguen pendientes de revisión.",
     "Los valores agregados de salario real calculados con datos pendientes se exhiben como preliminares.",
     "Para reconstruir la serie histórica de salarios por cargo y dedicación deben incorporarse instructivos de liquidación mensuales. No se infieren salarios anteriores a partir de escalas actuales.",
