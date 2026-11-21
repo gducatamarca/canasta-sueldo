@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin.html
-Disallow: /index_resp.html
 
 Sitemap: https://gducatamarca.com.ar/sitemap.xml
