@@ -38,7 +38,7 @@
   function chart(context,data,options,existing){
     if(typeof window.Chart==="undefined")return null;
     if(existing)existing.destroy();
-    return new window.Chart(context,{data,options});
+    return new window.Chart(context,{type:data.type,data:{labels:data.labels,datasets:data.datasets},options});
   }
   function renderCharts(r){
     const labels=r.rows.map(x=>monthName(x.month).split(" ")[0].slice(0,3));
