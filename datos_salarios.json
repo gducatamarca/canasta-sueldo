@@ -26,9 +26,41 @@
   },
   "preuniversitarios": {
     "cargos": {
-      "Profesor EGB 1° y 2° ciclo": 1100533.42,
-      "Hora Cátedra Nivel Medio": 50021.39,
-      "Hora Cátedra Nivel Superior": 62526.88
+      "Preceptor": 990430.25,
+      "Subjefe de Preceptores": 1100354.75,
+      "Jefe de Preceptores": 1188516,
+      "Bibliotecario": 1035451,
+      "Jefe de Biblioteca": 1242538.5,
+      "Profesor de Equipo de Orientación": 1050455.2,
+      "Ayudante Equipo de Orientación": 525198.24,
+      "Rector / Director": 2532341,
+      "Vicerrector / Vicedirector": 2236152.25,
+      "Regente": 1500648,
+      "Subregente": 1275552.5,
+      "Asesor Pedagógico": 1574744.5,
+      "Secretario": 1500648,
+      "Prosecretario": 1275552.5,
+      "Maestro Jardín Maternal": 1060509.6,
+      "Maestro Jardín de Infantes": 1030497,
+      "Maestro Especial Nivel Inicial": 1182812.6,
+      "Maestro de Grado": 1000485,
+      "Maestro Especial Nivel Primario": 1182812.6,
+      "Profesor Horas Cátedra Niv. Medio": 750321.4,
+      "Maestro Coordinador": 1062461.25,
+      "Ayudante Clases Prácticas Nivel Medio": 479008.8,
+      "Jefe Trabajos Prácticos Nivel Medio": 574809.6,
+      "Ayudante Técnico de Trabajos Prácticos": 479008.8,
+      "Maestro de Enseñanza Práctica": 840364.16,
+      "Maestro de Enseñanza Práctica Jefe de Sección": 924400.32,
+      "Jefe General de Enseñanza Práctica": 1008435.84,
+      "Jefe General de Taller de Enseñanza Práctica": 1092472,
+      "Profesor Horas Cátedra Niv. Terciario": 750323.2,
+      "Ayudante Clases Prácticas Nivel Superior": 598760.28,
+      "Jefe Trabajos Prácticos Nivel Superior": 718510.56,
+      "Jefe / Coordinador / Director de Departamento": 1181760.3,
+      "Profesor EGB 1° y 2° ciclo (UNS)": 1100533.42,
+      "Hora Cátedra Nivel Medio (UNS, por hora)": 50021.39,
+      "Hora Cátedra Nivel Superior (UNS, por hora)": 62526.88
     },
     "antiguedad_tramos": [
       {
@@ -73,13 +105,14 @@
       }
     ],
     "cargos_por_hora": [
-      "Hora Cátedra Nivel Medio",
-      "Hora Cátedra Nivel Superior"
+      "Hora Cátedra Nivel Medio (UNS, por hora)",
+      "Hora Cátedra Nivel Superior (UNS, por hora)"
     ]
   },
   "fuentes": {
     "universitarios": "https://agduba.org.ar/wp-content/uploads/Escalafon_Docente_Universitario_102026.pdf",
-    "preuniversitarios": "https://aduns.org/wp-content/uploads/sites/82/2026/11/Salarios-Preuniversitarios-Octubre-2026.pdf"
+    "preuniversitarios": "https://www.unraf.edu.ar/images/Portal_transparencia/Salarial/2026/instructivo-de-liquidacion-octubre-2026.pdf",
+    "preuniversitarios_UNS": "https://aduns.org/wp-content/uploads/sites/82/2026/11/Salarios-Preuniversitarios-Octubre-2026.pdf"
   },
   "adicionales_universitarios": {
     "doctorado": 0.2,
