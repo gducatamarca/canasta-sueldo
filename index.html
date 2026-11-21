@@ -1437,6 +1437,7 @@ footer {
   <div class="calculadora-gdu reveal">
     <h2 class="calc-title">Calculadora Salarial Docente</h2>
     <p class="calc-subtitle" id="calc-subtitle">Escala salarial octubre 2026 · GDU Catamarca</p>
+    <p style="color:#A0AEC0;font-size:11px;text-align:center;margin:-18px 0 22px;line-height:1.6">Fuentes: <a href="https://agduba.org.ar/wp-content/uploads/Escalafon_Docente_Universitario_102026.pdf" target="_blank" rel="noopener noreferrer" style="color:#D4A017">AGD-UBA</a> (universitarios) y <a href="https://aduns.org/wp-content/uploads/sites/82/2026/11/Salarios-Preuniversitarios-Octubre-2026.pdf" target="_blank" rel="noopener noreferrer" style="color:#D4A017">ADUNS</a> (preuniversitarios).</p>
 
     <!-- Switch tipo de docente -->
     <div class="calc-tipo-switch">
@@ -1468,8 +1469,8 @@ footer {
         <div class="calc-field">
           <label class="calc-label">Antigüedad</label>
           <select id="antiguedad">
-            <option value="0">Sin antigüedad (0%)</option>
-            <option value="0.20">0 a 4 años (20%)</option>
+            <option value="0.20">Sin antigüedad (garantía 20%)</option>
+            <option value="0.20">1 a 4 años (20%)</option>
             <option value="0.30">5 a 6 años (30%)</option>
             <option value="0.40">7 a 9 años (40%)</option>
             <option value="0.50">10 a 11 años (50%)</option>
@@ -1485,8 +1486,8 @@ footer {
           <label class="calc-label">Posgrado</label>
           <select id="posgrado">
             <option value="0">No posee Posgrado</option>
-            <option value="0.18">Doctorado (18%)</option>
-            <option value="0.08">Maestría (8%)</option>
+            <option value="0.20">Doctorado (20%)</option>
+            <option value="0.125">Maestría (12,5%)</option>
             <option value="0.05">Especialización (5%)</option>
           </select>
         </div>
@@ -1500,10 +1501,16 @@ footer {
     <div id="panel-preuniversitario">
       <div class="calc-grid">
         <div class="calc-field full">
-          <label class="calc-label">Cargo Preuniversitario</label>
+          <label class="calc-label">Cargo Preuniversitario · Octubre 2026</label>
           <select id="pre-cargo">
             <option>Cargando cargos...</option>
           </select>
+        </div>
+      </div>
+      <div class="calc-grid" id="pre-horas-wrap" style="display:none">
+        <div class="calc-field full">
+          <label class="calc-label" for="pre-horas">Cantidad de horas cátedra</label>
+          <input id="pre-horas" type="number" min="1" max="80" step="1" value="10" style="width:100%;padding:12px 16px;background:#18283b;color:#F7F9FC;border:1px solid rgba(255,255,255,.14);border-radius:10px;font:500 14px Inter,sans-serif">
         </div>
       </div>
       <div class="calc-grid">
@@ -1540,7 +1547,7 @@ footer {
       <!-- DESGLOSE DEBAJO DEL NETO -->
       <div class="calc-bruto-wrap">
         <div class="calc-bruto-linea">Sueldo bruto: <strong id="calc-bruto">$ 0</strong></div>
-        <div class="calc-descuento-linea">Descuento de Ley (21%): <strong id="calc-descuento">$ 0</strong></div>
+        <div class="calc-descuento-linea">Descuento estimado (21%): <strong id="calc-descuento">$ 0</strong></div>
       </div>
 
       <!-- ACLARACIONES -->
@@ -1551,7 +1558,7 @@ footer {
         </p>
         <p>
           <strong>¿Qué es el 21%?</strong>
-          Es el descuento de Ley, que incluye varios conceptos (aportes jubilatorios, obra social e impuesto a las ganancias, según corresponda).
+          Es una simulación fija para orientar el cálculo neto, no una liquidación oficial. Los aportes e impuestos reales pueden variar según la situación de cada docente.
         </p>
         <p>
           <strong>Descuentos adicionales:</strong>
@@ -1568,7 +1575,7 @@ footer {
         </p>
       </div>
       <div class="calc-aviso-fuente">
-        Fuente: Instructivo de Liquidación Octubre 2026 · CONADU HISTÓRICA
+        Fuentes: AGD-UBA (universitarios) y ADUNS (preuniversitarios) · Octubre 2026
       </div>
     </div>
 
@@ -1913,7 +1920,6 @@ function calcular() {
 function cargarSelectsPre() {
   const selCargo = document.getElementById('pre-cargo');
   const selAnt = document.getElementById('pre-antiguedad');
-
   if (!selCargo || !selAnt) return;
 
   // Cargos
@@ -1929,6 +1935,13 @@ function cargarSelectsPre() {
       opt.textContent = nombre;
       selCargo.appendChild(opt);
     });
+  }
+
+  const horasWrap = document.getElementById('pre-horas-wrap');
+  if (horasWrap) {
+    const refreshHoras = () => { horasWrap.style.display = /Hora Cátedra/.test(selCargo.value) ? 'grid' : 'none'; };
+    selCargo.addEventListener('change', refreshHoras);
+    refreshHoras();
   }
 
   // Tramos de antigüedad
@@ -1970,7 +1983,13 @@ function calcularPre() {
 
   const antTexto = antSel.selectedOptions[0].text;
   const posTexto = posSel.selectedOptions[0].text;
-  const basico = PRE_CARGOS[cargo];
+  const esHora = /Hora Cátedra/.test(cargo);
+  const horas = esHora ? Number(document.getElementById('pre-horas').value) : 1;
+  if (!Number.isInteger(horas) || horas < 1 || horas > 80) {
+    alert('Ingresá una cantidad válida de horas cátedra (1 a 80).');
+    return;
+  }
+  const basico = PRE_CARGOS[cargo] * horas;
   /* El factor de antigüedad es multiplicador (ej. 1, 1.20…) y el posgrado es un
      porcentaje del básico; se SUMAN de forma aditiva. */
   const brutoNum = basico * (factor + posgrado);
@@ -1979,7 +1998,7 @@ function calcularPre() {
   ultimoResultado = {
     tipo: 'Preuniversitario',
     dedicacion: 'Preuniversitario',
-    cargo: cargo,
+    cargo: esHora ? `${cargo} (${horas} horas)` : cargo,
     antTexto: antTexto,
     posTexto: posTexto,
     bruto: montos.bruto,
@@ -1989,7 +2008,7 @@ function calcularPre() {
 
   mostrarMontosEnPantalla(
     montos,
-    `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}</strong><br>
+    `<strong style="color:var(--blanco)">Preuniversitario · ${cargo}${esHora ? ` · ${horas} horas` : ""}</strong><br>
      Antigüedad: ${antTexto} · Posgrado: ${posTexto}`
   );
 }
@@ -2115,7 +2134,7 @@ function descargarPDF() {
 
     doc.setTextColor(255, 150, 150);
     doc.setFontSize(9);
-    doc.text(`Descuento de Ley (21%): -${r.descuento}`, 105, 193, { align: 'center' });
+    doc.text(`Descuento estimado (21%): -${r.descuento}`, 105, 193, { align: 'center' });
 
     doc.setTextColor(160, 174, 192);
     doc.setFontSize(7.5);
@@ -2143,7 +2162,7 @@ function descargarPDF() {
     doc.setFontSize(7);
     const avisoTexto =
       'El saldo neto se entiende como sueldo de bolsillo, es decir, el monto que efectivamente se percibe. ' +
-      'El 21% es el descuento de Ley e incluye varios conceptos (aportes jubilatorios, obra social e impuesto a las ganancias, según corresponda). ' +
+      'El 21% es un descuento estimativo, no necesariamente equivalente a los aportes e impuestos reales. ' +
       'El empleado puede tener además descuentos por cuestiones judiciales u otros descuentos externos, que no están incluidos en este cálculo. ' +
       'Este cálculo es estimativo; para la liquidación oficial consultá con tu área de RRHH.';
     doc.text(doc.splitTextToSize(avisoTexto, 170), 22, 246);
