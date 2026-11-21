@@ -18,7 +18,7 @@
     "Simple": {
       "Titular": 516811.87,
       "Asociado": 459881.22,
-      "Adjunto": 403157.50,
+      "Adjunto": 403157.5,
       "JTP": 346234.85,
       "Ayudante de 1era.": 289249.34,
       "Ayudante de 2da.": 231403.18
@@ -26,14 +26,69 @@
   },
   "preuniversitarios": {
     "cargos": {
-      "Maestro de Grado": 1000485.00,
-      "Profesor Horas Cátedra Niv. Medio": 750321.40,
-      "Profesor Horas Cátedra Niv. Terciario": 750323.20
+      "Profesor EGB 1° y 2° ciclo": 1100533.42,
+      "Hora Cátedra Nivel Medio": 50021.39,
+      "Hora Cátedra Nivel Superior": 62526.88
     },
     "antiguedad_tramos": [
-      { "label": "Sin antigüedad (100%)", "factor": 1 },
-      { "label": "Hasta 5 años (110%)", "factor": 1.10 },
-      { "label": "Hasta 10 años (120%)", "factor": 1.20 }
+      {
+        "label": "0 a 4 años (20%)",
+        "factor": 1.2
+      },
+      {
+        "label": "5 a 6 años (30%)",
+        "factor": 1.3
+      },
+      {
+        "label": "7 a 9 años (40%)",
+        "factor": 1.4
+      },
+      {
+        "label": "10 a 11 años (50%)",
+        "factor": 1.5
+      },
+      {
+        "label": "12 a 14 años (60%)",
+        "factor": 1.6
+      },
+      {
+        "label": "15 a 16 años (70%)",
+        "factor": 1.7
+      },
+      {
+        "label": "17 a 19 años (80%)",
+        "factor": 1.8
+      },
+      {
+        "label": "20 a 21 años (100%)",
+        "factor": 2
+      },
+      {
+        "label": "22 a 23 años (110%)",
+        "factor": 2.1
+      },
+      {
+        "label": "24 o más años (120%)",
+        "factor": 2.2
+      }
+    ],
+    "cargos_por_hora": [
+      "Hora Cátedra Nivel Medio",
+      "Hora Cátedra Nivel Superior"
     ]
+  },
+  "fuentes": {
+    "universitarios": "https://agduba.org.ar/wp-content/uploads/Escalafon_Docente_Universitario_102026.pdf",
+    "preuniversitarios": "https://aduns.org/wp-content/uploads/sites/82/2026/11/Salarios-Preuniversitarios-Octubre-2026.pdf"
+  },
+  "adicionales_universitarios": {
+    "doctorado": 0.2,
+    "maestria": 0.125,
+    "especializacion": 0.05
+  },
+  "adicionales_preuniversitarios": {
+    "doctorado": 0.18,
+    "maestria": 0.08,
+    "especializacion": 0.05
   }
 }
