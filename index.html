@@ -1899,7 +1899,7 @@ function calcular() {
   ultimoResultado = {
     tipo: 'Universitario',
     dedicacion: dedicacion,
-    cargo: esHora ? `${cargo} (${horas} horas)` : cargo,
+    cargo: cargo,
     antTexto: antTexto,
     posTexto: posTexto,
     bruto: montos.bruto,
@@ -1920,13 +1920,6 @@ function calcular() {
 function cargarSelectsPre() {
   const selCargo = document.getElementById('pre-cargo');
   const selAnt = document.getElementById('pre-antiguedad');
-  const horasWrap = document.getElementById('pre-horas-wrap');
-  if (horasWrap) {
-    const refreshHoras = () => horasWrap.style.display = /Hora Cátedra/.test(selCargo.value) ? 'grid' : 'none';
-    selCargo.addEventListener('change', refreshHoras);
-    refreshHoras();
-  }
-
   if (!selCargo || !selAnt) return;
 
   // Cargos
@@ -1942,6 +1935,13 @@ function cargarSelectsPre() {
       opt.textContent = nombre;
       selCargo.appendChild(opt);
     });
+  }
+
+  const horasWrap = document.getElementById('pre-horas-wrap');
+  if (horasWrap) {
+    const refreshHoras = () => { horasWrap.style.display = /Hora Cátedra/.test(selCargo.value) ? 'grid' : 'none'; };
+    selCargo.addEventListener('change', refreshHoras);
+    refreshHoras();
   }
 
   // Tramos de antigüedad
@@ -1998,7 +1998,7 @@ function calcularPre() {
   ultimoResultado = {
     tipo: 'Preuniversitario',
     dedicacion: 'Preuniversitario',
-    cargo: cargo,
+    cargo: esHora ? `${cargo} (${horas} horas)` : cargo,
     antTexto: antTexto,
     posTexto: posTexto,
     bruto: montos.bruto,
