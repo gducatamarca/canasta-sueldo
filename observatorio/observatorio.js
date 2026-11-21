@@ -57,8 +57,9 @@
       {label:"Salarios",data:r.rows.map(x=>x.salary),borderColor:"#7EC8F0",backgroundColor:"#7EC8F0",tension:.25,pointRadius:3}
     ]},common,values.acumulado);
     if(typeof window.Chart==="undefined"){
-      $("chart-mensual").replaceWith(document.createTextNode("El gráfico no está disponible. Los datos pueden consultarse en la tabla histórica."));
-      $("chart-acumulado").replaceWith(document.createTextNode("El gráfico no está disponible. Los datos pueden consultarse en la tabla histórica."));
+      const first=$("chart-mensual"), second=$("chart-acumulado");
+      if(first)first.replaceWith(document.createTextNode("El gráfico no está disponible. Los datos pueden consultarse en la tabla histórica."));
+      if(second)second.replaceWith(document.createTextNode("El gráfico no está disponible. Los datos pueden consultarse en la tabla histórica."));
     }
   }
   function fillSalaryOptions(){
@@ -155,7 +156,7 @@
       fillMonths();fillSalaryOptions();fillTable();updatePeriod();
       $("btn-comparar").addEventListener("click",compare);
       $("descargar-csv").addEventListener("click",csv);
-      $("alerta-datos").innerHTML="<strong>Serie de trabajo:</strong> enero–septiembre de 2026 conservan cifras del sitio anterior pendientes de cotejo. Octubre de 2026 utiliza IPC oficial INDEC (2,2%) y el aumento del 3% documentado. Los indicadores acumulados se deben leer como <strong>preliminares</strong> hasta completar la auditoría histórica.";
+      $("alerta-datos").innerHTML="<strong>Datos verificados:</strong> IPC mensual de enero a octubre de 2026 (INDEC), canastas de octubre y aumento de octubre del 3%. <strong>En revisión:</strong> los aumentos docentes de enero a septiembre provienen del sitio anterior. Por eso los indicadores salariales acumulados siguen siendo <strong>preliminares</strong>.";
     }catch(error){
       console.error("Observatorio GDU:",error);
       $("alerta-datos").textContent="No fue posible cargar los datos. Probá recargar la página o consultá más tarde.";
