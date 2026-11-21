@@ -1437,8 +1437,7 @@ footer {
   <div class="calculadora-gdu reveal">
     <h2 class="calc-title">Calculadora Salarial Docente</h2>
     <p class="calc-subtitle" id="calc-subtitle">Escala salarial octubre 2026 · GDU Catamarca</p>
-    <p style="color:#A0AEC0;font-size:11px;text-align:center;margin:-18px 0 22px;line-height:1.6">Fuentes: <a href="https://agduba.org.ar/wp-content/uploads/Escalafon_Docente_Universitario_102026.pdf" target="_blank" rel="noopener noreferrer" style="color:#D4A017">AGD-UBA</a> (universitarios) y <a href="https://www.unraf.edu.ar/images/Portal_transparencia/Salarial/2026/instructivo-de-liquidacion-octubre-2026.pdf" target="_blank" rel="noopener noreferrer" style="color:#D4A017">Instructivo nacional</a> (cargos preuniversitarios) y <a href="https://aduns.org/wp-content/uploads/sites/82/2026/11/Salarios-Preuniversitarios-Octubre-2026.pdf" target="_blank" rel="noopener noreferrer" style="color:#D4A017">ADUNS</a> (cargos UNS).</p>
-
+    
     <!-- Switch tipo de docente -->
     <div class="calc-tipo-switch">
       <button class="calc-tipo-btn activo" id="btn-universitario" onclick="switchTipo('universitario')">
@@ -1750,7 +1749,7 @@ let ultimoResultado = {
 /* ════════════════════════════════
    CARGA DEL JSON
    ════════════════════════════════ */
-fetch('datos_salarios.json')
+fetch('datos_salarios.json?v=20261120-cargos35', { cache: 'no-store' })
   .then(r => {
     if (!r.ok) throw new Error('No se pudo cargar datos_salarios.json');
     return r.json();
