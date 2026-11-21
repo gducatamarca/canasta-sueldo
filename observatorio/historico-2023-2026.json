@@ -2,10 +2,10 @@
   "titulo": "Índice de salarios reales en universidades nacionales",
   "base": "2023-11",
   "ultima_actualizacion": "2026-10",
-  "cobertura": "Personal docente, no docente e investigadores de universidades nacionales (serie agregada del informe FEDUN-CIICti)",
-  "metodologia": "Salario real índice noviembre 2023=100; valores mensuales publicados por CIICTI-FEDUN. Pérdida real = índice - 100; recomposición necesaria = 100/índice - 1.",
+  "cobertura": "Personal docente, no docente e investigadores de universidades nacionales (serie agregada de un informe técnico público).",
+  "metodologia": "Índice de salario real con base noviembre de 2023 = 100, obtenido de una serie técnica nacional. Pérdida real = índice - 100; recomposición necesaria = (100 / índice - 1) × 100.",
   "fuente": {
-    "organismo": "CIICti–FEDUN",
+    "organismo": "Informe técnico de situación universitaria",
     "informe": "Informe de situación del sistema universitario N.º 17 — Octubre 2026",
     "url": "https://fedun.com.ar/wp-content/uploads/2026/11/informe17_citt-fedun-b.pdf",
     "paginas": "4 a 6"
@@ -163,7 +163,7 @@
     "recomposicion_informe_pct": 31
   },
   "advertencias": [
-    "El índice de FEDUN combina personal docente, no docente e investigadores de universidades nacionales. No es una liquidación salarial por cargo ni una serie específica de la UNCa.",
+    "El índice agregado combina personal docente, no docente e investigadores de universidades nacionales. No es una liquidación salarial por cargo ni una serie específica de la UNCa.",
     "La serie muestra un índice salarial real: no deben interpretarse los porcentajes del índice como cambios nominales.",
     "La pérdida real actual y la recomposición necesaria son indicadores diferentes: un salario que vale 76,4 respecto a una base 100 necesita aumentar aproximadamente 30,9% para volver a 100."
   ]
